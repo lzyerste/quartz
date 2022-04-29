@@ -1,0 +1,119 @@
+<!doctype html><html lang=en><head><meta charset=utf-8><meta name=description content="10. Regular Expression Matching Difficulty: Hard ID: 10 Solved?: Yes Tags: Backtracking, DP, String 击败: 98.08 推荐指数: ⭐⭐⭐⭐⭐
+ Regular Expression Matching - LeetCode"><title>🪴 Quartz 3.2</title><meta name=viewport content="width=device-width,initial-scale=1"><link rel="shortcut icon" type=image/png href=https://lzyerste.github.io/quartz//icon.png><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Source+Sans+Pro:wght@400;600;700&family=Fira+Code:wght@400;700&display=swap" rel=stylesheet><link href=https://lzyerste.github.io/quartz/styles.b5715611e07d622618ed61d06502131c.min.css rel=stylesheet><script src=https://lzyerste.github.io/quartz/js/darkmode.46b07878b7f5d9e26ad7a3c40f8a0605.min.js></script>
+<link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css integrity=sha384-R4558gYOUz8mP9YWpZJjofhk+zx0AS11p36HnD2ZKj/6JR5z27gSSULCNHIRReVs crossorigin=anonymous><script defer src=https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js integrity=sha384-z1fJDqw8ZApjGO3/unPWUPsIymfsJmyrDVWC8Tv/a1HeOtGmkwNd/7xUS0Xcnvsx crossorigin=anonymous></script>
+<script defer src=https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/contrib/auto-render.min.js integrity=sha384-+XBljXPPiv+OzfbB3cVmLHf4hdUFHlWNZN5spNQ7rmHTXpd7WvJum6fIACpNNfIR crossorigin=anonymous></script>
+<script>document.addEventListener("DOMContentLoaded",function(){renderMathInElement(document.body,{delimiters:[{left:"$$",right:"$$",display:!0},{left:"$",right:"$",display:!1}],throwOnError:!1})})</script><script>const BASE_URL="https://lzyerste.github.io/quartz/",fetchData=Promise.all([fetch("https://lzyerste.github.io/quartz/indices/linkIndex.0c3b9c7455a2a896802a60e8bb3e1120.min.json").then(e=>e.json()).then(e=>({index:e.index,links:e.links})),fetch("https://lzyerste.github.io/quartz/indices/contentIndex.d5cc7a6f5c397ac12ca2df88f6566f1c.min.json").then(e=>e.json())]).then(([{index:e,links:t},n])=>({index:e,links:t,content:n}))</script></head><script async src="https://www.googletagmanager.com/gtag/js?id=G-XYFD95KB4J"></script>
+<script>var doNotTrack=!1;if(!doNotTrack){window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-XYFD95KB4J",{anonymize_ip:!1})}</script><body><div id=search-container><div id=search-space><input autocomplete=off id=search-bar name=search type=text aria-label=Search placeholder="Search for something..."><div id=results-container></div></div></div><script src=https://cdn.jsdelivr.net/npm/flexsearch@0.7.21/dist/flexsearch.bundle.js integrity="sha256-i3A0NZGkhsKjVMzFxv3ksk0DZh3aXqu0l49Bbh0MdjE=" crossorigin=anonymous defer></script>
+<script defer src=https://lzyerste.github.io/quartz/js/search.7861a82db330f0a40935b7458fee3a02.min.js></script><div class=singlePage><header><h1 id=page-title><a href=https://lzyerste.github.io/quartz/>🪴 Quartz 3.2</a></h1><svg tabindex="0" id="search-icon" aria-labelledby="title desc" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 19.9 19.7"><title id="title">Search Icon</title><desc id="desc">Icon to open search</desc><g class="search-path" fill="none"><path stroke-linecap="square" d="M18.5 18.3l-5.4-5.4"/><circle cx="8" cy="8" r="7"/></g></svg><div class=spacer></div><div class=darkmode><input class=toggle id=darkmode-toggle type=checkbox tabindex=-1>
+<label id=toggle-label-light for=darkmode-toggle tabindex=-1><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="dayIcon" viewBox="0 0 35 35" style="enable-background:new 0 0 35 35"><title>Light Mode</title><path d="M6 17.5C6 16.672 5.328 16 4.5 16h-3C.672 16 0 16.672.0 17.5S.672 19 1.5 19h3C5.328 19 6 18.328 6 17.5zM7.5 26c-.414.0-.789.168-1.061.439l-2 2C4.168 28.711 4 29.086 4 29.5 4 30.328 4.671 31 5.5 31c.414.0.789-.168 1.06-.44l2-2C8.832 28.289 9 27.914 9 27.5 9 26.672 8.329 26 7.5 26zm10-20C18.329 6 19 5.328 19 4.5v-3C19 .672 18.329.0 17.5.0S16 .672 16 1.5v3C16 5.328 16.671 6 17.5 6zm10 3c.414.0.789-.168 1.06-.439l2-2C30.832 6.289 31 5.914 31 5.5 31 4.672 30.329 4 29.5 4c-.414.0-.789.168-1.061.44l-2 2C26.168 6.711 26 7.086 26 7.5 26 8.328 26.671 9 27.5 9zM6.439 8.561C6.711 8.832 7.086 9 7.5 9 8.328 9 9 8.328 9 7.5c0-.414-.168-.789-.439-1.061l-2-2C6.289 4.168 5.914 4 5.5 4 4.672 4 4 4.672 4 5.5c0 .414.168.789.439 1.06l2 2.001zM33.5 16h-3c-.828.0-1.5.672-1.5 1.5s.672 1.5 1.5 1.5h3c.828.0 1.5-.672 1.5-1.5S34.328 16 33.5 16zM28.561 26.439C28.289 26.168 27.914 26 27.5 26c-.828.0-1.5.672-1.5 1.5.0.414.168.789.439 1.06l2 2C28.711 30.832 29.086 31 29.5 31c.828.0 1.5-.672 1.5-1.5.0-.414-.168-.789-.439-1.061l-2-2zM17.5 29c-.829.0-1.5.672-1.5 1.5v3c0 .828.671 1.5 1.5 1.5s1.5-.672 1.5-1.5v-3C19 29.672 18.329 29 17.5 29zm0-22C11.71 7 7 11.71 7 17.5S11.71 28 17.5 28 28 23.29 28 17.5 23.29 7 17.5 7zm0 18c-4.136.0-7.5-3.364-7.5-7.5s3.364-7.5 7.5-7.5 7.5 3.364 7.5 7.5S21.636 25 17.5 25z"/></svg></label><label id=toggle-label-dark for=darkmode-toggle tabindex=-1><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="nightIcon" viewBox="0 0 100 100" style="enable-background='new 0 0 100 100'"><title>Dark Mode</title><path d="M96.76 66.458c-.853-.852-2.15-1.064-3.23-.534-6.063 2.991-12.858 4.571-19.655 4.571C62.022 70.495 50.88 65.88 42.5 57.5 29.043 44.043 25.658 23.536 34.076 6.47c.532-1.08.318-2.379-.534-3.23-.851-.852-2.15-1.064-3.23-.534-4.918 2.427-9.375 5.619-13.246 9.491-9.447 9.447-14.65 22.008-14.65 35.369.0 13.36 5.203 25.921 14.65 35.368s22.008 14.65 35.368 14.65c13.361.0 25.921-5.203 35.369-14.65 3.872-3.871 7.064-8.328 9.491-13.246C97.826 68.608 97.611 67.309 96.76 66.458z"/></svg></label></div></header><article><p class=meta>Last updated Unknown</p><ul class=tags></ul><aside class=mainTOC><details><summary>Table of Contents</summary><nav id=TableOfContents><ol><li><a href=#题意>题意</a></li><li><a href=#思路>思路</a></li><li><a href=#题解1dp>题解1：DP</a></li><li><a href=#题解2状态机实现正则表达式>题解2：状态机实现正则表达式？</a></li></ol></nav></details></aside><h1 id=10-regular-expression-matching>10. Regular Expression Matching</h1><p>Difficulty: Hard
+ID: 10
+Solved?: Yes
+Tags: Backtracking, DP, String
+击败: 98.08
+推荐指数: ⭐⭐⭐⭐⭐</p><p><a href=https://leetcode.com/problems/regular-expression-matching/ rel=noopener>Regular Expression Matching - LeetCode</a></p><h2 id=题意>题意</h2><p>给定一个字符串 (<code>s</code>) 和一个字符模式 (<code>p</code>)。实现支持 <code>'.'</code> 和 <code>'*'</code> 的正则表达式匹配。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>&#39;.&#39; 匹配任意单个字符。
+</span></span><span class=line><span class=cl>&#39;*&#39; 匹配零个或多个前面的元素。
+</span></span></code></pre></td></tr></table></div></div><p>匹配应该覆盖<strong>整个</strong>字符串 (<code>s</code>) ，而不是部分字符串。</p><p><strong>说明:</strong></p><ul><li><code>s</code> 可能为空，且只包含从 <code>a-z</code> 的小写字母。</li><li><code>p</code> 可能为空，且只包含从 <code>a-z</code> 的小写字母，以及字符 <code>.</code> 和 <code>*</code>。</li></ul><p>示例 1:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>输入:
+</span></span><span class=line><span class=cl>s = &#34;aa&#34;
+</span></span><span class=line><span class=cl>p = &#34;a&#34;
+</span></span><span class=line><span class=cl>输出: false
+</span></span><span class=line><span class=cl>解释: &#34;a&#34; 无法匹配 &#34;aa&#34; 整个字符串。
+</span></span></code></pre></td></tr></table></div></div><p>示例 2:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>输入:
+</span></span><span class=line><span class=cl>s = &#34;aa&#34;
+</span></span><span class=line><span class=cl>p = &#34;a*&#34;
+</span></span><span class=line><span class=cl>输出: true
+</span></span><span class=line><span class=cl>解释: &#39;*&#39; 代表可匹配零个或多个前面的元素, 即可以匹配 &#39;a&#39; 。因此, 重复 &#39;a&#39; 一次, 字符串可变为 &#34;aa&#34;。
+</span></span></code></pre></td></tr></table></div></div><p>示例 3:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>输入:
+</span></span><span class=line><span class=cl>s = &#34;ab&#34;
+</span></span><span class=line><span class=cl>p = &#34;.*&#34;
+</span></span><span class=line><span class=cl>输出: true
+</span></span><span class=line><span class=cl>解释: &#34;.*&#34; 表示可匹配零个或多个(&#39;*&#39;)任意字符(&#39;.&#39;)。
+</span></span></code></pre></td></tr></table></div></div><p>示例 4:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>输入:
+</span></span><span class=line><span class=cl>s = &#34;aab&#34;
+</span></span><span class=line><span class=cl>p = &#34;c*a*b&#34;
+</span></span><span class=line><span class=cl>输出: true
+</span></span><span class=line><span class=cl>解释: &#39;c&#39; 可以不被重复, &#39;a&#39; 可以被重复一次。因此可以匹配字符串 &#34;aab&#34;。
+</span></span></code></pre></td></tr></table></div></div><p>示例 5:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>输入:
+</span></span><span class=line><span class=cl>s = &#34;mississippi&#34;
+</span></span><span class=line><span class=cl>p = &#34;mis*is*p*.&#34;
+</span></span><span class=line><span class=cl>输出: false
+</span></span></code></pre></td></tr></table></div></div><h2 id=思路>思路</h2><ul><li>动态规划，s与p在前面匹配的情况一起往右走。实际上，从右往前归约比较好写。</li><li>回溯？</li><li>模拟正则表达式（strings）</li></ul><h2 id=题解1dp>题解1：DP</h2><p>针对s与p，从后往前归约。需要特殊处理的是星号<code>*</code>，它需要往前再看一个字符，可以它可以表示出现0次或多次。点号<code>.</code>很好处理，它实实在在占据一个字符，只是充当万能字符。</p><blockquote><p>比如c*，如果从左往右扫描，先遇到c，还需要判断c的后面是不是星号，比较麻烦。如果是从右往左扫描，就会先遇到*，然后就知道它前面肯定还有个正常字符；如果是普通字符，那么就能明确它仅仅作为普通字符，不会与*搭配。</p></blockquote><p>举例，s为<code>aab</code>，p为<code>c*a*b</code>。</p><p>查看s与p的各自最末字符，p的最右是常规字符b，那么直接比较这两个字符，都是b，匹配，s和p各自往左走一步，s → s[:-1]，为aa；p → p[:-1]，为c<em>a</em>。</p><p>这时候p的最末字符是特殊字符*，再前一个字符是a。针对星号*的处理，有两种可能情况：</p><ol><li><em>表示使用0次，不参与匹配，那么归约后，s保持不变，p往前走2步（丢弃a</em>）。s变为aa，p变为c*，这种情况下最后结果是False。</li><li><em>表示使用多次（至少1次），本次必须参与匹配，a与a匹配。那么归约后，s往前走1步，p保持不变（因为</em>在这里表示使用多次，现在只使用了一次，在归约子问题中可以继续使用。在子问题中可以表示使用0次，那么合计就是使用了1次）。s变为a，p仍然为c<em>a</em>。<ol><li>同理，继续处理p最末的星号。成功的一条途径是继续使用a<em>来匹配a，那么，接下来s变为空串，p仍然为c</em>a*，这时候a<em>与c</em>都消费0次即可，归约为s与p都是空串，返回True。</li></ol></li></ol><p>情况1和情况2是并列的，要对它们的结果取OR操作。</p><p>边界情况处理见代码（s或p为空串）。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=k>class</span> <span class=nc>Solution</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>    <span class=k>def</span> <span class=nf>isMatch</span><span class=p>(</span><span class=bp>self</span><span class=p>,</span> <span class=n>s</span><span class=p>:</span> <span class=nb>str</span><span class=p>,</span> <span class=n>p</span><span class=p>:</span> <span class=nb>str</span><span class=p>)</span> <span class=o>-&gt;</span> <span class=nb>bool</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=k>def</span> <span class=nf>match</span><span class=p>(</span><span class=n>a</span><span class=p>,</span> <span class=n>b</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>            <span class=k>return</span> <span class=n>a</span> <span class=o>==</span> <span class=n>b</span> <span class=ow>or</span> <span class=s2>&#34;.&#34;</span> <span class=ow>in</span> <span class=p>{</span><span class=n>a</span><span class=p>,</span> <span class=n>b</span><span class=p>}</span>  <span class=c1># 两个字符是否匹配</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>        <span class=k>def</span> <span class=nf>dp</span><span class=p>(</span><span class=n>G</span><span class=p>,</span> <span class=n>s</span><span class=p>,</span> <span class=n>p</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>            <span class=n>z</span> <span class=o>=</span> <span class=n>s</span><span class=p>,</span> <span class=n>p</span>
+</span></span><span class=line><span class=cl>            <span class=k>if</span> <span class=n>z</span> <span class=ow>in</span> <span class=n>G</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>                <span class=k>return</span> <span class=n>G</span><span class=p>[</span><span class=n>z</span><span class=p>]</span>  <span class=c1># memorization</span>
+</span></span><span class=line><span class=cl>            <span class=k>if</span> <span class=ow>not</span> <span class=n>p</span><span class=p>:</span>  <span class=c1># p is &#34;&#34;</span>
+</span></span><span class=line><span class=cl>                <span class=k>return</span> <span class=n>s</span> <span class=o>==</span> <span class=s2>&#34;&#34;</span>
+</span></span><span class=line><span class=cl>            <span class=k>if</span> <span class=ow>not</span> <span class=n>s</span><span class=p>:</span>  <span class=c1># s is &#34;&#34;</span>
+</span></span><span class=line><span class=cl>                <span class=k>if</span> <span class=n>p</span><span class=p>[</span><span class=o>-</span><span class=mi>1</span><span class=p>]</span> <span class=o>==</span> <span class=s2>&#34;*&#34;</span><span class=p>:</span>  <span class=c1># p是否可归约为空串</span>
+</span></span><span class=line><span class=cl>                    <span class=k>return</span> <span class=n>dp</span><span class=p>(</span><span class=n>G</span><span class=p>,</span> <span class=n>s</span><span class=p>,</span> <span class=n>p</span><span class=p>[:</span><span class=o>-</span><span class=mi>2</span><span class=p>])</span>
+</span></span><span class=line><span class=cl>                <span class=k>return</span> <span class=kc>False</span>
+</span></span><span class=line><span class=cl>            <span class=c1># now s and p both are not empty</span>
+</span></span><span class=line><span class=cl>            <span class=k>if</span> <span class=n>p</span><span class=p>[</span><span class=o>-</span><span class=mi>1</span><span class=p>]</span> <span class=o>==</span> <span class=s2>&#34;*&#34;</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>                <span class=c1># or之前表示丢弃*，使用0次，s不变，p前进2步</span>
+</span></span><span class=line><span class=cl>                <span class=c1># or之后表示消费*，在匹配的情况下，继续归约。s前进1步，p不变。</span>
+</span></span><span class=line><span class=cl>                <span class=n>G</span><span class=p>[</span><span class=n>z</span><span class=p>]</span> <span class=o>=</span> <span class=n>dp</span><span class=p>(</span><span class=n>G</span><span class=p>,</span> <span class=n>s</span><span class=p>,</span> <span class=n>p</span><span class=p>[:</span><span class=o>-</span><span class=mi>2</span><span class=p>])</span> <span class=ow>or</span> <span class=p>(</span><span class=n>match</span><span class=p>(</span><span class=n>p</span><span class=p>[</span><span class=o>-</span><span class=mi>2</span><span class=p>],</span> <span class=n>s</span><span class=p>[</span><span class=o>-</span><span class=mi>1</span><span class=p>])</span> <span class=ow>and</span> <span class=n>dp</span><span class=p>(</span><span class=n>G</span><span class=p>,</span> <span class=n>s</span><span class=p>[:</span><span class=o>-</span><span class=mi>1</span><span class=p>],</span> <span class=n>p</span><span class=p>))</span>
+</span></span><span class=line><span class=cl>            <span class=k>else</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>                <span class=c1># 常规匹配一个字符，若匹配，则各自前进1步</span>
+</span></span><span class=line><span class=cl>                <span class=n>G</span><span class=p>[</span><span class=n>z</span><span class=p>]</span> <span class=o>=</span> <span class=n>match</span><span class=p>(</span><span class=n>p</span><span class=p>[</span><span class=o>-</span><span class=mi>1</span><span class=p>],</span> <span class=n>s</span><span class=p>[</span><span class=o>-</span><span class=mi>1</span><span class=p>])</span> <span class=ow>and</span> <span class=n>dp</span><span class=p>(</span><span class=n>G</span><span class=p>,</span> <span class=n>s</span><span class=p>[:</span><span class=o>-</span><span class=mi>1</span><span class=p>],</span> <span class=n>p</span><span class=p>[:</span><span class=o>-</span><span class=mi>1</span><span class=p>])</span>
+</span></span><span class=line><span class=cl>            <span class=k>return</span> <span class=n>G</span><span class=p>[</span><span class=n>z</span><span class=p>]</span>
+</span></span><span class=line><span class=cl>        
+</span></span><span class=line><span class=cl>        <span class=k>return</span> <span class=n>dp</span><span class=p>({},</span> <span class=n>s</span><span class=p>,</span> <span class=n>p</span><span class=p>)</span>
+</span></span></code></pre></td></tr></table></div></div><p>击败98.08%</p><h2 id=题解2状态机实现正则表达式>题解2：状态机实现正则表达式？</h2><p>查看LeetCode上的提交记录。</p><p>Jupyter笔记。</p><p>将pattern转化为NFA，状态间支持空转移。</p><p>从初始状态出发，根据空转移得到可达集合，然后消耗字符串一个字符，集合内的状态加上这个字符，可以到达哪些状态，得到下一个集合，这个集合也要扩充为空转移可达集合。</p><p>最后，消耗完所有字符后，看最终状态是否在集合中。</p></article><hr><div class=page-end><div class=backlinks-container><h3>Backlinks</h3><ul class=backlinks><li>No backlinks found</li></ul></div><div><script src=https://cdn.jsdelivr.net/npm/d3@6.7.0/dist/d3.min.js integrity="sha256-+7jaYCp29O1JusNWHaYtgUn6EhuP0VaFuswhNV06MyI=" crossorigin=anonymous></script><h3>Interactive Graph</h3><div id=graph-container></div><style>:root{--g-node:var(--secondary);--g-node-active:var(--primary);--g-node-inactive:var(--visited);--g-link:var(--outlinegray);--g-link-active:#5a7282}</style><script src=https://lzyerste.github.io/quartz/js/graph.6fe09b3d8b5792ccf0f505be9ee8275d.js></script>
+<script>drawGraph("https://lzyerste.github.io/quartz/wiki/wiki/algorithm/OJ_online_judge/LeetCode/%E9%A2%98%E7%9B%AE%E5%88%97%E8%A1%A8/10-Regular-Expression-Matching-d66accc7d2b84771b8dadad4ecd09a6d","https://lzyerste.github.io/quartz",[{"/moc":"#4388cc"}],-1,!0,!1,!0)</script></div></div><div id=contact_buttons><footer><p>Made by Jacky Zhao using <a href=https://github.com/jackyzha0/quartz>Quartz</a>, © 2022</p><ul><li><a href=/>Home</a></li><li><a href=https://twitter.com/_jzhao>Twitter</a></li><li><a href=https://github.com/jackyzha0>Github</a></li></ul></footer></div><script src=https://lzyerste.github.io/quartz/js/popover.e57188d2e4c06b0654e020b3a734bb62.min.js></script>
+<script>initPopover("https://lzyerste.github.io/quartz")</script></div></body></html>

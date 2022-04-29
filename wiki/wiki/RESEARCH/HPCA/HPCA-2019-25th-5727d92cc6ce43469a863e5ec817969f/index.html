@@ -1,0 +1,248 @@
+<!doctype html><html lang=en><head><meta charset=utf-8><meta name=description content="HPCA 2019, 25th  HPCA2019
+主页
+ dblp: HPCA 2019
+Session 1: Best Paper Nominees   Adi Fuchs, David Wentzlaff: The Accelerator Wall: Limits of Chip Specialization."><title>🪴 Quartz 3.2</title><meta name=viewport content="width=device-width,initial-scale=1"><link rel="shortcut icon" type=image/png href=https://lzyerste.github.io/quartz//icon.png><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Source+Sans+Pro:wght@400;600;700&family=Fira+Code:wght@400;700&display=swap" rel=stylesheet><link href=https://lzyerste.github.io/quartz/styles.b5715611e07d622618ed61d06502131c.min.css rel=stylesheet><script src=https://lzyerste.github.io/quartz/js/darkmode.46b07878b7f5d9e26ad7a3c40f8a0605.min.js></script>
+<link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css integrity=sha384-R4558gYOUz8mP9YWpZJjofhk+zx0AS11p36HnD2ZKj/6JR5z27gSSULCNHIRReVs crossorigin=anonymous><script defer src=https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js integrity=sha384-z1fJDqw8ZApjGO3/unPWUPsIymfsJmyrDVWC8Tv/a1HeOtGmkwNd/7xUS0Xcnvsx crossorigin=anonymous></script>
+<script defer src=https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/contrib/auto-render.min.js integrity=sha384-+XBljXPPiv+OzfbB3cVmLHf4hdUFHlWNZN5spNQ7rmHTXpd7WvJum6fIACpNNfIR crossorigin=anonymous></script>
+<script>document.addEventListener("DOMContentLoaded",function(){renderMathInElement(document.body,{delimiters:[{left:"$$",right:"$$",display:!0},{left:"$",right:"$",display:!1}],throwOnError:!1})})</script><script>const BASE_URL="https://lzyerste.github.io/quartz/",fetchData=Promise.all([fetch("https://lzyerste.github.io/quartz/indices/linkIndex.0c3b9c7455a2a896802a60e8bb3e1120.min.json").then(e=>e.json()).then(e=>({index:e.index,links:e.links})),fetch("https://lzyerste.github.io/quartz/indices/contentIndex.d5cc7a6f5c397ac12ca2df88f6566f1c.min.json").then(e=>e.json())]).then(([{index:e,links:t},n])=>({index:e,links:t,content:n}))</script></head><script async src="https://www.googletagmanager.com/gtag/js?id=G-XYFD95KB4J"></script>
+<script>var doNotTrack=!1;if(!doNotTrack){window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-XYFD95KB4J",{anonymize_ip:!1})}</script><body><div id=search-container><div id=search-space><input autocomplete=off id=search-bar name=search type=text aria-label=Search placeholder="Search for something..."><div id=results-container></div></div></div><script src=https://cdn.jsdelivr.net/npm/flexsearch@0.7.21/dist/flexsearch.bundle.js integrity="sha256-i3A0NZGkhsKjVMzFxv3ksk0DZh3aXqu0l49Bbh0MdjE=" crossorigin=anonymous defer></script>
+<script defer src=https://lzyerste.github.io/quartz/js/search.7861a82db330f0a40935b7458fee3a02.min.js></script><div class=singlePage><header><h1 id=page-title><a href=https://lzyerste.github.io/quartz/>🪴 Quartz 3.2</a></h1><svg tabindex="0" id="search-icon" aria-labelledby="title desc" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 19.9 19.7"><title id="title">Search Icon</title><desc id="desc">Icon to open search</desc><g class="search-path" fill="none"><path stroke-linecap="square" d="M18.5 18.3l-5.4-5.4"/><circle cx="8" cy="8" r="7"/></g></svg><div class=spacer></div><div class=darkmode><input class=toggle id=darkmode-toggle type=checkbox tabindex=-1>
+<label id=toggle-label-light for=darkmode-toggle tabindex=-1><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="dayIcon" viewBox="0 0 35 35" style="enable-background:new 0 0 35 35"><title>Light Mode</title><path d="M6 17.5C6 16.672 5.328 16 4.5 16h-3C.672 16 0 16.672.0 17.5S.672 19 1.5 19h3C5.328 19 6 18.328 6 17.5zM7.5 26c-.414.0-.789.168-1.061.439l-2 2C4.168 28.711 4 29.086 4 29.5 4 30.328 4.671 31 5.5 31c.414.0.789-.168 1.06-.44l2-2C8.832 28.289 9 27.914 9 27.5 9 26.672 8.329 26 7.5 26zm10-20C18.329 6 19 5.328 19 4.5v-3C19 .672 18.329.0 17.5.0S16 .672 16 1.5v3C16 5.328 16.671 6 17.5 6zm10 3c.414.0.789-.168 1.06-.439l2-2C30.832 6.289 31 5.914 31 5.5 31 4.672 30.329 4 29.5 4c-.414.0-.789.168-1.061.44l-2 2C26.168 6.711 26 7.086 26 7.5 26 8.328 26.671 9 27.5 9zM6.439 8.561C6.711 8.832 7.086 9 7.5 9 8.328 9 9 8.328 9 7.5c0-.414-.168-.789-.439-1.061l-2-2C6.289 4.168 5.914 4 5.5 4 4.672 4 4 4.672 4 5.5c0 .414.168.789.439 1.06l2 2.001zM33.5 16h-3c-.828.0-1.5.672-1.5 1.5s.672 1.5 1.5 1.5h3c.828.0 1.5-.672 1.5-1.5S34.328 16 33.5 16zM28.561 26.439C28.289 26.168 27.914 26 27.5 26c-.828.0-1.5.672-1.5 1.5.0.414.168.789.439 1.06l2 2C28.711 30.832 29.086 31 29.5 31c.828.0 1.5-.672 1.5-1.5.0-.414-.168-.789-.439-1.061l-2-2zM17.5 29c-.829.0-1.5.672-1.5 1.5v3c0 .828.671 1.5 1.5 1.5s1.5-.672 1.5-1.5v-3C19 29.672 18.329 29 17.5 29zm0-22C11.71 7 7 11.71 7 17.5S11.71 28 17.5 28 28 23.29 28 17.5 23.29 7 17.5 7zm0 18c-4.136.0-7.5-3.364-7.5-7.5s3.364-7.5 7.5-7.5 7.5 3.364 7.5 7.5S21.636 25 17.5 25z"/></svg></label><label id=toggle-label-dark for=darkmode-toggle tabindex=-1><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="nightIcon" viewBox="0 0 100 100" style="enable-background='new 0 0 100 100'"><title>Dark Mode</title><path d="M96.76 66.458c-.853-.852-2.15-1.064-3.23-.534-6.063 2.991-12.858 4.571-19.655 4.571C62.022 70.495 50.88 65.88 42.5 57.5 29.043 44.043 25.658 23.536 34.076 6.47c.532-1.08.318-2.379-.534-3.23-.851-.852-2.15-1.064-3.23-.534-4.918 2.427-9.375 5.619-13.246 9.491-9.447 9.447-14.65 22.008-14.65 35.369.0 13.36 5.203 25.921 14.65 35.368s22.008 14.65 35.368 14.65c13.361.0 25.921-5.203 35.369-14.65 3.872-3.871 7.064-8.328 9.491-13.246C97.826 68.608 97.611 67.309 96.76 66.458z"/></svg></label></div></header><article><p class=meta>Last updated April 29, 2022</p><ul class=tags></ul><aside class=mainTOC><details><summary>Table of Contents</summary><nav id=TableOfContents><ol><li><a href=#session-1-best-paper-nominees><strong>Session 1: Best Paper Nominees</strong></a></li><li><a href=#session-2a-accelerators-for-dnns><strong>Session 2A: Accelerators for DNNs</strong></a></li><li><a href=#session-2b-power-efficiency><strong>Session 2B: Power Efficiency</strong></a></li><li><a href=#session-3a-datacenter><strong>Session 3A: Datacenter</strong></a></li><li><a href=#session-3b-emerging-technologies><strong>Session 3B: Emerging Technologies</strong></a></li><li><a href=#session-4a-security><strong>Session 4A: Security</strong></a></li><li><a href=#session-4b-industry-session-1-mobile--low-power><strong>Session 4B: Industry Session 1: Mobile & Low Power</strong></a></li><li><a href=#session-5a-accelerators-for-emerging-applications><strong>Session 5A: Accelerators for Emerging Applications</strong></a></li><li><a href=#session-5b-memory-hierarchy-management><strong>Session 5B: Memory Hierarchy Management</strong></a></li><li><a href=#session-6a-industry-session-2-microarchitecture><strong>Session 6A: Industry Session 2: Microarchitecture</strong></a></li><li><a href=#session-6b-best-of-cal-computer-architecture-letters><strong>Session 6B: Best of CAL (Computer Architecture Letters)</strong></a></li><li><a href=#session-7a-gpusmodeling><strong>Session 7A: GPUs/Modeling</strong></a></li><li><a href=#session-7b-microarchitecture><strong>Session 7B: Microarchitecture</strong></a></li><li><a href=#session-8a-memory><strong>Session 8A: Memory</strong></a></li><li><a href=#session-8b-accelerators-for-graphicsvr><strong>Session 8B: Accelerators for Graphics/VR</strong></a></li><li><a href=#session-9a-emerging-memory-technologies><strong>Session 9A: Emerging Memory Technologies</strong></a></li><li><a href=#session-9b-industry-session-3-servers><strong>Session 9B: Industry Session 3: Servers</strong></a></li></ol></nav></details></aside><h1 id=hpca-2019-25th>HPCA 2019, 25th</h1><p><a href=http://hpca2019.seas.gwu.edu/ rel=noopener>HPCA2019</a></p><p>主页</p><p><a href=https://dblp.org/db/conf/hpca/hpca2019.html rel=noopener>dblp: HPCA 2019</a></p><h2 id=session-1-best-paper-nominees><strong>Session 1: Best Paper Nominees</strong></h2><ul><li><a href=https://dblp.org/pid/157/2809.html rel=noopener>Adi Fuchs</a>,
+<a href=https://dblp.org/pid/49/4239.html rel=noopener>David Wentzlaff</a>:
+<strong>The Accelerator Wall: Limits of Chip Specialization.</strong> 1-14</li><li><a href=https://dblp.org/pid/232/0157.html rel=noopener>Artemiy Margaritov</a>,
+<a href=https://dblp.org/pid/45/7178-3.html rel=noopener>Siddharth Gupta</a>:
+<strong>Stretch: Balancing QoS and Throughput for Colocated Server Workloads on SMT Cores.</strong> 15-27</li><li><a href=https://dblp.org/pid/173/9805.html rel=noopener>Mohammadamin Ajdari</a>,
+<a href=https://dblp.org/pid/216/7341.html rel=noopener>Pyeongsu Park</a>,
+<a href=https://dblp.org/pid/216/7152.html rel=noopener>Joonsung Kim</a>,
+<a href=https://dblp.org/pid/173/9795.html rel=noopener>Dongup Kwon</a>,
+<a href=https://dblp.org/pid/04/2187.html rel=noopener>Jangwoo Kim</a>:
+<strong>CIDR: A Cost-Effective In-Line Data Reduction System for Terabit-Per-Second Scale SSD Arrays.</strong> 28-41</li><li><a href=https://dblp.org/pid/76/11029.html rel=noopener>Ashish Venkat</a>,
+<a href=https://dblp.org/pid/238/2097.html rel=noopener>Harsha Basavaraj</a>,
+<a href=https://dblp.org/pid/t/DeanMTullsen.html rel=noopener>Dean M. Tullsen</a>:
+<strong>Composite-ISA Cores: Enabling Multi-ISA Heterogeneity Using a Single ISA.</strong> 42-55</li></ul><h2 id=session-2a-accelerators-for-dnns><strong>Session 2A: Accelerators for DNNs</strong></h2><ul><li><a href=https://dblp.org/pid/163/3673.html rel=noopener>Linghao Song</a>:
+<strong>HyPar: Towards Hybrid Parallelism for Deep Learning Accelerator Array.</strong> 56-68</li><li><a href=https://dblp.org/pid/11/751-1.html rel=noopener>Zhe Li</a>,
+<a href=https://dblp.org/pid/175/2489.html rel=noopener>Caiwen Ding</a>:
+<strong>E-RNN: Design Optimization for Efficient Recurrent Neural Networks in FPGAs.</strong> 69-80</li><li><a href=https://dblp.org/pid/27/5665.html rel=noopener>Xiaowei Wang</a>,
+<a href=https://dblp.org/pid/201/4874.html rel=noopener>Jiecao Yu</a>,
+<a href=https://dblp.org/pid/41/5248.html rel=noopener>Charles Augustine</a>,
+<a href=https://dblp.org/pid/i/RaviRIyer.html rel=noopener>Ravi R. Iyer</a>,
+<a href=https://dblp.org/pid/41/1231.html rel=noopener>Reetuparna Das</a>:
+<strong>Bit Prudent In-Cache Acceleration of Deep Convolutional Neural Networks.</strong> 81-93</li><li><a href=https://dblp.org/pid/217/0574.html rel=noopener>Arash AziziMazreah</a>,
+<a href=https://dblp.org/pid/78/4756.html rel=noopener>Lizhong Chen</a>:
+<strong>Shortcut Mining: Exploiting Cross-Layer Shortcut Reuse in DCNN Accelerators.</strong> 94-105</li></ul><h2 id=session-2b-power-efficiency><strong>Session 2B: Power Efficiency</strong></h2><ul><li><a href=https://dblp.org/pid/145/0587.html rel=noopener>Yazhou Zu</a>,
+<a href=https://dblp.org/pid/36/7957.html rel=noopener>Daniel Richins</a>,
+<a href=https://dblp.org/pid/37/6803.html rel=noopener>Charles Lefurgy</a>,
+<a href=https://dblp.org/pid/88/2610.html rel=noopener>Vijay Janapa Reddi</a>:
+<strong>Fine-Tuning the Active Timing Margin (ATM) Control Loop for Maximizing Multi-core Efficiency on an IBM POWER Server.</strong> 106-119</li><li><a href=https://dblp.org/pid/86/2556.html rel=noopener>Chih-Hsun Chou</a>,
+<a href=https://dblp.org/pid/b/LaxmiNBhuyan.html rel=noopener>Laxmi N. Bhuyan</a>,
+<a href=https://dblp.org/pid/30/4954-1.html rel=noopener>Daniel Wong</a>:
+<strong>μDPM: Dynamic Power Management for the Microsecond Era.</strong> 120-132</li><li><a href=https://dblp.org/pid/54/2215.html rel=noopener>George Papadimitriou</a>,
+<a href=https://dblp.org/pid/170/3249.html rel=noopener>Athanasios Chatzidimitriou</a>,
+<a href=https://dblp.org/pid/79/1691.html rel=noopener>Dimitris Gizopoulos</a>:
+<strong>Adaptive Voltage/Frequency Scaling and Core Allocation for Balanced Energy and Performance on Multicore CPUs.</strong> 133-146</li><li><a href=https://dblp.org/pid/29/11469.html rel=noopener>Nandhini Chandramoorthy</a>,
+<a href=https://dblp.org/pid/13/3711.html rel=noopener>Karthik Swaminathan</a>,
+<a href=https://dblp.org/pid/160/5478.html rel=noopener>Martin Cochet</a>,
+<a href=https://dblp.org/pid/46/7955.html rel=noopener>Arun Paidimarri</a>,
+<a href=https://dblp.org/pid/145/7549.html rel=noopener>Schuyler Eldridge</a>,
+<a href=https://dblp.org/pid/42/5976.html rel=noopener>Rajiv V. Joshi</a>,
+<a href=https://dblp.org/pid/90/281.html rel=noopener>Matthew M. Ziegler</a>,
+<a href=https://dblp.org/pid/18/2863.html rel=noopener>Alper Buyuktosunoglu</a>,
+<a href=https://dblp.org/pid/21/4612.html rel=noopener>Pradip Bose</a>:
+<strong>Resilient Low Voltage Accelerators for High Energy Efficiency.</strong> 147-158</li></ul><h2 id=session-3a-datacenter><strong>Session 3A: Datacenter</strong></h2><ul><li><a href=https://dblp.org/pid/218/6005.html rel=noopener>Neeraj Kulkarni</a>,
+<a href=https://dblp.org/pid/42/1054-3.html rel=noopener>Feng Qi</a>,
+<a href=https://dblp.org/pid/69/9942.html rel=noopener>Christina Delimitrou</a>:
+<strong>Pliant: Leveraging Approximation to Improve Datacenter Resource Efficiency.</strong> 159-171</li><li><a href=https://dblp.org/pid/00/7084.html rel=noopener>Haishan Zhu</a>,
+<a href=https://dblp.org/pid/89/6793-3.html rel=noopener>David Lo</a>,
+<a href=https://dblp.org/pid/52/2470.html rel=noopener>Liqun Cheng</a>,
+<a href=https://dblp.org/pid/58/2704.html rel=noopener>Rama Govindaraju</a>,
+<a href=https://dblp.org/pid/12/6848.html rel=noopener>Parthasarathy Ranganathan</a>,
+<a href=https://dblp.org/pid/95/2048.html rel=noopener>Mattan Erez</a>:
+<strong>Kelp: QoS for Accelerated Machine Learning Systems.</strong> 172-184</li><li><a href=https://dblp.org/pid/161/0894.html rel=noopener>Amirhossein Mirhosseini</a>,
+<a href=https://dblp.org/pid/178/3217.html rel=noopener>Akshitha Sriraman</a>,
+<a href=https://dblp.org/pid/01/1282.html rel=noopener>Thomas F. Wenisch</a>:
+<strong>Enhancing Server Efficiency in the Face of Killer Microseconds.</strong> 185-198</li><li><a href=https://dblp.org/pid/63/1591-9.html rel=noopener>Shuo Wang</a>,
+<a href=https://dblp.org/pid/83/2265.html rel=noopener>Yun Liang</a>,
+<a href=https://dblp.org/pid/10/4661-12.html rel=noopener>Wei Zhang</a>:
+<strong>Poly: Efficient Heterogeneous System and Application Management for Interactive Applications.</strong> 199-210</li></ul><h2 id=session-3b-emerging-technologies><strong>Session 3B: Emerging Technologies</strong></h2><ul><li><a href=https://dblp.org/pid/83/6972.html rel=noopener>Karthik Ganesan</a>,
+<a href=https://dblp.org/pid/157/2774.html rel=noopener>Joshua San Miguel</a>,
+<a href=https://dblp.org/pid/61/5482.html rel=noopener>Natalie D. Enright Jerger</a>:
+<strong>The What&rsquo;s Next Intermittent Computing Architecture.</strong> 211-223</li><li><a href=https://dblp.org/pid/97/374.html rel=noopener>Xiang Fu</a>,
+<a href=https://dblp.org/pid/180/7947.html rel=noopener>L. Riesebos</a>,
+<a href=https://dblp.org/pid/205/2600.html rel=noopener>M. A. Rol</a>:
+<strong>eQASM: An Executable Quantum Instruction Set Architecture.</strong> 224-237</li><li><a href=https://dblp.org/pid/05/5022-1.html rel=noopener>Fernando Fernandes dos Santos</a>,
+<a href=https://dblp.org/pid/151/4112.html rel=noopener>Caio B. Lunardi</a>,
+<a href=https://dblp.org/pid/121/1932.html rel=noopener>Daniel A. G. de Oliveira</a>:
+<strong>Reliability Evaluation of Mixed-Precision Architectures.</strong> 238-249</li><li><a href=https://dblp.org/pid/148/8441.html rel=noopener>Saptadeep Pal</a>,
+<a href=https://dblp.org/pid/184/8263.html rel=noopener>Daniel Petrisko</a>,
+<a href=https://dblp.org/pid/184/1268.html rel=noopener>Matthew Tomei</a>,
+<a href=https://dblp.org/pid/06/1383.html rel=noopener>Puneet Gupta</a>,
+<a href=https://dblp.org/pid/87/3451.html rel=noopener>Subramanian S. Iyer</a>,
+<a href=https://dblp.org/pid/98/4371-2.html rel=noopener>Rakesh Kumar</a>:
+<strong>Architecting Waferscale Processors - A GPU Case Study.</strong> 250-263</li></ul><h2 id=session-4a-security><strong>Session 4A: Security</strong></h2><ul><li><a href=https://dblp.org/pid/119/1110.html rel=noopener>Peinan Li</a>,
+<a href=https://dblp.org/pid/238/2108.html rel=noopener>Lutan Zhao</a>,
+<a href=https://dblp.org/pid/79/3631.html rel=noopener>Rui Hou</a>,
+<a href=https://dblp.org/pid/52/5615-2.html rel=noopener>Lixin Zhang</a>,
+<a href=https://dblp.org/pid/01/2538.html rel=noopener>Dan Meng</a>:
+<strong>Conditional Speculation: An Effective Approach to Safeguard Out-of-Order Execution Against Spectre Attacks.</strong> 264-276</li><li><a href=https://dblp.org/pid/23/3943.html rel=noopener>Lisa Wu</a>,
+<a href=https://dblp.org/pid/191/0533.html rel=noopener>David Bruns-Smith</a>,
+<a href=https://dblp.org/pid/117/0589.html rel=noopener>Frank A. Nothaft</a>,
+<a href=https://dblp.org/pid/131/4868.html rel=noopener>Qijing Huang</a>,
+<a href=https://dblp.org/pid/145/2275.html rel=noopener>Sagar Karandikar</a>,
+<a href=https://dblp.org/pid/238/2101.html rel=noopener>Johnny Le</a>,
+<a href=https://dblp.org/pid/14/8146.html rel=noopener>Andrew Lin</a>,
+<a href=https://dblp.org/pid/192/6332.html rel=noopener>Howard Mao</a>,
+<a href=https://dblp.org/pid/238/2083.html rel=noopener>Brendan Sweeney</a>,
+<a href=https://dblp.org/pid/a/KrsteAsanovic.html rel=noopener>Krste Asanovic</a>,
+<a href=https://dblp.org/pid/p/DAPatterson.html rel=noopener>David A. Patterson</a>,
+<a href=https://dblp.org/pid/30/2317.html rel=noopener>Anthony D. Joseph</a>:
+<strong>FPGA Accelerated INDEL Realignment in the Cloud.</strong> 277-290</li><li><a href=https://dblp.org/pid/190/5129.html rel=noopener>S. Karen Khatamifard</a>,
+<a href=https://dblp.org/pid/132/6130.html rel=noopener>Longfei Wang</a>,
+<a href=https://dblp.org/pid/61/11158.html rel=noopener>Amitabh Das</a>,
+<a href=https://dblp.org/pid/89/3319.html rel=noopener>Selçuk Köse</a>:
+<strong>POWERT Channels: A Novel Class of Covert CommunicationExploiting Power Management Vulnerabilities.</strong> 291-303</li></ul><h2 id=session-4b-industry-session-1-mobile--low-power><strong>Session 4B: Industry Session 1: Mobile & Low Power</strong></h2><ul><li><a href=https://dblp.org/pid/34/3147.html rel=noopener>Shrikanth Ganapathy</a>,
+<a href=https://dblp.org/pid/03/1357.html rel=noopener>John Kalamatianos</a>,
+<a href=https://dblp.org/pid/79/413.html rel=noopener>Bradford M. Beckmann</a>,
+<a href=https://dblp.org/pid/39/2294.html rel=noopener>Steven Raasch</a>,
+<a href=https://dblp.org/pid/124/2029.html rel=noopener>Lukasz G. Szafaryn</a>:
+<strong>Killi: Runtime Fault Classification to Deploy Low Voltage Caches without MBIST.</strong> 304-316</li><li><a href=https://dblp.org/pid/h/MarkDHill.html rel=noopener>Mark D. Hill</a>,
+<a href=https://dblp.org/pid/88/2610.html rel=noopener>Vijay Janapa Reddi</a>:
+<strong>Gables: A Roofline Model for Mobile SoCs.</strong> 317-330</li><li><a href=https://dblp.org/pid/26/9655.html rel=noopener>Carole-Jean Wu</a>,
+<a href=https://dblp.org/pid/30/135.html rel=noopener>David Brooks</a>,
+<a href=https://dblp.org/pid/39/1303.html rel=noopener>Kevin Chen</a>,
+<a href=https://dblp.org/pid/238/2088.html rel=noopener>Douglas Chen</a>,
+<a href=https://dblp.org/pid/238/2103.html rel=noopener>Sy Choudhury</a>,
+<a href=https://dblp.org/pid/121/2427.html rel=noopener>Marat Dukhan</a>,
+<a href=https://dblp.org/pid/77/1117.html rel=noopener>Kim M. Hazelwood</a>,
+<a href=https://dblp.org/pid/238/2105.html rel=noopener>Eldad Isaac</a>,
+<a href=https://dblp.org/pid/19/2618.html rel=noopener>Yangqing Jia</a>,
+<a href=https://dblp.org/pid/177/3681.html rel=noopener>Bill Jia</a>,
+<a href=https://dblp.org/pid/44/3040.html rel=noopener>Tommer Leyvand</a>,
+<a href=https://dblp.org/pid/72/5422.html rel=noopener>Hao Lu</a>,
+<a href=https://dblp.org/pid/16/6317.html rel=noopener>Yang Lu</a>,
+<a href=https://dblp.org/pid/q/LinQiao.html rel=noopener>Lin Qiao</a>,
+<a href=https://dblp.org/pid/135/8203.html rel=noopener>Brandon Reagen</a>,
+<a href=https://dblp.org/pid/238/2081.html rel=noopener>Joe Spisak</a>,
+<a href=https://dblp.org/pid/51/394.html rel=noopener>Fei Sun</a>,
+<a href=https://dblp.org/pid/177/9077.html rel=noopener>Andrew Tulloch</a>,
+<a href=https://dblp.org/pid/44/5953.html rel=noopener>Peter Vajda</a>,
+<a href=https://dblp.org/pid/07/1021-20.html rel=noopener>Xiaodong Wang</a>,
+<a href=https://dblp.org/pid/232/1996.html rel=noopener>Yanghan Wang</a>,
+<a href=https://dblp.org/pid/220/3931.html rel=noopener>Bram Wasti</a>,
+<a href=https://dblp.org/pid/91/4697.html rel=noopener>Yiming Wu</a>,
+<a href=https://dblp.org/pid/153/2452.html rel=noopener>Ran Xian</a>,
+<a href=https://dblp.org/pid/82/6218.html rel=noopener>Sungjoo Yoo</a>,
+<a href=https://dblp.org/pid/23/8011.html rel=noopener>Peizhao Zhang</a>:
+<strong>Machine Learning at Facebook: Understanding Inference at the Edge.</strong> 331-344</li></ul><h2 id=session-5a-accelerators-for-emerging-applications><strong>Session 5A: Accelerators for Emerging Applications</strong></h2><ul><li><a href=https://dblp.org/pid/159/9511.html rel=noopener>Skand Hurkat</a>,
+<a href=https://dblp.org/pid/m/JFMartinez.html rel=noopener>José F. Martínez</a>:
+<strong>VIP: A Versatile Inference Processor.</strong> 345-358</li><li><a href=https://dblp.org/pid/129/7577.html rel=noopener>Yatish Turakhia</a>,
+<a href=https://dblp.org/pid/238/2079.html rel=noopener>Sneha D. Goenka</a>:
+<strong>Darwin-WGA: A Co-processor Provides Increased Sensitivity in Whole Genome Alignments with High Speedup.</strong> 359-372</li><li><a href=https://dblp.org/pid/228/3318.html rel=noopener>Abanti Basak</a>,
+<a href=https://dblp.org/pid/91/9920.html rel=noopener>Shuangchen Li</a>,
+<a href=https://dblp.org/pid/49/10052-1.html rel=noopener>Xing Hu</a>,
+<a href=https://dblp.org/pid/97/2343.html rel=noopener>Sang Min Oh</a>,
+<a href=https://dblp.org/pid/145/6282.html rel=noopener>Xinfeng Xie</a>,
+<a href=https://dblp.org/pid/97/4708.html rel=noopener>Li Zhao</a>,
+<a href=https://dblp.org/pid/31/2484.html rel=noopener>Xiaowei Jiang</a>,
+<a href=https://dblp.org/pid/x/YuanXie.html rel=noopener>Yuan Xie</a>:
+<strong>Analysis and Optimization of the Memory Hierarchy for Graph Processing Workloads.</strong> 373-386</li><li><a href=https://dblp.org/pid/31/9547.html rel=noopener>Sujoy Sinha Roy</a>,
+<a href=https://dblp.org/pid/186/8758.html rel=noopener>Furkan Turan</a>:
+<strong>FPGA-Based High-Performance Parallel Architecture for Homomorphic Computing on Encrypted Data.</strong> 387-398</li></ul><h2 id=session-5b-memory-hierarchy-management><strong>Session 5B: Memory Hierarchy Management</strong></h2><ul><li><a href=https://dblp.org/pid/212/1658.html rel=noopener>Mohammad Bakhshalipour</a>,
+<a href=https://dblp.org/pid/238/2084.html rel=noopener>Mehran Shakerinava</a>,
+<a href=https://dblp.org/pid/49/4847.html rel=noopener>Pejman Lotfi-Kamran</a>,
+<a href=https://dblp.org/pid/36/139.html rel=noopener>Hamid Sarbazi-Azad</a>:
+<strong>Bingo Spatial Data Prefetcher.</strong> 399-411</li><li><a href=https://dblp.org/pid/145/1026.html rel=noopener>Thomas Shull</a>,
+<a href=https://dblp.org/pid/63/2791.html rel=noopener>Jiho Choi</a>,
+<a href=https://dblp.org/pid/95/6451.html rel=noopener>María Jesús Garzarán</a>,
+<a href=https://dblp.org/pid/t/JosepTorrellas.html rel=noopener>Josep Torrellas</a>:
+<strong>NoMap: Speeding-Up JavaScript Using Hardware Transactional Memory.</strong> 412-425</li><li><a href=https://dblp.org/pid/84/6889-48.html rel=noopener>Jie Zhang</a>,
+<a href=https://dblp.org/pid/115/6279.html rel=noopener>Myoungsoo Jung</a>,
+<a href=https://dblp.org/pid/k/MahmutTKandemir.html rel=noopener>Mahmut T. Kandemir</a>:
+<strong>FUSE: Fusing STT-MRAM into GPUs to Alleviate Off-Chip Memory Access Overheads.</strong> 426-439</li><li><a href=https://dblp.org/pid/235/2613.html rel=noopener>Qingsen Wang</a>,
+<a href=https://dblp.org/pid/93/3167-1.html rel=noopener>Xu Liu</a>,
+<a href=https://dblp.org/pid/115/4870.html rel=noopener>Milind Chabbi</a>:
+<strong>Featherlight Reuse-Distance Measurement.</strong> 440-453</li></ul><h2 id=session-6a-industry-session-2-microarchitecture><strong>Session 6A: Industry Session 2: Microarchitecture</strong></h2><ul><li><a href=https://dblp.org/pid/99/9640.html rel=noopener>Rami Sheikh</a>,
+<a href=https://dblp.org/pid/62/5426.html rel=noopener>Derek Hower</a>:
+<strong>Efficient Load Value Prediction Using Multiple Predictors and Filters.</strong> 454-465</li><li><a href=https://dblp.org/pid/215/2035.html rel=noopener>Ilias Vougioukas</a>:
+<strong>BRB: Mitigating Branch Predictor Side-Channels.</strong> 466-477</li><li><a href=https://dblp.org/pid/147/1005.html rel=noopener>Arthur Perais</a>,
+<a href=https://dblp.org/pid/99/9640.html rel=noopener>Rami Sheikh</a>,
+<a href=https://dblp.org/pid/64/2694.html rel=noopener>Luke Yen</a>,
+<a href=https://dblp.org/pid/238/2086.html rel=noopener>Michael McIlvaine</a>,
+<a href=https://dblp.org/pid/238/2109.html rel=noopener>Robert D. Clancy</a>:
+<strong>Elastic Instruction Fetching.</strong> 478-490</li></ul><h2 id=session-6b-best-of-cal-computer-architecture-letters><strong>Session 6B: Best of CAL (Computer Architecture Letters)</strong></h2><ul><li><a href=https://dblp.org/pid/18/4038.html rel=noopener>Paul Gratz</a>:
+<strong>The Best of IEEE Computer Architecture Letters in 2018.</strong> 491</li></ul><h2 id=session-7a-gpusmodeling><strong>Session 7A: GPUs/Modeling</strong></h2><ul><li><a href=https://dblp.org/pid/185/0234.html rel=noopener>Saumay Dublish</a>,
+<a href=https://dblp.org/pid/24/1972.html rel=noopener>Vijay Nagarajan</a>,
+<a href=https://dblp.org/pid/38/4020.html rel=noopener>Nigel P. Topham</a>:
+<strong>Poise: Balancing Thread-Level Parallelism and Memory System Performance in GPUs Using Machine Learning.</strong> 492-505</li><li><a href=https://dblp.org/pid/204/2242.html rel=noopener>Xiebing Wang</a>,
+<a href=https://dblp.org/pid/86/489-1.html rel=noopener>Kai Huang</a>,
+<a href=https://dblp.org/pid/k/AloisKnoll.html rel=noopener>Alois C. Knoll</a>,
+<a href=https://dblp.org/pid/42/5189.html rel=noopener>Xuehai Qian</a>:
+<strong>A Hybrid Framework for Fast and Accurate GPU Performance Estimation through Source-Level Analysis and Trace-Based Simulation.</strong> 506-518</li><li><a href=https://dblp.org/pid/155/4378.html rel=noopener>Akhil Arunkumar</a>,
+<a href=https://dblp.org/pid/14/1037.html rel=noopener>Evgeny Bolotin</a>,
+<a href=https://dblp.org/pid/12/9118.html rel=noopener>David W. Nellans</a>,
+<a href=https://dblp.org/pid/26/9655.html rel=noopener>Carole-Jean Wu</a>:
+<strong>Understanding the Future of Energy Efficiency in Multi-Module GPUs.</strong> 519-532</li></ul><h2 id=session-7b-microarchitecture><strong>Session 7B: Microarchitecture</strong></h2><ul><li><a href=https://dblp.org/pid/209/9019.html rel=noopener>Sushant Kondguli</a>,
+<a href=https://dblp.org/pid/87/6759.html rel=noopener>Michael Huang</a>:
+<strong>R3-DLA (Reduce, Reuse, Recycle): A More Efficient Approach to Decoupled Look-Ahead Architectures.</strong> 533-544</li><li><a href=https://dblp.org/pid/173/9808.html rel=noopener>Gokul Subramanian Ravi</a>,
+<a href=https://dblp.org/pid/02/1732.html rel=noopener>Mikko H. Lipasti</a>:
+<strong>Recycling Data Slack in Out-of-Order Cores.</strong> 545-557</li><li><a href=https://dblp.org/pid/98/4371-3.html rel=noopener>Rakesh Kumar</a>,
+<a href=https://dblp.org/pid/41/9546.html rel=noopener>Mehdi Alipour</a>,
+<a href=https://dblp.org/pid/58/6781.html rel=noopener>David Black-Schaffer</a>:
+<strong>Freeway: Maximizing MLP for Slice-Out-of-Order Execution.</strong> 558-569</li></ul><h2 id=session-8a-memory><strong>Session 8A: Memory</strong></h2><ul><li><a href=https://dblp.org/pid/159/0021.html rel=noopener>Vinson Young</a>,
+<a href=https://dblp.org/pid/223/6062.html rel=noopener>Sanjay Kariyappa</a>,
+<a href=https://dblp.org/pid/60/6934.html rel=noopener>Moinuddin K. Qureshi</a>:
+<strong>Enabling Transparent Memory-Compression for Commodity Memory Systems.</strong> 570-581</li><li><a href=https://dblp.org/pid/148/9733.html rel=noopener>Jeremie S. Kim</a>,
+<a href=https://dblp.org/pid/147/0857.html rel=noopener>Minesh Patel</a>,
+<a href=https://dblp.org/pid/147/4013.html rel=noopener>Hasan Hassan</a>,
+<a href=https://dblp.org/pid/06/10860-1.html rel=noopener>Lois Orosa</a>,
+<a href=https://dblp.org/pid/m/OnurMutlu.html rel=noopener>Onur Mutlu</a>:
+<strong>D-RaNGe: Using Commodity DRAM Devices to Generate True Random Numbers with Low Latency and High Throughput.</strong> 582-595</li><li><a href=https://dblp.org/pid/179/2878.html rel=noopener>Apostolos Kokolis</a>,
+<a href=https://dblp.org/pid/191/7793.html rel=noopener>Dimitrios Skarlatos</a>,
+<a href=https://dblp.org/pid/t/JosepTorrellas.html rel=noopener>Josep Torrellas</a>:
+<strong>PageSeer: Using Page Walks to Trigger Page Swaps in Hybrid Memory Systems.</strong> 596-608</li></ul><h2 id=session-8b-accelerators-for-graphicsvr><strong>Session 8B: Accelerators for Graphics/VR</strong></h2><ul><li><a href=https://dblp.org/pid/175/5479-1.html rel=noopener>Chenhao Xie</a>,
+<a href=https://dblp.org/pid/173/9816.html rel=noopener>Xingyao Zhang</a>,
+<a href=https://dblp.org/pid/33/2805.html rel=noopener>Ang Li</a>,
+<a href=https://dblp.org/pid/18/2495.html rel=noopener>Xin Fu</a>,
+<a href=https://dblp.org/pid/23/7512.html rel=noopener>Shuaiwen Song</a>:
+<strong>PIM-VR: Erasing Motion Anomalies In Highly-Interactive Virtual Reality World with Customized Memory Cube.</strong> 609-622</li><li><a href=https://dblp.org/pid/190/5132.html rel=noopener>Marti Anglada</a>,
+<a href=https://dblp.org/pid/173/9802.html rel=noopener>Enrique de Lucas</a>,
+<a href=https://dblp.org/pid/68/6550.html rel=noopener>Joan-Manuel Parcerisa</a>,
+<a href=https://dblp.org/pid/75/5591.html rel=noopener>Juan L. Aragón</a>:
+<strong>Rendering Elimination: Early Discard of Redundant Tiles in the Graphics Pipeline.</strong> 623-634</li><li><a href=https://dblp.org/pid/190/5132.html rel=noopener>Marti Anglada</a>,
+<a href=https://dblp.org/pid/173/9802.html rel=noopener>Enrique de Lucas</a>,
+<a href=https://dblp.org/pid/68/6550.html rel=noopener>Joan-Manuel Parcerisa</a>,
+<a href=https://dblp.org/pid/75/5591.html rel=noopener>Juan L. Aragón</a>:
+<strong>Early Visibility Resolution for Removing Ineffectual Computations in the Graphics Pipeline.</strong> 635-646</li></ul><h2 id=session-9a-emerging-memory-technologies><strong>Session 9A: Emerging Memory Technologies</strong></h2><ul><li><a href=https://dblp.org/pid/207/5375.html rel=noopener>Matheus Ogleari</a>,
+<a href=https://dblp.org/pid/37/5423-1.html rel=noopener>Ye Yu</a>,
+<a href=https://dblp.org/pid/70/3604-1.html rel=noopener>Chen Qian</a>,
+<a href=https://dblp.org/pid/m/EthanLMiller.html rel=noopener>Ethan L. Miller</a>,
+<a href=https://dblp.org/pid/66/8314.html rel=noopener>Jishen Zhao</a>:
+<strong>String Figure: A Scalable and Elastic Memory Network Architecture.</strong> 647-660</li><li><a href=https://dblp.org/pid/202/9642.html rel=noopener>Hyeonuk Kim</a>:
+<strong>NAND-Net: Minimizing Computational Complexity of In-Memory Processing for Binary Neural Networks.</strong> 661-673</li><li><a href=https://dblp.org/pid/180/4976-1.html rel=noopener>Jiayi Huang</a>,
+<a href=https://dblp.org/pid/238/2082.html rel=noopener>Ramprakash Reddy Puli</a>,
+<a href=https://dblp.org/pid/68/10359.html rel=noopener>Pritam Majumder</a>,
+<a href=https://dblp.org/pid/238/2102.html rel=noopener>Sungkeun Kim</a>,
+<a href=https://dblp.org/pid/03/8857.html rel=noopener>Rahul Boyapati</a>,
+<a href=https://dblp.org/pid/72/2098.html rel=noopener>Ki Hwan Yum</a>,
+<a href=https://dblp.org/pid/87/5080-1.html rel=noopener>Eun Jung Kim</a>:
+<strong>Active-Routing: Compute on the Way for Near-Data Processing.</strong> 674-686</li></ul><h2 id=session-9b-industry-session-3-servers><strong>Session 9B: Industry Session 3: Servers</strong></h2><ul><li><a href=https://dblp.org/pid/01/2818.html rel=noopener>Manish Arora</a>,
+<a href=https://dblp.org/pid/163/0039.html rel=noopener>Matt Skach</a>,
+<a href=https://dblp.org/pid/81/6685-4.html rel=noopener>Wei Huang</a>,
+<a href=https://dblp.org/pid/150/0197.html rel=noopener>Xudong An</a>,
+<a href=https://dblp.org/pid/48/6796.html rel=noopener>Jason Mars</a>,
+<a href=https://dblp.org/pid/35/1464.html rel=noopener>Lingjia Tang</a>,
+<a href=https://dblp.org/pid/t/DeanMTullsen.html rel=noopener>Dean M. Tullsen</a>:
+<strong>Understanding the Impact of Socket Density in Density Optimized Servers.</strong> 687-700</li><li><a href=https://dblp.org/pid/37/4190.html rel=noopener>Yang Li</a>,
+<a href=https://dblp.org/pid/37/6803.html rel=noopener>Charles R. Lefurgy</a>,
+<a href=https://dblp.org/pid/71/1431.html rel=noopener>Karthick Rajamani</a>,
+<a href=https://dblp.org/pid/92/9477.html rel=noopener>Malcolm S. Allen-Ware</a>,
+<a href=https://dblp.org/pid/01/8096.html rel=noopener>Guillermo J. Silva</a>,
+<a href=https://dblp.org/pid/238/2093.html rel=noopener>Daniel D. Heimsoth</a>,
+<a href=https://dblp.org/pid/94/7357.html rel=noopener>Saugata Ghose</a>,
+<a href=https://dblp.org/pid/m/OnurMutlu.html rel=noopener>Onur Mutlu</a>:
+<strong>A Scalable Priority-Aware Approach to Managing Data Center Server Power.</strong> 701-714</li><li><a href=https://dblp.org/pid/123/9691.html rel=noopener>Bilge Acun</a>,
+<a href=https://dblp.org/pid/18/2863.html rel=noopener>Alper Buyuktosunoglu</a>,
+<a href=https://dblp.org/pid/31/9726.html rel=noopener>Eun Kyung Lee</a>,
+<a href=https://dblp.org/pid/57/1574.html rel=noopener>Yoonho Park</a>:
+<strong>Power Aware Heterogeneous Node Assembly.</strong> 715-727</li></ul></article><hr><div class=page-end><div class=backlinks-container><h3>Backlinks</h3><ul class=backlinks><li>No backlinks found</li></ul></div><div><script src=https://cdn.jsdelivr.net/npm/d3@6.7.0/dist/d3.min.js integrity="sha256-+7jaYCp29O1JusNWHaYtgUn6EhuP0VaFuswhNV06MyI=" crossorigin=anonymous></script><h3>Interactive Graph</h3><div id=graph-container></div><style>:root{--g-node:var(--secondary);--g-node-active:var(--primary);--g-node-inactive:var(--visited);--g-link:var(--outlinegray);--g-link-active:#5a7282}</style><script src=https://lzyerste.github.io/quartz/js/graph.6fe09b3d8b5792ccf0f505be9ee8275d.js></script>
+<script>drawGraph("https://lzyerste.github.io/quartz/wiki/wiki/RESEARCH/HPCA/HPCA-2019-25th-5727d92cc6ce43469a863e5ec817969f","https://lzyerste.github.io/quartz",[{"/moc":"#4388cc"}],-1,!0,!1,!0)</script></div></div><div id=contact_buttons><footer><p>Made by Jacky Zhao using <a href=https://github.com/jackyzha0/quartz>Quartz</a>, © 2022</p><ul><li><a href=/>Home</a></li><li><a href=https://twitter.com/_jzhao>Twitter</a></li><li><a href=https://github.com/jackyzha0>Github</a></li></ul></footer></div><script src=https://lzyerste.github.io/quartz/js/popover.e57188d2e4c06b0654e020b3a734bb62.min.js></script>
+<script>initPopover("https://lzyerste.github.io/quartz")</script></div></body></html>

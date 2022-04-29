@@ -1,0 +1,163 @@
+<!doctype html><html lang=en><head><meta charset=utf-8><meta name=description content="#todo
+支持GUI。
+ 安装命令行工具 1 2 3 4 5 6 7  curl -s https://kopia.io/signing-key | sudo gpg --dearmor -o /usr/share/keyrings/kopia-keyring."><title>🪴 Quartz 3.2</title><meta name=viewport content="width=device-width,initial-scale=1"><link rel="shortcut icon" type=image/png href=https://lzyerste.github.io/quartz//icon.png><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Source+Sans+Pro:wght@400;600;700&family=Fira+Code:wght@400;700&display=swap" rel=stylesheet><link href=https://lzyerste.github.io/quartz/styles.b5715611e07d622618ed61d06502131c.min.css rel=stylesheet><script src=https://lzyerste.github.io/quartz/js/darkmode.46b07878b7f5d9e26ad7a3c40f8a0605.min.js></script>
+<link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css integrity=sha384-R4558gYOUz8mP9YWpZJjofhk+zx0AS11p36HnD2ZKj/6JR5z27gSSULCNHIRReVs crossorigin=anonymous><script defer src=https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js integrity=sha384-z1fJDqw8ZApjGO3/unPWUPsIymfsJmyrDVWC8Tv/a1HeOtGmkwNd/7xUS0Xcnvsx crossorigin=anonymous></script>
+<script defer src=https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/contrib/auto-render.min.js integrity=sha384-+XBljXPPiv+OzfbB3cVmLHf4hdUFHlWNZN5spNQ7rmHTXpd7WvJum6fIACpNNfIR crossorigin=anonymous></script>
+<script>document.addEventListener("DOMContentLoaded",function(){renderMathInElement(document.body,{delimiters:[{left:"$$",right:"$$",display:!0},{left:"$",right:"$",display:!1}],throwOnError:!1})})</script><script>const BASE_URL="https://lzyerste.github.io/quartz/",fetchData=Promise.all([fetch("https://lzyerste.github.io/quartz/indices/linkIndex.0c3b9c7455a2a896802a60e8bb3e1120.min.json").then(e=>e.json()).then(e=>({index:e.index,links:e.links})),fetch("https://lzyerste.github.io/quartz/indices/contentIndex.d5cc7a6f5c397ac12ca2df88f6566f1c.min.json").then(e=>e.json())]).then(([{index:e,links:t},n])=>({index:e,links:t,content:n}))</script></head><script async src="https://www.googletagmanager.com/gtag/js?id=G-XYFD95KB4J"></script>
+<script>var doNotTrack=!1;if(!doNotTrack){window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-XYFD95KB4J",{anonymize_ip:!1})}</script><body><div id=search-container><div id=search-space><input autocomplete=off id=search-bar name=search type=text aria-label=Search placeholder="Search for something..."><div id=results-container></div></div></div><script src=https://cdn.jsdelivr.net/npm/flexsearch@0.7.21/dist/flexsearch.bundle.js integrity="sha256-i3A0NZGkhsKjVMzFxv3ksk0DZh3aXqu0l49Bbh0MdjE=" crossorigin=anonymous defer></script>
+<script defer src=https://lzyerste.github.io/quartz/js/search.7861a82db330f0a40935b7458fee3a02.min.js></script><div class=singlePage><header><h1 id=page-title><a href=https://lzyerste.github.io/quartz/>🪴 Quartz 3.2</a></h1><svg tabindex="0" id="search-icon" aria-labelledby="title desc" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 19.9 19.7"><title id="title">Search Icon</title><desc id="desc">Icon to open search</desc><g class="search-path" fill="none"><path stroke-linecap="square" d="M18.5 18.3l-5.4-5.4"/><circle cx="8" cy="8" r="7"/></g></svg><div class=spacer></div><div class=darkmode><input class=toggle id=darkmode-toggle type=checkbox tabindex=-1>
+<label id=toggle-label-light for=darkmode-toggle tabindex=-1><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="dayIcon" viewBox="0 0 35 35" style="enable-background:new 0 0 35 35"><title>Light Mode</title><path d="M6 17.5C6 16.672 5.328 16 4.5 16h-3C.672 16 0 16.672.0 17.5S.672 19 1.5 19h3C5.328 19 6 18.328 6 17.5zM7.5 26c-.414.0-.789.168-1.061.439l-2 2C4.168 28.711 4 29.086 4 29.5 4 30.328 4.671 31 5.5 31c.414.0.789-.168 1.06-.44l2-2C8.832 28.289 9 27.914 9 27.5 9 26.672 8.329 26 7.5 26zm10-20C18.329 6 19 5.328 19 4.5v-3C19 .672 18.329.0 17.5.0S16 .672 16 1.5v3C16 5.328 16.671 6 17.5 6zm10 3c.414.0.789-.168 1.06-.439l2-2C30.832 6.289 31 5.914 31 5.5 31 4.672 30.329 4 29.5 4c-.414.0-.789.168-1.061.44l-2 2C26.168 6.711 26 7.086 26 7.5 26 8.328 26.671 9 27.5 9zM6.439 8.561C6.711 8.832 7.086 9 7.5 9 8.328 9 9 8.328 9 7.5c0-.414-.168-.789-.439-1.061l-2-2C6.289 4.168 5.914 4 5.5 4 4.672 4 4 4.672 4 5.5c0 .414.168.789.439 1.06l2 2.001zM33.5 16h-3c-.828.0-1.5.672-1.5 1.5s.672 1.5 1.5 1.5h3c.828.0 1.5-.672 1.5-1.5S34.328 16 33.5 16zM28.561 26.439C28.289 26.168 27.914 26 27.5 26c-.828.0-1.5.672-1.5 1.5.0.414.168.789.439 1.06l2 2C28.711 30.832 29.086 31 29.5 31c.828.0 1.5-.672 1.5-1.5.0-.414-.168-.789-.439-1.061l-2-2zM17.5 29c-.829.0-1.5.672-1.5 1.5v3c0 .828.671 1.5 1.5 1.5s1.5-.672 1.5-1.5v-3C19 29.672 18.329 29 17.5 29zm0-22C11.71 7 7 11.71 7 17.5S11.71 28 17.5 28 28 23.29 28 17.5 23.29 7 17.5 7zm0 18c-4.136.0-7.5-3.364-7.5-7.5s3.364-7.5 7.5-7.5 7.5 3.364 7.5 7.5S21.636 25 17.5 25z"/></svg></label><label id=toggle-label-dark for=darkmode-toggle tabindex=-1><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="nightIcon" viewBox="0 0 100 100" style="enable-background='new 0 0 100 100'"><title>Dark Mode</title><path d="M96.76 66.458c-.853-.852-2.15-1.064-3.23-.534-6.063 2.991-12.858 4.571-19.655 4.571C62.022 70.495 50.88 65.88 42.5 57.5 29.043 44.043 25.658 23.536 34.076 6.47c.532-1.08.318-2.379-.534-3.23-.851-.852-2.15-1.064-3.23-.534-4.918 2.427-9.375 5.619-13.246 9.491-9.447 9.447-14.65 22.008-14.65 35.369.0 13.36 5.203 25.921 14.65 35.368s22.008 14.65 35.368 14.65c13.361.0 25.921-5.203 35.369-14.65 3.872-3.871 7.064-8.328 9.491-13.246C97.826 68.608 97.611 67.309 96.76 66.458z"/></svg></label></div></header><article><p class=meta>Last updated April 29, 2022</p><ul class=tags></ul><aside class=mainTOC><details><summary>Table of Contents</summary><nav id=TableOfContents><ol><li><a href=#安装命令行工具>安装命令行工具</a></li><li><a href=#快速入门命令行>快速入门（命令行）</a></li><li><a href=#配置文件>配置文件</a></li></ol></nav></details></aside><p>#todo</p><p>支持GUI。</p><p><img src=/assets/Pasted%20image%2020220310172642.png alt></p><h2 id=安装命令行工具>安装命令行工具</h2><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-c data-lang=c><span class=line><span class=cl><span class=n>curl</span> <span class=o>-</span><span class=n>s</span> <span class=nl>https</span><span class=p>:</span><span class=c1>//kopia.io/signing-key | sudo gpg --dearmor -o /usr/share/keyrings/kopia-keyring.gpg
+</span></span></span><span class=line><span class=cl><span class=c1></span>
+</span></span><span class=line><span class=cl><span class=n>echo</span> <span class=s>&#34;deb [signed-by=/usr/share/keyrings/kopia-keyring.gpg] http://packages.kopia.io/apt/ stable main&#34;</span> <span class=o>|</span> <span class=n>sudo</span> <span class=n>tee</span> <span class=o>/</span><span class=n>etc</span><span class=o>/</span><span class=n>apt</span><span class=o>/</span><span class=n>sources</span><span class=p>.</span><span class=n>list</span><span class=p>.</span><span class=n>d</span><span class=o>/</span><span class=n>kopia</span><span class=p>.</span><span class=n>list</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>sudo</span> <span class=n>apt</span> <span class=n>update</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>sudo</span> <span class=n>apt</span> <span class=n>install</span> <span class=n>kopia</span>
+</span></span></code></pre></td></tr></table></div></div><h2 id=快速入门命令行>快速入门（命令行）</h2><p>比如前面已经用GUI创建了repository（sftp方式）。</p><p>==连接==</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-c data-lang=c><span class=line><span class=cl><span class=n>kopia</span> <span class=n>repository</span> <span class=n>connect</span> <span class=n>sftp</span> <span class=o>--</span><span class=n>host</span> <span class=mf>10.20.3.154</span> <span class=o>--</span><span class=n>username</span> <span class=n>lzy</span> <span class=o>--</span><span class=n>sftp</span><span class=o>-</span><span class=n>password</span> <span class=n>lzy</span> <span class=o>--</span><span class=n>known</span><span class=o>-</span><span class=n>hosts</span> <span class=o>~/</span><span class=p>.</span><span class=n>ssh</span><span class=o>/</span><span class=n>known_hosts</span> <span class=o>--</span><span class=n>path</span> <span class=o>/</span><span class=n>home</span><span class=o>/</span><span class=n>lzy</span><span class=o>/</span><span class=n>kopia</span>
+</span></span></code></pre></td></tr></table></div></div><p>会提示输入repo的密码。</p><p>==查看snapshot==</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-c data-lang=c><span class=line><span class=cl><span class=err>$</span> <span class=n>kopia</span> <span class=n>snapshot</span> <span class=n>list</span>
+</span></span><span class=line><span class=cl><span class=n>lzy</span><span class=err>@</span><span class=n>lzy</span><span class=o>-</span><span class=nl>pcu</span><span class=p>:</span><span class=o>/</span><span class=n>home</span><span class=o>/</span><span class=n>lzy</span><span class=o>/</span><span class=n>Downloads</span>
+</span></span><span class=line><span class=cl>  <span class=mi>2022</span><span class=o>-</span><span class=mo>02</span><span class=o>-</span><span class=mi>17</span> <span class=mi>14</span><span class=o>:</span><span class=mo>00</span><span class=o>:</span><span class=mo>00</span> <span class=n>CST</span> <span class=n>k7b6fd9b535c1ad75ba3c8d4b62c880e8</span> <span class=mf>2.8</span> <span class=n>GB</span> <span class=n>drwxr</span><span class=o>-</span><span class=n>xr</span><span class=o>-</span><span class=n>x</span> <span class=nl>files</span><span class=p>:</span><span class=mi>2562</span> <span class=nl>dirs</span><span class=p>:</span><span class=mi>276</span> <span class=p>(</span><span class=n>weekly</span><span class=o>-</span><span class=mi>4</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=p>......</span>
+</span></span><span class=line><span class=cl>  <span class=mi>2022</span><span class=o>-</span><span class=mo>03</span><span class=o>-</span><span class=mi>09</span> <span class=mi>20</span><span class=o>:</span><span class=mo>00</span><span class=o>:</span><span class=mo>02</span> <span class=n>CST</span> <span class=n>kad615059e86ec1cbb484c221a85cc80e</span> <span class=mf>2.9</span> <span class=n>GB</span> <span class=n>drwxr</span><span class=o>-</span><span class=n>xr</span><span class=o>-</span><span class=n>x</span> <span class=nl>files</span><span class=p>:</span><span class=mi>2692</span> <span class=nl>dirs</span><span class=p>:</span><span class=mi>289</span> <span class=p>(</span><span class=n>latest</span><span class=o>-</span><span class=mf>2..4</span><span class=p>,</span><span class=n>hourly</span><span class=o>-</span><span class=mf>2..4</span><span class=p>,</span><span class=n>daily</span><span class=o>-</span><span class=mi>2</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>  <span class=o>+</span> <span class=mi>2</span> <span class=n>identical</span> <span class=n>snapshots</span> <span class=n>until</span> <span class=mi>2022</span><span class=o>-</span><span class=mo>03</span><span class=o>-</span><span class=mi>10</span> <span class=mi>08</span><span class=o>:</span><span class=mo>00</span><span class=o>:</span><span class=mo>00</span> <span class=n>CST</span>
+</span></span><span class=line><span class=cl>  <span class=mi>2022</span><span class=o>-</span><span class=mo>03</span><span class=o>-</span><span class=mi>10</span> <span class=mi>14</span><span class=o>:</span><span class=mo>00</span><span class=o>:</span><span class=mo>00</span> <span class=n>CST</span> <span class=n>keed1ee49415652b36381abc6680a1b68</span> <span class=mf>2.9</span> <span class=n>GB</span> <span class=n>drwxr</span><span class=o>-</span><span class=n>xr</span><span class=o>-</span><span class=n>x</span> <span class=nl>files</span><span class=p>:</span><span class=mi>2692</span> <span class=nl>dirs</span><span class=p>:</span><span class=mi>289</span> <span class=p>(</span><span class=n>latest</span><span class=o>-</span><span class=mi>1</span><span class=p>,</span><span class=n>hourly</span><span class=o>-</span><span class=mi>1</span><span class=p>,</span><span class=n>daily</span><span class=o>-</span><span class=mi>1</span><span class=p>,</span><span class=n>weekly</span><span class=o>-</span><span class=mi>1</span><span class=p>,</span><span class=n>monthly</span><span class=o>-</span><span class=mi>1</span><span class=p>,</span><span class=n>annual</span><span class=o>-</span><span class=mi>1</span><span class=p>)</span>
+</span></span></code></pre></td></tr></table></div></div><p>==查看文件列表==</p><p>比如上面最新的哈希号keed1ee49415652b36381abc6680a1b68</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-c data-lang=c><span class=line><span class=cl><span class=err>$</span> <span class=n>kopia</span> <span class=n>ls</span> <span class=o>-</span><span class=n>l</span> <span class=n>keed1ee49415652b36381abc6680a1b68</span>
+</span></span><span class=line><span class=cl><span class=n>drwxrwxr</span><span class=o>-</span><span class=n>x</span>            <span class=mi>0</span> <span class=mi>2021</span><span class=o>-</span><span class=mi>11</span><span class=o>-</span><span class=mi>18</span> <span class=mi>19</span><span class=o>:</span><span class=mi>19</span><span class=o>:</span><span class=mi>50</span> <span class=n>CST</span> <span class=n>k86210a729076270d1e34eccdd1c4b257</span>  <span class=p>.</span><span class=n>ts</span><span class=o>/</span>
+</span></span><span class=line><span class=cl><span class=o>-</span><span class=n>rw</span><span class=o>-</span><span class=n>rw</span><span class=o>-</span><span class=n>rw</span><span class=o>-</span>          <span class=mi>165</span> <span class=mi>2021</span><span class=o>-</span><span class=mi>12</span><span class=o>-</span><span class=mo>01</span> <span class=mi>16</span><span class=o>:</span><span class=mi>18</span><span class=o>:</span><span class=mi>16</span> <span class=n>CST</span> <span class=n>d671bba0887e2b883cdf2901013f3e3a</span>   <span class=p>.</span><span class=o>~</span><span class=n>inno_2</span><span class=mf>.4</span><span class=p>.</span><span class=n>xlsx</span>
+</span></span><span class=line><span class=cl><span class=o>-</span><span class=n>rw</span><span class=o>-</span><span class=n>rw</span><span class=o>-</span><span class=n>r</span><span class=o>--</span>     <span class=mi>98504021</span> <span class=mi>2021</span><span class=o>-</span><span class=mi>12</span><span class=o>-</span><span class=mi>15</span> <span class=mi>11</span><span class=o>:</span><span class=mo>05</span><span class=o>:</span><span class=mi>26</span> <span class=n>CST</span> <span class=n>Ix3eef1041ae735c6ead1bc945c5941ea5</span> <span class=mi>4</span><span class=n>K_write_clat</span><span class=p>.</span><span class=n>log</span>
+</span></span><span class=line><span class=cl><span class=o>-</span><span class=n>rw</span><span class=o>-</span><span class=n>rw</span><span class=o>-</span><span class=n>r</span><span class=o>--</span>        <span class=mi>42846</span> <span class=mi>2021</span><span class=o>-</span><span class=mi>11</span><span class=o>-</span><span class=mi>08</span> <span class=mi>18</span><span class=o>:</span><span class=mo>04</span><span class=o>:</span><span class=mi>56</span> <span class=n>CST</span> <span class=mi>735</span><span class=n>bfae175b49ea2b003368935a15988</span>   <span class=mi>4</span><span class=n>k</span><span class=o>-</span><span class=mf>256.</span><span class=n>png</span>
+</span></span><span class=line><span class=cl><span class=p>......</span>
+</span></span></code></pre></td></tr></table></div></div><p>==mount==</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-c data-lang=c><span class=line><span class=cl><span class=n>mkdir</span> <span class=o>/</span><span class=n>tmp</span><span class=o>/</span><span class=n>mnt</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>kopia</span> <span class=n>mount</span> <span class=n>keed1ee49415652b36381abc6680a1b68</span> <span class=o>/</span><span class=n>tmp</span><span class=o>/</span><span class=n>mnt</span> <span class=o>&amp;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>ls</span> <span class=o>-</span><span class=n>l</span> <span class=o>/</span><span class=n>tmp</span><span class=o>/</span><span class=n>mnt</span><span class=o>/</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>umount</span> <span class=o>/</span><span class=n>tmp</span><span class=o>/</span><span class=n>mnt</span>
+</span></span></code></pre></td></tr></table></div></div><p>==snap restore==</p><p>比如恢复上面的keed1ee49415652b36381abc6680a1b68：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-c data-lang=c><span class=line><span class=cl><span class=n>kopia</span> <span class=n>snapshot</span> <span class=n>restore</span> <span class=n>keed1ee49415652b36381abc6680a1b68</span> <span class=n>d1</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>ls</span> <span class=n>d1</span>
+</span></span></code></pre></td></tr></table></div></div><p>恢复到本地目录则是d1。</p><p>==离开==</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-c data-lang=c><span class=line><span class=cl><span class=n>kopia</span> <span class=n>repository</span> <span class=n>disconnect</span>
+</span></span></code></pre></td></tr></table></div></div><h2 id=配置文件>配置文件</h2><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span><span class=lnt>40
+</span><span class=lnt>41
+</span><span class=lnt>42
+</span><span class=lnt>43
+</span><span class=lnt>44
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-c data-lang=c><span class=line><span class=cl><span class=err>$</span> <span class=n>kopia</span> <span class=n>repository</span> <span class=n>status</span> <span class=o>-</span><span class=n>t</span> <span class=o>-</span><span class=n>s</span>
+</span></span><span class=line><span class=cl><span class=n>Config</span> <span class=nl>file</span><span class=p>:</span>         <span class=o>/</span><span class=n>home</span><span class=o>/</span><span class=n>lzy</span><span class=o>/</span><span class=p>.</span><span class=n>config</span><span class=o>/</span><span class=n>kopia</span><span class=o>/</span><span class=n>repository</span><span class=p>.</span><span class=n>config</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nl>Description</span><span class=p>:</span>         <span class=n>My</span> <span class=n>Repository</span>
+</span></span><span class=line><span class=cl><span class=nl>Hostname</span><span class=p>:</span>            <span class=n>lzy</span><span class=o>-</span><span class=n>pcu</span>
+</span></span><span class=line><span class=cl><span class=nl>Username</span><span class=p>:</span>            <span class=n>lzy</span>
+</span></span><span class=line><span class=cl><span class=n>Read</span><span class=o>-</span><span class=nl>only</span><span class=p>:</span>           <span class=nb>false</span>
+</span></span><span class=line><span class=cl><span class=n>Format</span> <span class=n>blob</span> <span class=nl>cache</span><span class=p>:</span>   <span class=mi>15</span><span class=n>m0s</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>Storage</span> <span class=nl>type</span><span class=p>:</span>        <span class=n>sftp</span>
+</span></span><span class=line><span class=cl><span class=n>Storage</span> <span class=nl>config</span><span class=p>:</span>      <span class=p>{</span>
+</span></span><span class=line><span class=cl>                       <span class=s>&#34;path&#34;</span><span class=o>:</span> <span class=s>&#34;/home/lzy/kopia&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>                       <span class=s>&#34;host&#34;</span><span class=o>:</span> <span class=s>&#34;10.20.3.154&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>                       <span class=s>&#34;port&#34;</span><span class=o>:</span> <span class=mi>22</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>                       <span class=s>&#34;username&#34;</span><span class=o>:</span> <span class=s>&#34;lzy&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>                       <span class=s>&#34;password&#34;</span><span class=o>:</span> <span class=s>&#34;***&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>                       <span class=s>&#34;knownHostsFile&#34;</span><span class=o>:</span> <span class=s>&#34;/home/lzy/.ssh/known_hosts&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>                       <span class=s>&#34;externalSSH&#34;</span><span class=o>:</span> <span class=nb>false</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>                       <span class=s>&#34;dirShards&#34;</span><span class=o>:</span> <span class=n>null</span>
+</span></span><span class=line><span class=cl>                     <span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>Unique</span> <span class=nl>ID</span><span class=p>:</span>           <span class=mi>5</span><span class=n>d9ea8e0692cf6847ccfdaa1cd98a7925cbeb59a2f4f352f92ea4e17f1dcf818</span>
+</span></span><span class=line><span class=cl><span class=nl>Hash</span><span class=p>:</span>                <span class=n>BLAKE2B</span><span class=o>-</span><span class=mi>256</span><span class=o>-</span><span class=mi>128</span>
+</span></span><span class=line><span class=cl><span class=nl>Encryption</span><span class=p>:</span>          <span class=n>AES256</span><span class=o>-</span><span class=n>GCM</span><span class=o>-</span><span class=n>HMAC</span><span class=o>-</span><span class=n>SHA256</span>
+</span></span><span class=line><span class=cl><span class=nl>Splitter</span><span class=p>:</span>            <span class=n>DYNAMIC</span><span class=o>-</span><span class=mi>4</span><span class=n>M</span><span class=o>-</span><span class=n>BUZHASH</span>
+</span></span><span class=line><span class=cl><span class=n>Format</span> <span class=nl>version</span><span class=p>:</span>      <span class=mi>2</span>
+</span></span><span class=line><span class=cl><span class=n>Content</span> <span class=nl>compression</span><span class=p>:</span> <span class=nb>true</span>
+</span></span><span class=line><span class=cl><span class=n>Password</span> <span class=nl>changes</span><span class=p>:</span>    <span class=nb>true</span>
+</span></span><span class=line><span class=cl><span class=n>Max</span> <span class=n>pack</span> <span class=nl>length</span><span class=p>:</span>     <span class=mi>20</span> <span class=n>MiB</span>
+</span></span><span class=line><span class=cl><span class=n>Index</span> <span class=nl>Format</span><span class=p>:</span>        <span class=n>v2</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>Epoch</span> <span class=nl>Manager</span><span class=p>:</span>       <span class=n>enabled</span>
+</span></span><span class=line><span class=cl><span class=n>Current</span> <span class=nl>Epoch</span><span class=p>:</span> <span class=mi>20</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>Epoch</span> <span class=n>refresh</span> <span class=nl>frequency</span><span class=p>:</span> <span class=mi>20</span><span class=n>m0s</span>
+</span></span><span class=line><span class=cl><span class=n>Epoch</span> <span class=n>advance</span> <span class=nl>on</span><span class=p>:</span>        <span class=mi>20</span> <span class=n>blobs</span> <span class=n>or</span> <span class=mi>10</span> <span class=n>MiB</span><span class=p>,</span> <span class=n>minimum</span> <span class=mi>24</span><span class=n>h0m0s</span>
+</span></span><span class=line><span class=cl><span class=n>Epoch</span> <span class=n>cleanup</span> <span class=nl>margin</span><span class=p>:</span>    <span class=mi>4</span><span class=n>h0m0s</span>
+</span></span><span class=line><span class=cl><span class=n>Epoch</span> <span class=n>checkpoint</span> <span class=nl>every</span><span class=p>:</span>  <span class=mi>7</span> <span class=n>epochs</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>To</span> <span class=n>reconnect</span> <span class=n>to</span> <span class=n>the</span> <span class=n>repository</span> <span class=nl>use</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=err>$</span> <span class=n>kopia</span> <span class=n>repository</span> <span class=n>connect</span> <span class=n>from</span><span class=o>-</span><span class=n>config</span> <span class=o>--</span><span class=n>token</span> <span class=n>eyJ2ZXJzaW9uIjoiMSIsInN0b3JhZ2UiOnsidHlwZSI6InNmdHAiLCJjb25maWciOnsicGF0aCI6Ii9ob21lL2x6eS9rb3BpYSIsImhvc3QiOiIxMC4yMC4zLjE1NCIsInBvcnQiOjIyLCJ1c2VybmFtZSI6Imx6eSIsInBhc3N3b3JkIjoibHp5Iiwia25vd25Ib3N0c0ZpbGUiOiIvaG9tZS9senkvLnNzaC9rbm93bl9ob3N0cyIsImV4dGVybmFsU1NIIjpmYWxzZSwiZGlyU2hhcmRzIjpudWxsfX0sInBhc3N3b3JkIjoibHp5MzI1MTEzIn0</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nl>NOTICE</span><span class=p>:</span> <span class=n>The</span> <span class=n>token</span> <span class=n>printed</span> <span class=n>above</span> <span class=n>can</span> <span class=n>be</span> <span class=n>trivially</span> <span class=n>decoded</span> <span class=n>to</span> <span class=n>reveal</span> <span class=n>the</span> <span class=n>repository</span> <span class=n>password</span><span class=p>.</span> <span class=n>Do</span> <span class=n>not</span> <span class=n>store</span> <span class=n>it</span> <span class=n>in</span> <span class=n>an</span> <span class=n>unsecured</span> <span class=n>place</span><span class=p>.</span>
+</span></span></code></pre></td></tr></table></div></div></article><hr><div class=page-end><div class=backlinks-container><h3>Backlinks</h3><ul class=backlinks><li>No backlinks found</li></ul></div><div><script src=https://cdn.jsdelivr.net/npm/d3@6.7.0/dist/d3.min.js integrity="sha256-+7jaYCp29O1JusNWHaYtgUn6EhuP0VaFuswhNV06MyI=" crossorigin=anonymous></script><h3>Interactive Graph</h3><div id=graph-container></div><style>:root{--g-node:var(--secondary);--g-node-active:var(--primary);--g-node-inactive:var(--visited);--g-link:var(--outlinegray);--g-link-active:#5a7282}</style><script src=https://lzyerste.github.io/quartz/js/graph.6fe09b3d8b5792ccf0f505be9ee8275d.js></script>
+<script>drawGraph("https://lzyerste.github.io/quartz/wiki/bash/kopia","https://lzyerste.github.io/quartz",[{"/moc":"#4388cc"}],-1,!0,!1,!0)</script></div></div><div id=contact_buttons><footer><p>Made by Jacky Zhao using <a href=https://github.com/jackyzha0/quartz>Quartz</a>, © 2022</p><ul><li><a href=/>Home</a></li><li><a href=https://twitter.com/_jzhao>Twitter</a></li><li><a href=https://github.com/jackyzha0>Github</a></li></ul></footer></div><script src=https://lzyerste.github.io/quartz/js/popover.e57188d2e4c06b0654e020b3a734bb62.min.js></script>
+<script>initPopover("https://lzyerste.github.io/quartz")</script></div></body></html>

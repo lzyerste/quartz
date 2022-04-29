@@ -1,0 +1,878 @@
+<!doctype html><html lang=en><head><meta charset=utf-8><meta name=description content="htop explained | peteris.rocks  https://peteris.rocks/blog/htop/
+For the longest time I did not know what everything meant in htop.
+I thought that load average 1."><title>🪴 Quartz 3.2</title><meta name=viewport content="width=device-width,initial-scale=1"><link rel="shortcut icon" type=image/png href=https://lzyerste.github.io/quartz//icon.png><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Source+Sans+Pro:wght@400;600;700&family=Fira+Code:wght@400;700&display=swap" rel=stylesheet><link href=https://lzyerste.github.io/quartz/styles.b5715611e07d622618ed61d06502131c.min.css rel=stylesheet><script src=https://lzyerste.github.io/quartz/js/darkmode.46b07878b7f5d9e26ad7a3c40f8a0605.min.js></script>
+<link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css integrity=sha384-R4558gYOUz8mP9YWpZJjofhk+zx0AS11p36HnD2ZKj/6JR5z27gSSULCNHIRReVs crossorigin=anonymous><script defer src=https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js integrity=sha384-z1fJDqw8ZApjGO3/unPWUPsIymfsJmyrDVWC8Tv/a1HeOtGmkwNd/7xUS0Xcnvsx crossorigin=anonymous></script>
+<script defer src=https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/contrib/auto-render.min.js integrity=sha384-+XBljXPPiv+OzfbB3cVmLHf4hdUFHlWNZN5spNQ7rmHTXpd7WvJum6fIACpNNfIR crossorigin=anonymous></script>
+<script>document.addEventListener("DOMContentLoaded",function(){renderMathInElement(document.body,{delimiters:[{left:"$$",right:"$$",display:!0},{left:"$",right:"$",display:!1}],throwOnError:!1})})</script><script>const BASE_URL="https://lzyerste.github.io/quartz/",fetchData=Promise.all([fetch("https://lzyerste.github.io/quartz/indices/linkIndex.0c3b9c7455a2a896802a60e8bb3e1120.min.json").then(e=>e.json()).then(e=>({index:e.index,links:e.links})),fetch("https://lzyerste.github.io/quartz/indices/contentIndex.d5cc7a6f5c397ac12ca2df88f6566f1c.min.json").then(e=>e.json())]).then(([{index:e,links:t},n])=>({index:e,links:t,content:n}))</script></head><script async src="https://www.googletagmanager.com/gtag/js?id=G-XYFD95KB4J"></script>
+<script>var doNotTrack=!1;if(!doNotTrack){window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-XYFD95KB4J",{anonymize_ip:!1})}</script><body><div id=search-container><div id=search-space><input autocomplete=off id=search-bar name=search type=text aria-label=Search placeholder="Search for something..."><div id=results-container></div></div></div><script src=https://cdn.jsdelivr.net/npm/flexsearch@0.7.21/dist/flexsearch.bundle.js integrity="sha256-i3A0NZGkhsKjVMzFxv3ksk0DZh3aXqu0l49Bbh0MdjE=" crossorigin=anonymous defer></script>
+<script defer src=https://lzyerste.github.io/quartz/js/search.7861a82db330f0a40935b7458fee3a02.min.js></script><div class=singlePage><header><h1 id=page-title><a href=https://lzyerste.github.io/quartz/>🪴 Quartz 3.2</a></h1><svg tabindex="0" id="search-icon" aria-labelledby="title desc" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 19.9 19.7"><title id="title">Search Icon</title><desc id="desc">Icon to open search</desc><g class="search-path" fill="none"><path stroke-linecap="square" d="M18.5 18.3l-5.4-5.4"/><circle cx="8" cy="8" r="7"/></g></svg><div class=spacer></div><div class=darkmode><input class=toggle id=darkmode-toggle type=checkbox tabindex=-1>
+<label id=toggle-label-light for=darkmode-toggle tabindex=-1><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="dayIcon" viewBox="0 0 35 35" style="enable-background:new 0 0 35 35"><title>Light Mode</title><path d="M6 17.5C6 16.672 5.328 16 4.5 16h-3C.672 16 0 16.672.0 17.5S.672 19 1.5 19h3C5.328 19 6 18.328 6 17.5zM7.5 26c-.414.0-.789.168-1.061.439l-2 2C4.168 28.711 4 29.086 4 29.5 4 30.328 4.671 31 5.5 31c.414.0.789-.168 1.06-.44l2-2C8.832 28.289 9 27.914 9 27.5 9 26.672 8.329 26 7.5 26zm10-20C18.329 6 19 5.328 19 4.5v-3C19 .672 18.329.0 17.5.0S16 .672 16 1.5v3C16 5.328 16.671 6 17.5 6zm10 3c.414.0.789-.168 1.06-.439l2-2C30.832 6.289 31 5.914 31 5.5 31 4.672 30.329 4 29.5 4c-.414.0-.789.168-1.061.44l-2 2C26.168 6.711 26 7.086 26 7.5 26 8.328 26.671 9 27.5 9zM6.439 8.561C6.711 8.832 7.086 9 7.5 9 8.328 9 9 8.328 9 7.5c0-.414-.168-.789-.439-1.061l-2-2C6.289 4.168 5.914 4 5.5 4 4.672 4 4 4.672 4 5.5c0 .414.168.789.439 1.06l2 2.001zM33.5 16h-3c-.828.0-1.5.672-1.5 1.5s.672 1.5 1.5 1.5h3c.828.0 1.5-.672 1.5-1.5S34.328 16 33.5 16zM28.561 26.439C28.289 26.168 27.914 26 27.5 26c-.828.0-1.5.672-1.5 1.5.0.414.168.789.439 1.06l2 2C28.711 30.832 29.086 31 29.5 31c.828.0 1.5-.672 1.5-1.5.0-.414-.168-.789-.439-1.061l-2-2zM17.5 29c-.829.0-1.5.672-1.5 1.5v3c0 .828.671 1.5 1.5 1.5s1.5-.672 1.5-1.5v-3C19 29.672 18.329 29 17.5 29zm0-22C11.71 7 7 11.71 7 17.5S11.71 28 17.5 28 28 23.29 28 17.5 23.29 7 17.5 7zm0 18c-4.136.0-7.5-3.364-7.5-7.5s3.364-7.5 7.5-7.5 7.5 3.364 7.5 7.5S21.636 25 17.5 25z"/></svg></label><label id=toggle-label-dark for=darkmode-toggle tabindex=-1><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="nightIcon" viewBox="0 0 100 100" style="enable-background='new 0 0 100 100'"><title>Dark Mode</title><path d="M96.76 66.458c-.853-.852-2.15-1.064-3.23-.534-6.063 2.991-12.858 4.571-19.655 4.571C62.022 70.495 50.88 65.88 42.5 57.5 29.043 44.043 25.658 23.536 34.076 6.47c.532-1.08.318-2.379-.534-3.23-.851-.852-2.15-1.064-3.23-.534-4.918 2.427-9.375 5.619-13.246 9.491-9.447 9.447-14.65 22.008-14.65 35.369.0 13.36 5.203 25.921 14.65 35.368s22.008 14.65 35.368 14.65c13.361.0 25.921-5.203 35.369-14.65 3.872-3.871 7.064-8.328 9.491-13.246C97.826 68.608 97.611 67.309 96.76 66.458z"/></svg></label></div></header><article><p class=meta>Last updated April 29, 2022</p><ul class=tags></ul><aside class=mainTOC><details><summary>Table of Contents</summary><nav id=TableOfContents><ol><li><ol><li><a href=#s---interruptible-sleep-waiting-for-an-event-to-complete>S - interruptible sleep (waiting for an event to complete)</a></li><li><a href=#z---defunct-zombie-process-terminated-but-not-reaped-by-its-parent>Z - defunct (&ldquo;zombie&rdquo;) process, terminated but not reaped by its parent</a></li><li><a href=#sbininit><code>/sbin/init</code></a></li><li><a href=#libsystemdsystemd-journald><code>/lib/systemd/systemd-journald</code></a></li><li><a href=#sbinlvmetad--f><code>/sbin/lvmetad -f</code></a></li><li><a href=#libsystemdudevd><code>/lib/systemd/udevd</code></a></li><li><a href=#libsystemdtimesyncd><code>/lib/systemd/timesyncd</code></a></li><li><a href=#usrsbinatd--f><code>/usr/sbin/atd -f</code></a></li><li><a href=#usrlibsnapdsnapd><code>/usr/lib/snapd/snapd</code></a></li><li><a href=#usrbindbus-daemon><code>/usr/bin/dbus-daemon</code></a></li><li><a href=#libsystemdsystemd-logind><code>/lib/systemd/systemd-logind</code></a></li><li><a href=#usrsbincron--f><code>/usr/sbin/cron -f</code></a></li><li><a href=#usrsbinrsyslogd--n><code>/usr/sbin/rsyslogd -n</code></a></li><li><a href=#usrsbinacpid><code>/usr/sbin/acpid</code></a></li><li><a href=#usrbinlxcfs-varliblxcfs><code>/usr/bin/lxcfs /var/lib/lxcfs/</code></a></li><li><a href=#usrlibaccountserviceaccounts-daemon><code>/usr/lib/accountservice/accounts-daemon</code></a></li><li><a href=#sbinmdadm><code>/sbin/mdadm</code></a></li><li><a href=#usrlibpolicykit-1polkitd---no-debug><code>/usr/lib/policykit-1/polkitd --no-debug</code></a></li><li><a href=#usrsbinsshd--d><code>/usr/sbin/sshd -D</code></a></li><li><a href=#sbiniscsid><code>/sbin/iscsid</code></a></li><li><a href=#sbinagetty---noclear-tty1-linux><code>/sbin/agetty --noclear tty1 linux</code></a></li><li><a href=#sshd-rootpts0---bash--htop><code>sshd: root@pts/0</code> & <code>-bash</code> & <code>htop</code></a></li></ol></li></ol></nav></details></aside><h1 id=htop-explained--peterisrocks>htop explained | peteris.rocks</h1><p><a href=https://peteris.rocks/blog/htop/ rel=noopener>https://peteris.rocks/blog/htop/</a></p><p>For the longest time I did not know what everything meant in htop.</p><p>I thought that load average <code>1.0</code> on my two core machine means that the CPU usage is at 50%. That&rsquo;s not quite right. And also, why does it say <code>1.0</code>?</p><p>I decided to look everything up and document it here.</p><p>They also say that the best way to learn something is to try to teach it.</p><p>Here is a screenshot of htop that I am going to describe.</p><p><img src=/htop%20explained%20peteris%20rocks%20d8ebe43043f64b2a8af52b4f616e30ad/canyoukillit-before.png alt=htop%20explained%20peteris%20rocks%20d8ebe43043f64b2a8af52b4f616e30ad/canyoukillit-before.png></p><p>Uptime shows how long the system has been running.</p><p>You can see the same information by running <code>uptime</code>:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>$ uptime
+</span></span><span class=line><span class=cl> 12:17:58 up 111 days, 31 min,  1 user,  load average: 0.00, 0.01, 0.05
+</span></span></code></pre></td></tr></table></div></div><p>How does the <code>uptime</code> program know that?</p><p>It reads the information from the file <code>/proc/uptime</code>.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>9592411.58 9566042.33
+</span></span></code></pre></td></tr></table></div></div><p>The first number is the total number of seconds the system has been up. The second number is how much of that time the machine has spent idle, in seconds The second value may be greater than the overall system uptime on systems with multiple cores since it is a sum.</p><p>How did I know that? I looked at what files the <code>uptime</code> program opens when it is run. We can use the <code>strace</code> tool to do that.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>strace uptime
+</span></span></code></pre></td></tr></table></div></div><p>There will be a lot of output. We can <code>grep</code> for the <code>open</code> system call. But that will not really work since <code>strace</code> outputs everything to the standard error (stderr) stream. We can redirect the stderr to the standard output (stdout) stream with <code>2>&1</code>.</p><p>Our output is this:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>$ strace uptime 2&gt;&amp;1 | grep open
+</span></span><span class=line><span class=cl>...
+</span></span><span class=line><span class=cl>open(&#34;/proc/uptime&#34;, O_RDONLY)          = 3
+</span></span><span class=line><span class=cl>open(&#34;/var/run/utmp&#34;, O_RDONLY|O_CLOEXEC) = 4
+</span></span><span class=line><span class=cl>open(&#34;/proc/loadavg&#34;, O_RDONLY)         = 4
+</span></span></code></pre></td></tr></table></div></div><p>which contains the file <code>/proc/uptime</code> which I mentioned.</p><p>It turns out that you can also use <code>strace -e open uptime</code> and not bother with grepping.</p><p>So why do we need the <code>uptime</code> program if we can just read the contents of the file? The <code>uptime</code> output is nicely formatted for humans whereas the number of seconds is more useful for using in your own programs or scripts.</p><p>In addition to uptime, there were also three numbers that represent the load average.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>$ uptime
+</span></span><span class=line><span class=cl> 12:59:09 up 32 min,  1 user,  load average: 0.00, 0.01, 0.03
+</span></span></code></pre></td></tr></table></div></div><p>They are taken from the <code>/proc/loadavg</code> file. If you take another look at the <code>strace</code> output, you&rsquo;ll see that this file was also opened.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>$ cat /proc/loadavg
+</span></span><span class=line><span class=cl>0.00 0.01 0.03 1/120 1500
+</span></span></code></pre></td></tr></table></div></div><p>The first three columns represent the average system load of the last 1, 5, and 15 minute periods. The fourth column shows the number of currently running processes and the total number of processes. The last column displays the last process ID used.</p><p>Let&rsquo;s start with the last number.</p><p>Whenever you launch a new process, it is assigned an ID number. Process IDs are usually increasing, unless they&rsquo;ve been exausted and are being reused. The process ID of 1 belongs to <code>/sbin/init</code> which is started at boot time.</p><p>Let&rsquo;s look at the <code>/proc/loadavg</code> contents again and then launch the <code>sleep</code> command in the background. When it&rsquo;s launched in the background, its process ID will be shown.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>$ cat /proc/loadavg
+</span></span><span class=line><span class=cl>0.00 0.01 0.03 1/123 1566
+</span></span><span class=line><span class=cl>$ sleep 10 &amp;
+</span></span><span class=line><span class=cl>[1] 1567
+</span></span></code></pre></td></tr></table></div></div><p>So the <code>1/123</code> means that there is one process running or ready to run at this time and there are <code>123</code> processed in total.</p><p>When you run <code>htop</code> and see just one running process, it means that it is the <code>htop</code> process itself.</p><p>If you run <code>sleep 30</code> and run <code>htop</code> again, you&rsquo;ll notice that there is still just 1 running process. That&rsquo;s because <code>sleep</code> is not running, it is sleeping or idling or in other words waiting for something to happen. A running process is a process that is currently running on the physical CPU or waiting its turn to run on the CPU.</p><p>If you run <code>cat /dev/urandom > /dev/null</code> which repeatedly generates random bytes and writes them to a special file that is never read from, you will see that there are now two running process.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>$ cat /dev/urandom &gt; /dev/null &amp;
+</span></span><span class=line><span class=cl>[1] 1639
+</span></span><span class=line><span class=cl>$ cat /proc/loadavg
+</span></span><span class=line><span class=cl>1.00 0.69 0.35 2/124 1679
+</span></span></code></pre></td></tr></table></div></div><p>So there are now two running processes (random number generation and the <code>cat</code> that reads the contents of <code>/proc/loadavg</code>) and you&rsquo;ll also notice that the load averages have increased.</p><p>The load average represents the average system load over a period of time.</p><p>The load number is calculated by counting the number of running (currently running or waiting to run) and uninterruptible processes (waiting for disk or network activity). So it&rsquo;s simply a number of processes.</p><p>The load averages are then the average number of those processes during the last 1, 5 and 15 minutes, right?</p><p>It turns out it&rsquo;s not as simple as that.</p><p>The load average is the exponentially damped moving average of the load number. From Wikipedia:</p><blockquote><p>Mathematically speaking, all three values always average all the system load since the system started up. They all decay exponentially, but they decay at different speed. Hence, the 1-minute load average will add up 63% of the load from last minute, plus 37% of the load since start up excluding the last minute. Therefore, it&rsquo;s not technically accurate that the 1-minute load average only includes the last 60 seconds activity (since it still includes 37% activity from the past), but that includes mostly the last minute.</p></blockquote><p>Is that what you expected?</p><p>Let&rsquo;s return to our random number generation.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>$ cat /proc/loadavg
+</span></span><span class=line><span class=cl>1.00 0.69 0.35 2/124 1679
+</span></span></code></pre></td></tr></table></div></div><p>While technically not correct, this is how I simplify load averages to make it easier to reason about them.</p><p>In this case, the random number generation process is CPU bound, so the load average over the last minute is <code>1.00</code> or on average 1 running process.</p><p>Since there is only one CPU on my system, the CPU utilization is 100% since my CPU can run only one process at a time.</p><p>If I had two cores, my CPU usage would be 50% since my computer can run two processes at the same time. The load average of a computer with 2 cores that has a 100% CPU utilization would be <code>2.00</code>.</p><p>You can see the number of your cores or CPUs in the top left corner of <code>htop</code> or by running <code>nproc</code>.</p><p>Because the load number also includes processes in uninterruptible states which don&rsquo;t have much effect on CPU utilization, it&rsquo;s not quite correct to infer CPU usage from load averages like I just did. This also explains why you may see high load averages but not much load on the CPU.</p><p>But there are tools like <code>mpstat</code> that can show the instantaneous CPU utilization.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>$ sudo apt install sysstat -y
+</span></span><span class=line><span class=cl>$ mpstat 1
+</span></span><span class=line><span class=cl>Linux 4.4.0-47-generic (hostname)   12/03/2016      _x86_64_        (1 CPU)
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>10:16:20 PM  CPU    %usr   %nice    %sys %iowait    %irq   %soft  %steal  %guest  %gnice   %idle
+</span></span><span class=line><span class=cl>10:16:21 PM  all    0.00    0.00  100.00    0.00    0.00    0.00    0.00    0.00    0.00    0.00
+</span></span><span class=line><span class=cl>10:16:22 PM  all    0.00    0.00  100.00    0.00    0.00    0.00    0.00    0.00    0.00    0.00
+</span></span><span class=line><span class=cl>10:16:23 PM  all    0.00    0.00  100.00    0.00    0.00    0.00    0.00    0.00    0.00    0.00
+</span></span><span class=line><span class=cl># ...
+</span></span><span class=line><span class=cl># kill cat /dev/urandom
+</span></span><span class=line><span class=cl># ...
+</span></span><span class=line><span class=cl>10:17:00 PM  all    0.00    0.00    0.00    0.00    0.00    0.00    0.00    0.00    0.00  100.00
+</span></span><span class=line><span class=cl>10:17:01 PM  all    1.00    0.00    0.00    2.00    0.00    0.00    0.00    0.00    0.00   97.00
+</span></span><span class=line><span class=cl>10:17:02 PM  all    0.00    0.00    0.00    0.00    0.00    0.00    0.00    0.00    0.00  100.00
+</span></span></code></pre></td></tr></table></div></div><p>Why do we use load averages then?</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>$ curl -s https://raw.githubusercontent.com/torvalds/linux/v4.8/kernel/sched/loadavg.c | head -n 7
+</span></span><span class=line><span class=cl>/*
+</span></span><span class=line><span class=cl> * kernel/sched/loadavg.c
+</span></span><span class=line><span class=cl> *
+</span></span><span class=line><span class=cl> * This file contains the magic bits required to compute the global loadavg
+</span></span><span class=line><span class=cl> * figure. Its a silly number but people think its important. We go through
+</span></span><span class=line><span class=cl> * great pains to make it work on big machines and tickless kernels.
+</span></span><span class=line><span class=cl> */
+</span></span></code></pre></td></tr></table></div></div><p>In the top right corner, <code>htop</code> shows the total number of processes and how many of them are running. But it says <em>Tasks</em> not processes. Why?</p><p>Another name for a process is a <em>task</em>. The Linux kernel internally refers to processes as tasks. <code>htop</code> uses Tasks instead of Processes probably because it&rsquo;s shorter and saves some screen space.</p><p>You can also see threads in <code>htop</code>. To toggle the visibility of threads, hit <code>Shift</code>+<code>H</code> on your keyboard. If you see <code>Tasks: 23, 10 thr</code>, it means it they are visible.</p><p>You can also see kernel threads with <code>Shift</code>+<code>K</code>. When they are visible, it&rsquo;ll say <code>Tasks: 23, 40 kthr</code>.</p><p>Every time a new process is started it is assigned an identification number (ID) which is called process ID or PID for short.</p><p>If you run a program in the background (<code>&</code>) from <code>bash</code>, you will see the job number in square brackets and the PID.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>$ sleep 1000 &amp;
+</span></span><span class=line><span class=cl>[1] 12503
+</span></span></code></pre></td></tr></table></div></div><p>If you missed it, you can use the <code>$!</code> variable in <code>bash</code> that will expand to the last backgrounded process ID.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>$ echo $!
+</span></span><span class=line><span class=cl>12503
+</span></span></code></pre></td></tr></table></div></div><p>Process ID is very useful. It can be used to see details about the process and to control it.</p><p><code>procfs</code> is a pseudo file system that lets userland programs to get information from the kernel by reading files. It is usually mounted at <code>/proc/</code> and to you it looks like a regular directory that you can browse with <code>ls</code> and <code>cd</code>.</p><p>All information related to a process is located at <code>/proc/&lt;pid>/</code>.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>$ ls /proc/12503
+</span></span><span class=line><span class=cl>attr        coredump_filter  fdinfo     maps        ns             personality  smaps    task
+</span></span><span class=line><span class=cl>auxv        cpuset           gid_map    mem         numa_maps      projid_map   stack    uid_map
+</span></span><span class=line><span class=cl>cgroup      cwd              io         mountinfo   oom_adj        root         stat     wchan
+</span></span><span class=line><span class=cl>clear_refs  environ          limits     mounts      oom_score      schedstat    statm
+</span></span><span class=line><span class=cl>cmdline     exe              loginuid   mountstats  oom_score_adj  sessionid    status
+</span></span><span class=line><span class=cl>comm        fd               map_files  net         pagemap        setgroups    syscall
+</span></span></code></pre></td></tr></table></div></div><p>For example, <code>/proc/&lt;pid>/cmdline</code> will give the command that was used to launch the process.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>$ cat /proc/12503/cmdline
+</span></span><span class=line><span class=cl>sleep1000$
+</span></span></code></pre></td></tr></table></div></div><p>Ugh, that&rsquo;s not right. It turns out that the command is separated by the <code>\0</code> byte.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>$ od -c /proc/12503/cmdline
+</span></span><span class=line><span class=cl>0000000   s   l   e   e   p  \0   1   0   0   0  \0
+</span></span><span class=line><span class=cl>0000013
+</span></span></code></pre></td></tr></table></div></div><p>which we can replace with a space or newline</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>$ tr &#39;\0&#39; &#39;\n&#39; &lt; /proc/12503/cmdline
+</span></span><span class=line><span class=cl>sleep
+</span></span><span class=line><span class=cl>1000
+</span></span><span class=line><span class=cl>$ strings /proc/12503/cmdline
+</span></span><span class=line><span class=cl>sleep
+</span></span><span class=line><span class=cl>1000
+</span></span></code></pre></td></tr></table></div></div><p>The process directory for a process can contain links! For instance, <code>cwd</code> points to the current working directory and <code>exe</code> is the executed binary.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>$ ls -l /proc/12503/{cwd,exe}
+</span></span><span class=line><span class=cl>lrwxrwxrwx 1 ubuntu ubuntu 0 Jul  6 10:10 /proc/12503/cwd -&gt; /home/ubuntu
+</span></span><span class=line><span class=cl>lrwxrwxrwx 1 ubuntu ubuntu 0 Jul  6 10:10 /proc/12503/exe -&gt; /bin/sleep
+</span></span></code></pre></td></tr></table></div></div><p>So this is how <code>htop</code>, <code>top</code>, <code>ps</code> and other diagnostic utilities get their information about the details of a process: they read it from <code>/proc/&lt;pid>/&lt;file></code>.</p><p>When you launch a new process, the process that launched the new process is called the parent process. The new process is now a child process for the parent process. These relationships form a tree structure.</p><p>If you hit <code>F5</code> in <code>htop</code>, you can see the process hierarchy.</p><p>You can also use the <code>f</code> switch with <code>ps</code></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>$ ps f
+</span></span><span class=line><span class=cl>  PID TTY      STAT   TIME COMMAND
+</span></span><span class=line><span class=cl>12472 pts/0    Ss     0:00 -bash
+</span></span><span class=line><span class=cl>12684 pts/0    R+     0:00  \_ ps f
+</span></span></code></pre></td></tr></table></div></div><p>or <code>pstree</code></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>$ pstree -a
+</span></span><span class=line><span class=cl>init
+</span></span><span class=line><span class=cl>  ├─atd
+</span></span><span class=line><span class=cl>  ├─cron
+</span></span><span class=line><span class=cl>  ├─sshd -D
+</span></span><span class=line><span class=cl>  │   └─sshd
+</span></span><span class=line><span class=cl>  │       └─sshd
+</span></span><span class=line><span class=cl>  │           └─bash
+</span></span><span class=line><span class=cl>  │               └─pstree -a
+</span></span><span class=line><span class=cl>...
+</span></span></code></pre></td></tr></table></div></div><p>If you have ever wondered why you often see <code>bash</code> or <code>sshd</code> as parents of some of your processes, here&rsquo;s why.</p><p>This is what happens when you run, say, <code>date</code> from your <code>bash</code> shell:</p><ul><li><code>bash</code> creates a new process that is a copy of itself (using a <code>fork</code> system call)</li><li>it will then load the program from the executable file <code>/bin/date</code> into memory (using an <code>exec</code> system call)</li><li><code>bash</code> as the parent process will wait for its child to exit</li></ul><p>So the <code>/sbin/init</code> with an ID of 1 was started at boot, which spawned the SSH daemon <code>sshd</code>. When you connect to the computer, <code>sshd</code> will spawn a process for the session which in turn will launch the <code>bash</code> shell.</p><p>I like to use this tree view in <code>htop</code> when I&rsquo;m also interested in seeing all threads.</p><p>Each process is owned by a user. Users are represented with a numeric ID.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>$ sleep 1000 &amp;
+</span></span><span class=line><span class=cl>[1] 2045
+</span></span><span class=line><span class=cl>$  grep Uid /proc/2045/status
+</span></span><span class=line><span class=cl>Uid:    1000    1000    1000    1000
+</span></span></code></pre></td></tr></table></div></div><p>You can use the <code>id</code> command to find out the name for this user.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>$ id 1000
+</span></span><span class=line><span class=cl>uid=1000(ubuntu) gid=1000(ubuntu) groups=1000(ubuntu),4(adm)
+</span></span></code></pre></td></tr></table></div></div><p>It turns out that <code>id</code> gets this information from the <code>/etc/passwd</code> and <code>/etc/group</code> files.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>$ strace -e open id 1000
+</span></span><span class=line><span class=cl>...
+</span></span><span class=line><span class=cl>open(&#34;/etc/nsswitch.conf&#34;, O_RDONLY|O_CLOEXEC) = 3
+</span></span><span class=line><span class=cl>open(&#34;/lib/x86_64-linux-gnu/libnss_compat.so.2&#34;, O_RDONLY|O_CLOEXEC) = 3
+</span></span><span class=line><span class=cl>open(&#34;/lib/x86_64-linux-gnu/libnss_files.so.2&#34;, O_RDONLY|O_CLOEXEC) = 3
+</span></span><span class=line><span class=cl>open(&#34;/etc/passwd&#34;, O_RDONLY|O_CLOEXEC) = 3
+</span></span><span class=line><span class=cl>open(&#34;/etc/group&#34;, O_RDONLY|O_CLOEXEC)  = 3
+</span></span><span class=line><span class=cl>...
+</span></span></code></pre></td></tr></table></div></div><p>That&rsquo;s because the Name Service Switch (NSS) configuration file <code>/etc/nsswitch.conf</code> says to use these files to resolve names.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>$ head -n 9 /etc/nsswitch.conf
+</span></span><span class=line><span class=cl># ...
+</span></span><span class=line><span class=cl>passwd:         compat
+</span></span><span class=line><span class=cl>group:          compat
+</span></span><span class=line><span class=cl>shadow:         compat
+</span></span></code></pre></td></tr></table></div></div><p>The value of <code>compat</code> (Compatibility mode) is the same as <code>files</code> except other special entries are permitted. <code>files</code> means that the database is stored in a file (loaded by <code>libnss_files.so</code>). But you could also store your users in other databases and services or use Lightweight Directory Access Protocol (LDAP), for example.</p><p><code>/etc/passwd</code> and <code>/etc/group</code> are plain text files that map numeric IDs to human readable names.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>$ cat /etc/passwd
+</span></span><span class=line><span class=cl>root:x:0:0:root:/root:/bin/bash
+</span></span><span class=line><span class=cl>daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin
+</span></span><span class=line><span class=cl>ubuntu:x:1000:1000:Ubuntu:/home/ubuntu:/bin/bash
+</span></span><span class=line><span class=cl>$ cat /etc/group
+</span></span><span class=line><span class=cl>root:x:0:
+</span></span><span class=line><span class=cl>adm:x:4:syslog,ubuntu
+</span></span><span class=line><span class=cl>ubuntu:x:1000:
+</span></span></code></pre></td></tr></table></div></div><p><code>passwd</code>? But where are the passwords?</p><p>They are actually in <code>/etc/shadow</code>.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>$ sudo cat /etc/shadow
+</span></span><span class=line><span class=cl>root:$6$mS9o0QBw$P1ojPSTexV2PQ.Z./rqzYex.k7TJE2nVeIVL0dql/:17126:0:99999:7:::
+</span></span><span class=line><span class=cl>daemon:*:17109:0:99999:7:::
+</span></span><span class=line><span class=cl>ubuntu:$6$GIfdqlb/$ms9ZoxfrUq455K6UbmHyOfz7DVf7TWaveyHcp.:17126:0:99999:7:::
+</span></span></code></pre></td></tr></table></div></div><p>What&rsquo;s that gibberish?</p><ul><li><code>$6$</code> is the password hashing algorithm used, in this case it stands for <code>sha512</code></li><li>followed by randomly generated salt to safeguard against rainbow table attacks</li><li>and finally the hash of your password + salt</li></ul><p>When you run a program, it will be run as your user. Even if the executable file is not owned by you.</p><p>If you&rsquo;d like to run a program as <code>root</code> or another user, that&rsquo;s what <code>sudo</code> is for.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>$ id
+</span></span><span class=line><span class=cl>uid=1000(ubuntu) gid=1000(ubuntu) groups=1000(ubuntu),4(adm)
+</span></span><span class=line><span class=cl>$ sudo id
+</span></span><span class=line><span class=cl>uid=0(root) gid=0(root) groups=0(root)
+</span></span><span class=line><span class=cl>$ sudo -u ubuntu id
+</span></span><span class=line><span class=cl>uid=1000(ubuntu) gid=1000(ubuntu) groups=1000(ubuntu),4(adm)
+</span></span><span class=line><span class=cl>$ sudo -u daemon id
+</span></span><span class=line><span class=cl>uid=1(daemon) gid=1(daemon) groups=1(daemon)
+</span></span></code></pre></td></tr></table></div></div><p>But what if you want to log in as another user to launch various commands? Use <code>sudo bash</code> or <code>sudo -u user bash</code>. You&rsquo;ll be able to use the shell as that user.</p><p>If you don&rsquo;t like being asked for the root password all the time, you can simply disable it by adding your user to the <code>/etc/sudoers</code> file.</p><p>Let&rsquo;s try it:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>$ echo &#34;$USER ALL=(ALL) NOPASSWD: ALL&#34; &gt;&gt; /etc/sudoers
+</span></span><span class=line><span class=cl>-bash: /etc/sudoers: Permission denied
+</span></span></code></pre></td></tr></table></div></div><p>Right, only root can do it.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>$ sudo echo &#34;$USER ALL=(ALL) NOPASSWD: ALL&#34; &gt;&gt; /etc/sudoers
+</span></span><span class=line><span class=cl>-bash: /etc/sudoers: Permission denied
+</span></span></code></pre></td></tr></table></div></div><p>WTF?</p><p>What happens here is that you are executing the <code>echo</code> command as root but appending the line to the <code>/etc/sudoers</code> file still as your user.</p><p>There are usually two ways around it:</p><ul><li><code>echo "$USER ALL=(ALL) NOPASSWD: ALL" | sudo tee -a /etc/sudoers</code></li><li><code>sudo bash -c "echo '$USER ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers"</code></li></ul><p>In the first case, <code>tee -a</code> will append its standard input to the file and we execute this command as root.</p><p>In the second case, we run bash as root and ask it to execute a command (<code>-c</code>) and the entire command will be executed as root. Note the tricky <code>"</code>/<code>'</code> business here which will dictate when the <code>$USER</code> variable will be expanded.</p><p>If you take a look at the <code>/etc/sudoers</code> file you will see that it begins with</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>$ sudo head -n 3 /etc/sudoers
+</span></span><span class=line><span class=cl>#
+</span></span><span class=line><span class=cl># This file MUST be edited with the &#39;visudo&#39; command as root.
+</span></span><span class=line><span class=cl>#
+</span></span></code></pre></td></tr></table></div></div><p>Uh oh.</p><p>It&rsquo;s a helpful warning that says you should edit this file with <code>sudo visudo</code>. It will validate the contents of the file before saving and prevent you from making mistakes. If you don&rsquo;t use <code>visudo</code> and make a mistake, it may lock you out from <code>sudo</code>. Which means that you won&rsquo;t be able to correct your mistake!</p><p>Let&rsquo;s say you want to change your password. You can do it with the <code>passwd</code> command. It will, as we saw earlier, save the password to the <code>/etc/shadow</code> file.</p><p>This file is sensitive and only writeable by root:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>$ ls -l /etc/shadow
+</span></span><span class=line><span class=cl>-rw-r----- 1 root shadow 1122 Nov 27 18:52 /etc/shadow
+</span></span></code></pre></td></tr></table></div></div><p>So how is it possible that the <code>passwd</code> program which is executed by a regular user can write to a protected file?</p><p>I said earlier that when you launch a process, it is owned by you, even if the owner of the executable file is another user.</p><p>It turns out that you can change that behavior by changing file permissions. Let&rsquo;s take a look.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>$ ls -l /usr/bin/passwd
+</span></span><span class=line><span class=cl>-rwsr-xr-x 1 root root 54256 Mar 29  2016 /usr/bin/passwd
+</span></span></code></pre></td></tr></table></div></div><p>Notice the <code>s</code> letter. It was accomplished with <code>sudo chmod u+s /usr/bin/passwd</code>. It means that an executable will be launched as the the owner of the file which is root in this case.</p><p>You can find the so called <code>setuid</code> executables with <code>find /bin -user root -perm -u+s</code>.</p><p>Note that you can also do the same with group (<code>g+s</code>).</p><p>We are next going to look at the process state column in <code>htop</code> which is denoted simply with the letter <code>S</code>.</p><p>Here are the possible values:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>R    running or runnable (on run queue)
+</span></span><span class=line><span class=cl>S    interruptible sleep (waiting for an event to complete)
+</span></span><span class=line><span class=cl>D    uninterruptible sleep (usually IO)
+</span></span><span class=line><span class=cl>Z    defunct (&#34;zombie&#34;) process, terminated but not reaped by its parent
+</span></span><span class=line><span class=cl>T    stopped by job control signal
+</span></span><span class=line><span class=cl>t    stopped by debugger during the tracing
+</span></span><span class=line><span class=cl>X    dead (should never be seen)
+</span></span></code></pre></td></tr></table></div></div><p>I&rsquo;ve ordered them by how often I see them.</p><p>Note that when you run <code>ps</code>, it will also show substates like <code>Ss</code>, <code>R+</code>, <code>Ss+</code>, etc.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>$ ps x
+</span></span><span class=line><span class=cl>  PID TTY      STAT   TIME COMMAND
+</span></span><span class=line><span class=cl> 1688 ?        Ss     0:00 /lib/systemd/systemd --user
+</span></span><span class=line><span class=cl> 1689 ?        S      0:00 (sd-pam)
+</span></span><span class=line><span class=cl> 1724 ?        S      0:01 sshd: vagrant@pts/0
+</span></span><span class=line><span class=cl> 1725 pts/0    Ss     0:00 -bash
+</span></span><span class=line><span class=cl> 2628 pts/0    R+     0:00 ps x
+</span></span></code></pre></td></tr></table></div></div><p>In this state, the process is currently running or on a run queue waiting to run.</p><p>What does it mean to run?</p><p>When you compile the source code of a program that you&rsquo;ve written, that machine code is CPU instructions. It is saved to a file that can be executed. When you launch a program, it is loaded into memory and then the CPU executes these instructions.</p><p>Basically it means that the CPU is physically executing instructions. Or, in other words, crunching numbers.</p><h3 id=s---interruptible-sleep-waiting-for-an-event-to-complete>S - interruptible sleep (waiting for an event to complete)</h3><p>This means that the code instructions of this process are not being executed on the CPU. Instead, this process is waiting for something - an event or a condition - to happen. When an event happens, the kernel sets the state to running.</p><p>One example is the <code>sleep</code> utily from coreutils. It will sleep for a specific number of seconds (approximately).</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>$ sleep 1000 &amp;
+</span></span><span class=line><span class=cl>[1] 10089
+</span></span><span class=line><span class=cl>$ ps f
+</span></span><span class=line><span class=cl>  PID TTY      STAT   TIME COMMAND
+</span></span><span class=line><span class=cl> 3514 pts/1    Ss     0:00 -bash
+</span></span><span class=line><span class=cl>10089 pts/1    S      0:00  \_ sleep 1000
+</span></span><span class=line><span class=cl>10094 pts/1    R+     0:00  \_ ps f
+</span></span></code></pre></td></tr></table></div></div><p>So this is <em>interruptible</em> sleep. How can we interrupt it?</p><p>By sending a signal.</p><p>You can send a signal in <code>htop</code> by hitting <code>F9</code> and then choosing one of the signals in the menu on the left.</p><p>Sending a signal is also known as <code>kill</code>. That&rsquo;s because <code>kill</code> is a system call that can send a signal to a process. There is a program <code>/bin/kill</code> that can make this system call from userland and the default signal to use is <code>TERM</code> which will ask the process to terminate or in other words try to kill it.</p><p>Signal is just a number. Numbers are hard to remember so we give them names. Signal names are usually written in uppercase and may be prefixed with <code>SIG</code>.</p><p>Some commonly used signals are <code>INT</code>, <code>KILL</code>, <code>STOP</code>, <code>CONT</code>, <code>HUP</code>.</p><p>Let&rsquo;s interrupt the sleep process by sending the <code>INT</code> aka <code>SIGINT</code> aka <code>2</code> aka <code>Terminal interrupt</code> signal.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>$ kill -INT 10089
+</span></span><span class=line><span class=cl>[1]+  Interrupt               sleep 1000
+</span></span></code></pre></td></tr></table></div></div><p>This is also what happens When you hit <code>CTRL</code>+<code>C</code> on your keyboard. <code>bash</code> will the send the foreground process the <code>SIGINT</code> signal just like we just did manually.</p><p>By the way, in <code>bash</code>, <code>kill</code> is a built-in command, even though there is <code>/bin/kill</code> on most systems. Why? It allows processes to be killed if the limit on processes that you can create is reached.</p><p>These commands do the same thing:</p><ul><li><code>kill -INT 10089</code></li><li><code>kill -2 10089</code></li><li><code>/bin/kill -2 10089</code></li></ul><p>Another useful signal to know is <code>SIGKILL</code> aka <code>9</code>. You may have used it to kill a process that didn&rsquo;t respond to your frantic <code>CTRL</code>+<code>C</code> keyboard presses.</p><p>When you write a program, you can set up signal handlers that are functions that will be called when your process receives a signal. In other words, you can catch the signal and then do something, for example, clean up and shut down gracefully. So sending <code>SIGINT</code> (the user wants to interrupt a process) and <code>SIGTERM</code> (the user wants to terminate the process) does not mean that the process will be terminated.</p><p>You may have seen this exception when running Python scripts:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>$ python -c &#39;import sys; sys.stdin.read()&#39;
+</span></span><span class=line><span class=cl>^C
+</span></span><span class=line><span class=cl>Traceback (most recent call last):
+</span></span><span class=line><span class=cl>  File &#34;&lt;string&gt;&#34;, line 1, in &lt;module&gt;
+</span></span><span class=line><span class=cl>KeyboardInterrupt
+</span></span></code></pre></td></tr></table></div></div><p>You can tell the kernel to forcefully terminate a process and not give it a change to respond by sending the <code>KILL</code> signal:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>$ sleep 1000 &amp;
+</span></span><span class=line><span class=cl>[1] 2658
+</span></span><span class=line><span class=cl>$ kill -9 2658
+</span></span><span class=line><span class=cl>[1]+  Killed                  sleep 1000
+</span></span></code></pre></td></tr></table></div></div><p>Unlike interruptible sleep, you cannot wake up this process with a signal. That is why many people dread seeing this state. You can&rsquo;t kill such processes because killing means sending <code>SIGKILL</code> signals to processes.</p><p>This state is used if the process must wait without interruption or when the event is expected to occur quickly. Like reading to/from a disk. But that should only happen for a fraction of a second.</p><p>Here is a
+<a href=http://stackoverflow.com/questions/223644/what-is-an-uninterruptable-process rel=noopener>nice answer on StackOverflow</a>.</p><blockquote><p>Uninterruptable processes are USUALLY waiting for I/O following a page fault. The process/task cannot be interrupted in this state, because it can&rsquo;t handle any signals; if it did, another page fault would happen and it would be back where it was.</p></blockquote><p>In other words, this could happen if you are using Network File System (NFS) and it takes a while to read and write from it.</p><p>Or in my experience it can also mean that some of the processes are swapping a lot which means you have too little available memory.</p><p>Let&rsquo;s try to get a process to go into uninterruptible sleep.</p><p><code>8.8.8.8</code> is a public DNS server provided by Google. They do not have an open NFS on there. But that won&rsquo;t stop us.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>$ sudo mount 8.8.8.8:/tmp /tmp &amp;
+</span></span><span class=line><span class=cl>[1] 12646
+</span></span><span class=line><span class=cl>$ sudo ps x | grep mount.nfs
+</span></span><span class=line><span class=cl>12648 pts/1    D      0:00 /sbin/mount.nfs 8.8.8.8:/tmp /tmp -o rw
+</span></span></code></pre></td></tr></table></div></div><p>How to find out what&rsquo;s causing this? <code>strace</code>!</p><p>Let&rsquo;s <code>strace</code> the command in the output of <code>ps</code> above.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>$ sudo strace /sbin/mount.nfs 8.8.8.8:/tmp /tmp -o rw
+</span></span><span class=line><span class=cl>...
+</span></span><span class=line><span class=cl>mount(&#34;8.8.8.8:/tmp&#34;, &#34;/tmp&#34;, &#34;nfs&#34;, 0, ...
+</span></span></code></pre></td></tr></table></div></div><p>So the <code>mount</code> system call is blocking the process.</p><p>If you&rsquo;re wondering, you can run <code>mount</code> with an <code>intr</code> option to run as interruptible: <code>sudo mount 8.8.8.8:/tmp /tmp -o intr</code>.</p><h3 id=z---defunct-zombie-process-terminated-but-not-reaped-by-its-parent>Z - defunct (&ldquo;zombie&rdquo;) process, terminated but not reaped by its parent</h3><p>When a process ends via <code>exit</code> and it still has child processes, the child processes become zombie processes.</p><ul><li>If zombie processes exist for a short time, it is perfectly normal</li><li>Zombie processes that exist for a long time may indicate a bug in a program</li><li>Zombie processes don&rsquo;t consume memory, just a process ID</li><li>You can&rsquo;t <code>kill</code> a zombie process</li><li>You can ask nicely the parent process to reap the zombies (the <code>SIGCHLD</code> signal)</li><li>You can <code>kill</code> the zombie&rsquo;s parent process to get rid of the parent and its zombies</li></ul><p>I am going to write some C code to show this.</p><p>Here is our program.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>#include &lt;stdio.h&gt;
+</span></span><span class=line><span class=cl>#include &lt;stdlib.h&gt;
+</span></span><span class=line><span class=cl>#include &lt;unistd.h&gt;
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>int main() {
+</span></span><span class=line><span class=cl>  printf(&#34;Running\n&#34;);
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>  int pid = fork();
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>  if (pid == 0) {
+</span></span><span class=line><span class=cl>    printf(&#34;I am the child process\n&#34;);
+</span></span><span class=line><span class=cl>    printf(&#34;The child process is exiting now\n&#34;);
+</span></span><span class=line><span class=cl>    exit(0);
+</span></span><span class=line><span class=cl>  } else {
+</span></span><span class=line><span class=cl>    printf(&#34;I am the parent process\n&#34;);
+</span></span><span class=line><span class=cl>    printf(&#34;The parent process is sleeping now\n&#34;);
+</span></span><span class=line><span class=cl>    sleep(20);
+</span></span><span class=line><span class=cl>    printf(&#34;The parent process is finished\n&#34;);
+</span></span><span class=line><span class=cl>  }
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>  return 0;
+</span></span><span class=line><span class=cl>}
+</span></span></code></pre></td></tr></table></div></div><p>Let&rsquo;s install the GNU C Compiler (GCC).</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>sudo apt install -y gcc
+</span></span></code></pre></td></tr></table></div></div><p>Compile it and then run it</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>gcc zombie.c -o zombie
+</span></span><span class=line><span class=cl>./zombie
+</span></span></code></pre></td></tr></table></div></div><p>Look at the process tree</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>$ ps f
+</span></span><span class=line><span class=cl>  PID TTY      STAT   TIME COMMAND
+</span></span><span class=line><span class=cl> 3514 pts/1    Ss     0:00 -bash
+</span></span><span class=line><span class=cl> 7911 pts/1    S+     0:00  \_ ./zombie
+</span></span><span class=line><span class=cl> 7912 pts/1    Z+     0:00      \_ [zombie] &lt;defunct&gt;
+</span></span><span class=line><span class=cl> 1317 pts/0    Ss     0:00 -bash
+</span></span><span class=line><span class=cl> 7913 pts/0    R+     0:00  \_ ps f
+</span></span></code></pre></td></tr></table></div></div><p>We got our zombie!</p><p>When the parent process is done, the zombie is gone.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>$ ps f
+</span></span><span class=line><span class=cl>  PID TTY      STAT   TIME COMMAND
+</span></span><span class=line><span class=cl> 3514 pts/1    Ss+    0:00 -bash
+</span></span><span class=line><span class=cl> 1317 pts/0    Ss     0:00 -bash
+</span></span><span class=line><span class=cl> 7914 pts/0    R+     0:00  \_ ps f
+</span></span></code></pre></td></tr></table></div></div><p>If you replaced <code>sleep(20)</code> with <code>while (true) ;</code> then the zombie would be gone right away.</p><p>With <code>exit</code>, all of the memory and resources associated with it are deallocated so they can be used by other processes.</p><p>Why keep the zombie processes around then?</p><p>The parent process has the option to find out its child process exit code (in a signal handler) with the <code>wait</code> system call. If a process is sleeping, then it needs to wait for it to wake up.</p><p>Why not simply forcefully wake it up and kill it? For the same reason, you don&rsquo;t toss your child in the trash when you&rsquo;re tired of it. Bad things could happen.</p><p>I have opened two terminal windows and I can look at my user&rsquo;s processes with <code>ps u</code>.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>$ ps u
+</span></span><span class=line><span class=cl>USER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+</span></span><span class=line><span class=cl>ubuntu    1317  0.0  0.9  21420  4992 pts/0    Ss+  Jun07   0:00 -bash
+</span></span><span class=line><span class=cl>ubuntu    3514  1.5  1.0  21420  5196 pts/1    Ss   07:28   0:00 -bash
+</span></span><span class=line><span class=cl>ubuntu    3528  0.0  0.6  36084  3316 pts/1    R+   07:28   0:00 ps u
+</span></span></code></pre></td></tr></table></div></div><p>I will omit the <code>-bash</code> and <code>ps u</code> processes from the output below.</p><p>Now run <code>cat /dev/urandom > /dev/null</code> in one terminal window. Its state is <code>R+</code> which means that it is running.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>$ ps u
+</span></span><span class=line><span class=cl>USER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+</span></span><span class=line><span class=cl>ubuntu    3540  103  0.1   6168   688 pts/1    R+   07:29   0:04 cat /dev/urandom
+</span></span></code></pre></td></tr></table></div></div><p>Press <code>CTRL</code>+<code>Z</code> to stop the process.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>$ # CTRL+Z
+</span></span><span class=line><span class=cl>[1]+  Stopped                 cat /dev/urandom &gt; /dev/null
+</span></span><span class=line><span class=cl>$ ps aux
+</span></span><span class=line><span class=cl>USER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+</span></span><span class=line><span class=cl>ubuntu    3540 86.8  0.1   6168   688 pts/1    T    07:29   0:15 cat /dev/urandom
+</span></span></code></pre></td></tr></table></div></div><p>Its state is now <code>T</code>.</p><p>Run <code>fg</code> in the first terminal to resume it.</p><p>Another way to stop a process like this is to send the <code>STOP</code> signal with <code>kill</code> to the process. To resume the execution of the process, you can use the <code>CONT</code> signal.</p><p>First, install the GNU Debugger (gdb)</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>sudo apt install -y gdb
+</span></span></code></pre></td></tr></table></div></div><p>Run a program that will listen for incoming network connections on port 1234.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>$ nc -l 1234 &amp;
+</span></span><span class=line><span class=cl>[1] 3905
+</span></span></code></pre></td></tr></table></div></div><p>It is sleeping meaning it is waiting for data from the network.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>$ ps u
+</span></span><span class=line><span class=cl>USER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+</span></span><span class=line><span class=cl>ubuntu    3905  0.0  0.1   9184   896 pts/0    S    07:41   0:00 nc -l 1234
+</span></span></code></pre></td></tr></table></div></div><p>Run the debugger and attach it to the process with ID <code>3905</code>.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>sudo gdb -p 3905
+</span></span></code></pre></td></tr></table></div></div><p>You will see that the state is <code>t</code> which means that this process is being traced in the debugger.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>$ ps u
+</span></span><span class=line><span class=cl>USER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+</span></span><span class=line><span class=cl>ubuntu    3905  0.0  0.1   9184   896 pts/0    t    07:41   0:00 nc -l 1234
+</span></span></code></pre></td></tr></table></div></div><p>Linux is a multitasking operating system which means that even when you have a single CPU, you can run several processes at the same time. You can connect to your server via SSH and look at the output of <code>htop</code> while your web server is delivering the content of your blog to your readers over the internet.</p><p>How is that possible when a single CPU can only execute one instruction at a time?</p><p>The answer is time sharing.</p><p>One process runs for a bit of time, then it is suspended while the other processes waiting to run take turns running for a while. The bit of time a process runs is called the time slice.</p><p>The time slice is usually a few milliseconds so you don&rsquo;t really notice it that much when your system is not under high load. (It&rsquo;d be really interesting to find out how long time slices usually are in Linux.)</p><p>This should help explain why the load average is the average number of running processes. If you have just one core and the load average is <code>1.0</code>, the CPU has been utilized at 100%. If the load average is higher than <code>1.0</code>, it means that the number of processes wanting to run is higher than the CPU can run so you may experience slow downs or delays. If the load is lower than <code>1.0</code>, it means the CPU is sometimes idleing and not doing anything.</p><p>This should also give you a clue why sometimes the running time of a process that&rsquo;s been running for 10 seconds is higher or lower than exactly 10 seconds.</p><p>When you have more tasks to run than the number of available CPU cores, you somehow have to decide which tasks to run next and which ones to keep waiting. This is what the task scheduler is responsible for.</p><p>The scheduler in the Linux kernel is reponsible for choosing which process on a run queue to pick next and it depends on the scheduler algorithm used in the kernel.</p><p>You can&rsquo;t generally influence the scheduler but you can let it know which processes are more important to you and the scheduler may take it into account.</p><p>Niceness (<code>NI</code>) is user-space priority to processes, ranging from -20 which is the highest priority to 19 which is the lowest priority. It can be confusing but you can think that a nice process yields to a less nice process. So the nicer a process is, the more it yields.</p><p>From what I&rsquo;ve pieced together by reading StackOverflow and other sites, a niceness level increase by 1 should yield a 10% more CPU time to the process.</p><p>The priority (<code>PRI</code>) is the kernel-space priority that the Linux kernel is using. Priorities range from 0 to 139 and the range from 0 to 99 is real time and 100 to 139 for users.</p><p>You can change the nicesness and the kernel takes it into account but you cannot change the priority.</p><p>The relation between the nice value and priority is:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>PR = 20 + NI
+</span></span></code></pre></td></tr></table></div></div><p>so the value of <code>PR = 20 + (-20 to +19)</code> is 0 to 39 that maps 100 to 139.</p><p>You can set the niceness of a process before launching it.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>nice -n niceness program
+</span></span></code></pre></td></tr></table></div></div><p>Change the nicencess when a program is already running with <code>renice</code>.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>renice -n niceness -p PID
+</span></span></code></pre></td></tr></table></div></div><p>Here is what the CPU usage colors mean:</p><ul><li>Blue: Low priority threads (nice > 0)</li><li>Green: Normal priority threads</li><li>Red: Kernel threads</li></ul><p><a href=http://askubuntu.com/questions/656771/process-niceness-vs-priority rel=noopener>http://askubuntu.com/questions/656771/process-niceness-vs-priority</a></p><p>A process has the illusion of being the only one in memory. This is accomplished by using virtual memory.</p><p>A process does not have direct access to the physical memory. Instead, it has its own virtual address space and the kernel translates the virtual memory addresses to physical memory or can map some of it to disk. This is why it can look like processes use more memory than you have installed on your computer.</p><p>The point I want to make here is that it is not very straightforward to figure out how much memory a process takes up. Do you also want to count the shared libraries or disk mapped memory? But the kernel provides and <code>htop</code> shows some information that can help you estimate memory usage.</p><p>Here is what the memory usage colors mean:</p><ul><li>Green: Used memory</li><li>Blue: Buffers</li><li>Orange: Cache</li></ul><blockquote><p>The total amount of virtual memory used by the task. It includes all code, data and shared libraries plus pages that have been swapped out and pages that have been mapped but not used.</p></blockquote><p><code>VIRT</code> is virtual memory usage. It includes everything, including memory mapped files.</p><p>If an application requests 1 GB of memory but uses only 1 MB, then <code>VIRT</code> will report 1 GB. If it <code>mmap</code>s a 1 GB file and never uses it, <code>VIRT</code> will also report 1 GB.</p><p>Most of the time, this is not a useful number.</p><blockquote><p>The non-swapped physical memory a task has used.</p></blockquote><p><code>RES</code> is resident memory usage i.e. what&rsquo;s currently in the physical memory.</p><p>While <code>RES</code> can be a better indicator of how much memory a process is using than <code>VIRT</code>, keep in mind that</p><ul><li>this does not include the swapped out memory</li><li>some of the memory may be shared with other processes</li></ul><p>If a process uses 1 GB of memory and it calls <code>fork()</code>, the result of forking will be two processes whose <code>RES</code> is both 1 GB but only 1 GB will actually be used since Linux uses copy-on-write.</p><blockquote><p>The amount of shared memory used by a task. It simply reflects memory that could be potentially shared with other processes.</p></blockquote><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>#include &lt;stdio.h&gt;
+</span></span><span class=line><span class=cl>#include &lt;stdlib.h&gt;
+</span></span><span class=line><span class=cl>#include &lt;unistd.h&gt;
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>int main() {
+</span></span><span class=line><span class=cl>  printf(&#34;Started\n&#34;);
+</span></span><span class=line><span class=cl>  sleep(10);
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>  size_t memory = 10 * 1024 * 1024; // 10 MB
+</span></span><span class=line><span class=cl>  char* buffer = malloc(memory);
+</span></span><span class=line><span class=cl>  printf(&#34;Allocated 10M\n&#34;);
+</span></span><span class=line><span class=cl>  sleep(10);
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>  for (size_t i = 0; i &lt; memory/2; i++)
+</span></span><span class=line><span class=cl>    buffer[i] = 42;
+</span></span><span class=line><span class=cl>  printf(&#34;Used 5M\n&#34;);
+</span></span><span class=line><span class=cl>  sleep(10);
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>  int pid = fork();
+</span></span><span class=line><span class=cl>  printf(&#34;Forked\n&#34;);
+</span></span><span class=line><span class=cl>  sleep(10);
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>  if (pid != 0) {
+</span></span><span class=line><span class=cl>    for (size_t i = memory/2; i &lt; memory/2 + memory/5; i++)
+</span></span><span class=line><span class=cl>      buffer[i] = 42;
+</span></span><span class=line><span class=cl>    printf(&#34;Child used extra 2M\n&#34;);
+</span></span><span class=line><span class=cl>  }
+</span></span><span class=line><span class=cl>  sleep(10);
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>  return 0;
+</span></span><span class=line><span class=cl>}
+</span></span></code></pre></td></tr></table></div></div><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>fallocate -l 10G
+</span></span><span class=line><span class=cl>gcc -std=c99 mem.c -o mem
+</span></span><span class=line><span class=cl>./mem
+</span></span></code></pre></td></tr></table></div></div><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>Process  Message               VIRT  RES SHR
+</span></span><span class=line><span class=cl>main     Started               4200  680 604
+</span></span><span class=line><span class=cl>main     Allocated 10M        14444  680 604
+</span></span><span class=line><span class=cl>main     Used 5M              14444 6168 1116
+</span></span><span class=line><span class=cl>main     Forked               14444 6168 1116
+</span></span><span class=line><span class=cl>child    Forked               14444 5216 0
+</span></span><span class=line><span class=cl>main     Child used extra 2M        8252 1116
+</span></span><span class=line><span class=cl>child    Child used extra 2M        5216 0
+</span></span></code></pre></td></tr></table></div></div><p>TODO: I should finish this.</p><blockquote><p>A task&rsquo;s currently used share of available physical memory.</p></blockquote><p>This is <code>RES</code> divided by the total RAM you have.</p><p>If <code>RES</code> is <code>400M</code> and you have 8 gigabytes of RAM, <code>MEM%</code> will be <code>400/8192*100</code> = <code>4.88%</code>.</p><p>Let&rsquo;s take a look at the process list in the htop screenshot.</p><p>Do you actually need them?</p><p>Here are my research notes on the processes that are run at startup on a fresh Digital Ocean droplet with Ubuntu Server 16.04.1 LTS x64.</p><h3 id=sbininit><code>/sbin/init</code></h3><blockquote><p>The /sbin/init program (also called init) coordinates the rest of the boot process and configures the environment for the user.</p></blockquote><blockquote><p>When the init command starts, it becomes the parent or grandparent of all of the processes that start up automatically on the system.</p></blockquote><p>Is it systemd?</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>$ dpkg -S /sbin/init
+</span></span><span class=line><span class=cl>systemd-sysv: /sbin/init
+</span></span></code></pre></td></tr></table></div></div><p>Yes, it is.</p><p>What happens if you kill it?</p><p>Nothing.</p><h3 id=libsystemdsystemd-journald><code>/lib/systemd/systemd-journald</code></h3><blockquote><p>systemd-journald is a system service that collects and stores logging data. It creates and maintains structured, indexed journals based on logging information that is received from a variety of sources.</p></blockquote><p>In other words:</p><blockquote><p>One of the main changes in journald was to replace simple plain text log files with a special file format optimized for log messages. This file format allows system administrators to access relevant messages more efficiently. It also brings some of the power of database-driven centralized logging implementations to individual systems.</p></blockquote><p>You are supposed to use the <code>journalctl</code> command to query log files.</p><ul><li><code>journalctl _COMM=sshd</code> logs by sshd</li><li><code>journalctl _COMM=sshd -o json-pretty</code> logs by sshd in JSON</li><li><code>journalctl --since "2015-01-10" --until "2015-01-11 03:00"</code></li><li><code>journalctl --since 09:00 --until "1 hour ago"</code></li><li><code>journalctl --since yesterday</code></li><li><code>journalctl -b</code> logs since boot</li><li><code>journalctl -f</code> to follow logs</li><li><code>journalctl --disk-usage</code></li><li><code>journalctl --vacuum-size=1G</code></li></ul><p>Pretty cool.</p><p>It looks like it is not possible to remove or disable this service, you can only turn off logging.</p><ul><li><a href=https://www.digitalocean.com/community/tutorials/how-to-use-journalctl-to-view-and-manipulate-systemd-logs rel=noopener>https://www.digitalocean.com/community/tutorials/how-to-use-journalctl-to-view-and-manipulate-systemd-logs</a></li></ul><h3 id=sbinlvmetad--f><code>/sbin/lvmetad -f</code></h3><blockquote><p>The lvmetad daemon caches LVM metadata, so that LVM commands can read metadata without scanning disks.</p></blockquote><blockquote><p>Metadata caching can be an advantage because scanning disks is time consuming and may interfere with the normal work of the system and disks.</p></blockquote><p>But what is LVM (Logical Volume Management)?</p><blockquote><p>You can think of LVM as &ldquo;dynamic partitions&rdquo;, meaning that you can create/resize/delete LVM &ldquo;partitions&rdquo; (they&rsquo;re called &ldquo;Logical Volumes&rdquo; in LVM-speak) from the command line while your Linux system is running: no need to reboot the system to make the kernel aware of the newly-created or resized partitions.</p></blockquote><p>It sounds like you should keep it if you are using LVM.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>$ lvscan
+</span></span><span class=line><span class=cl>$ sudo apt remove lvm2 -y --purge
+</span></span></code></pre></td></tr></table></div></div><h3 id=libsystemdudevd><code>/lib/systemd/udevd</code></h3><blockquote><p>systemd-udevd listens to kernel uevents. For every event, systemd-udevd executes matching instructions specified in udev rules.</p></blockquote><blockquote><p>udev is a device manager for the Linux kernel. As the successor of devfsd and hotplug, udev primarily manages device nodes in the /dev directory.</p></blockquote><p>So this service manages <code>/dev</code>.</p><p>I am not sure if I need it running on a virtual server.</p><h3 id=libsystemdtimesyncd><code>/lib/systemd/timesyncd</code></h3><blockquote><p>systemd-timesyncd is a system service that may be used to synchronize the local system clock with a remote Network Time Protocol server.</p></blockquote><p>So this replaces <code>ntpd</code>.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>$ timedatectl status
+</span></span><span class=line><span class=cl>      Local time: Fri 2016-08-26 11:38:21 UTC
+</span></span><span class=line><span class=cl>  Universal time: Fri 2016-08-26 11:38:21 UTC
+</span></span><span class=line><span class=cl>        RTC time: Fri 2016-08-26 11:38:20
+</span></span><span class=line><span class=cl>       Time zone: Etc/UTC (UTC, +0000)
+</span></span><span class=line><span class=cl> Network time on: yes
+</span></span><span class=line><span class=cl>NTP synchronized: yes
+</span></span><span class=line><span class=cl> RTC in local TZ: no
+</span></span></code></pre></td></tr></table></div></div><p>If we take a look at the open ports on this server:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>$ sudo netstat -nlput
+</span></span><span class=line><span class=cl>Active Internet connections (only servers)
+</span></span><span class=line><span class=cl>Proto Recv-Q Send-Q Local Address           Foreign Address         State       PID/Program name
+</span></span><span class=line><span class=cl>tcp        0      0 0.0.0.0:22              0.0.0.0:*               LISTEN      2178/sshd
+</span></span><span class=line><span class=cl>tcp6       0      0 :::22                   :::*                    LISTEN      2178/sshd
+</span></span></code></pre></td></tr></table></div></div><p>Lovely!</p><p>Previously on Ubuntu 14.04 it was</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>$ sudo apt-get install ntp -y
+</span></span><span class=line><span class=cl>$ sudo netstat -nlput
+</span></span><span class=line><span class=cl>Active Internet connections (only servers)
+</span></span><span class=line><span class=cl>Proto Recv-Q Send-Q Local Address           Foreign Address         State       PID/Program name
+</span></span><span class=line><span class=cl>tcp        0      0 0.0.0.0:22              0.0.0.0:*               LISTEN      1380/sshd
+</span></span><span class=line><span class=cl>tcp6       0      0 :::22                   :::*                    LISTEN      1380/sshd
+</span></span><span class=line><span class=cl>udp        0      0 10.19.0.6:123           0.0.0.0:*                           2377/ntpd
+</span></span><span class=line><span class=cl>udp        0      0 139.59.256.256:123      0.0.0.0:*                           2377/ntpd
+</span></span><span class=line><span class=cl>udp        0      0 127.0.0.1:123           0.0.0.0:*                           2377/ntpd
+</span></span><span class=line><span class=cl>udp        0      0 0.0.0.0:123             0.0.0.0:*                           2377/ntpd
+</span></span><span class=line><span class=cl>udp6       0      0 fe80::601:6aff:fxxx:123 :::*                                2377/ntpd
+</span></span><span class=line><span class=cl>udp6       0      0 ::1:123                 :::*                                2377/ntpd
+</span></span><span class=line><span class=cl>udp6       0      0 :::123                  :::*                                2377/ntpd
+</span></span></code></pre></td></tr></table></div></div><p>Ugh.</p><h3 id=usrsbinatd--f><code>/usr/sbin/atd -f</code></h3><blockquote><p>atd - run jobs queued for later execution. atd runs jobs queued by at.</p></blockquote><blockquote><p>at and batch read commands from standard input or a specified file which are to be executed at a later time</p></blockquote><p>Unlike cron, which schedules jobs that are repeated periodically, <code>at</code> runs a job at a specific time once.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>$ echo &#34;touch /tmp/yolo.txt&#34; | at now + 1 minute
+</span></span><span class=line><span class=cl>job 1 at Fri Aug 26 10:44:00 2016
+</span></span><span class=line><span class=cl>$ atq
+</span></span><span class=line><span class=cl>1       Fri Aug 26 10:44:00 2016 a root
+</span></span><span class=line><span class=cl>$ sleep 60 &amp;&amp; ls /tmp/yolo.txt
+</span></span><span class=line><span class=cl>/tmp/yolo.txt
+</span></span></code></pre></td></tr></table></div></div><p>I&rsquo;ve actually never used it until now.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>sudo apt remove at -y --purge
+</span></span></code></pre></td></tr></table></div></div><h3 id=usrlibsnapdsnapd><code>/usr/lib/snapd/snapd</code></h3><blockquote><p>Snappy Ubuntu Core is a new rendition of Ubuntu with transactional updates - a minimal server image with the same libraries as today’s Ubuntu, but applications are provided through a simpler mechanism.</p></blockquote><p>What?</p><blockquote><p>Developers from multiple Linux distributions and companies today announced collaboration on the “snap” universal Linux package format, enabling a single binary package to work perfectly and securely on any Linux desktop, server, cloud or device.</p></blockquote><p>Apparently it is a simplified deb package and you&rsquo;re supposted to bundle all dependencies in a single snap that you can distribute.</p><p>I&rsquo;ve never used snappy to deploy or distribute applications on servers.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>sudo apt remove snapd -y --purge
+</span></span></code></pre></td></tr></table></div></div><h3 id=usrbindbus-daemon><code>/usr/bin/dbus-daemon</code></h3><blockquote><p>In computing, D-Bus or DBus is an inter-process communication (IPC) and remote procedure call (RPC) mechanism that allows communication between multiple computer programs (that is, processes) concurrently running on the same machine</p></blockquote><p>My understanding is that you need it for desktop environments but on a server to run web apps?</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>sudo apt remove dbus -y --purge
+</span></span></code></pre></td></tr></table></div></div><p>I wonder what time it is and whether it is being synchronized with NTP?</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>$ timedatectl status
+</span></span><span class=line><span class=cl>Failed to create bus connection: No such file or directory
+</span></span></code></pre></td></tr></table></div></div><p>Oops. Should probably keep this.</p><ul><li><a href=https://en.wikipedia.org/wiki/D-Bus rel=noopener>https://en.wikipedia.org/wiki/D-Bus</a></li></ul><h3 id=libsystemdsystemd-logind><code>/lib/systemd/systemd-logind</code></h3><blockquote><p>systemd-logind is a system service that manages user logins.</p></blockquote><ul><li><a href=https://www.freedesktop.org/software/systemd/man/systemd-logind.service.html rel=noopener>https://www.freedesktop.org/software/systemd/man/systemd-logind.service.html</a></li></ul><h3 id=usrsbincron--f><code>/usr/sbin/cron -f</code></h3><blockquote><p>cron - daemon to execute scheduled commands (Vixie Cron)</p></blockquote><blockquote><p>-f Stay in foreground mode, don&rsquo;t daemonize.</p></blockquote><p>You can schedule tasks to run periodically with cron.</p><p>Use <code>crontab -e</code> to edit the configuration for your user or on Ubuntu I tend to use the <code>/etc/cron.hourly</code>, <code>/etc/cron.daily</code>, etc. directories.</p><p>You can see the log files with</p><ul><li><code>grep cron /var/log/syslog</code> or</li><li><code>journalctl _COMM=cron</code> or even</li><li><code>journalctl _COMM=cron --since="date" --until="date"</code></li></ul><p>You&rsquo;ll probably want to keep cron.</p><p>But if you don&rsquo;t, then you should stop and disable the service:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>sudo systemctl stop cron
+</span></span><span class=line><span class=cl>sudo systemctl disable cron
+</span></span></code></pre></td></tr></table></div></div><p>Because otherwise when trying to remove it with <code>apt remove cron</code> it will try to install postfix!</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>$ sudo apt remove cron
+</span></span><span class=line><span class=cl>The following packages will be REMOVED:
+</span></span><span class=line><span class=cl>  cron
+</span></span><span class=line><span class=cl>The following NEW packages will be installed:
+</span></span><span class=line><span class=cl>  anacron bcron bcron-run fgetty libbg1 libbg1-doc postfix runit ssl-cert ucspi-unix
+</span></span></code></pre></td></tr></table></div></div><p>It looks like cron needs a mail transport agent (MTA) to send emails.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>$ apt show cron
+</span></span><span class=line><span class=cl>Package: cron
+</span></span><span class=line><span class=cl>Version: 3.0pl1-128ubuntu2
+</span></span><span class=line><span class=cl>...
+</span></span><span class=line><span class=cl>Suggests: anacron (&gt;= 2.0-1), logrotate, checksecurity, exim4 | postfix | mail-transport-agent
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>$ apt depends cron
+</span></span><span class=line><span class=cl>cron
+</span></span><span class=line><span class=cl>  ...
+</span></span><span class=line><span class=cl>  Suggests: anacron (&gt;= 2.0-1)
+</span></span><span class=line><span class=cl>  Suggests: logrotate
+</span></span><span class=line><span class=cl>  Suggests: checksecurity
+</span></span><span class=line><span class=cl> |Suggests: exim4
+</span></span><span class=line><span class=cl> |Suggests: postfix
+</span></span><span class=line><span class=cl>  Suggests: &lt;mail-transport-agent&gt;
+</span></span><span class=line><span class=cl>    ...
+</span></span><span class=line><span class=cl>    exim4-daemon-heavy
+</span></span><span class=line><span class=cl>    postfix
+</span></span></code></pre></td></tr></table></div></div><ul><li><a href=https://www.digitalocean.com/community/tutorials/how-to-use-cron-to-automate-tasks-on-a-vps rel=noopener>https://www.digitalocean.com/community/tutorials/how-to-use-cron-to-automate-tasks-on-a-vps</a></li></ul><h3 id=usrsbinrsyslogd--n><code>/usr/sbin/rsyslogd -n</code></h3><blockquote><p>Rsyslogd is a system utility providing support for message logging.</p></blockquote><p>In another words, it&rsquo;s what populates log files in <code>/var/log/</code> like <code>/var/log/auth.log</code> for authentication messages like SSH login attempts.</p><p>The configuration files are in <code>/etc/rsyslog.d</code>.</p><p>You can also configure rsyslogd to send log files to a remote server and implement centralized logging.</p><p>You can use the <code>logger</code> command to log messages to <code>/var/log/syslog</code> in background scripts such as those that are run at boot.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=cp>#!/bin/bash
+</span></span></span><span class=line><span class=cl><span class=cp></span>
+</span></span><span class=line><span class=cl>logger Starting doing something
+</span></span><span class=line><span class=cl><span class=c1># NFS, get IPs, etc.</span>
+</span></span><span class=line><span class=cl>logger Done doing something
+</span></span></code></pre></td></tr></table></div></div><p>Right, but we already have <code>systemd-journald</code> running. Do we need <code>rsyslogd</code> as well?</p><blockquote><p>Rsyslog and Journal, the two logging applications present on your system, have several distinctive features that make them suitable for specific use cases. In many situations it is useful to combine their capabilities, for example to create structured messages and store them in a file database. A communication interface needed for this cooperation is provided by input and output modules on the side of Rsyslog and by the Journal&rsquo;s communication socket.</p></blockquote><p>So, maybe? I am going to keep it just in case.</p><h3 id=usrsbinacpid><code>/usr/sbin/acpid</code></h3><blockquote><p>acpid - Advanced Configuration and Power Interface event daemon</p></blockquote><blockquote><p>acpid is designed to notify user-space programs of ACPI events. acpid should be started during the system boot, and will run as a background process, by default.</p></blockquote><blockquote><p>In computing, the Advanced Configuration and Power Interface (ACPI) specification provides an open standard that operating systems can use to perform discovery and configuration of computer hardware components, to perform power management by, for example, putting unused components to sleep, and to do status monitoring.</p></blockquote><p>But I&rsquo;m on a virtual server that I don&rsquo;t intend to suspend/resume.</p><p>I am going to remove it for fun and see what happens.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>sudo apt remove acpid -y --purge
+</span></span></code></pre></td></tr></table></div></div><p>I was able to successfully <code>reboot</code> the droplet but after <code>halt</code> Digital Ocean thought it was still on so I had to Power Off using the web interface.</p><p>So I should probably keep this.</p><h3 id=usrbinlxcfs-varliblxcfs><code>/usr/bin/lxcfs /var/lib/lxcfs/</code></h3><blockquote><p>Lxcfs is a fuse filesystem mainly designed for use by lxc containers. On a Ubuntu 15.04 system, it will be used by default to provide two things: first, a virtualized view of some /proc files; and secondly, filtered access to the host’s cgroup filesystems.</p></blockquote><blockquote><p>In summary, on a 15.04 host, you can now create a container the usual way, lxc-create &mldr; The resulting container will have “correct” results for uptime, top, etc.</p></blockquote><blockquote><p>It’s basically a userspace workaround to changes which were deemed unreasonable to do in the kernel. It makes containers feel much more like separate systems than they would without it.</p></blockquote><p>Not using LXC containers? You can remove it with</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>sudo apt remove lxcfs -y --purge
+</span></span></code></pre></td></tr></table></div></div><h3 id=usrlibaccountserviceaccounts-daemon><code>/usr/lib/accountservice/accounts-daemon</code></h3><blockquote><p>The AccountsService package provides a set of D-Bus interfaces for querying and manipulating user account information and an implementation of these interfaces based on the usermod(8), useradd(8) and userdel(8) commands.</p></blockquote><p>When I removed DBus it broke <code>timedatectl</code>, I wonder what removing this service will break.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>sudo apt remove accountsservice -y --purge
+</span></span></code></pre></td></tr></table></div></div><p>Time will tell.</p><ul><li><a href=http://www.linuxfromscratch.org/blfs/view/systemd/gnome/accountsservice.html rel=noopener>http://www.linuxfromscratch.org/blfs/view/systemd/gnome/accountsservice.html</a></li></ul><h3 id=sbinmdadm><code>/sbin/mdadm</code></h3><blockquote><p>mdadm is a Linux utility used to manage and monitor software RAID devices.</p></blockquote><blockquote><p>The name is derived from the md (multiple device) device nodes it administers or manages, and it replaced a previous utility mdctl. The original name was &ldquo;Mirror Disk&rdquo;, but was changed as the functionality increased.</p></blockquote><blockquote><p>RAID is a method of using multiple hard drives to act as one. There are two purposes of RAID: 1) Expand drive capacity: RAID 0. If you have 2 x 500 GB HDD then total space become 1 TB. 2) Prevent data loss in case of drive failure: For example RAID 1, RAID 5, RAID 6, and RAID 10.</p></blockquote><p>You can remove it with</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>sudo apt remove mdadm -y --purge
+</span></span></code></pre></td></tr></table></div></div><h3 id=usrlibpolicykit-1polkitd---no-debug><code>/usr/lib/policykit-1/polkitd --no-debug</code></h3><blockquote><p>polkitd — PolicyKit daemon</p></blockquote><blockquote><p>polkit - Authorization Framework</p></blockquote><p>My understanding is that this is like fine-grained sudo. You can allow non privilegded users to do certain actions as root. For instance, reboot your computer when you&rsquo;re running Linux on a desktop computer.</p><p>But I&rsquo;m running a server. You can remove it with</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>sudo apt remove policykit-1 -y --purge
+</span></span></code></pre></td></tr></table></div></div><p>Still wondering if this breaks something.</p><h3 id=usrsbinsshd--d><code>/usr/sbin/sshd -D</code></h3><blockquote><p>sshd (OpenSSH Daemon) is the daemon program for ssh.</p></blockquote><blockquote><p>-D When this option is specified, sshd will not detach and does not become a daemon. This allows easy monitoring of sshd.</p></blockquote><ul><li><a href=http://manpages.ubuntu.com/manpages/xenial/man8/sshd.8.html rel=noopener>http://manpages.ubuntu.com/manpages/xenial/man8/sshd.8.html</a></li></ul><h3 id=sbiniscsid><code>/sbin/iscsid</code></h3><p>iscsid is the daemon (system service) that runs in the background, acting on iSCSI configuration, and managing the connections. From its manpage:</p><blockquote><p>The iscsid implements the control path of iSCSI protocol, plus some management facilities. For example, the daemon could be configured to automatically re-start discovery at startup, based on the contents of persistent iSCSI database.</p></blockquote><p><a href=http://unix.stackexchange.com/questions/216239/iscsi-vs-iscsid-services rel=noopener>http://unix.stackexchange.com/questions/216239/iscsi-vs-iscsid-services</a></p><p>I had never heard of iSCSI:</p><blockquote><p>In computing, iSCSI (Listeni/aɪˈskʌzi/ eye-skuz-ee) is an acronym for Internet Small Computer Systems Interface, an Internet Protocol (IP)-based storage networking standard for linking data storage facilities.</p></blockquote><blockquote><p>By carrying SCSI commands over IP networks, iSCSI is used to facilitate data transfers over intranets and to manage storage over long distances. iSCSI can be used to transmit data over local area networks (LANs), wide area networks (WANs), or the Internet and can enable location-independent data storage and retrieval.</p></blockquote><blockquote><p>The protocol allows clients (called initiators) to send SCSI commands (CDBs) to SCSI storage devices (targets) on remote servers. It is a storage area network (SAN) protocol, allowing organizations to consolidate storage into data center storage arrays while providing hosts (such as database and web servers) with the illusion of locally attached disks.</p></blockquote><p>You can remove it with</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>sudo apt remove open-iscsi -y --purge
+</span></span></code></pre></td></tr></table></div></div><h3 id=sbinagetty---noclear-tty1-linux><code>/sbin/agetty --noclear tty1 linux</code></h3><blockquote><p>agetty - alternative Linux getty</p></blockquote><blockquote><p>getty, short for &ldquo;get tty&rdquo;, is a Unix program running on a host computer that manages physical or virtual terminals (TTYs). When it detects a connection, it prompts for a username and runs the &rsquo;login&rsquo; program to authenticate the user.</p></blockquote><blockquote><p>Originally, on traditional Unix systems, getty handled connections to serial terminals (often Teletype machines) connected to a host computer. The tty part of the name stands for Teletype, but has come to mean any type of text terminal.</p></blockquote><p>This allows you to log in when you are physically at the server. In Digital Ocean, you can click on <code>Console</code> in the droplet details and you will be able to interact with this terminal in your browser (it&rsquo;s a VNC connection I think).</p><p>In the old days, you&rsquo;d see a bunch of ttys started a system boot (configured in <code>/etc/inittab</code>), but nowadays they are spun up on demand by systemd.</p><p>For fun, I removed this configuration file that launches and generates <code>agetty</code>:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>sudo rm /etc/systemd/system/getty.target.wants/getty@tty1.service
+</span></span><span class=line><span class=cl>sudo rm /lib/systemd/system/getty@.service
+</span></span></code></pre></td></tr></table></div></div><p>When I rebooted the server, I could still connect to it via SSH but I was no longer able to log in from the Digital Ocean web console.</p><p><img src=/htop%20explained%20peteris%20rocks%20d8ebe43043f64b2a8af52b4f616e30ad/htop-login.png alt=htop%20explained%20peteris%20rocks%20d8ebe43043f64b2a8af52b4f616e30ad/htop-login.png></p><h3 id=sshd-rootpts0---bash--htop><code>sshd: root@pts/0</code> & <code>-bash</code> & <code>htop</code></h3><p><code>sshd: root@pts/0</code> means that there has been an SSH session established for the user <code>root</code> at the #<code>0</code> pseudoterminal (<code>pts</code>). A pseudoterminal emulates a real text terminal.</p><p><code>bash</code> is the shell that I am using.</p><p>Why is there a dash at the beginning? Reddit user hirnbrot helpfully explained it:</p><blockquote><p>There&rsquo;s a dash at the beginning because launching it as &ldquo;-bash&rdquo; will make it a login shell. A login shell is one whose first character of argument zero is a -, or one started with the &ndash;login option. This will then cause it to read a different set of configuration files.</p></blockquote><p><code>htop</code> is an interactive process viewer tool that is running in the screenshot.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>sudo apt remove lvm2 -y --purge
+</span></span><span class=line><span class=cl>sudo apt remove at -y --purge
+</span></span><span class=line><span class=cl>sudo apt remove snapd -y --purge
+</span></span><span class=line><span class=cl>sudo apt remove lxcfs -y --purge
+</span></span><span class=line><span class=cl>sudo apt remove mdadm -y --purge
+</span></span><span class=line><span class=cl>sudo apt remove open-iscsi -y --purge
+</span></span><span class=line><span class=cl>sudo apt remove accountsservice -y --purge
+</span></span><span class=line><span class=cl>sudo apt remove policykit-1 -y --purge
+</span></span></code></pre></td></tr></table></div></div><p><img src=/htop%20explained%20peteris%20rocks%20d8ebe43043f64b2a8af52b4f616e30ad/canyoukillit-after.png alt=htop%20explained%20peteris%20rocks%20d8ebe43043f64b2a8af52b4f616e30ad/canyoukillit-after.png></p><p>Extreme edition:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>sudo apt remove dbus -y --purge
+</span></span><span class=line><span class=cl>sudo apt remove rsyslog -y --purge
+</span></span><span class=line><span class=cl>sudo apt remove acpid -y --purge
+</span></span><span class=line><span class=cl>sudo systemctl stop cron &amp;&amp; sudo systemctl disable cron
+</span></span><span class=line><span class=cl>sudo rm /etc/systemd/system/getty.target.wants/getty@tty1.service
+</span></span><span class=line><span class=cl>sudo rm /lib/systemd/system/getty@.service
+</span></span></code></pre></td></tr></table></div></div><p><img src=/htop%20explained%20peteris%20rocks%20d8ebe43043f64b2a8af52b4f616e30ad/canyoukillit-after-extreme.png alt=htop%20explained%20peteris%20rocks%20d8ebe43043f64b2a8af52b4f616e30ad/canyoukillit-after-extreme.png></p><p>I followed the instructions in my blog post
+<a href=https://peteris.rocks/blog/unattended-installation-of-wordpress-on-ubuntu-server/ rel=noopener>about unattended installation of WordPress on Ubuntu Server</a> and it works.</p><p>Here&rsquo;s nginx, PHP7 and MySQL.</p><p><img src=/htop%20explained%20peteris%20rocks%20d8ebe43043f64b2a8af52b4f616e30ad/canyoukillit-after-extreme-wp.png alt=htop%20explained%20peteris%20rocks%20d8ebe43043f64b2a8af52b4f616e30ad/canyoukillit-after-extreme-wp.png></p><p>Sometimes looking at <code>strace</code> is not enough.</p><p>Another way to figure out what a program does is to look at its source code.</p><p>First, I need to find out where to start looking.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>$ which uptime
+</span></span><span class=line><span class=cl>/usr/bin/uptime
+</span></span><span class=line><span class=cl>$ dpkg -S /usr/bin/uptime
+</span></span><span class=line><span class=cl>procps: /usr/bin/uptime
+</span></span></code></pre></td></tr></table></div></div><p>Here we find out that <code>uptime</code> is actually located at <code>/usr/bin/uptime</code> and that on Ubuntu it is part of the <code>procps</code> package.</p><p>You can then go to
+<a href=http://packages.ubuntu.com/ rel=noopener>packages.ubuntu.com</a> and search for the package there.</p><p>Here is the page for <code>procps</code>:
+<a href=http://packages.ubuntu.com/source/xenial/procps rel=noopener>http://packages.ubuntu.com/source/xenial/procps</a></p><p>If you scroll to the bottom of the page, you&rsquo;ll see links to the source code repositories:</p><ul><li>Debian Package Source Repository git://git.debian.org/collab-maint/procps.git</li><li>Debian Package Source Repository (Browsable)
+<a href=https://anonscm.debian.org/cgit/collab-maint/procps.git/ rel=noopener>https://anonscm.debian.org/cgit/collab-maint/procps.git/</a></li></ul><p>When you want to redirect standard error (stderr) to standard output (stdout), is it <code>2&>1</code> or <code>2>&1</code>?</p><p>You can memorize where the ampersand <code>&</code> goes by knowing that <code>echo something > file</code> will write <code>something</code> to the file <code>file</code>. It&rsquo;s the same as <code>echo something 1> file</code>. Now, <code>echo something 2> file</code> will write the stderr output to <code>file</code>.</p><p>If you write <code>echo something 2>1</code>, it means that you redirect stderr to a file with the name <code>1</code>. Add spaces to make it more clear: <code>echo something 2> 1</code>.</p><p>If you add <code>&</code> before <code>1</code>, it means that <code>1</code> is not a filename but the stream ID. So it&rsquo;s <code>echo something 2>&1</code>.</p><p>If you have missing elements in htop when you are using PuTTY, here is how to solve it.</p><ul><li>Right click on the title bar</li><li>Click Change settings&mldr;</li><li>Go to Window -> Colours</li><li>Select the Both radio button</li><li>Click Apply</li></ul><p><img src=/htop%20explained%20peteris%20rocks%20d8ebe43043f64b2a8af52b4f616e30ad/putty-settings.png alt=htop%20explained%20peteris%20rocks%20d8ebe43043f64b2a8af52b4f616e30ad/putty-settings.png></p><p>Let&rsquo;s write a very simple shell in C that demonstrates the use of <code>fork</code>/<code>exec</code>/<code>wait</code> system calls. Here&rsquo;s the program <code>shell.c</code>.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>#include &lt;stdio.h&gt;
+</span></span><span class=line><span class=cl>#include &lt;stdlib.h&gt;
+</span></span><span class=line><span class=cl>#include &lt;unistd.h&gt;
+</span></span><span class=line><span class=cl>#include &lt;string.h&gt;
+</span></span><span class=line><span class=cl>#include &lt;sys/wait.h&gt;
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>int main() {
+</span></span><span class=line><span class=cl>  printf(&#34;Welcome to my shell\n&#34;);
+</span></span><span class=line><span class=cl>  char line[1024];
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>  while (1) {
+</span></span><span class=line><span class=cl>    printf(&#34;&gt; &#34;);
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    fgets(line, sizeof(line), stdin);
+</span></span><span class=line><span class=cl>    line[strlen(line)-1] = &#39;\0&#39;; // strip \n
+</span></span><span class=line><span class=cl>    if (strcmp(line, &#34;exit&#34;) == 0) // shell built-in
+</span></span><span class=line><span class=cl>      break;
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    int pid = fork();
+</span></span><span class=line><span class=cl>    if (pid == 0) {
+</span></span><span class=line><span class=cl>        printf(&#34;Executing: %s\n&#34;, line);
+</span></span><span class=line><span class=cl>        if (execlp(line, &#34;&#34;, NULL) == -1) {
+</span></span><span class=line><span class=cl>          printf(&#34;ERROR!\n&#34;);
+</span></span><span class=line><span class=cl>          exit(1);
+</span></span><span class=line><span class=cl>        }
+</span></span><span class=line><span class=cl>    } else if (pid &gt; 0) {
+</span></span><span class=line><span class=cl>        int status;
+</span></span><span class=line><span class=cl>        waitpid(pid, &amp;status, 0);
+</span></span><span class=line><span class=cl>        printf(&#34;Child exited with %d\n&#34;, WEXITSTATUS(status));
+</span></span><span class=line><span class=cl>    } else {
+</span></span><span class=line><span class=cl>        printf(&#34;ERROR!\n&#34;);
+</span></span><span class=line><span class=cl>        break;
+</span></span><span class=line><span class=cl>    }
+</span></span><span class=line><span class=cl>  }
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>  return 0;
+</span></span><span class=line><span class=cl>}
+</span></span></code></pre></td></tr></table></div></div><p>Compile the program.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>gcc shell.c -o shell
+</span></span></code></pre></td></tr></table></div></div><p>And run it.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>$ ./shell
+</span></span><span class=line><span class=cl>Welcome to my shell
+</span></span><span class=line><span class=cl>&gt; date
+</span></span><span class=line><span class=cl>Executing: date
+</span></span><span class=line><span class=cl>Thu Dec  1 14:10:59 UTC 2016
+</span></span><span class=line><span class=cl>Child exited with 0
+</span></span><span class=line><span class=cl>&gt; true
+</span></span><span class=line><span class=cl>Executing: true
+</span></span><span class=line><span class=cl>Child exited with 0
+</span></span><span class=line><span class=cl>&gt; false
+</span></span><span class=line><span class=cl>Executing: false
+</span></span><span class=line><span class=cl>Child exited with 1
+</span></span><span class=line><span class=cl>&gt; exit
+</span></span></code></pre></td></tr></table></div></div><p>Have you ever wondered that when you launch a process in the background you only see that it has exited only after a while when you hit <code>Enter</code>?</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>$ sleep 1 &amp;
+</span></span><span class=line><span class=cl>[1] 11686
+</span></span><span class=line><span class=cl>$ # press Enter
+</span></span><span class=line><span class=cl>[1]+  Done                    sleep 1
+</span></span></code></pre></td></tr></table></div></div><p>That&rsquo;s because the shell is waiting for your input. Only when you enter a command does it check for the status of the background processes and show if they&rsquo;ve been terminated.</p><p>Here is what I&rsquo;d like to find out more about.</p><ul><li>process state substatuses (<code>Ss</code>, <code>Ss+</code>, <code>R+</code>, etc.)</li><li>kernel threads</li><li><code>/dev/pts</code></li><li>more about memory (<code>CODE</code>, <code>DATA</code>, <code>SWAP</code>)</li><li>figure out time slices length</li><li>Linux scheduler algorithm</li><li>pinning proceses to cores</li><li>write about manual pages</li><li>cpu/memory colors in bars</li><li>process ID limit & fork bomb</li><li><code>lsof</code>, <code>ionice</code>, <code>schedtool</code></li></ul><p>Here is a list of non-minor corrections and updates since the post was published.</p><ul><li>Idle time in <code>/proc/uptime</code> is the sum of all cores (Dec 2, 2016)</li><li>My parent/child <code>printf</code> in <code>zombie.c</code> was reversed (Dec 2, 2016)</li><li><code>apt remove cron</code> installs <code>postfix</code> because of a dependency to an MTA (Dec 3, 2016)</li><li><code>id</code> can load information from other sources (via <code>/etc/nsswitch.conf</code>), not just <code>/etc/passwd</code> (Dec 3, 2016)</li><li>Describe <code>/etc/shadow</code> password hash format (Dec 3, 2016)</li><li>Use <code>visudo</code> to edit the <code>/etc/sudoers</code> file to be safe (Dec 3, 2016)</li><li>Explain <code>MEM%</code> (Dec 3, 2016)</li><li>Rewrite the section about load averages (Dec 4, 2016)</li><li>Fix: <code>kill 1234</code> by default sends <code>TERM</code> not <code>INT</code> (Dec 7, 2016)</li><li>Explain CPU and memory color bars (Dec 7, 2016)</li></ul><p>Please let me know if there is something wrong in this post! I will gladly correct it.</p><p>Congratulations on making to the end.</p><p>Here&rsquo;s another screenshot of htop.</p><p>This time it&rsquo;s of a human. It displays your inner processes and the load of your kernel.</p><p><a href="https://teespring.com/htop?ref=bottom-text" rel=noopener>Get this t-shirt</a> for yourself or as a gift.</p><p>It&rsquo;s been bought 44 times already (including hoodies, etc.)</p><p><img src=/htop%20explained%20peteris%20rocks%20d8ebe43043f64b2a8af52b4f616e30ad/htop-tshirt-terminal.jpg alt=htop%20explained%20peteris%20rocks%20d8ebe43043f64b2a8af52b4f616e30ad/htop-tshirt-terminal.jpg></p></article><hr><div class=page-end><div class=backlinks-container><h3>Backlinks</h3><ul class=backlinks><li>No backlinks found</li></ul></div><div><script src=https://cdn.jsdelivr.net/npm/d3@6.7.0/dist/d3.min.js integrity="sha256-+7jaYCp29O1JusNWHaYtgUn6EhuP0VaFuswhNV06MyI=" crossorigin=anonymous></script><h3>Interactive Graph</h3><div id=graph-container></div><style>:root{--g-node:var(--secondary);--g-node-active:var(--primary);--g-node-inactive:var(--visited);--g-link:var(--outlinegray);--g-link-active:#5a7282}</style><script src=https://lzyerste.github.io/quartz/js/graph.6fe09b3d8b5792ccf0f505be9ee8275d.js></script>
+<script>drawGraph("https://lzyerste.github.io/quartz/wiki/bash/htop/htop-explained-peteris-rocks-d8ebe43043f64b2a8af52b4f616e30ad","https://lzyerste.github.io/quartz",[{"/moc":"#4388cc"}],-1,!0,!1,!0)</script></div></div><div id=contact_buttons><footer><p>Made by Jacky Zhao using <a href=https://github.com/jackyzha0/quartz>Quartz</a>, © 2022</p><ul><li><a href=/>Home</a></li><li><a href=https://twitter.com/_jzhao>Twitter</a></li><li><a href=https://github.com/jackyzha0>Github</a></li></ul></footer></div><script src=https://lzyerste.github.io/quartz/js/popover.e57188d2e4c06b0654e020b3a734bb62.min.js></script>
+<script>initPopover("https://lzyerste.github.io/quartz")</script></div></body></html>

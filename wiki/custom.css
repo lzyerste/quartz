@@ -1,0 +1,11 @@
+pre, li {
+  code {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+  }
+}
+
+.markdown-body pre>tt, .markdown-body pre>code {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}

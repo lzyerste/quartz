@@ -1,0 +1,1677 @@
+<!doctype html><html lang=en><head><meta charset=utf-8><meta name=description content="C语言红黑树实现 FreeBSD内核实现。
+ https://svnweb.freebsd.org/base/head/sys/sys/tree.h
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 100 101 102 103 104 105 106 107 108 109 110 111 112 113 114 115 116 117 118 119 120 121 122 123 124 125 126 127 128 129 130 131 132 133 134 135 136 137 138 139 140 141 142 143 144 145 146 147 148 149 150 151 152 153 154 155 156 157 158 159 160 161 162 163 164 165 166 167 168 169 170 171 172 173 174 175 176 177 178 179 180 181 182 183 184 185 186 187 188 189 190 191 192 193 194 195 196 197 198 199 200 201 202 203 204 205 206 207 208 209 210 211 212 213 214 215 216 217 218 219 220 221 222 223 224 225 226 227 228 229 230 231 232 233 234 235 236 237 238 239 240 241 242 243 244 245 246 247 248 249 250 251 252 253 254 255 256 257 258 259 260 261 262 263 264 265 266 267 268 269 270 271 272 273 274 275 276 277 278 279 280 281 282 283 284 285 286 287 288 289 290 291 292 293 294 295 296 297 298 299 300 301 302 303 304 305 306 307 308 309 310 311 312 313 314 315 316 317 318 319 320 321 322 323 324 325 326 327 328 329 330 331 332 333 334 335 336 337 338 339 340 341 342 343 344 345 346 347 348 349 350 351 352 353 354 355 356 357 358 359 360 361 362 363 364 365 366 367 368 369 370 371 372 373 374 375 376 377 378 379 380 381 382 383 384 385 386 387 388 389 390 391 392 393 394 395 396 397 398 399 400 401 402 403 404 405 406 407 408 409 410 411 412 413 414 415 416 417 418 419 420 421 422 423 424 425 426 427 428 429 430 431 432 433 434 435 436 437 438 439 440 441 442 443 444 445 446 447 448 449 450 451 452 453 454 455 456 457 458 459 460 461 462 463 464 465 466 467 468 469 470 471 472 473 474 475 476 477 478 479 480 481 482 483 484 485 486 487 488 489 490 491 492 493 494 495 496 497 498 499 500 501 502 503 504 505 506 507 508 509 510 511 512 513 514 515 516 517 518 519 520 521 522 523 524 525 526 527 528 529 530 531 532 533 534 535 536 537 538 539 540 541 542 543 544 545 546 547 548 549 550 551 552 553 554 555 556 557 558 559 560 561 562 563 564 565 566 567 568 569 570 571 572 573 574 575 576 577 578 579 580 581 582 583 584 585 586 587 588 589 590 591 592 593 594 595 596 597 598 599 600 601 602 603 604 605 606 607 608 609 610 611 612 613 614 615 616 617 618 619 620 621 622 623 624 625 626 627 628 629 630 631 632 633 634 635 636 637 638 639 640 641 642 643 644 645 646 647 648 649 650 651 652 653 654 655 656 657 658 659 660 661 662 663 664 665 666 667 668 669 670 671 672 673 674 675 676 677 678 679 680 681 682 683 684 685 686 687 688 689 690 691 692 693 694 695 696 697 698 699 700 701 702 703 704 705 706 707 708 709 710 711 712 713 714 715 716 717 718 719 720 721 722 723 724 725 726 727 728 729 730 731 732 733 734 735 736 737 738 739 740 741 742 743 744 745 746 747 748 749 750 751 752 753 754 755 756 757 758 759 760 761 762 763 764 765 766 767 768 769 770 771 772 773 774 775 776 777 778 779 780 781 782 783 784 785 786 787 788 789 790 791 792 793 794 795 796 797 798 799 800 801 802 803 804 805 806 807 808 809 810 811 812 813 814 815 816 817 818 819 820 821 822 823 824 825 826 827 828 829 830 831 832 833  /*	$NetBSD: tree."><title>🪴 Quartz 3.2</title><meta name=viewport content="width=device-width,initial-scale=1"><link rel="shortcut icon" type=image/png href=https://lzyerste.github.io/quartz//icon.png><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Source+Sans+Pro:wght@400;600;700&family=Fira+Code:wght@400;700&display=swap" rel=stylesheet><link href=https://lzyerste.github.io/quartz/styles.b5715611e07d622618ed61d06502131c.min.css rel=stylesheet><script src=https://lzyerste.github.io/quartz/js/darkmode.46b07878b7f5d9e26ad7a3c40f8a0605.min.js></script>
+<link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css integrity=sha384-R4558gYOUz8mP9YWpZJjofhk+zx0AS11p36HnD2ZKj/6JR5z27gSSULCNHIRReVs crossorigin=anonymous><script defer src=https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js integrity=sha384-z1fJDqw8ZApjGO3/unPWUPsIymfsJmyrDVWC8Tv/a1HeOtGmkwNd/7xUS0Xcnvsx crossorigin=anonymous></script>
+<script defer src=https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/contrib/auto-render.min.js integrity=sha384-+XBljXPPiv+OzfbB3cVmLHf4hdUFHlWNZN5spNQ7rmHTXpd7WvJum6fIACpNNfIR crossorigin=anonymous></script>
+<script>document.addEventListener("DOMContentLoaded",function(){renderMathInElement(document.body,{delimiters:[{left:"$$",right:"$$",display:!0},{left:"$",right:"$",display:!1}],throwOnError:!1})})</script><script>const BASE_URL="https://lzyerste.github.io/quartz/",fetchData=Promise.all([fetch("https://lzyerste.github.io/quartz/indices/linkIndex.0c3b9c7455a2a896802a60e8bb3e1120.min.json").then(e=>e.json()).then(e=>({index:e.index,links:e.links})),fetch("https://lzyerste.github.io/quartz/indices/contentIndex.d5cc7a6f5c397ac12ca2df88f6566f1c.min.json").then(e=>e.json())]).then(([{index:e,links:t},n])=>({index:e,links:t,content:n}))</script></head><script async src="https://www.googletagmanager.com/gtag/js?id=G-XYFD95KB4J"></script>
+<script>var doNotTrack=!1;if(!doNotTrack){window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-XYFD95KB4J",{anonymize_ip:!1})}</script><body><div id=search-container><div id=search-space><input autocomplete=off id=search-bar name=search type=text aria-label=Search placeholder="Search for something..."><div id=results-container></div></div></div><script src=https://cdn.jsdelivr.net/npm/flexsearch@0.7.21/dist/flexsearch.bundle.js integrity="sha256-i3A0NZGkhsKjVMzFxv3ksk0DZh3aXqu0l49Bbh0MdjE=" crossorigin=anonymous defer></script>
+<script defer src=https://lzyerste.github.io/quartz/js/search.7861a82db330f0a40935b7458fee3a02.min.js></script><div class=singlePage><header><h1 id=page-title><a href=https://lzyerste.github.io/quartz/>🪴 Quartz 3.2</a></h1><svg tabindex="0" id="search-icon" aria-labelledby="title desc" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 19.9 19.7"><title id="title">Search Icon</title><desc id="desc">Icon to open search</desc><g class="search-path" fill="none"><path stroke-linecap="square" d="M18.5 18.3l-5.4-5.4"/><circle cx="8" cy="8" r="7"/></g></svg><div class=spacer></div><div class=darkmode><input class=toggle id=darkmode-toggle type=checkbox tabindex=-1>
+<label id=toggle-label-light for=darkmode-toggle tabindex=-1><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="dayIcon" viewBox="0 0 35 35" style="enable-background:new 0 0 35 35"><title>Light Mode</title><path d="M6 17.5C6 16.672 5.328 16 4.5 16h-3C.672 16 0 16.672.0 17.5S.672 19 1.5 19h3C5.328 19 6 18.328 6 17.5zM7.5 26c-.414.0-.789.168-1.061.439l-2 2C4.168 28.711 4 29.086 4 29.5 4 30.328 4.671 31 5.5 31c.414.0.789-.168 1.06-.44l2-2C8.832 28.289 9 27.914 9 27.5 9 26.672 8.329 26 7.5 26zm10-20C18.329 6 19 5.328 19 4.5v-3C19 .672 18.329.0 17.5.0S16 .672 16 1.5v3C16 5.328 16.671 6 17.5 6zm10 3c.414.0.789-.168 1.06-.439l2-2C30.832 6.289 31 5.914 31 5.5 31 4.672 30.329 4 29.5 4c-.414.0-.789.168-1.061.44l-2 2C26.168 6.711 26 7.086 26 7.5 26 8.328 26.671 9 27.5 9zM6.439 8.561C6.711 8.832 7.086 9 7.5 9 8.328 9 9 8.328 9 7.5c0-.414-.168-.789-.439-1.061l-2-2C6.289 4.168 5.914 4 5.5 4 4.672 4 4 4.672 4 5.5c0 .414.168.789.439 1.06l2 2.001zM33.5 16h-3c-.828.0-1.5.672-1.5 1.5s.672 1.5 1.5 1.5h3c.828.0 1.5-.672 1.5-1.5S34.328 16 33.5 16zM28.561 26.439C28.289 26.168 27.914 26 27.5 26c-.828.0-1.5.672-1.5 1.5.0.414.168.789.439 1.06l2 2C28.711 30.832 29.086 31 29.5 31c.828.0 1.5-.672 1.5-1.5.0-.414-.168-.789-.439-1.061l-2-2zM17.5 29c-.829.0-1.5.672-1.5 1.5v3c0 .828.671 1.5 1.5 1.5s1.5-.672 1.5-1.5v-3C19 29.672 18.329 29 17.5 29zm0-22C11.71 7 7 11.71 7 17.5S11.71 28 17.5 28 28 23.29 28 17.5 23.29 7 17.5 7zm0 18c-4.136.0-7.5-3.364-7.5-7.5s3.364-7.5 7.5-7.5 7.5 3.364 7.5 7.5S21.636 25 17.5 25z"/></svg></label><label id=toggle-label-dark for=darkmode-toggle tabindex=-1><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="nightIcon" viewBox="0 0 100 100" style="enable-background='new 0 0 100 100'"><title>Dark Mode</title><path d="M96.76 66.458c-.853-.852-2.15-1.064-3.23-.534-6.063 2.991-12.858 4.571-19.655 4.571C62.022 70.495 50.88 65.88 42.5 57.5 29.043 44.043 25.658 23.536 34.076 6.47c.532-1.08.318-2.379-.534-3.23-.851-.852-2.15-1.064-3.23-.534-4.918 2.427-9.375 5.619-13.246 9.491-9.447 9.447-14.65 22.008-14.65 35.369.0 13.36 5.203 25.921 14.65 35.368s22.008 14.65 35.368 14.65c13.361.0 25.921-5.203 35.369-14.65 3.872-3.871 7.064-8.328 9.491-13.246C97.826 68.608 97.611 67.309 96.76 66.458z"/></svg></label></div></header><article><p class=meta>Last updated Unknown</p><ul class=tags></ul><aside class=mainTOC><details><summary>Table of Contents</summary><nav id=TableOfContents></nav></details></aside><h1 id=c语言红黑树实现>C语言红黑树实现</h1><p>FreeBSD内核实现。</p><p><a href=https://svnweb.freebsd.org/base/head/sys/sys/tree.h rel=noopener>https://svnweb.freebsd.org/base/head/sys/sys/tree.h</a></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>  1
+</span><span class=lnt>  2
+</span><span class=lnt>  3
+</span><span class=lnt>  4
+</span><span class=lnt>  5
+</span><span class=lnt>  6
+</span><span class=lnt>  7
+</span><span class=lnt>  8
+</span><span class=lnt>  9
+</span><span class=lnt> 10
+</span><span class=lnt> 11
+</span><span class=lnt> 12
+</span><span class=lnt> 13
+</span><span class=lnt> 14
+</span><span class=lnt> 15
+</span><span class=lnt> 16
+</span><span class=lnt> 17
+</span><span class=lnt> 18
+</span><span class=lnt> 19
+</span><span class=lnt> 20
+</span><span class=lnt> 21
+</span><span class=lnt> 22
+</span><span class=lnt> 23
+</span><span class=lnt> 24
+</span><span class=lnt> 25
+</span><span class=lnt> 26
+</span><span class=lnt> 27
+</span><span class=lnt> 28
+</span><span class=lnt> 29
+</span><span class=lnt> 30
+</span><span class=lnt> 31
+</span><span class=lnt> 32
+</span><span class=lnt> 33
+</span><span class=lnt> 34
+</span><span class=lnt> 35
+</span><span class=lnt> 36
+</span><span class=lnt> 37
+</span><span class=lnt> 38
+</span><span class=lnt> 39
+</span><span class=lnt> 40
+</span><span class=lnt> 41
+</span><span class=lnt> 42
+</span><span class=lnt> 43
+</span><span class=lnt> 44
+</span><span class=lnt> 45
+</span><span class=lnt> 46
+</span><span class=lnt> 47
+</span><span class=lnt> 48
+</span><span class=lnt> 49
+</span><span class=lnt> 50
+</span><span class=lnt> 51
+</span><span class=lnt> 52
+</span><span class=lnt> 53
+</span><span class=lnt> 54
+</span><span class=lnt> 55
+</span><span class=lnt> 56
+</span><span class=lnt> 57
+</span><span class=lnt> 58
+</span><span class=lnt> 59
+</span><span class=lnt> 60
+</span><span class=lnt> 61
+</span><span class=lnt> 62
+</span><span class=lnt> 63
+</span><span class=lnt> 64
+</span><span class=lnt> 65
+</span><span class=lnt> 66
+</span><span class=lnt> 67
+</span><span class=lnt> 68
+</span><span class=lnt> 69
+</span><span class=lnt> 70
+</span><span class=lnt> 71
+</span><span class=lnt> 72
+</span><span class=lnt> 73
+</span><span class=lnt> 74
+</span><span class=lnt> 75
+</span><span class=lnt> 76
+</span><span class=lnt> 77
+</span><span class=lnt> 78
+</span><span class=lnt> 79
+</span><span class=lnt> 80
+</span><span class=lnt> 81
+</span><span class=lnt> 82
+</span><span class=lnt> 83
+</span><span class=lnt> 84
+</span><span class=lnt> 85
+</span><span class=lnt> 86
+</span><span class=lnt> 87
+</span><span class=lnt> 88
+</span><span class=lnt> 89
+</span><span class=lnt> 90
+</span><span class=lnt> 91
+</span><span class=lnt> 92
+</span><span class=lnt> 93
+</span><span class=lnt> 94
+</span><span class=lnt> 95
+</span><span class=lnt> 96
+</span><span class=lnt> 97
+</span><span class=lnt> 98
+</span><span class=lnt> 99
+</span><span class=lnt>100
+</span><span class=lnt>101
+</span><span class=lnt>102
+</span><span class=lnt>103
+</span><span class=lnt>104
+</span><span class=lnt>105
+</span><span class=lnt>106
+</span><span class=lnt>107
+</span><span class=lnt>108
+</span><span class=lnt>109
+</span><span class=lnt>110
+</span><span class=lnt>111
+</span><span class=lnt>112
+</span><span class=lnt>113
+</span><span class=lnt>114
+</span><span class=lnt>115
+</span><span class=lnt>116
+</span><span class=lnt>117
+</span><span class=lnt>118
+</span><span class=lnt>119
+</span><span class=lnt>120
+</span><span class=lnt>121
+</span><span class=lnt>122
+</span><span class=lnt>123
+</span><span class=lnt>124
+</span><span class=lnt>125
+</span><span class=lnt>126
+</span><span class=lnt>127
+</span><span class=lnt>128
+</span><span class=lnt>129
+</span><span class=lnt>130
+</span><span class=lnt>131
+</span><span class=lnt>132
+</span><span class=lnt>133
+</span><span class=lnt>134
+</span><span class=lnt>135
+</span><span class=lnt>136
+</span><span class=lnt>137
+</span><span class=lnt>138
+</span><span class=lnt>139
+</span><span class=lnt>140
+</span><span class=lnt>141
+</span><span class=lnt>142
+</span><span class=lnt>143
+</span><span class=lnt>144
+</span><span class=lnt>145
+</span><span class=lnt>146
+</span><span class=lnt>147
+</span><span class=lnt>148
+</span><span class=lnt>149
+</span><span class=lnt>150
+</span><span class=lnt>151
+</span><span class=lnt>152
+</span><span class=lnt>153
+</span><span class=lnt>154
+</span><span class=lnt>155
+</span><span class=lnt>156
+</span><span class=lnt>157
+</span><span class=lnt>158
+</span><span class=lnt>159
+</span><span class=lnt>160
+</span><span class=lnt>161
+</span><span class=lnt>162
+</span><span class=lnt>163
+</span><span class=lnt>164
+</span><span class=lnt>165
+</span><span class=lnt>166
+</span><span class=lnt>167
+</span><span class=lnt>168
+</span><span class=lnt>169
+</span><span class=lnt>170
+</span><span class=lnt>171
+</span><span class=lnt>172
+</span><span class=lnt>173
+</span><span class=lnt>174
+</span><span class=lnt>175
+</span><span class=lnt>176
+</span><span class=lnt>177
+</span><span class=lnt>178
+</span><span class=lnt>179
+</span><span class=lnt>180
+</span><span class=lnt>181
+</span><span class=lnt>182
+</span><span class=lnt>183
+</span><span class=lnt>184
+</span><span class=lnt>185
+</span><span class=lnt>186
+</span><span class=lnt>187
+</span><span class=lnt>188
+</span><span class=lnt>189
+</span><span class=lnt>190
+</span><span class=lnt>191
+</span><span class=lnt>192
+</span><span class=lnt>193
+</span><span class=lnt>194
+</span><span class=lnt>195
+</span><span class=lnt>196
+</span><span class=lnt>197
+</span><span class=lnt>198
+</span><span class=lnt>199
+</span><span class=lnt>200
+</span><span class=lnt>201
+</span><span class=lnt>202
+</span><span class=lnt>203
+</span><span class=lnt>204
+</span><span class=lnt>205
+</span><span class=lnt>206
+</span><span class=lnt>207
+</span><span class=lnt>208
+</span><span class=lnt>209
+</span><span class=lnt>210
+</span><span class=lnt>211
+</span><span class=lnt>212
+</span><span class=lnt>213
+</span><span class=lnt>214
+</span><span class=lnt>215
+</span><span class=lnt>216
+</span><span class=lnt>217
+</span><span class=lnt>218
+</span><span class=lnt>219
+</span><span class=lnt>220
+</span><span class=lnt>221
+</span><span class=lnt>222
+</span><span class=lnt>223
+</span><span class=lnt>224
+</span><span class=lnt>225
+</span><span class=lnt>226
+</span><span class=lnt>227
+</span><span class=lnt>228
+</span><span class=lnt>229
+</span><span class=lnt>230
+</span><span class=lnt>231
+</span><span class=lnt>232
+</span><span class=lnt>233
+</span><span class=lnt>234
+</span><span class=lnt>235
+</span><span class=lnt>236
+</span><span class=lnt>237
+</span><span class=lnt>238
+</span><span class=lnt>239
+</span><span class=lnt>240
+</span><span class=lnt>241
+</span><span class=lnt>242
+</span><span class=lnt>243
+</span><span class=lnt>244
+</span><span class=lnt>245
+</span><span class=lnt>246
+</span><span class=lnt>247
+</span><span class=lnt>248
+</span><span class=lnt>249
+</span><span class=lnt>250
+</span><span class=lnt>251
+</span><span class=lnt>252
+</span><span class=lnt>253
+</span><span class=lnt>254
+</span><span class=lnt>255
+</span><span class=lnt>256
+</span><span class=lnt>257
+</span><span class=lnt>258
+</span><span class=lnt>259
+</span><span class=lnt>260
+</span><span class=lnt>261
+</span><span class=lnt>262
+</span><span class=lnt>263
+</span><span class=lnt>264
+</span><span class=lnt>265
+</span><span class=lnt>266
+</span><span class=lnt>267
+</span><span class=lnt>268
+</span><span class=lnt>269
+</span><span class=lnt>270
+</span><span class=lnt>271
+</span><span class=lnt>272
+</span><span class=lnt>273
+</span><span class=lnt>274
+</span><span class=lnt>275
+</span><span class=lnt>276
+</span><span class=lnt>277
+</span><span class=lnt>278
+</span><span class=lnt>279
+</span><span class=lnt>280
+</span><span class=lnt>281
+</span><span class=lnt>282
+</span><span class=lnt>283
+</span><span class=lnt>284
+</span><span class=lnt>285
+</span><span class=lnt>286
+</span><span class=lnt>287
+</span><span class=lnt>288
+</span><span class=lnt>289
+</span><span class=lnt>290
+</span><span class=lnt>291
+</span><span class=lnt>292
+</span><span class=lnt>293
+</span><span class=lnt>294
+</span><span class=lnt>295
+</span><span class=lnt>296
+</span><span class=lnt>297
+</span><span class=lnt>298
+</span><span class=lnt>299
+</span><span class=lnt>300
+</span><span class=lnt>301
+</span><span class=lnt>302
+</span><span class=lnt>303
+</span><span class=lnt>304
+</span><span class=lnt>305
+</span><span class=lnt>306
+</span><span class=lnt>307
+</span><span class=lnt>308
+</span><span class=lnt>309
+</span><span class=lnt>310
+</span><span class=lnt>311
+</span><span class=lnt>312
+</span><span class=lnt>313
+</span><span class=lnt>314
+</span><span class=lnt>315
+</span><span class=lnt>316
+</span><span class=lnt>317
+</span><span class=lnt>318
+</span><span class=lnt>319
+</span><span class=lnt>320
+</span><span class=lnt>321
+</span><span class=lnt>322
+</span><span class=lnt>323
+</span><span class=lnt>324
+</span><span class=lnt>325
+</span><span class=lnt>326
+</span><span class=lnt>327
+</span><span class=lnt>328
+</span><span class=lnt>329
+</span><span class=lnt>330
+</span><span class=lnt>331
+</span><span class=lnt>332
+</span><span class=lnt>333
+</span><span class=lnt>334
+</span><span class=lnt>335
+</span><span class=lnt>336
+</span><span class=lnt>337
+</span><span class=lnt>338
+</span><span class=lnt>339
+</span><span class=lnt>340
+</span><span class=lnt>341
+</span><span class=lnt>342
+</span><span class=lnt>343
+</span><span class=lnt>344
+</span><span class=lnt>345
+</span><span class=lnt>346
+</span><span class=lnt>347
+</span><span class=lnt>348
+</span><span class=lnt>349
+</span><span class=lnt>350
+</span><span class=lnt>351
+</span><span class=lnt>352
+</span><span class=lnt>353
+</span><span class=lnt>354
+</span><span class=lnt>355
+</span><span class=lnt>356
+</span><span class=lnt>357
+</span><span class=lnt>358
+</span><span class=lnt>359
+</span><span class=lnt>360
+</span><span class=lnt>361
+</span><span class=lnt>362
+</span><span class=lnt>363
+</span><span class=lnt>364
+</span><span class=lnt>365
+</span><span class=lnt>366
+</span><span class=lnt>367
+</span><span class=lnt>368
+</span><span class=lnt>369
+</span><span class=lnt>370
+</span><span class=lnt>371
+</span><span class=lnt>372
+</span><span class=lnt>373
+</span><span class=lnt>374
+</span><span class=lnt>375
+</span><span class=lnt>376
+</span><span class=lnt>377
+</span><span class=lnt>378
+</span><span class=lnt>379
+</span><span class=lnt>380
+</span><span class=lnt>381
+</span><span class=lnt>382
+</span><span class=lnt>383
+</span><span class=lnt>384
+</span><span class=lnt>385
+</span><span class=lnt>386
+</span><span class=lnt>387
+</span><span class=lnt>388
+</span><span class=lnt>389
+</span><span class=lnt>390
+</span><span class=lnt>391
+</span><span class=lnt>392
+</span><span class=lnt>393
+</span><span class=lnt>394
+</span><span class=lnt>395
+</span><span class=lnt>396
+</span><span class=lnt>397
+</span><span class=lnt>398
+</span><span class=lnt>399
+</span><span class=lnt>400
+</span><span class=lnt>401
+</span><span class=lnt>402
+</span><span class=lnt>403
+</span><span class=lnt>404
+</span><span class=lnt>405
+</span><span class=lnt>406
+</span><span class=lnt>407
+</span><span class=lnt>408
+</span><span class=lnt>409
+</span><span class=lnt>410
+</span><span class=lnt>411
+</span><span class=lnt>412
+</span><span class=lnt>413
+</span><span class=lnt>414
+</span><span class=lnt>415
+</span><span class=lnt>416
+</span><span class=lnt>417
+</span><span class=lnt>418
+</span><span class=lnt>419
+</span><span class=lnt>420
+</span><span class=lnt>421
+</span><span class=lnt>422
+</span><span class=lnt>423
+</span><span class=lnt>424
+</span><span class=lnt>425
+</span><span class=lnt>426
+</span><span class=lnt>427
+</span><span class=lnt>428
+</span><span class=lnt>429
+</span><span class=lnt>430
+</span><span class=lnt>431
+</span><span class=lnt>432
+</span><span class=lnt>433
+</span><span class=lnt>434
+</span><span class=lnt>435
+</span><span class=lnt>436
+</span><span class=lnt>437
+</span><span class=lnt>438
+</span><span class=lnt>439
+</span><span class=lnt>440
+</span><span class=lnt>441
+</span><span class=lnt>442
+</span><span class=lnt>443
+</span><span class=lnt>444
+</span><span class=lnt>445
+</span><span class=lnt>446
+</span><span class=lnt>447
+</span><span class=lnt>448
+</span><span class=lnt>449
+</span><span class=lnt>450
+</span><span class=lnt>451
+</span><span class=lnt>452
+</span><span class=lnt>453
+</span><span class=lnt>454
+</span><span class=lnt>455
+</span><span class=lnt>456
+</span><span class=lnt>457
+</span><span class=lnt>458
+</span><span class=lnt>459
+</span><span class=lnt>460
+</span><span class=lnt>461
+</span><span class=lnt>462
+</span><span class=lnt>463
+</span><span class=lnt>464
+</span><span class=lnt>465
+</span><span class=lnt>466
+</span><span class=lnt>467
+</span><span class=lnt>468
+</span><span class=lnt>469
+</span><span class=lnt>470
+</span><span class=lnt>471
+</span><span class=lnt>472
+</span><span class=lnt>473
+</span><span class=lnt>474
+</span><span class=lnt>475
+</span><span class=lnt>476
+</span><span class=lnt>477
+</span><span class=lnt>478
+</span><span class=lnt>479
+</span><span class=lnt>480
+</span><span class=lnt>481
+</span><span class=lnt>482
+</span><span class=lnt>483
+</span><span class=lnt>484
+</span><span class=lnt>485
+</span><span class=lnt>486
+</span><span class=lnt>487
+</span><span class=lnt>488
+</span><span class=lnt>489
+</span><span class=lnt>490
+</span><span class=lnt>491
+</span><span class=lnt>492
+</span><span class=lnt>493
+</span><span class=lnt>494
+</span><span class=lnt>495
+</span><span class=lnt>496
+</span><span class=lnt>497
+</span><span class=lnt>498
+</span><span class=lnt>499
+</span><span class=lnt>500
+</span><span class=lnt>501
+</span><span class=lnt>502
+</span><span class=lnt>503
+</span><span class=lnt>504
+</span><span class=lnt>505
+</span><span class=lnt>506
+</span><span class=lnt>507
+</span><span class=lnt>508
+</span><span class=lnt>509
+</span><span class=lnt>510
+</span><span class=lnt>511
+</span><span class=lnt>512
+</span><span class=lnt>513
+</span><span class=lnt>514
+</span><span class=lnt>515
+</span><span class=lnt>516
+</span><span class=lnt>517
+</span><span class=lnt>518
+</span><span class=lnt>519
+</span><span class=lnt>520
+</span><span class=lnt>521
+</span><span class=lnt>522
+</span><span class=lnt>523
+</span><span class=lnt>524
+</span><span class=lnt>525
+</span><span class=lnt>526
+</span><span class=lnt>527
+</span><span class=lnt>528
+</span><span class=lnt>529
+</span><span class=lnt>530
+</span><span class=lnt>531
+</span><span class=lnt>532
+</span><span class=lnt>533
+</span><span class=lnt>534
+</span><span class=lnt>535
+</span><span class=lnt>536
+</span><span class=lnt>537
+</span><span class=lnt>538
+</span><span class=lnt>539
+</span><span class=lnt>540
+</span><span class=lnt>541
+</span><span class=lnt>542
+</span><span class=lnt>543
+</span><span class=lnt>544
+</span><span class=lnt>545
+</span><span class=lnt>546
+</span><span class=lnt>547
+</span><span class=lnt>548
+</span><span class=lnt>549
+</span><span class=lnt>550
+</span><span class=lnt>551
+</span><span class=lnt>552
+</span><span class=lnt>553
+</span><span class=lnt>554
+</span><span class=lnt>555
+</span><span class=lnt>556
+</span><span class=lnt>557
+</span><span class=lnt>558
+</span><span class=lnt>559
+</span><span class=lnt>560
+</span><span class=lnt>561
+</span><span class=lnt>562
+</span><span class=lnt>563
+</span><span class=lnt>564
+</span><span class=lnt>565
+</span><span class=lnt>566
+</span><span class=lnt>567
+</span><span class=lnt>568
+</span><span class=lnt>569
+</span><span class=lnt>570
+</span><span class=lnt>571
+</span><span class=lnt>572
+</span><span class=lnt>573
+</span><span class=lnt>574
+</span><span class=lnt>575
+</span><span class=lnt>576
+</span><span class=lnt>577
+</span><span class=lnt>578
+</span><span class=lnt>579
+</span><span class=lnt>580
+</span><span class=lnt>581
+</span><span class=lnt>582
+</span><span class=lnt>583
+</span><span class=lnt>584
+</span><span class=lnt>585
+</span><span class=lnt>586
+</span><span class=lnt>587
+</span><span class=lnt>588
+</span><span class=lnt>589
+</span><span class=lnt>590
+</span><span class=lnt>591
+</span><span class=lnt>592
+</span><span class=lnt>593
+</span><span class=lnt>594
+</span><span class=lnt>595
+</span><span class=lnt>596
+</span><span class=lnt>597
+</span><span class=lnt>598
+</span><span class=lnt>599
+</span><span class=lnt>600
+</span><span class=lnt>601
+</span><span class=lnt>602
+</span><span class=lnt>603
+</span><span class=lnt>604
+</span><span class=lnt>605
+</span><span class=lnt>606
+</span><span class=lnt>607
+</span><span class=lnt>608
+</span><span class=lnt>609
+</span><span class=lnt>610
+</span><span class=lnt>611
+</span><span class=lnt>612
+</span><span class=lnt>613
+</span><span class=lnt>614
+</span><span class=lnt>615
+</span><span class=lnt>616
+</span><span class=lnt>617
+</span><span class=lnt>618
+</span><span class=lnt>619
+</span><span class=lnt>620
+</span><span class=lnt>621
+</span><span class=lnt>622
+</span><span class=lnt>623
+</span><span class=lnt>624
+</span><span class=lnt>625
+</span><span class=lnt>626
+</span><span class=lnt>627
+</span><span class=lnt>628
+</span><span class=lnt>629
+</span><span class=lnt>630
+</span><span class=lnt>631
+</span><span class=lnt>632
+</span><span class=lnt>633
+</span><span class=lnt>634
+</span><span class=lnt>635
+</span><span class=lnt>636
+</span><span class=lnt>637
+</span><span class=lnt>638
+</span><span class=lnt>639
+</span><span class=lnt>640
+</span><span class=lnt>641
+</span><span class=lnt>642
+</span><span class=lnt>643
+</span><span class=lnt>644
+</span><span class=lnt>645
+</span><span class=lnt>646
+</span><span class=lnt>647
+</span><span class=lnt>648
+</span><span class=lnt>649
+</span><span class=lnt>650
+</span><span class=lnt>651
+</span><span class=lnt>652
+</span><span class=lnt>653
+</span><span class=lnt>654
+</span><span class=lnt>655
+</span><span class=lnt>656
+</span><span class=lnt>657
+</span><span class=lnt>658
+</span><span class=lnt>659
+</span><span class=lnt>660
+</span><span class=lnt>661
+</span><span class=lnt>662
+</span><span class=lnt>663
+</span><span class=lnt>664
+</span><span class=lnt>665
+</span><span class=lnt>666
+</span><span class=lnt>667
+</span><span class=lnt>668
+</span><span class=lnt>669
+</span><span class=lnt>670
+</span><span class=lnt>671
+</span><span class=lnt>672
+</span><span class=lnt>673
+</span><span class=lnt>674
+</span><span class=lnt>675
+</span><span class=lnt>676
+</span><span class=lnt>677
+</span><span class=lnt>678
+</span><span class=lnt>679
+</span><span class=lnt>680
+</span><span class=lnt>681
+</span><span class=lnt>682
+</span><span class=lnt>683
+</span><span class=lnt>684
+</span><span class=lnt>685
+</span><span class=lnt>686
+</span><span class=lnt>687
+</span><span class=lnt>688
+</span><span class=lnt>689
+</span><span class=lnt>690
+</span><span class=lnt>691
+</span><span class=lnt>692
+</span><span class=lnt>693
+</span><span class=lnt>694
+</span><span class=lnt>695
+</span><span class=lnt>696
+</span><span class=lnt>697
+</span><span class=lnt>698
+</span><span class=lnt>699
+</span><span class=lnt>700
+</span><span class=lnt>701
+</span><span class=lnt>702
+</span><span class=lnt>703
+</span><span class=lnt>704
+</span><span class=lnt>705
+</span><span class=lnt>706
+</span><span class=lnt>707
+</span><span class=lnt>708
+</span><span class=lnt>709
+</span><span class=lnt>710
+</span><span class=lnt>711
+</span><span class=lnt>712
+</span><span class=lnt>713
+</span><span class=lnt>714
+</span><span class=lnt>715
+</span><span class=lnt>716
+</span><span class=lnt>717
+</span><span class=lnt>718
+</span><span class=lnt>719
+</span><span class=lnt>720
+</span><span class=lnt>721
+</span><span class=lnt>722
+</span><span class=lnt>723
+</span><span class=lnt>724
+</span><span class=lnt>725
+</span><span class=lnt>726
+</span><span class=lnt>727
+</span><span class=lnt>728
+</span><span class=lnt>729
+</span><span class=lnt>730
+</span><span class=lnt>731
+</span><span class=lnt>732
+</span><span class=lnt>733
+</span><span class=lnt>734
+</span><span class=lnt>735
+</span><span class=lnt>736
+</span><span class=lnt>737
+</span><span class=lnt>738
+</span><span class=lnt>739
+</span><span class=lnt>740
+</span><span class=lnt>741
+</span><span class=lnt>742
+</span><span class=lnt>743
+</span><span class=lnt>744
+</span><span class=lnt>745
+</span><span class=lnt>746
+</span><span class=lnt>747
+</span><span class=lnt>748
+</span><span class=lnt>749
+</span><span class=lnt>750
+</span><span class=lnt>751
+</span><span class=lnt>752
+</span><span class=lnt>753
+</span><span class=lnt>754
+</span><span class=lnt>755
+</span><span class=lnt>756
+</span><span class=lnt>757
+</span><span class=lnt>758
+</span><span class=lnt>759
+</span><span class=lnt>760
+</span><span class=lnt>761
+</span><span class=lnt>762
+</span><span class=lnt>763
+</span><span class=lnt>764
+</span><span class=lnt>765
+</span><span class=lnt>766
+</span><span class=lnt>767
+</span><span class=lnt>768
+</span><span class=lnt>769
+</span><span class=lnt>770
+</span><span class=lnt>771
+</span><span class=lnt>772
+</span><span class=lnt>773
+</span><span class=lnt>774
+</span><span class=lnt>775
+</span><span class=lnt>776
+</span><span class=lnt>777
+</span><span class=lnt>778
+</span><span class=lnt>779
+</span><span class=lnt>780
+</span><span class=lnt>781
+</span><span class=lnt>782
+</span><span class=lnt>783
+</span><span class=lnt>784
+</span><span class=lnt>785
+</span><span class=lnt>786
+</span><span class=lnt>787
+</span><span class=lnt>788
+</span><span class=lnt>789
+</span><span class=lnt>790
+</span><span class=lnt>791
+</span><span class=lnt>792
+</span><span class=lnt>793
+</span><span class=lnt>794
+</span><span class=lnt>795
+</span><span class=lnt>796
+</span><span class=lnt>797
+</span><span class=lnt>798
+</span><span class=lnt>799
+</span><span class=lnt>800
+</span><span class=lnt>801
+</span><span class=lnt>802
+</span><span class=lnt>803
+</span><span class=lnt>804
+</span><span class=lnt>805
+</span><span class=lnt>806
+</span><span class=lnt>807
+</span><span class=lnt>808
+</span><span class=lnt>809
+</span><span class=lnt>810
+</span><span class=lnt>811
+</span><span class=lnt>812
+</span><span class=lnt>813
+</span><span class=lnt>814
+</span><span class=lnt>815
+</span><span class=lnt>816
+</span><span class=lnt>817
+</span><span class=lnt>818
+</span><span class=lnt>819
+</span><span class=lnt>820
+</span><span class=lnt>821
+</span><span class=lnt>822
+</span><span class=lnt>823
+</span><span class=lnt>824
+</span><span class=lnt>825
+</span><span class=lnt>826
+</span><span class=lnt>827
+</span><span class=lnt>828
+</span><span class=lnt>829
+</span><span class=lnt>830
+</span><span class=lnt>831
+</span><span class=lnt>832
+</span><span class=lnt>833
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-c data-lang=c><span class=line><span class=cl><span class=cm>/*	$NetBSD: tree.h,v 1.8 2004/03/28 19:38:30 provos Exp $	*/</span>
+</span></span><span class=line><span class=cl><span class=cm>/*	$OpenBSD: tree.h,v 1.7 2002/10/17 21:51:54 art Exp $	*/</span>
+</span></span><span class=line><span class=cl><span class=cm>/* $FreeBSD$ */</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=cm>/*-
+</span></span></span><span class=line><span class=cl><span class=cm> * SPDX-License-Identifier: BSD-2-Clause-FreeBSD
+</span></span></span><span class=line><span class=cl><span class=cm> *
+</span></span></span><span class=line><span class=cl><span class=cm> * Copyright 2002 Niels Provos &lt;provos@citi.umich.edu&gt;
+</span></span></span><span class=line><span class=cl><span class=cm> * All rights reserved.
+</span></span></span><span class=line><span class=cl><span class=cm> *
+</span></span></span><span class=line><span class=cl><span class=cm> * Redistribution and use in source and binary forms, with or without
+</span></span></span><span class=line><span class=cl><span class=cm> * modification, are permitted provided that the following conditions
+</span></span></span><span class=line><span class=cl><span class=cm> * are met:
+</span></span></span><span class=line><span class=cl><span class=cm> * 1. Redistributions of source code must retain the above copyright
+</span></span></span><span class=line><span class=cl><span class=cm> *    notice, this list of conditions and the following disclaimer.
+</span></span></span><span class=line><span class=cl><span class=cm> * 2. Redistributions in binary form must reproduce the above copyright
+</span></span></span><span class=line><span class=cl><span class=cm> *    notice, this list of conditions and the following disclaimer in the
+</span></span></span><span class=line><span class=cl><span class=cm> *    documentation and/or other materials provided with the distribution.
+</span></span></span><span class=line><span class=cl><span class=cm> *
+</span></span></span><span class=line><span class=cl><span class=cm> * THIS SOFTWARE IS PROVIDED BY THE AUTHOR ``AS IS&#39;&#39; AND ANY EXPRESS OR
+</span></span></span><span class=line><span class=cl><span class=cm> * IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
+</span></span></span><span class=line><span class=cl><span class=cm> * OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
+</span></span></span><span class=line><span class=cl><span class=cm> * IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY DIRECT, INDIRECT,
+</span></span></span><span class=line><span class=cl><span class=cm> * INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT
+</span></span></span><span class=line><span class=cl><span class=cm> * NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+</span></span></span><span class=line><span class=cl><span class=cm> * DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+</span></span></span><span class=line><span class=cl><span class=cm> * THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+</span></span></span><span class=line><span class=cl><span class=cm> * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
+</span></span></span><span class=line><span class=cl><span class=cm> * THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+</span></span></span><span class=line><span class=cl><span class=cm> */</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=cp>#ifndef	_SYS_TREE_H_
+</span></span></span><span class=line><span class=cl><span class=cp>#define	_SYS_TREE_H_
+</span></span></span><span class=line><span class=cl><span class=cp></span>
+</span></span><span class=line><span class=cl><span class=cp>#include</span> <span class=cpf>&lt;sys/cdefs.h&gt;</span><span class=cp>
+</span></span></span><span class=line><span class=cl><span class=cp></span>
+</span></span><span class=line><span class=cl><span class=cm>/*
+</span></span></span><span class=line><span class=cl><span class=cm> * This file defines data structures for different types of trees:
+</span></span></span><span class=line><span class=cl><span class=cm> * splay trees and rank-balanced trees.
+</span></span></span><span class=line><span class=cl><span class=cm> *
+</span></span></span><span class=line><span class=cl><span class=cm> * A splay tree is a self-organizing data structure.  Every operation
+</span></span></span><span class=line><span class=cl><span class=cm> * on the tree causes a splay to happen.  The splay moves the requested
+</span></span></span><span class=line><span class=cl><span class=cm> * node to the root of the tree and partly rebalances it.
+</span></span></span><span class=line><span class=cl><span class=cm> *
+</span></span></span><span class=line><span class=cl><span class=cm> * This has the benefit that request locality causes faster lookups as
+</span></span></span><span class=line><span class=cl><span class=cm> * the requested nodes move to the top of the tree.  On the other hand,
+</span></span></span><span class=line><span class=cl><span class=cm> * every lookup causes memory writes.
+</span></span></span><span class=line><span class=cl><span class=cm> *
+</span></span></span><span class=line><span class=cl><span class=cm> * The Balance Theorem bounds the total access time for m operations
+</span></span></span><span class=line><span class=cl><span class=cm> * and n inserts on an initially empty tree as O((m + n)lg n).  The
+</span></span></span><span class=line><span class=cl><span class=cm> * amortized cost for a sequence of m accesses to a splay tree is O(lg n);
+</span></span></span><span class=line><span class=cl><span class=cm> *
+</span></span></span><span class=line><span class=cl><span class=cm> * A rank-balanced tree is a binary search tree with an integer
+</span></span></span><span class=line><span class=cl><span class=cm> * rank-difference as an attribute of each pointer from parent to child.
+</span></span></span><span class=line><span class=cl><span class=cm> * The sum of the rank-differences on any path from a node down to null is
+</span></span></span><span class=line><span class=cl><span class=cm> * the same, and defines the rank of that node. The rank of the null node
+</span></span></span><span class=line><span class=cl><span class=cm> * is -1.
+</span></span></span><span class=line><span class=cl><span class=cm> *
+</span></span></span><span class=line><span class=cl><span class=cm> * Different additional conditions define different sorts of balanced
+</span></span></span><span class=line><span class=cl><span class=cm> * trees, including &#34;red-black&#34; and &#34;AVL&#34; trees.  The set of conditions
+</span></span></span><span class=line><span class=cl><span class=cm> * applied here are the &#34;weak-AVL&#34; conditions of Haeupler, Sen and Tarjan:
+</span></span></span><span class=line><span class=cl><span class=cm> *	- every rank-difference is 1 or 2.
+</span></span></span><span class=line><span class=cl><span class=cm> *	- the rank of any leaf is 1.
+</span></span></span><span class=line><span class=cl><span class=cm> *
+</span></span></span><span class=line><span class=cl><span class=cm> * For historical reasons, rank differences that are even are associated
+</span></span></span><span class=line><span class=cl><span class=cm> * with the color red (Rank-Even-Difference), and the child that a red edge
+</span></span></span><span class=line><span class=cl><span class=cm> * points to is called a red child.
+</span></span></span><span class=line><span class=cl><span class=cm> *
+</span></span></span><span class=line><span class=cl><span class=cm> * Every operation on a rank-balanced tree is bounded as O(lg n).
+</span></span></span><span class=line><span class=cl><span class=cm> * The maximum height of a rank-balanced tree is 2lg (n+1).
+</span></span></span><span class=line><span class=cl><span class=cm> */</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=cp>#define SPLAY_HEAD(name, type)						\
+</span></span></span><span class=line><span class=cl><span class=cp>struct name {								\
+</span></span></span><span class=line><span class=cl><span class=cp>	struct type *sph_root; </span><span class=cm>/* root of the tree */</span><span class=cp>			\
+</span></span></span><span class=line><span class=cl><span class=cp>}
+</span></span></span><span class=line><span class=cl><span class=cp></span>
+</span></span><span class=line><span class=cl><span class=cp>#define SPLAY_INITIALIZER(root)						\
+</span></span></span><span class=line><span class=cl><span class=cp>	{ NULL }
+</span></span></span><span class=line><span class=cl><span class=cp></span>
+</span></span><span class=line><span class=cl><span class=cp>#define SPLAY_INIT(root) do {						\
+</span></span></span><span class=line><span class=cl><span class=cp>	(root)-&gt;sph_root = NULL;					\
+</span></span></span><span class=line><span class=cl><span class=cp>} while (</span><span class=cm>/*CONSTCOND*/</span><span class=cp> 0)
+</span></span></span><span class=line><span class=cl><span class=cp></span>
+</span></span><span class=line><span class=cl><span class=cp>#define SPLAY_ENTRY(type)						\
+</span></span></span><span class=line><span class=cl><span class=cp>struct {								\
+</span></span></span><span class=line><span class=cl><span class=cp>	struct type *spe_left; </span><span class=cm>/* left element */</span><span class=cp>			\
+</span></span></span><span class=line><span class=cl><span class=cp>	struct type *spe_right; </span><span class=cm>/* right element */</span><span class=cp>			\
+</span></span></span><span class=line><span class=cl><span class=cp>}
+</span></span></span><span class=line><span class=cl><span class=cp></span>
+</span></span><span class=line><span class=cl><span class=cp>#define SPLAY_LEFT(elm, field)		(elm)-&gt;field.spe_left
+</span></span></span><span class=line><span class=cl><span class=cp>#define SPLAY_RIGHT(elm, field)		(elm)-&gt;field.spe_right
+</span></span></span><span class=line><span class=cl><span class=cp>#define SPLAY_ROOT(head)		(head)-&gt;sph_root
+</span></span></span><span class=line><span class=cl><span class=cp>#define SPLAY_EMPTY(head)		(SPLAY_ROOT(head) == NULL)
+</span></span></span><span class=line><span class=cl><span class=cp></span>
+</span></span><span class=line><span class=cl><span class=cm>/* SPLAY_ROTATE_{LEFT,RIGHT} expect that tmp hold SPLAY_{RIGHT,LEFT} */</span>
+</span></span><span class=line><span class=cl><span class=cp>#define SPLAY_ROTATE_RIGHT(head, tmp, field) do {			\
+</span></span></span><span class=line><span class=cl><span class=cp>	SPLAY_LEFT((head)-&gt;sph_root, field) = SPLAY_RIGHT(tmp, field);	\
+</span></span></span><span class=line><span class=cl><span class=cp>	SPLAY_RIGHT(tmp, field) = (head)-&gt;sph_root;			\
+</span></span></span><span class=line><span class=cl><span class=cp>	(head)-&gt;sph_root = tmp;						\
+</span></span></span><span class=line><span class=cl><span class=cp>} while (</span><span class=cm>/*CONSTCOND*/</span><span class=cp> 0)
+</span></span></span><span class=line><span class=cl><span class=cp></span>
+</span></span><span class=line><span class=cl><span class=cp>#define SPLAY_ROTATE_LEFT(head, tmp, field) do {			\
+</span></span></span><span class=line><span class=cl><span class=cp>	SPLAY_RIGHT((head)-&gt;sph_root, field) = SPLAY_LEFT(tmp, field);	\
+</span></span></span><span class=line><span class=cl><span class=cp>	SPLAY_LEFT(tmp, field) = (head)-&gt;sph_root;			\
+</span></span></span><span class=line><span class=cl><span class=cp>	(head)-&gt;sph_root = tmp;						\
+</span></span></span><span class=line><span class=cl><span class=cp>} while (</span><span class=cm>/*CONSTCOND*/</span><span class=cp> 0)
+</span></span></span><span class=line><span class=cl><span class=cp></span>
+</span></span><span class=line><span class=cl><span class=cp>#define SPLAY_LINKLEFT(head, tmp, field) do {				\
+</span></span></span><span class=line><span class=cl><span class=cp>	SPLAY_LEFT(tmp, field) = (head)-&gt;sph_root;			\
+</span></span></span><span class=line><span class=cl><span class=cp>	tmp = (head)-&gt;sph_root;						\
+</span></span></span><span class=line><span class=cl><span class=cp>	(head)-&gt;sph_root = SPLAY_LEFT((head)-&gt;sph_root, field);		\
+</span></span></span><span class=line><span class=cl><span class=cp>} while (</span><span class=cm>/*CONSTCOND*/</span><span class=cp> 0)
+</span></span></span><span class=line><span class=cl><span class=cp></span>
+</span></span><span class=line><span class=cl><span class=cp>#define SPLAY_LINKRIGHT(head, tmp, field) do {				\
+</span></span></span><span class=line><span class=cl><span class=cp>	SPLAY_RIGHT(tmp, field) = (head)-&gt;sph_root;			\
+</span></span></span><span class=line><span class=cl><span class=cp>	tmp = (head)-&gt;sph_root;						\
+</span></span></span><span class=line><span class=cl><span class=cp>	(head)-&gt;sph_root = SPLAY_RIGHT((head)-&gt;sph_root, field);	\
+</span></span></span><span class=line><span class=cl><span class=cp>} while (</span><span class=cm>/*CONSTCOND*/</span><span class=cp> 0)
+</span></span></span><span class=line><span class=cl><span class=cp></span>
+</span></span><span class=line><span class=cl><span class=cp>#define SPLAY_ASSEMBLE(head, node, left, right, field) do {		\
+</span></span></span><span class=line><span class=cl><span class=cp>	SPLAY_RIGHT(left, field) = SPLAY_LEFT((head)-&gt;sph_root, field);	\
+</span></span></span><span class=line><span class=cl><span class=cp>	SPLAY_LEFT(right, field) = SPLAY_RIGHT((head)-&gt;sph_root, field);\
+</span></span></span><span class=line><span class=cl><span class=cp>	SPLAY_LEFT((head)-&gt;sph_root, field) = SPLAY_RIGHT(node, field);	\
+</span></span></span><span class=line><span class=cl><span class=cp>	SPLAY_RIGHT((head)-&gt;sph_root, field) = SPLAY_LEFT(node, field);	\
+</span></span></span><span class=line><span class=cl><span class=cp>} while (</span><span class=cm>/*CONSTCOND*/</span><span class=cp> 0)
+</span></span></span><span class=line><span class=cl><span class=cp></span>
+</span></span><span class=line><span class=cl><span class=cm>/* Generates prototypes and inline functions */</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=cp>#define SPLAY_PROTOTYPE(name, type, field, cmp)				\
+</span></span></span><span class=line><span class=cl><span class=cp>void name##_SPLAY(struct name *, struct type *);			\
+</span></span></span><span class=line><span class=cl><span class=cp>void name##_SPLAY_MINMAX(struct name *, int);				\
+</span></span></span><span class=line><span class=cl><span class=cp>struct type *name##_SPLAY_INSERT(struct name *, struct type *);		\
+</span></span></span><span class=line><span class=cl><span class=cp>struct type *name##_SPLAY_REMOVE(struct name *, struct type *);		\
+</span></span></span><span class=line><span class=cl><span class=cp>									\
+</span></span></span><span class=line><span class=cl><span class=cp></span><span class=cm>/* Finds the node with the same key as elm */</span><span class=cp>				\
+</span></span></span><span class=line><span class=cl><span class=cp>static __unused __inline struct type *					\
+</span></span></span><span class=line><span class=cl><span class=cp>name##_SPLAY_FIND(struct name *head, struct type *elm)			\
+</span></span></span><span class=line><span class=cl><span class=cp>{									\
+</span></span></span><span class=line><span class=cl><span class=cp>	if (SPLAY_EMPTY(head))						\
+</span></span></span><span class=line><span class=cl><span class=cp>		return(NULL);						\
+</span></span></span><span class=line><span class=cl><span class=cp>	name##_SPLAY(head, elm);					\
+</span></span></span><span class=line><span class=cl><span class=cp>	if ((cmp)(elm, (head)-&gt;sph_root) == 0)				\
+</span></span></span><span class=line><span class=cl><span class=cp>		return (head-&gt;sph_root);				\
+</span></span></span><span class=line><span class=cl><span class=cp>	return (NULL);							\
+</span></span></span><span class=line><span class=cl><span class=cp>}									\
+</span></span></span><span class=line><span class=cl><span class=cp>									\
+</span></span></span><span class=line><span class=cl><span class=cp>static __unused __inline struct type *					\
+</span></span></span><span class=line><span class=cl><span class=cp>name##_SPLAY_NEXT(struct name *head, struct type *elm)			\
+</span></span></span><span class=line><span class=cl><span class=cp>{									\
+</span></span></span><span class=line><span class=cl><span class=cp>	name##_SPLAY(head, elm);					\
+</span></span></span><span class=line><span class=cl><span class=cp>	if (SPLAY_RIGHT(elm, field) != NULL) {				\
+</span></span></span><span class=line><span class=cl><span class=cp>		elm = SPLAY_RIGHT(elm, field);				\
+</span></span></span><span class=line><span class=cl><span class=cp>		while (SPLAY_LEFT(elm, field) != NULL) {		\
+</span></span></span><span class=line><span class=cl><span class=cp>			elm = SPLAY_LEFT(elm, field);			\
+</span></span></span><span class=line><span class=cl><span class=cp>		}							\
+</span></span></span><span class=line><span class=cl><span class=cp>	} else								\
+</span></span></span><span class=line><span class=cl><span class=cp>		elm = NULL;						\
+</span></span></span><span class=line><span class=cl><span class=cp>	return (elm);							\
+</span></span></span><span class=line><span class=cl><span class=cp>}									\
+</span></span></span><span class=line><span class=cl><span class=cp>									\
+</span></span></span><span class=line><span class=cl><span class=cp>static __unused __inline struct type *					\
+</span></span></span><span class=line><span class=cl><span class=cp>name##_SPLAY_MIN_MAX(struct name *head, int val)			\
+</span></span></span><span class=line><span class=cl><span class=cp>{									\
+</span></span></span><span class=line><span class=cl><span class=cp>	name##_SPLAY_MINMAX(head, val);					\
+</span></span></span><span class=line><span class=cl><span class=cp>        return (SPLAY_ROOT(head));					\
+</span></span></span><span class=line><span class=cl><span class=cp>}
+</span></span></span><span class=line><span class=cl><span class=cp></span>
+</span></span><span class=line><span class=cl><span class=cm>/* Main splay operation.
+</span></span></span><span class=line><span class=cl><span class=cm> * Moves node close to the key of elm to top
+</span></span></span><span class=line><span class=cl><span class=cm> */</span>
+</span></span><span class=line><span class=cl><span class=cp>#define SPLAY_GENERATE(name, type, field, cmp)				\
+</span></span></span><span class=line><span class=cl><span class=cp>struct type *								\
+</span></span></span><span class=line><span class=cl><span class=cp>name##_SPLAY_INSERT(struct name *head, struct type *elm)		\
+</span></span></span><span class=line><span class=cl><span class=cp>{									\
+</span></span></span><span class=line><span class=cl><span class=cp>    if (SPLAY_EMPTY(head)) {						\
+</span></span></span><span class=line><span class=cl><span class=cp>	    SPLAY_LEFT(elm, field) = SPLAY_RIGHT(elm, field) = NULL;	\
+</span></span></span><span class=line><span class=cl><span class=cp>    } else {								\
+</span></span></span><span class=line><span class=cl><span class=cp>	    int __comp;							\
+</span></span></span><span class=line><span class=cl><span class=cp>	    name##_SPLAY(head, elm);					\
+</span></span></span><span class=line><span class=cl><span class=cp>	    __comp = (cmp)(elm, (head)-&gt;sph_root);			\
+</span></span></span><span class=line><span class=cl><span class=cp>	    if(__comp &lt; 0) {						\
+</span></span></span><span class=line><span class=cl><span class=cp>		    SPLAY_LEFT(elm, field) = SPLAY_LEFT((head)-&gt;sph_root, field);\
+</span></span></span><span class=line><span class=cl><span class=cp>		    SPLAY_RIGHT(elm, field) = (head)-&gt;sph_root;		\
+</span></span></span><span class=line><span class=cl><span class=cp>		    SPLAY_LEFT((head)-&gt;sph_root, field) = NULL;		\
+</span></span></span><span class=line><span class=cl><span class=cp>	    } else if (__comp &gt; 0) {					\
+</span></span></span><span class=line><span class=cl><span class=cp>		    SPLAY_RIGHT(elm, field) = SPLAY_RIGHT((head)-&gt;sph_root, field);\
+</span></span></span><span class=line><span class=cl><span class=cp>		    SPLAY_LEFT(elm, field) = (head)-&gt;sph_root;		\
+</span></span></span><span class=line><span class=cl><span class=cp>		    SPLAY_RIGHT((head)-&gt;sph_root, field) = NULL;	\
+</span></span></span><span class=line><span class=cl><span class=cp>	    } else							\
+</span></span></span><span class=line><span class=cl><span class=cp>		    return ((head)-&gt;sph_root);				\
+</span></span></span><span class=line><span class=cl><span class=cp>    }									\
+</span></span></span><span class=line><span class=cl><span class=cp>    (head)-&gt;sph_root = (elm);						\
+</span></span></span><span class=line><span class=cl><span class=cp>    return (NULL);							\
+</span></span></span><span class=line><span class=cl><span class=cp>}									\
+</span></span></span><span class=line><span class=cl><span class=cp>									\
+</span></span></span><span class=line><span class=cl><span class=cp>struct type *								\
+</span></span></span><span class=line><span class=cl><span class=cp>name##_SPLAY_REMOVE(struct name *head, struct type *elm)		\
+</span></span></span><span class=line><span class=cl><span class=cp>{									\
+</span></span></span><span class=line><span class=cl><span class=cp>	struct type *__tmp;						\
+</span></span></span><span class=line><span class=cl><span class=cp>	if (SPLAY_EMPTY(head))						\
+</span></span></span><span class=line><span class=cl><span class=cp>		return (NULL);						\
+</span></span></span><span class=line><span class=cl><span class=cp>	name##_SPLAY(head, elm);					\
+</span></span></span><span class=line><span class=cl><span class=cp>	if ((cmp)(elm, (head)-&gt;sph_root) == 0) {			\
+</span></span></span><span class=line><span class=cl><span class=cp>		if (SPLAY_LEFT((head)-&gt;sph_root, field) == NULL) {	\
+</span></span></span><span class=line><span class=cl><span class=cp>			(head)-&gt;sph_root = SPLAY_RIGHT((head)-&gt;sph_root, field);\
+</span></span></span><span class=line><span class=cl><span class=cp>		} else {						\
+</span></span></span><span class=line><span class=cl><span class=cp>			__tmp = SPLAY_RIGHT((head)-&gt;sph_root, field);	\
+</span></span></span><span class=line><span class=cl><span class=cp>			(head)-&gt;sph_root = SPLAY_LEFT((head)-&gt;sph_root, field);\
+</span></span></span><span class=line><span class=cl><span class=cp>			name##_SPLAY(head, elm);			\
+</span></span></span><span class=line><span class=cl><span class=cp>			SPLAY_RIGHT((head)-&gt;sph_root, field) = __tmp;	\
+</span></span></span><span class=line><span class=cl><span class=cp>		}							\
+</span></span></span><span class=line><span class=cl><span class=cp>		return (elm);						\
+</span></span></span><span class=line><span class=cl><span class=cp>	}								\
+</span></span></span><span class=line><span class=cl><span class=cp>	return (NULL);							\
+</span></span></span><span class=line><span class=cl><span class=cp>}									\
+</span></span></span><span class=line><span class=cl><span class=cp>									\
+</span></span></span><span class=line><span class=cl><span class=cp>void									\
+</span></span></span><span class=line><span class=cl><span class=cp>name##_SPLAY(struct name *head, struct type *elm)			\
+</span></span></span><span class=line><span class=cl><span class=cp>{									\
+</span></span></span><span class=line><span class=cl><span class=cp>	struct type __node, *__left, *__right, *__tmp;			\
+</span></span></span><span class=line><span class=cl><span class=cp>	int __comp;							\
+</span></span></span><span class=line><span class=cl><span class=cp>\
+</span></span></span><span class=line><span class=cl><span class=cp>	SPLAY_LEFT(&amp;__node, field) = SPLAY_RIGHT(&amp;__node, field) = NULL;\
+</span></span></span><span class=line><span class=cl><span class=cp>	__left = __right = &amp;__node;					\
+</span></span></span><span class=line><span class=cl><span class=cp>\
+</span></span></span><span class=line><span class=cl><span class=cp>	while ((__comp = (cmp)(elm, (head)-&gt;sph_root)) != 0) {		\
+</span></span></span><span class=line><span class=cl><span class=cp>		if (__comp &lt; 0) {					\
+</span></span></span><span class=line><span class=cl><span class=cp>			__tmp = SPLAY_LEFT((head)-&gt;sph_root, field);	\
+</span></span></span><span class=line><span class=cl><span class=cp>			if (__tmp == NULL)				\
+</span></span></span><span class=line><span class=cl><span class=cp>				break;					\
+</span></span></span><span class=line><span class=cl><span class=cp>			if ((cmp)(elm, __tmp) &lt; 0){			\
+</span></span></span><span class=line><span class=cl><span class=cp>				SPLAY_ROTATE_RIGHT(head, __tmp, field);	\
+</span></span></span><span class=line><span class=cl><span class=cp>				if (SPLAY_LEFT((head)-&gt;sph_root, field) == NULL)\
+</span></span></span><span class=line><span class=cl><span class=cp>					break;				\
+</span></span></span><span class=line><span class=cl><span class=cp>			}						\
+</span></span></span><span class=line><span class=cl><span class=cp>			SPLAY_LINKLEFT(head, __right, field);		\
+</span></span></span><span class=line><span class=cl><span class=cp>		} else if (__comp &gt; 0) {				\
+</span></span></span><span class=line><span class=cl><span class=cp>			__tmp = SPLAY_RIGHT((head)-&gt;sph_root, field);	\
+</span></span></span><span class=line><span class=cl><span class=cp>			if (__tmp == NULL)				\
+</span></span></span><span class=line><span class=cl><span class=cp>				break;					\
+</span></span></span><span class=line><span class=cl><span class=cp>			if ((cmp)(elm, __tmp) &gt; 0){			\
+</span></span></span><span class=line><span class=cl><span class=cp>				SPLAY_ROTATE_LEFT(head, __tmp, field);	\
+</span></span></span><span class=line><span class=cl><span class=cp>				if (SPLAY_RIGHT((head)-&gt;sph_root, field) == NULL)\
+</span></span></span><span class=line><span class=cl><span class=cp>					break;				\
+</span></span></span><span class=line><span class=cl><span class=cp>			}						\
+</span></span></span><span class=line><span class=cl><span class=cp>			SPLAY_LINKRIGHT(head, __left, field);		\
+</span></span></span><span class=line><span class=cl><span class=cp>		}							\
+</span></span></span><span class=line><span class=cl><span class=cp>	}								\
+</span></span></span><span class=line><span class=cl><span class=cp>	SPLAY_ASSEMBLE(head, &amp;__node, __left, __right, field);		\
+</span></span></span><span class=line><span class=cl><span class=cp>}									\
+</span></span></span><span class=line><span class=cl><span class=cp>									\
+</span></span></span><span class=line><span class=cl><span class=cp></span><span class=cm>/* Splay with either the minimum or the maximum element			\
+</span></span></span><span class=line><span class=cl><span class=cm> * Used to find minimum or maximum element in tree.			\
+</span></span></span><span class=line><span class=cl><span class=cm> */</span><span class=cp>									\
+</span></span></span><span class=line><span class=cl><span class=cp>void name##_SPLAY_MINMAX(struct name *head, int __comp) \
+</span></span></span><span class=line><span class=cl><span class=cp>{									\
+</span></span></span><span class=line><span class=cl><span class=cp>	struct type __node, *__left, *__right, *__tmp;			\
+</span></span></span><span class=line><span class=cl><span class=cp>\
+</span></span></span><span class=line><span class=cl><span class=cp>	SPLAY_LEFT(&amp;__node, field) = SPLAY_RIGHT(&amp;__node, field) = NULL;\
+</span></span></span><span class=line><span class=cl><span class=cp>	__left = __right = &amp;__node;					\
+</span></span></span><span class=line><span class=cl><span class=cp>\
+</span></span></span><span class=line><span class=cl><span class=cp>	while (1) {							\
+</span></span></span><span class=line><span class=cl><span class=cp>		if (__comp &lt; 0) {					\
+</span></span></span><span class=line><span class=cl><span class=cp>			__tmp = SPLAY_LEFT((head)-&gt;sph_root, field);	\
+</span></span></span><span class=line><span class=cl><span class=cp>			if (__tmp == NULL)				\
+</span></span></span><span class=line><span class=cl><span class=cp>				break;					\
+</span></span></span><span class=line><span class=cl><span class=cp>			if (__comp &lt; 0){				\
+</span></span></span><span class=line><span class=cl><span class=cp>				SPLAY_ROTATE_RIGHT(head, __tmp, field);	\
+</span></span></span><span class=line><span class=cl><span class=cp>				if (SPLAY_LEFT((head)-&gt;sph_root, field) == NULL)\
+</span></span></span><span class=line><span class=cl><span class=cp>					break;				\
+</span></span></span><span class=line><span class=cl><span class=cp>			}						\
+</span></span></span><span class=line><span class=cl><span class=cp>			SPLAY_LINKLEFT(head, __right, field);		\
+</span></span></span><span class=line><span class=cl><span class=cp>		} else if (__comp &gt; 0) {				\
+</span></span></span><span class=line><span class=cl><span class=cp>			__tmp = SPLAY_RIGHT((head)-&gt;sph_root, field);	\
+</span></span></span><span class=line><span class=cl><span class=cp>			if (__tmp == NULL)				\
+</span></span></span><span class=line><span class=cl><span class=cp>				break;					\
+</span></span></span><span class=line><span class=cl><span class=cp>			if (__comp &gt; 0) {				\
+</span></span></span><span class=line><span class=cl><span class=cp>				SPLAY_ROTATE_LEFT(head, __tmp, field);	\
+</span></span></span><span class=line><span class=cl><span class=cp>				if (SPLAY_RIGHT((head)-&gt;sph_root, field) == NULL)\
+</span></span></span><span class=line><span class=cl><span class=cp>					break;				\
+</span></span></span><span class=line><span class=cl><span class=cp>			}						\
+</span></span></span><span class=line><span class=cl><span class=cp>			SPLAY_LINKRIGHT(head, __left, field);		\
+</span></span></span><span class=line><span class=cl><span class=cp>		}							\
+</span></span></span><span class=line><span class=cl><span class=cp>	}								\
+</span></span></span><span class=line><span class=cl><span class=cp>	SPLAY_ASSEMBLE(head, &amp;__node, __left, __right, field);		\
+</span></span></span><span class=line><span class=cl><span class=cp>}
+</span></span></span><span class=line><span class=cl><span class=cp></span>
+</span></span><span class=line><span class=cl><span class=cp>#define SPLAY_NEGINF	-1
+</span></span></span><span class=line><span class=cl><span class=cp>#define SPLAY_INF	1
+</span></span></span><span class=line><span class=cl><span class=cp></span>
+</span></span><span class=line><span class=cl><span class=cp>#define SPLAY_INSERT(name, x, y)	name##_SPLAY_INSERT(x, y)
+</span></span></span><span class=line><span class=cl><span class=cp>#define SPLAY_REMOVE(name, x, y)	name##_SPLAY_REMOVE(x, y)
+</span></span></span><span class=line><span class=cl><span class=cp>#define SPLAY_FIND(name, x, y)		name##_SPLAY_FIND(x, y)
+</span></span></span><span class=line><span class=cl><span class=cp>#define SPLAY_NEXT(name, x, y)		name##_SPLAY_NEXT(x, y)
+</span></span></span><span class=line><span class=cl><span class=cp>#define SPLAY_MIN(name, x)		(SPLAY_EMPTY(x) ? NULL	\
+</span></span></span><span class=line><span class=cl><span class=cp>					: name##_SPLAY_MIN_MAX(x, SPLAY_NEGINF))
+</span></span></span><span class=line><span class=cl><span class=cp>#define SPLAY_MAX(name, x)		(SPLAY_EMPTY(x) ? NULL	\
+</span></span></span><span class=line><span class=cl><span class=cp>					: name##_SPLAY_MIN_MAX(x, SPLAY_INF))
+</span></span></span><span class=line><span class=cl><span class=cp></span>
+</span></span><span class=line><span class=cl><span class=cp>#define SPLAY_FOREACH(x, name, head)					\
+</span></span></span><span class=line><span class=cl><span class=cp>	for ((x) = SPLAY_MIN(name, head);				\
+</span></span></span><span class=line><span class=cl><span class=cp>	     (x) != NULL;						\
+</span></span></span><span class=line><span class=cl><span class=cp>	     (x) = SPLAY_NEXT(name, head, x))
+</span></span></span><span class=line><span class=cl><span class=cp></span>
+</span></span><span class=line><span class=cl><span class=cm>/* Macros that define a rank-balanced tree */</span>
+</span></span><span class=line><span class=cl><span class=cp>#define RB_HEAD(name, type)						\
+</span></span></span><span class=line><span class=cl><span class=cp>struct name {								\
+</span></span></span><span class=line><span class=cl><span class=cp>	struct type *rbh_root; </span><span class=cm>/* root of the tree */</span><span class=cp>			\
+</span></span></span><span class=line><span class=cl><span class=cp>}
+</span></span></span><span class=line><span class=cl><span class=cp></span>
+</span></span><span class=line><span class=cl><span class=cp>#define RB_INITIALIZER(root)						\
+</span></span></span><span class=line><span class=cl><span class=cp>	{ NULL }
+</span></span></span><span class=line><span class=cl><span class=cp></span>
+</span></span><span class=line><span class=cl><span class=cp>#define RB_INIT(root) do {						\
+</span></span></span><span class=line><span class=cl><span class=cp>	(root)-&gt;rbh_root = NULL;					\
+</span></span></span><span class=line><span class=cl><span class=cp>} while (</span><span class=cm>/*CONSTCOND*/</span><span class=cp> 0)
+</span></span></span><span class=line><span class=cl><span class=cp></span>
+</span></span><span class=line><span class=cl><span class=cp>#define RB_ENTRY(type)							\
+</span></span></span><span class=line><span class=cl><span class=cp>struct {								\
+</span></span></span><span class=line><span class=cl><span class=cp>	struct type *rbe_left;		</span><span class=cm>/* left element */</span><span class=cp>		\
+</span></span></span><span class=line><span class=cl><span class=cp>	struct type *rbe_right;		</span><span class=cm>/* right element */</span><span class=cp>		\
+</span></span></span><span class=line><span class=cl><span class=cp>	struct type *rbe_parent;	</span><span class=cm>/* parent element */</span><span class=cp>		\
+</span></span></span><span class=line><span class=cl><span class=cp>}
+</span></span></span><span class=line><span class=cl><span class=cp></span>
+</span></span><span class=line><span class=cl><span class=cp>#define RB_LEFT(elm, field)		(elm)-&gt;field.rbe_left
+</span></span></span><span class=line><span class=cl><span class=cp>#define RB_RIGHT(elm, field)		(elm)-&gt;field.rbe_right
+</span></span></span><span class=line><span class=cl><span class=cp></span>
+</span></span><span class=line><span class=cl><span class=cm>/*
+</span></span></span><span class=line><span class=cl><span class=cm> * With the expectation that any object of struct type has an
+</span></span></span><span class=line><span class=cl><span class=cm> * address that is a multiple of 4, and that therefore the
+</span></span></span><span class=line><span class=cl><span class=cm> * 2 least significant bits of a pointer to struct type are
+</span></span></span><span class=line><span class=cl><span class=cm> * always zero, this implementation sets those bits to indicate
+</span></span></span><span class=line><span class=cl><span class=cm> * that the left or right child of the tree node is &#34;red&#34;.
+</span></span></span><span class=line><span class=cl><span class=cm> */</span>
+</span></span><span class=line><span class=cl><span class=cp>#define RB_UP(elm, field)		(elm)-&gt;field.rbe_parent
+</span></span></span><span class=line><span class=cl><span class=cp>#define RB_BITS(elm, field)		(*(__uintptr_t *)&amp;RB_UP(elm, field))
+</span></span></span><span class=line><span class=cl><span class=cp>#define RB_RED_L			((__uintptr_t)1)
+</span></span></span><span class=line><span class=cl><span class=cp>#define RB_RED_R			((__uintptr_t)2)
+</span></span></span><span class=line><span class=cl><span class=cp>#define RB_RED_MASK			((__uintptr_t)3)
+</span></span></span><span class=line><span class=cl><span class=cp>#define RB_FLIP_LEFT(elm, field)	(RB_BITS(elm, field) ^= RB_RED_L)
+</span></span></span><span class=line><span class=cl><span class=cp>#define RB_FLIP_RIGHT(elm, field)	(RB_BITS(elm, field) ^= RB_RED_R)
+</span></span></span><span class=line><span class=cl><span class=cp>#define RB_RED_LEFT(elm, field)		((RB_BITS(elm, field) &amp; RB_RED_L) != 0)
+</span></span></span><span class=line><span class=cl><span class=cp>#define RB_RED_RIGHT(elm, field)	((RB_BITS(elm, field) &amp; RB_RED_R) != 0)
+</span></span></span><span class=line><span class=cl><span class=cp>#define RB_PARENT(elm, field)		((__typeof(RB_UP(elm, field)))	\
+</span></span></span><span class=line><span class=cl><span class=cp>					 (RB_BITS(elm, field) &amp; ~RB_RED_MASK))
+</span></span></span><span class=line><span class=cl><span class=cp>#define RB_ROOT(head)			(head)-&gt;rbh_root
+</span></span></span><span class=line><span class=cl><span class=cp>#define RB_EMPTY(head)			(RB_ROOT(head) == NULL)
+</span></span></span><span class=line><span class=cl><span class=cp></span>
+</span></span><span class=line><span class=cl><span class=cp>#define RB_SET_PARENT(dst, src, field) do {				\
+</span></span></span><span class=line><span class=cl><span class=cp>	RB_BITS(dst, field) &amp;= RB_RED_MASK;				\
+</span></span></span><span class=line><span class=cl><span class=cp>	RB_BITS(dst, field) |= (__uintptr_t)src;			\
+</span></span></span><span class=line><span class=cl><span class=cp>} while (</span><span class=cm>/*CONSTCOND*/</span><span class=cp> 0)
+</span></span></span><span class=line><span class=cl><span class=cp></span>
+</span></span><span class=line><span class=cl><span class=cp>#define RB_SET(elm, parent, field) do {					\
+</span></span></span><span class=line><span class=cl><span class=cp>	RB_UP(elm, field) = parent;					\
+</span></span></span><span class=line><span class=cl><span class=cp>	RB_LEFT(elm, field) = RB_RIGHT(elm, field) = NULL;		\
+</span></span></span><span class=line><span class=cl><span class=cp>} while (</span><span class=cm>/*CONSTCOND*/</span><span class=cp> 0)
+</span></span></span><span class=line><span class=cl><span class=cp></span>
+</span></span><span class=line><span class=cl><span class=cp>#define RB_COLOR(elm, field)	(RB_PARENT(elm, field) == NULL ? 0 :	\
+</span></span></span><span class=line><span class=cl><span class=cp>				RB_LEFT(RB_PARENT(elm, field), field) == elm ? \
+</span></span></span><span class=line><span class=cl><span class=cp>				RB_RED_LEFT(RB_PARENT(elm, field), field) : \
+</span></span></span><span class=line><span class=cl><span class=cp>				RB_RED_RIGHT(RB_PARENT(elm, field), field))
+</span></span></span><span class=line><span class=cl><span class=cp></span>
+</span></span><span class=line><span class=cl><span class=cm>/*
+</span></span></span><span class=line><span class=cl><span class=cm> * Something to be invoked in a loop at the root of every modified subtree,
+</span></span></span><span class=line><span class=cl><span class=cm> * from the bottom up to the root, to update augmented node data.
+</span></span></span><span class=line><span class=cl><span class=cm> */</span>
+</span></span><span class=line><span class=cl><span class=cp>#ifndef RB_AUGMENT
+</span></span></span><span class=line><span class=cl><span class=cp>#define RB_AUGMENT(x)	break
+</span></span></span><span class=line><span class=cl><span class=cp>#endif
+</span></span></span><span class=line><span class=cl><span class=cp></span>
+</span></span><span class=line><span class=cl><span class=cp>#define RB_SWAP_CHILD(head, out, in, field) do {			\
+</span></span></span><span class=line><span class=cl><span class=cp>	if (RB_PARENT(out, field) == NULL)				\
+</span></span></span><span class=line><span class=cl><span class=cp>		RB_ROOT(head) = (in);					\
+</span></span></span><span class=line><span class=cl><span class=cp>	else if ((out) == RB_LEFT(RB_PARENT(out, field), field))	\
+</span></span></span><span class=line><span class=cl><span class=cp>		RB_LEFT(RB_PARENT(out, field), field) = (in);		\
+</span></span></span><span class=line><span class=cl><span class=cp>	else								\
+</span></span></span><span class=line><span class=cl><span class=cp>		RB_RIGHT(RB_PARENT(out, field), field) = (in);		\
+</span></span></span><span class=line><span class=cl><span class=cp>} while (</span><span class=cm>/*CONSTCOND*/</span><span class=cp> 0)
+</span></span></span><span class=line><span class=cl><span class=cp></span>
+</span></span><span class=line><span class=cl><span class=cp>#define RB_ROTATE_LEFT(head, elm, tmp, field) do {			\
+</span></span></span><span class=line><span class=cl><span class=cp>	(tmp) = RB_RIGHT(elm, field);					\
+</span></span></span><span class=line><span class=cl><span class=cp>	if ((RB_RIGHT(elm, field) = RB_LEFT(tmp, field)) != NULL) {	\
+</span></span></span><span class=line><span class=cl><span class=cp>		RB_SET_PARENT(RB_RIGHT(elm, field), elm, field);	\
+</span></span></span><span class=line><span class=cl><span class=cp>	}								\
+</span></span></span><span class=line><span class=cl><span class=cp>	RB_SET_PARENT(tmp, RB_PARENT(elm, field), field);		\
+</span></span></span><span class=line><span class=cl><span class=cp>	RB_SWAP_CHILD(head, elm, tmp, field);				\
+</span></span></span><span class=line><span class=cl><span class=cp>	RB_LEFT(tmp, field) = (elm);					\
+</span></span></span><span class=line><span class=cl><span class=cp>	RB_SET_PARENT(elm, tmp, field);					\
+</span></span></span><span class=line><span class=cl><span class=cp>	RB_AUGMENT(elm);						\
+</span></span></span><span class=line><span class=cl><span class=cp>} while (</span><span class=cm>/*CONSTCOND*/</span><span class=cp> 0)
+</span></span></span><span class=line><span class=cl><span class=cp></span>
+</span></span><span class=line><span class=cl><span class=cp>#define RB_ROTATE_RIGHT(head, elm, tmp, field) do {			\
+</span></span></span><span class=line><span class=cl><span class=cp>	(tmp) = RB_LEFT(elm, field);					\
+</span></span></span><span class=line><span class=cl><span class=cp>	if ((RB_LEFT(elm, field) = RB_RIGHT(tmp, field)) != NULL) {	\
+</span></span></span><span class=line><span class=cl><span class=cp>		RB_SET_PARENT(RB_LEFT(elm, field), elm, field);		\
+</span></span></span><span class=line><span class=cl><span class=cp>	}								\
+</span></span></span><span class=line><span class=cl><span class=cp>	RB_SET_PARENT(tmp, RB_PARENT(elm, field), field);		\
+</span></span></span><span class=line><span class=cl><span class=cp>	RB_SWAP_CHILD(head, elm, tmp, field);				\
+</span></span></span><span class=line><span class=cl><span class=cp>	RB_RIGHT(tmp, field) = (elm);					\
+</span></span></span><span class=line><span class=cl><span class=cp>	RB_SET_PARENT(elm, tmp, field);					\
+</span></span></span><span class=line><span class=cl><span class=cp>	RB_AUGMENT(elm);						\
+</span></span></span><span class=line><span class=cl><span class=cp>} while (</span><span class=cm>/*CONSTCOND*/</span><span class=cp> 0)
+</span></span></span><span class=line><span class=cl><span class=cp></span>
+</span></span><span class=line><span class=cl><span class=cm>/* Generates prototypes and inline functions */</span>
+</span></span><span class=line><span class=cl><span class=cp>#define	RB_PROTOTYPE(name, type, field, cmp)				\
+</span></span></span><span class=line><span class=cl><span class=cp>	RB_PROTOTYPE_INTERNAL(name, type, field, cmp,)
+</span></span></span><span class=line><span class=cl><span class=cp>#define	RB_PROTOTYPE_STATIC(name, type, field, cmp)			\
+</span></span></span><span class=line><span class=cl><span class=cp>	RB_PROTOTYPE_INTERNAL(name, type, field, cmp, __unused static)
+</span></span></span><span class=line><span class=cl><span class=cp>#define RB_PROTOTYPE_INTERNAL(name, type, field, cmp, attr)		\
+</span></span></span><span class=line><span class=cl><span class=cp>	RB_PROTOTYPE_INSERT_COLOR(name, type, attr);			\
+</span></span></span><span class=line><span class=cl><span class=cp>	RB_PROTOTYPE_REMOVE_COLOR(name, type, attr);			\
+</span></span></span><span class=line><span class=cl><span class=cp>	RB_PROTOTYPE_INSERT(name, type, attr);				\
+</span></span></span><span class=line><span class=cl><span class=cp>	RB_PROTOTYPE_REMOVE(name, type, attr);				\
+</span></span></span><span class=line><span class=cl><span class=cp>	RB_PROTOTYPE_FIND(name, type, attr);				\
+</span></span></span><span class=line><span class=cl><span class=cp>	RB_PROTOTYPE_NFIND(name, type, attr);				\
+</span></span></span><span class=line><span class=cl><span class=cp>	RB_PROTOTYPE_NEXT(name, type, attr);				\
+</span></span></span><span class=line><span class=cl><span class=cp>	RB_PROTOTYPE_PREV(name, type, attr);				\
+</span></span></span><span class=line><span class=cl><span class=cp>	RB_PROTOTYPE_MINMAX(name, type, attr);				\
+</span></span></span><span class=line><span class=cl><span class=cp>	RB_PROTOTYPE_REINSERT(name, type, attr);
+</span></span></span><span class=line><span class=cl><span class=cp>#define RB_PROTOTYPE_INSERT_COLOR(name, type, attr)			\
+</span></span></span><span class=line><span class=cl><span class=cp>	attr void name##_RB_INSERT_COLOR(struct name *, struct type *)
+</span></span></span><span class=line><span class=cl><span class=cp>#define RB_PROTOTYPE_REMOVE_COLOR(name, type, attr)			\
+</span></span></span><span class=line><span class=cl><span class=cp>	attr void name##_RB_REMOVE_COLOR(struct name *,			\
+</span></span></span><span class=line><span class=cl><span class=cp>	    struct type *, struct type *)
+</span></span></span><span class=line><span class=cl><span class=cp>#define RB_PROTOTYPE_REMOVE(name, type, attr)				\
+</span></span></span><span class=line><span class=cl><span class=cp>	attr struct type *name##_RB_REMOVE(struct name *, struct type *)
+</span></span></span><span class=line><span class=cl><span class=cp>#define RB_PROTOTYPE_INSERT(name, type, attr)				\
+</span></span></span><span class=line><span class=cl><span class=cp>	attr struct type *name##_RB_INSERT(struct name *, struct type *)
+</span></span></span><span class=line><span class=cl><span class=cp>#define RB_PROTOTYPE_FIND(name, type, attr)				\
+</span></span></span><span class=line><span class=cl><span class=cp>	attr struct type *name##_RB_FIND(struct name *, struct type *)
+</span></span></span><span class=line><span class=cl><span class=cp>#define RB_PROTOTYPE_NFIND(name, type, attr)				\
+</span></span></span><span class=line><span class=cl><span class=cp>	attr struct type *name##_RB_NFIND(struct name *, struct type *)
+</span></span></span><span class=line><span class=cl><span class=cp>#define RB_PROTOTYPE_NEXT(name, type, attr)				\
+</span></span></span><span class=line><span class=cl><span class=cp>	attr struct type *name##_RB_NEXT(struct type *)
+</span></span></span><span class=line><span class=cl><span class=cp>#define RB_PROTOTYPE_PREV(name, type, attr)				\
+</span></span></span><span class=line><span class=cl><span class=cp>	attr struct type *name##_RB_PREV(struct type *)
+</span></span></span><span class=line><span class=cl><span class=cp>#define RB_PROTOTYPE_MINMAX(name, type, attr)				\
+</span></span></span><span class=line><span class=cl><span class=cp>	attr struct type *name##_RB_MINMAX(struct name *, int)
+</span></span></span><span class=line><span class=cl><span class=cp>#define RB_PROTOTYPE_REINSERT(name, type, attr)			\
+</span></span></span><span class=line><span class=cl><span class=cp>	attr struct type *name##_RB_REINSERT(struct name *, struct type *)
+</span></span></span><span class=line><span class=cl><span class=cp></span>
+</span></span><span class=line><span class=cl><span class=cm>/* Main rb operation.
+</span></span></span><span class=line><span class=cl><span class=cm> * Moves node close to the key of elm to top
+</span></span></span><span class=line><span class=cl><span class=cm> */</span>
+</span></span><span class=line><span class=cl><span class=cp>#define	RB_GENERATE(name, type, field, cmp)				\
+</span></span></span><span class=line><span class=cl><span class=cp>	RB_GENERATE_INTERNAL(name, type, field, cmp,)
+</span></span></span><span class=line><span class=cl><span class=cp>#define	RB_GENERATE_STATIC(name, type, field, cmp)			\
+</span></span></span><span class=line><span class=cl><span class=cp>	RB_GENERATE_INTERNAL(name, type, field, cmp, __unused static)
+</span></span></span><span class=line><span class=cl><span class=cp>#define RB_GENERATE_INTERNAL(name, type, field, cmp, attr)		\
+</span></span></span><span class=line><span class=cl><span class=cp>	RB_GENERATE_INSERT_COLOR(name, type, field, attr)		\
+</span></span></span><span class=line><span class=cl><span class=cp>	RB_GENERATE_REMOVE_COLOR(name, type, field, attr)		\
+</span></span></span><span class=line><span class=cl><span class=cp>	RB_GENERATE_INSERT(name, type, field, cmp, attr)		\
+</span></span></span><span class=line><span class=cl><span class=cp>	RB_GENERATE_REMOVE(name, type, field, attr)			\
+</span></span></span><span class=line><span class=cl><span class=cp>	RB_GENERATE_FIND(name, type, field, cmp, attr)			\
+</span></span></span><span class=line><span class=cl><span class=cp>	RB_GENERATE_NFIND(name, type, field, cmp, attr)			\
+</span></span></span><span class=line><span class=cl><span class=cp>	RB_GENERATE_NEXT(name, type, field, attr)			\
+</span></span></span><span class=line><span class=cl><span class=cp>	RB_GENERATE_PREV(name, type, field, attr)			\
+</span></span></span><span class=line><span class=cl><span class=cp>	RB_GENERATE_MINMAX(name, type, field, attr)			\
+</span></span></span><span class=line><span class=cl><span class=cp>	RB_GENERATE_REINSERT(name, type, field, cmp, attr)
+</span></span></span><span class=line><span class=cl><span class=cp></span>
+</span></span><span class=line><span class=cl><span class=cp>#define RB_GENERATE_INSERT_COLOR(name, type, field, attr)		\
+</span></span></span><span class=line><span class=cl><span class=cp>attr void								\
+</span></span></span><span class=line><span class=cl><span class=cp>name##_RB_INSERT_COLOR(struct name *head, struct type *elm)		\
+</span></span></span><span class=line><span class=cl><span class=cp>{									\
+</span></span></span><span class=line><span class=cl><span class=cp>	struct type *child, *parent;					\
+</span></span></span><span class=line><span class=cl><span class=cp>	while ((parent = RB_PARENT(elm, field)) != NULL) {		\
+</span></span></span><span class=line><span class=cl><span class=cp>		if (RB_LEFT(parent, field) == elm) {			\
+</span></span></span><span class=line><span class=cl><span class=cp>			if (RB_RED_LEFT(parent, field)) {		\
+</span></span></span><span class=line><span class=cl><span class=cp>				RB_FLIP_LEFT(parent, field);		\
+</span></span></span><span class=line><span class=cl><span class=cp>				return;					\
+</span></span></span><span class=line><span class=cl><span class=cp>			}						\
+</span></span></span><span class=line><span class=cl><span class=cp>			RB_FLIP_RIGHT(parent, field);			\
+</span></span></span><span class=line><span class=cl><span class=cp>			if (RB_RED_RIGHT(parent, field)) {		\
+</span></span></span><span class=line><span class=cl><span class=cp>				elm = parent;				\
+</span></span></span><span class=line><span class=cl><span class=cp>				continue;				\
+</span></span></span><span class=line><span class=cl><span class=cp>			}						\
+</span></span></span><span class=line><span class=cl><span class=cp>			if (!RB_RED_RIGHT(elm, field)) {		\
+</span></span></span><span class=line><span class=cl><span class=cp>				RB_FLIP_LEFT(elm, field);		\
+</span></span></span><span class=line><span class=cl><span class=cp>				RB_ROTATE_LEFT(head, elm, child, field);\
+</span></span></span><span class=line><span class=cl><span class=cp>				if (RB_RED_LEFT(child, field))		\
+</span></span></span><span class=line><span class=cl><span class=cp>					RB_FLIP_RIGHT(elm, field);	\
+</span></span></span><span class=line><span class=cl><span class=cp>				else if (RB_RED_RIGHT(child, field))	\
+</span></span></span><span class=line><span class=cl><span class=cp>					RB_FLIP_LEFT(parent, field);	\
+</span></span></span><span class=line><span class=cl><span class=cp>				elm = child;				\
+</span></span></span><span class=line><span class=cl><span class=cp>			}						\
+</span></span></span><span class=line><span class=cl><span class=cp>			RB_ROTATE_RIGHT(head, parent, elm, field);	\
+</span></span></span><span class=line><span class=cl><span class=cp>		} else {						\
+</span></span></span><span class=line><span class=cl><span class=cp>			if (RB_RED_RIGHT(parent, field)) {		\
+</span></span></span><span class=line><span class=cl><span class=cp>				RB_FLIP_RIGHT(parent, field);		\
+</span></span></span><span class=line><span class=cl><span class=cp>				return;					\
+</span></span></span><span class=line><span class=cl><span class=cp>			}						\
+</span></span></span><span class=line><span class=cl><span class=cp>			RB_FLIP_LEFT(parent, field);			\
+</span></span></span><span class=line><span class=cl><span class=cp>			if (RB_RED_LEFT(parent, field)) {		\
+</span></span></span><span class=line><span class=cl><span class=cp>				elm = parent;				\
+</span></span></span><span class=line><span class=cl><span class=cp>				continue;				\
+</span></span></span><span class=line><span class=cl><span class=cp>			}						\
+</span></span></span><span class=line><span class=cl><span class=cp>			if (!RB_RED_LEFT(elm, field)) {			\
+</span></span></span><span class=line><span class=cl><span class=cp>				RB_FLIP_RIGHT(elm, field);		\
+</span></span></span><span class=line><span class=cl><span class=cp>				RB_ROTATE_RIGHT(head, elm, child, field);\
+</span></span></span><span class=line><span class=cl><span class=cp>				if (RB_RED_RIGHT(child, field))		\
+</span></span></span><span class=line><span class=cl><span class=cp>					RB_FLIP_LEFT(elm, field);	\
+</span></span></span><span class=line><span class=cl><span class=cp>				else if (RB_RED_LEFT(child, field))	\
+</span></span></span><span class=line><span class=cl><span class=cp>					RB_FLIP_RIGHT(parent, field);	\
+</span></span></span><span class=line><span class=cl><span class=cp>				elm = child;				\
+</span></span></span><span class=line><span class=cl><span class=cp>			}						\
+</span></span></span><span class=line><span class=cl><span class=cp>			RB_ROTATE_LEFT(head, parent, elm, field);	\
+</span></span></span><span class=line><span class=cl><span class=cp>		}							\
+</span></span></span><span class=line><span class=cl><span class=cp>		RB_BITS(elm, field) &amp;= ~RB_RED_MASK;			\
+</span></span></span><span class=line><span class=cl><span class=cp>		break;							\
+</span></span></span><span class=line><span class=cl><span class=cp>	}								\
+</span></span></span><span class=line><span class=cl><span class=cp>}
+</span></span></span><span class=line><span class=cl><span class=cp></span>
+</span></span><span class=line><span class=cl><span class=cp>#define RB_GENERATE_REMOVE_COLOR(name, type, field, attr)		\
+</span></span></span><span class=line><span class=cl><span class=cp>attr void								\
+</span></span></span><span class=line><span class=cl><span class=cp>name##_RB_REMOVE_COLOR(struct name *head,				\
+</span></span></span><span class=line><span class=cl><span class=cp>    struct type *parent, struct type *elm)				\
+</span></span></span><span class=line><span class=cl><span class=cp>{									\
+</span></span></span><span class=line><span class=cl><span class=cp>	struct type *sib;						\
+</span></span></span><span class=line><span class=cl><span class=cp>	if (RB_LEFT(parent, field) == elm &amp;&amp;				\
+</span></span></span><span class=line><span class=cl><span class=cp>	    RB_RIGHT(parent, field) == elm) {				\
+</span></span></span><span class=line><span class=cl><span class=cp>		RB_BITS(parent, field) &amp;= ~RB_RED_MASK;			\
+</span></span></span><span class=line><span class=cl><span class=cp>		elm = parent;						\
+</span></span></span><span class=line><span class=cl><span class=cp>		parent = RB_PARENT(elm, field);				\
+</span></span></span><span class=line><span class=cl><span class=cp>		if (parent == NULL)					\
+</span></span></span><span class=line><span class=cl><span class=cp>			return;						\
+</span></span></span><span class=line><span class=cl><span class=cp>	}								\
+</span></span></span><span class=line><span class=cl><span class=cp>	do  {								\
+</span></span></span><span class=line><span class=cl><span class=cp>		if (RB_LEFT(parent, field) == elm) {			\
+</span></span></span><span class=line><span class=cl><span class=cp>			if (!RB_RED_LEFT(parent, field)) {		\
+</span></span></span><span class=line><span class=cl><span class=cp>				RB_FLIP_LEFT(parent, field);		\
+</span></span></span><span class=line><span class=cl><span class=cp>				return;					\
+</span></span></span><span class=line><span class=cl><span class=cp>			}						\
+</span></span></span><span class=line><span class=cl><span class=cp>			if (RB_RED_RIGHT(parent, field)) {		\
+</span></span></span><span class=line><span class=cl><span class=cp>				RB_FLIP_RIGHT(parent, field);		\
+</span></span></span><span class=line><span class=cl><span class=cp>				elm = parent;				\
+</span></span></span><span class=line><span class=cl><span class=cp>				continue;				\
+</span></span></span><span class=line><span class=cl><span class=cp>			}						\
+</span></span></span><span class=line><span class=cl><span class=cp>			sib = RB_RIGHT(parent, field);			\
+</span></span></span><span class=line><span class=cl><span class=cp>			if ((~RB_BITS(sib, field) &amp; RB_RED_MASK) == 0) {\
+</span></span></span><span class=line><span class=cl><span class=cp>				RB_BITS(sib, field) &amp;= ~RB_RED_MASK;	\
+</span></span></span><span class=line><span class=cl><span class=cp>				elm = parent;				\
+</span></span></span><span class=line><span class=cl><span class=cp>				continue;				\
+</span></span></span><span class=line><span class=cl><span class=cp>			}						\
+</span></span></span><span class=line><span class=cl><span class=cp>			RB_FLIP_RIGHT(sib, field);			\
+</span></span></span><span class=line><span class=cl><span class=cp>			if (RB_RED_LEFT(sib, field))			\
+</span></span></span><span class=line><span class=cl><span class=cp>				RB_FLIP_LEFT(parent, field);		\
+</span></span></span><span class=line><span class=cl><span class=cp>			else if (!RB_RED_RIGHT(sib, field)) {		\
+</span></span></span><span class=line><span class=cl><span class=cp>				RB_FLIP_LEFT(parent, field);		\
+</span></span></span><span class=line><span class=cl><span class=cp>				RB_ROTATE_RIGHT(head, sib, elm, field);	\
+</span></span></span><span class=line><span class=cl><span class=cp>				if (RB_RED_RIGHT(elm, field))		\
+</span></span></span><span class=line><span class=cl><span class=cp>					RB_FLIP_LEFT(sib, field);	\
+</span></span></span><span class=line><span class=cl><span class=cp>				if (RB_RED_LEFT(elm, field))		\
+</span></span></span><span class=line><span class=cl><span class=cp>					RB_FLIP_RIGHT(parent, field);	\
+</span></span></span><span class=line><span class=cl><span class=cp>				RB_BITS(elm, field) |= RB_RED_MASK;	\
+</span></span></span><span class=line><span class=cl><span class=cp>				sib = elm;				\
+</span></span></span><span class=line><span class=cl><span class=cp>			}						\
+</span></span></span><span class=line><span class=cl><span class=cp>			RB_ROTATE_LEFT(head, parent, sib, field);	\
+</span></span></span><span class=line><span class=cl><span class=cp>		} else {						\
+</span></span></span><span class=line><span class=cl><span class=cp>			if (!RB_RED_RIGHT(parent, field)) {		\
+</span></span></span><span class=line><span class=cl><span class=cp>				RB_FLIP_RIGHT(parent, field);		\
+</span></span></span><span class=line><span class=cl><span class=cp>				return;					\
+</span></span></span><span class=line><span class=cl><span class=cp>			}						\
+</span></span></span><span class=line><span class=cl><span class=cp>			if (RB_RED_LEFT(parent, field)) {		\
+</span></span></span><span class=line><span class=cl><span class=cp>				RB_FLIP_LEFT(parent, field);		\
+</span></span></span><span class=line><span class=cl><span class=cp>				elm = parent;				\
+</span></span></span><span class=line><span class=cl><span class=cp>				continue;				\
+</span></span></span><span class=line><span class=cl><span class=cp>			}						\
+</span></span></span><span class=line><span class=cl><span class=cp>			sib = RB_LEFT(parent, field);			\
+</span></span></span><span class=line><span class=cl><span class=cp>			if ((~RB_BITS(sib, field) &amp; RB_RED_MASK) == 0) {\
+</span></span></span><span class=line><span class=cl><span class=cp>				RB_BITS(sib, field) &amp;= ~RB_RED_MASK;	\
+</span></span></span><span class=line><span class=cl><span class=cp>				elm = parent;				\
+</span></span></span><span class=line><span class=cl><span class=cp>				continue;				\
+</span></span></span><span class=line><span class=cl><span class=cp>			}						\
+</span></span></span><span class=line><span class=cl><span class=cp>			RB_FLIP_LEFT(sib, field);			\
+</span></span></span><span class=line><span class=cl><span class=cp>			if (RB_RED_RIGHT(sib, field))			\
+</span></span></span><span class=line><span class=cl><span class=cp>				RB_FLIP_RIGHT(parent, field);		\
+</span></span></span><span class=line><span class=cl><span class=cp>			else if (!RB_RED_LEFT(sib, field)) {		\
+</span></span></span><span class=line><span class=cl><span class=cp>				RB_FLIP_RIGHT(parent, field);		\
+</span></span></span><span class=line><span class=cl><span class=cp>				RB_ROTATE_LEFT(head, sib, elm, field);	\
+</span></span></span><span class=line><span class=cl><span class=cp>				if (RB_RED_LEFT(elm, field))		\
+</span></span></span><span class=line><span class=cl><span class=cp>					RB_FLIP_RIGHT(sib, field);	\
+</span></span></span><span class=line><span class=cl><span class=cp>				if (RB_RED_RIGHT(elm, field))		\
+</span></span></span><span class=line><span class=cl><span class=cp>					RB_FLIP_LEFT(parent, field);	\
+</span></span></span><span class=line><span class=cl><span class=cp>				RB_BITS(elm, field) |= RB_RED_MASK;	\
+</span></span></span><span class=line><span class=cl><span class=cp>				sib = elm;				\
+</span></span></span><span class=line><span class=cl><span class=cp>			}						\
+</span></span></span><span class=line><span class=cl><span class=cp>			RB_ROTATE_RIGHT(head, parent, sib, field);	\
+</span></span></span><span class=line><span class=cl><span class=cp>		}							\
+</span></span></span><span class=line><span class=cl><span class=cp>		break;							\
+</span></span></span><span class=line><span class=cl><span class=cp>	} while ((parent = RB_PARENT(elm, field)) != NULL);		\
+</span></span></span><span class=line><span class=cl><span class=cp>}
+</span></span></span><span class=line><span class=cl><span class=cp></span>
+</span></span><span class=line><span class=cl><span class=cp>#define RB_GENERATE_REMOVE(name, type, field, attr)			\
+</span></span></span><span class=line><span class=cl><span class=cp>attr struct type *							\
+</span></span></span><span class=line><span class=cl><span class=cp>name##_RB_REMOVE(struct name *head, struct type *elm)			\
+</span></span></span><span class=line><span class=cl><span class=cp>{									\
+</span></span></span><span class=line><span class=cl><span class=cp>	struct type *child, *old, *parent, *right;			\
+</span></span></span><span class=line><span class=cl><span class=cp>									\
+</span></span></span><span class=line><span class=cl><span class=cp>	old = elm;							\
+</span></span></span><span class=line><span class=cl><span class=cp>	parent = RB_PARENT(elm, field);					\
+</span></span></span><span class=line><span class=cl><span class=cp>	right = RB_RIGHT(elm, field);					\
+</span></span></span><span class=line><span class=cl><span class=cp>	if (RB_LEFT(elm, field) == NULL)				\
+</span></span></span><span class=line><span class=cl><span class=cp>		elm = child = right;					\
+</span></span></span><span class=line><span class=cl><span class=cp>	else if (right == NULL)						\
+</span></span></span><span class=line><span class=cl><span class=cp>		elm = child = RB_LEFT(elm, field);			\
+</span></span></span><span class=line><span class=cl><span class=cp>	else {								\
+</span></span></span><span class=line><span class=cl><span class=cp>		if ((child = RB_LEFT(right, field)) == NULL) {		\
+</span></span></span><span class=line><span class=cl><span class=cp>			child = RB_RIGHT(right, field);			\
+</span></span></span><span class=line><span class=cl><span class=cp>			RB_RIGHT(old, field) = child;			\
+</span></span></span><span class=line><span class=cl><span class=cp>			parent = elm = right;				\
+</span></span></span><span class=line><span class=cl><span class=cp>		} else {						\
+</span></span></span><span class=line><span class=cl><span class=cp>			do						\
+</span></span></span><span class=line><span class=cl><span class=cp>				elm = child;				\
+</span></span></span><span class=line><span class=cl><span class=cp>			while ((child = RB_LEFT(elm, field)) != NULL);	\
+</span></span></span><span class=line><span class=cl><span class=cp>			child = RB_RIGHT(elm, field);			\
+</span></span></span><span class=line><span class=cl><span class=cp>			parent = RB_PARENT(elm, field);			\
+</span></span></span><span class=line><span class=cl><span class=cp>			RB_LEFT(parent, field) = child;			\
+</span></span></span><span class=line><span class=cl><span class=cp>			RB_SET_PARENT(RB_RIGHT(old, field), elm, field);\
+</span></span></span><span class=line><span class=cl><span class=cp>		}							\
+</span></span></span><span class=line><span class=cl><span class=cp>		RB_SET_PARENT(RB_LEFT(old, field), elm, field);		\
+</span></span></span><span class=line><span class=cl><span class=cp>		elm-&gt;field = old-&gt;field;				\
+</span></span></span><span class=line><span class=cl><span class=cp>	}								\
+</span></span></span><span class=line><span class=cl><span class=cp>	RB_SWAP_CHILD(head, old, elm, field);				\
+</span></span></span><span class=line><span class=cl><span class=cp>	if (child != NULL)						\
+</span></span></span><span class=line><span class=cl><span class=cp>		RB_SET_PARENT(child, parent, field);			\
+</span></span></span><span class=line><span class=cl><span class=cp>	if (parent != NULL)						\
+</span></span></span><span class=line><span class=cl><span class=cp>		name##_RB_REMOVE_COLOR(head, parent, child);		\
+</span></span></span><span class=line><span class=cl><span class=cp>	while (parent != NULL) {					\
+</span></span></span><span class=line><span class=cl><span class=cp>		RB_AUGMENT(parent);					\
+</span></span></span><span class=line><span class=cl><span class=cp>		parent = RB_PARENT(parent, field);			\
+</span></span></span><span class=line><span class=cl><span class=cp>	}								\
+</span></span></span><span class=line><span class=cl><span class=cp>	return (old);							\
+</span></span></span><span class=line><span class=cl><span class=cp>}
+</span></span></span><span class=line><span class=cl><span class=cp></span>
+</span></span><span class=line><span class=cl><span class=cp>#define RB_GENERATE_INSERT(name, type, field, cmp, attr)		\
+</span></span></span><span class=line><span class=cl><span class=cp></span><span class=cm>/* Inserts a node into the RB tree */</span><span class=cp>					\
+</span></span></span><span class=line><span class=cl><span class=cp>attr struct type *							\
+</span></span></span><span class=line><span class=cl><span class=cp>name##_RB_INSERT(struct name *head, struct type *elm)			\
+</span></span></span><span class=line><span class=cl><span class=cp>{									\
+</span></span></span><span class=line><span class=cl><span class=cp>	struct type *tmp;						\
+</span></span></span><span class=line><span class=cl><span class=cp>	struct type *parent = NULL;					\
+</span></span></span><span class=line><span class=cl><span class=cp>	int comp = 0;							\
+</span></span></span><span class=line><span class=cl><span class=cp>	tmp = RB_ROOT(head);						\
+</span></span></span><span class=line><span class=cl><span class=cp>	while (tmp) {							\
+</span></span></span><span class=line><span class=cl><span class=cp>		parent = tmp;						\
+</span></span></span><span class=line><span class=cl><span class=cp>		comp = (cmp)(elm, parent);				\
+</span></span></span><span class=line><span class=cl><span class=cp>		if (comp &lt; 0)						\
+</span></span></span><span class=line><span class=cl><span class=cp>			tmp = RB_LEFT(tmp, field);			\
+</span></span></span><span class=line><span class=cl><span class=cp>		else if (comp &gt; 0)					\
+</span></span></span><span class=line><span class=cl><span class=cp>			tmp = RB_RIGHT(tmp, field);			\
+</span></span></span><span class=line><span class=cl><span class=cp>		else							\
+</span></span></span><span class=line><span class=cl><span class=cp>			return (tmp);					\
+</span></span></span><span class=line><span class=cl><span class=cp>	}								\
+</span></span></span><span class=line><span class=cl><span class=cp>	RB_SET(elm, parent, field);					\
+</span></span></span><span class=line><span class=cl><span class=cp>	if (parent == NULL)						\
+</span></span></span><span class=line><span class=cl><span class=cp>		RB_ROOT(head) = elm;					\
+</span></span></span><span class=line><span class=cl><span class=cp>	else if (comp &lt; 0)						\
+</span></span></span><span class=line><span class=cl><span class=cp>		RB_LEFT(parent, field) = elm;				\
+</span></span></span><span class=line><span class=cl><span class=cp>	else								\
+</span></span></span><span class=line><span class=cl><span class=cp>		RB_RIGHT(parent, field) = elm;				\
+</span></span></span><span class=line><span class=cl><span class=cp>	name##_RB_INSERT_COLOR(head, elm);				\
+</span></span></span><span class=line><span class=cl><span class=cp>	while (elm != NULL) {						\
+</span></span></span><span class=line><span class=cl><span class=cp>		RB_AUGMENT(elm);					\
+</span></span></span><span class=line><span class=cl><span class=cp>		elm = RB_PARENT(elm, field);				\
+</span></span></span><span class=line><span class=cl><span class=cp>	}								\
+</span></span></span><span class=line><span class=cl><span class=cp>	return (NULL);							\
+</span></span></span><span class=line><span class=cl><span class=cp>}
+</span></span></span><span class=line><span class=cl><span class=cp></span>
+</span></span><span class=line><span class=cl><span class=cp>#define RB_GENERATE_FIND(name, type, field, cmp, attr)			\
+</span></span></span><span class=line><span class=cl><span class=cp></span><span class=cm>/* Finds the node with the same key as elm */</span><span class=cp>				\
+</span></span></span><span class=line><span class=cl><span class=cp>attr struct type *							\
+</span></span></span><span class=line><span class=cl><span class=cp>name##_RB_FIND(struct name *head, struct type *elm)			\
+</span></span></span><span class=line><span class=cl><span class=cp>{									\
+</span></span></span><span class=line><span class=cl><span class=cp>	struct type *tmp = RB_ROOT(head);				\
+</span></span></span><span class=line><span class=cl><span class=cp>	int comp;							\
+</span></span></span><span class=line><span class=cl><span class=cp>	while (tmp) {							\
+</span></span></span><span class=line><span class=cl><span class=cp>		comp = cmp(elm, tmp);					\
+</span></span></span><span class=line><span class=cl><span class=cp>		if (comp &lt; 0)						\
+</span></span></span><span class=line><span class=cl><span class=cp>			tmp = RB_LEFT(tmp, field);			\
+</span></span></span><span class=line><span class=cl><span class=cp>		else if (comp &gt; 0)					\
+</span></span></span><span class=line><span class=cl><span class=cp>			tmp = RB_RIGHT(tmp, field);			\
+</span></span></span><span class=line><span class=cl><span class=cp>		else							\
+</span></span></span><span class=line><span class=cl><span class=cp>			return (tmp);					\
+</span></span></span><span class=line><span class=cl><span class=cp>	}								\
+</span></span></span><span class=line><span class=cl><span class=cp>	return (NULL);							\
+</span></span></span><span class=line><span class=cl><span class=cp>}
+</span></span></span><span class=line><span class=cl><span class=cp></span>
+</span></span><span class=line><span class=cl><span class=cp>#define RB_GENERATE_NFIND(name, type, field, cmp, attr)			\
+</span></span></span><span class=line><span class=cl><span class=cp></span><span class=cm>/* Finds the first node greater than or equal to the search key */</span><span class=cp>	\
+</span></span></span><span class=line><span class=cl><span class=cp>attr struct type *							\
+</span></span></span><span class=line><span class=cl><span class=cp>name##_RB_NFIND(struct name *head, struct type *elm)			\
+</span></span></span><span class=line><span class=cl><span class=cp>{									\
+</span></span></span><span class=line><span class=cl><span class=cp>	struct type *tmp = RB_ROOT(head);				\
+</span></span></span><span class=line><span class=cl><span class=cp>	struct type *res = NULL;					\
+</span></span></span><span class=line><span class=cl><span class=cp>	int comp;							\
+</span></span></span><span class=line><span class=cl><span class=cp>	while (tmp) {							\
+</span></span></span><span class=line><span class=cl><span class=cp>		comp = cmp(elm, tmp);					\
+</span></span></span><span class=line><span class=cl><span class=cp>		if (comp &lt; 0) {						\
+</span></span></span><span class=line><span class=cl><span class=cp>			res = tmp;					\
+</span></span></span><span class=line><span class=cl><span class=cp>			tmp = RB_LEFT(tmp, field);			\
+</span></span></span><span class=line><span class=cl><span class=cp>		}							\
+</span></span></span><span class=line><span class=cl><span class=cp>		else if (comp &gt; 0)					\
+</span></span></span><span class=line><span class=cl><span class=cp>			tmp = RB_RIGHT(tmp, field);			\
+</span></span></span><span class=line><span class=cl><span class=cp>		else							\
+</span></span></span><span class=line><span class=cl><span class=cp>			return (tmp);					\
+</span></span></span><span class=line><span class=cl><span class=cp>	}								\
+</span></span></span><span class=line><span class=cl><span class=cp>	return (res);							\
+</span></span></span><span class=line><span class=cl><span class=cp>}
+</span></span></span><span class=line><span class=cl><span class=cp></span>
+</span></span><span class=line><span class=cl><span class=cp>#define RB_GENERATE_NEXT(name, type, field, attr)			\
+</span></span></span><span class=line><span class=cl><span class=cp></span><span class=cm>/* ARGSUSED */</span><span class=cp>								\
+</span></span></span><span class=line><span class=cl><span class=cp>attr struct type *							\
+</span></span></span><span class=line><span class=cl><span class=cp>name##_RB_NEXT(struct type *elm)					\
+</span></span></span><span class=line><span class=cl><span class=cp>{									\
+</span></span></span><span class=line><span class=cl><span class=cp>	if (RB_RIGHT(elm, field)) {					\
+</span></span></span><span class=line><span class=cl><span class=cp>		elm = RB_RIGHT(elm, field);				\
+</span></span></span><span class=line><span class=cl><span class=cp>		while (RB_LEFT(elm, field))				\
+</span></span></span><span class=line><span class=cl><span class=cp>			elm = RB_LEFT(elm, field);			\
+</span></span></span><span class=line><span class=cl><span class=cp>	} else {							\
+</span></span></span><span class=line><span class=cl><span class=cp>		if (RB_PARENT(elm, field) &amp;&amp;				\
+</span></span></span><span class=line><span class=cl><span class=cp>		    (elm == RB_LEFT(RB_PARENT(elm, field), field)))	\
+</span></span></span><span class=line><span class=cl><span class=cp>			elm = RB_PARENT(elm, field);			\
+</span></span></span><span class=line><span class=cl><span class=cp>		else {							\
+</span></span></span><span class=line><span class=cl><span class=cp>			while (RB_PARENT(elm, field) &amp;&amp;			\
+</span></span></span><span class=line><span class=cl><span class=cp>			    (elm == RB_RIGHT(RB_PARENT(elm, field), field)))\
+</span></span></span><span class=line><span class=cl><span class=cp>				elm = RB_PARENT(elm, field);		\
+</span></span></span><span class=line><span class=cl><span class=cp>			elm = RB_PARENT(elm, field);			\
+</span></span></span><span class=line><span class=cl><span class=cp>		}							\
+</span></span></span><span class=line><span class=cl><span class=cp>	}								\
+</span></span></span><span class=line><span class=cl><span class=cp>	return (elm);							\
+</span></span></span><span class=line><span class=cl><span class=cp>}
+</span></span></span><span class=line><span class=cl><span class=cp></span>
+</span></span><span class=line><span class=cl><span class=cp>#define RB_GENERATE_PREV(name, type, field, attr)			\
+</span></span></span><span class=line><span class=cl><span class=cp></span><span class=cm>/* ARGSUSED */</span><span class=cp>								\
+</span></span></span><span class=line><span class=cl><span class=cp>attr struct type *							\
+</span></span></span><span class=line><span class=cl><span class=cp>name##_RB_PREV(struct type *elm)					\
+</span></span></span><span class=line><span class=cl><span class=cp>{									\
+</span></span></span><span class=line><span class=cl><span class=cp>	if (RB_LEFT(elm, field)) {					\
+</span></span></span><span class=line><span class=cl><span class=cp>		elm = RB_LEFT(elm, field);				\
+</span></span></span><span class=line><span class=cl><span class=cp>		while (RB_RIGHT(elm, field))				\
+</span></span></span><span class=line><span class=cl><span class=cp>			elm = RB_RIGHT(elm, field);			\
+</span></span></span><span class=line><span class=cl><span class=cp>	} else {							\
+</span></span></span><span class=line><span class=cl><span class=cp>		if (RB_PARENT(elm, field) &amp;&amp;				\
+</span></span></span><span class=line><span class=cl><span class=cp>		    (elm == RB_RIGHT(RB_PARENT(elm, field), field)))	\
+</span></span></span><span class=line><span class=cl><span class=cp>			elm = RB_PARENT(elm, field);			\
+</span></span></span><span class=line><span class=cl><span class=cp>		else {							\
+</span></span></span><span class=line><span class=cl><span class=cp>			while (RB_PARENT(elm, field) &amp;&amp;			\
+</span></span></span><span class=line><span class=cl><span class=cp>			    (elm == RB_LEFT(RB_PARENT(elm, field), field)))\
+</span></span></span><span class=line><span class=cl><span class=cp>				elm = RB_PARENT(elm, field);		\
+</span></span></span><span class=line><span class=cl><span class=cp>			elm = RB_PARENT(elm, field);			\
+</span></span></span><span class=line><span class=cl><span class=cp>		}							\
+</span></span></span><span class=line><span class=cl><span class=cp>	}								\
+</span></span></span><span class=line><span class=cl><span class=cp>	return (elm);							\
+</span></span></span><span class=line><span class=cl><span class=cp>}
+</span></span></span><span class=line><span class=cl><span class=cp></span>
+</span></span><span class=line><span class=cl><span class=cp>#define RB_GENERATE_MINMAX(name, type, field, attr)			\
+</span></span></span><span class=line><span class=cl><span class=cp>attr struct type *							\
+</span></span></span><span class=line><span class=cl><span class=cp>name##_RB_MINMAX(struct name *head, int val)				\
+</span></span></span><span class=line><span class=cl><span class=cp>{									\
+</span></span></span><span class=line><span class=cl><span class=cp>	struct type *tmp = RB_ROOT(head);				\
+</span></span></span><span class=line><span class=cl><span class=cp>	struct type *parent = NULL;					\
+</span></span></span><span class=line><span class=cl><span class=cp>	while (tmp) {							\
+</span></span></span><span class=line><span class=cl><span class=cp>		parent = tmp;						\
+</span></span></span><span class=line><span class=cl><span class=cp>		if (val &lt; 0)						\
+</span></span></span><span class=line><span class=cl><span class=cp>			tmp = RB_LEFT(tmp, field);			\
+</span></span></span><span class=line><span class=cl><span class=cp>		else							\
+</span></span></span><span class=line><span class=cl><span class=cp>			tmp = RB_RIGHT(tmp, field);			\
+</span></span></span><span class=line><span class=cl><span class=cp>	}								\
+</span></span></span><span class=line><span class=cl><span class=cp>	return (parent);						\
+</span></span></span><span class=line><span class=cl><span class=cp>}
+</span></span></span><span class=line><span class=cl><span class=cp></span>
+</span></span><span class=line><span class=cl><span class=cp>#define	RB_GENERATE_REINSERT(name, type, field, cmp, attr)		\
+</span></span></span><span class=line><span class=cl><span class=cp>attr struct type *							\
+</span></span></span><span class=line><span class=cl><span class=cp>name##_RB_REINSERT(struct name *head, struct type *elm)			\
+</span></span></span><span class=line><span class=cl><span class=cp>{									\
+</span></span></span><span class=line><span class=cl><span class=cp>	struct type *cmpelm;						\
+</span></span></span><span class=line><span class=cl><span class=cp>	if (((cmpelm = RB_PREV(name, head, elm)) != NULL &amp;&amp;		\
+</span></span></span><span class=line><span class=cl><span class=cp>	    cmp(cmpelm, elm) &gt;= 0) ||					\
+</span></span></span><span class=line><span class=cl><span class=cp>	    ((cmpelm = RB_NEXT(name, head, elm)) != NULL &amp;&amp;		\
+</span></span></span><span class=line><span class=cl><span class=cp>	    cmp(elm, cmpelm) &gt;= 0)) {					\
+</span></span></span><span class=line><span class=cl><span class=cp>		</span><span class=cm>/* XXXLAS: Remove/insert is heavy handed. */</span><span class=cp>		\
+</span></span></span><span class=line><span class=cl><span class=cp>		RB_REMOVE(name, head, elm);				\
+</span></span></span><span class=line><span class=cl><span class=cp>		return (RB_INSERT(name, head, elm));			\
+</span></span></span><span class=line><span class=cl><span class=cp>	}								\
+</span></span></span><span class=line><span class=cl><span class=cp>	return (NULL);							\
+</span></span></span><span class=line><span class=cl><span class=cp>}									\
+</span></span></span><span class=line><span class=cl><span class=cp>
+</span></span></span><span class=line><span class=cl><span class=cp>#define RB_NEGINF	-1
+</span></span></span><span class=line><span class=cl><span class=cp>#define RB_INF	1
+</span></span></span><span class=line><span class=cl><span class=cp></span>
+</span></span><span class=line><span class=cl><span class=cp>#define RB_INSERT(name, x, y)	name##_RB_INSERT(x, y)
+</span></span></span><span class=line><span class=cl><span class=cp>#define RB_REMOVE(name, x, y)	name##_RB_REMOVE(x, y)
+</span></span></span><span class=line><span class=cl><span class=cp>#define RB_FIND(name, x, y)	name##_RB_FIND(x, y)
+</span></span></span><span class=line><span class=cl><span class=cp>#define RB_NFIND(name, x, y)	name##_RB_NFIND(x, y)
+</span></span></span><span class=line><span class=cl><span class=cp>#define RB_NEXT(name, x, y)	name##_RB_NEXT(y)
+</span></span></span><span class=line><span class=cl><span class=cp>#define RB_PREV(name, x, y)	name##_RB_PREV(y)
+</span></span></span><span class=line><span class=cl><span class=cp>#define RB_MIN(name, x)		name##_RB_MINMAX(x, RB_NEGINF)
+</span></span></span><span class=line><span class=cl><span class=cp>#define RB_MAX(name, x)		name##_RB_MINMAX(x, RB_INF)
+</span></span></span><span class=line><span class=cl><span class=cp>#define RB_REINSERT(name, x, y)	name##_RB_REINSERT(x, y)
+</span></span></span><span class=line><span class=cl><span class=cp></span>
+</span></span><span class=line><span class=cl><span class=cp>#define RB_FOREACH(x, name, head)					\
+</span></span></span><span class=line><span class=cl><span class=cp>	for ((x) = RB_MIN(name, head);					\
+</span></span></span><span class=line><span class=cl><span class=cp>	     (x) != NULL;						\
+</span></span></span><span class=line><span class=cl><span class=cp>	     (x) = name##_RB_NEXT(x))
+</span></span></span><span class=line><span class=cl><span class=cp></span>
+</span></span><span class=line><span class=cl><span class=cp>#define RB_FOREACH_FROM(x, name, y)					\
+</span></span></span><span class=line><span class=cl><span class=cp>	for ((x) = (y);							\
+</span></span></span><span class=line><span class=cl><span class=cp>	    ((x) != NULL) &amp;&amp; ((y) = name##_RB_NEXT(x), (x) != NULL);	\
+</span></span></span><span class=line><span class=cl><span class=cp>	     (x) = (y))
+</span></span></span><span class=line><span class=cl><span class=cp></span>
+</span></span><span class=line><span class=cl><span class=cp>#define RB_FOREACH_SAFE(x, name, head, y)				\
+</span></span></span><span class=line><span class=cl><span class=cp>	for ((x) = RB_MIN(name, head);					\
+</span></span></span><span class=line><span class=cl><span class=cp>	    ((x) != NULL) &amp;&amp; ((y) = name##_RB_NEXT(x), (x) != NULL);	\
+</span></span></span><span class=line><span class=cl><span class=cp>	     (x) = (y))
+</span></span></span><span class=line><span class=cl><span class=cp></span>
+</span></span><span class=line><span class=cl><span class=cp>#define RB_FOREACH_REVERSE(x, name, head)				\
+</span></span></span><span class=line><span class=cl><span class=cp>	for ((x) = RB_MAX(name, head);					\
+</span></span></span><span class=line><span class=cl><span class=cp>	     (x) != NULL;						\
+</span></span></span><span class=line><span class=cl><span class=cp>	     (x) = name##_RB_PREV(x))
+</span></span></span><span class=line><span class=cl><span class=cp></span>
+</span></span><span class=line><span class=cl><span class=cp>#define RB_FOREACH_REVERSE_FROM(x, name, y)				\
+</span></span></span><span class=line><span class=cl><span class=cp>	for ((x) = (y);							\
+</span></span></span><span class=line><span class=cl><span class=cp>	    ((x) != NULL) &amp;&amp; ((y) = name##_RB_PREV(x), (x) != NULL);	\
+</span></span></span><span class=line><span class=cl><span class=cp>	     (x) = (y))
+</span></span></span><span class=line><span class=cl><span class=cp></span>
+</span></span><span class=line><span class=cl><span class=cp>#define RB_FOREACH_REVERSE_SAFE(x, name, head, y)			\
+</span></span></span><span class=line><span class=cl><span class=cp>	for ((x) = RB_MAX(name, head);					\
+</span></span></span><span class=line><span class=cl><span class=cp>	    ((x) != NULL) &amp;&amp; ((y) = name##_RB_PREV(x), (x) != NULL);	\
+</span></span></span><span class=line><span class=cl><span class=cp>	     (x) = (y))
+</span></span></span><span class=line><span class=cl><span class=cp></span>
+</span></span><span class=line><span class=cl><span class=cp>#endif	</span><span class=cm>/* _SYS_TREE_H_ */</span><span class=cp>
+</span></span></span></code></pre></td></tr></table></div></div></article><hr><div class=page-end><div class=backlinks-container><h3>Backlinks</h3><ul class=backlinks><li>No backlinks found</li></ul></div><div><script src=https://cdn.jsdelivr.net/npm/d3@6.7.0/dist/d3.min.js integrity="sha256-+7jaYCp29O1JusNWHaYtgUn6EhuP0VaFuswhNV06MyI=" crossorigin=anonymous></script><h3>Interactive Graph</h3><div id=graph-container></div><style>:root{--g-node:var(--secondary);--g-node-active:var(--primary);--g-node-inactive:var(--visited);--g-link:var(--outlinegray);--g-link-active:#5a7282}</style><script src=https://lzyerste.github.io/quartz/js/graph.6fe09b3d8b5792ccf0f505be9ee8275d.js></script>
+<script>drawGraph("https://lzyerste.github.io/quartz/wiki/wiki/c-c++/C%E8%AF%AD%E8%A8%80%E7%BA%A2%E9%BB%91%E6%A0%91%E5%AE%9E%E7%8E%B0-e597bd43eff24bfcadcf48f6b530dd4d","https://lzyerste.github.io/quartz",[{"/moc":"#4388cc"}],-1,!0,!1,!0)</script></div></div><div id=contact_buttons><footer><p>Made by Jacky Zhao using <a href=https://github.com/jackyzha0/quartz>Quartz</a>, © 2022</p><ul><li><a href=/>Home</a></li><li><a href=https://twitter.com/_jzhao>Twitter</a></li><li><a href=https://github.com/jackyzha0>Github</a></li></ul></footer></div><script src=https://lzyerste.github.io/quartz/js/popover.e57188d2e4c06b0654e020b3a734bb62.min.js></script>
+<script>initPopover("https://lzyerste.github.io/quartz")</script></div></body></html>

@@ -1,0 +1,204 @@
+<!doctype html><html lang=en><head><meta charset=utf-8><meta name=description content="4. Median of Two Sorted Arrays Difficulty: Hard ID: 4 Solved?: Yes Tags: Array, Binary Search, Divide and Conquer 击败: 54."><title>🪴 Quartz 3.2</title><meta name=viewport content="width=device-width,initial-scale=1"><link rel="shortcut icon" type=image/png href=https://lzyerste.github.io/quartz//icon.png><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Source+Sans+Pro:wght@400;600;700&family=Fira+Code:wght@400;700&display=swap" rel=stylesheet><link href=https://lzyerste.github.io/quartz/styles.b5715611e07d622618ed61d06502131c.min.css rel=stylesheet><script src=https://lzyerste.github.io/quartz/js/darkmode.46b07878b7f5d9e26ad7a3c40f8a0605.min.js></script>
+<link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css integrity=sha384-R4558gYOUz8mP9YWpZJjofhk+zx0AS11p36HnD2ZKj/6JR5z27gSSULCNHIRReVs crossorigin=anonymous><script defer src=https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js integrity=sha384-z1fJDqw8ZApjGO3/unPWUPsIymfsJmyrDVWC8Tv/a1HeOtGmkwNd/7xUS0Xcnvsx crossorigin=anonymous></script>
+<script defer src=https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/contrib/auto-render.min.js integrity=sha384-+XBljXPPiv+OzfbB3cVmLHf4hdUFHlWNZN5spNQ7rmHTXpd7WvJum6fIACpNNfIR crossorigin=anonymous></script>
+<script>document.addEventListener("DOMContentLoaded",function(){renderMathInElement(document.body,{delimiters:[{left:"$$",right:"$$",display:!0},{left:"$",right:"$",display:!1}],throwOnError:!1})})</script><script>const BASE_URL="https://lzyerste.github.io/quartz/",fetchData=Promise.all([fetch("https://lzyerste.github.io/quartz/indices/linkIndex.0c3b9c7455a2a896802a60e8bb3e1120.min.json").then(e=>e.json()).then(e=>({index:e.index,links:e.links})),fetch("https://lzyerste.github.io/quartz/indices/contentIndex.d5cc7a6f5c397ac12ca2df88f6566f1c.min.json").then(e=>e.json())]).then(([{index:e,links:t},n])=>({index:e,links:t,content:n}))</script></head><script async src="https://www.googletagmanager.com/gtag/js?id=G-XYFD95KB4J"></script>
+<script>var doNotTrack=!1;if(!doNotTrack){window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-XYFD95KB4J",{anonymize_ip:!1})}</script><body><div id=search-container><div id=search-space><input autocomplete=off id=search-bar name=search type=text aria-label=Search placeholder="Search for something..."><div id=results-container></div></div></div><script src=https://cdn.jsdelivr.net/npm/flexsearch@0.7.21/dist/flexsearch.bundle.js integrity="sha256-i3A0NZGkhsKjVMzFxv3ksk0DZh3aXqu0l49Bbh0MdjE=" crossorigin=anonymous defer></script>
+<script defer src=https://lzyerste.github.io/quartz/js/search.7861a82db330f0a40935b7458fee3a02.min.js></script><div class=singlePage><header><h1 id=page-title><a href=https://lzyerste.github.io/quartz/>🪴 Quartz 3.2</a></h1><svg tabindex="0" id="search-icon" aria-labelledby="title desc" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 19.9 19.7"><title id="title">Search Icon</title><desc id="desc">Icon to open search</desc><g class="search-path" fill="none"><path stroke-linecap="square" d="M18.5 18.3l-5.4-5.4"/><circle cx="8" cy="8" r="7"/></g></svg><div class=spacer></div><div class=darkmode><input class=toggle id=darkmode-toggle type=checkbox tabindex=-1>
+<label id=toggle-label-light for=darkmode-toggle tabindex=-1><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="dayIcon" viewBox="0 0 35 35" style="enable-background:new 0 0 35 35"><title>Light Mode</title><path d="M6 17.5C6 16.672 5.328 16 4.5 16h-3C.672 16 0 16.672.0 17.5S.672 19 1.5 19h3C5.328 19 6 18.328 6 17.5zM7.5 26c-.414.0-.789.168-1.061.439l-2 2C4.168 28.711 4 29.086 4 29.5 4 30.328 4.671 31 5.5 31c.414.0.789-.168 1.06-.44l2-2C8.832 28.289 9 27.914 9 27.5 9 26.672 8.329 26 7.5 26zm10-20C18.329 6 19 5.328 19 4.5v-3C19 .672 18.329.0 17.5.0S16 .672 16 1.5v3C16 5.328 16.671 6 17.5 6zm10 3c.414.0.789-.168 1.06-.439l2-2C30.832 6.289 31 5.914 31 5.5 31 4.672 30.329 4 29.5 4c-.414.0-.789.168-1.061.44l-2 2C26.168 6.711 26 7.086 26 7.5 26 8.328 26.671 9 27.5 9zM6.439 8.561C6.711 8.832 7.086 9 7.5 9 8.328 9 9 8.328 9 7.5c0-.414-.168-.789-.439-1.061l-2-2C6.289 4.168 5.914 4 5.5 4 4.672 4 4 4.672 4 5.5c0 .414.168.789.439 1.06l2 2.001zM33.5 16h-3c-.828.0-1.5.672-1.5 1.5s.672 1.5 1.5 1.5h3c.828.0 1.5-.672 1.5-1.5S34.328 16 33.5 16zM28.561 26.439C28.289 26.168 27.914 26 27.5 26c-.828.0-1.5.672-1.5 1.5.0.414.168.789.439 1.06l2 2C28.711 30.832 29.086 31 29.5 31c.828.0 1.5-.672 1.5-1.5.0-.414-.168-.789-.439-1.061l-2-2zM17.5 29c-.829.0-1.5.672-1.5 1.5v3c0 .828.671 1.5 1.5 1.5s1.5-.672 1.5-1.5v-3C19 29.672 18.329 29 17.5 29zm0-22C11.71 7 7 11.71 7 17.5S11.71 28 17.5 28 28 23.29 28 17.5 23.29 7 17.5 7zm0 18c-4.136.0-7.5-3.364-7.5-7.5s3.364-7.5 7.5-7.5 7.5 3.364 7.5 7.5S21.636 25 17.5 25z"/></svg></label><label id=toggle-label-dark for=darkmode-toggle tabindex=-1><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="nightIcon" viewBox="0 0 100 100" style="enable-background='new 0 0 100 100'"><title>Dark Mode</title><path d="M96.76 66.458c-.853-.852-2.15-1.064-3.23-.534-6.063 2.991-12.858 4.571-19.655 4.571C62.022 70.495 50.88 65.88 42.5 57.5 29.043 44.043 25.658 23.536 34.076 6.47c.532-1.08.318-2.379-.534-3.23-.851-.852-2.15-1.064-3.23-.534-4.918 2.427-9.375 5.619-13.246 9.491-9.447 9.447-14.65 22.008-14.65 35.369.0 13.36 5.203 25.921 14.65 35.368s22.008 14.65 35.368 14.65c13.361.0 25.921-5.203 35.369-14.65 3.872-3.871 7.064-8.328 9.491-13.246C97.826 68.608 97.611 67.309 96.76 66.458z"/></svg></label></div></header><article><p class=meta>Last updated Unknown</p><ul class=tags></ul><aside class=mainTOC><details><summary>Table of Contents</summary><nav id=TableOfContents><ol><li><a href=#题意>题意</a></li><li><a href=#思路>思路</a></li><li><a href=#题解1merge>题解1：merge</a></li><li><a href=#题解2二分搜索>题解2：二分搜索</a></li><li><a href=#题解3topk>★题解3：topK</a></li></ol></nav></details></aside><h1 id=4-median-of-two-sorted-arrays>4. Median of Two Sorted Arrays</h1><p>Difficulty: Hard
+ID: 4
+Solved?: Yes
+Tags: Array, Binary Search, Divide and Conquer
+击败: 54.62
+推荐指数: ⭐⭐⭐⭐⭐</p><p><a href=https://leetcode.com/problems/median-of-two-sorted-arrays/ rel=noopener>Median of Two Sorted Arrays - LeetCode</a></p><h2 id=题意>题意</h2><p>给定两个大小为 m 和 n 的有序数组 <code>nums1</code> 和 <code>nums2</code>。</p><p>请你找出这两个有序数组的中位数，并且要求算法的时间复杂度为 O(log(m + n))。</p><p>你可以假设 <code>nums1</code> 和 <code>nums2</code> 不会同时为空。</p><p><strong>示例 1:</strong></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>nums1 = [1, 3]
+</span></span><span class=line><span class=cl>nums2 = [2]
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>则中位数是 2.0
+</span></span></code></pre></td></tr></table></div></div><p><strong>示例 2:</strong></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>nums1 = [1, 2]
+</span></span><span class=line><span class=cl>nums2 = [3, 4]
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>则中位数是 (2 + 3)/2 = 2.5
+</span></span></code></pre></td></tr></table></div></div><h2 id=思路>思路</h2><p>直接看题解3</p><ul><li>merge之后再找</li><li>各自二分，m与n</li><li>统筹二分，m+n</li></ul><h2 id=题解1merge>题解1：merge</h2><p>方法一：直接合并两个数组，再排序，然后得到中位数。</p><p>方法二：借鉴merge sort的合并过程，弹出中位数即可，不一样要保存合并结果。</p><p>这两种算法的时间复杂度并不符合题目要求。</p><p>代码就不贴了。</p><h2 id=题解2二分搜索>题解2：二分搜索</h2><p>类比无序数组中查找第K大元素（中位数也就是第N/2大）。如果剔除了最小的X个数，剩下的问题就变成了找第（K-X）大元素，最后退化为找第0大元素，也就是最小元素。</p><p>现在题目输入两个有序数组nums1（记为A）和nums2（记为B），寻找第K大元素。随便在数组A中挑一个元素（二分法）作为分割线，数组分为左边部分LA（left of A），A[i]，RA（right of A）。在A已经分割好的情况下，对B进行分割就容易了。A的左边部分大小为LA，那么B的左边部分对应大小可以分配为LB=K-LA，分割点为B[j]，右边部分为RB。假设这次分割就是最终答案（A[i]和B[j]在合并有序数组中是相邻的，也就是没有其他元素的值介于它们中间），那么第K大元素就是A[i]和B[j]中的一个，取小值即可（中位数与第K大有点不一样，中位数可能是数组的最中间两个元素）。</p><p>上面是理想情况，A[i]与B[j]是相邻的元素，也就是有如下关系式：{LA, LB} ≤ {A[i], B[j]} ≤ {RA, RB}</p><blockquote><p>其实能观察到，如果A[i]与B[j]相等的话，它们之间肯定插入不了其他值了（相等值无所谓），它们就是最终分割。</p></blockquote><p>但实际切割并不会这么理想，会有LA、LB、RA或RB中的元素夹杂在{A[i], B[j]}之间。但考虑到两个数组的有序性，还是能够将问题变小（分治思想）。</p><p>首先，根据数组有序性得到：LA ≤ A[i] ≤ RA, LB ≤ A[j] ≤ RB，LA + LB == K。</p><p>现在判断A[i]与A[j]的大小，假设A[i] ≤ B[j]（B[j] &lt; A[i]镜像处理即可）。</p><p>那么，LA ≤ {A[i], B[j]} ≤ RB，而RA与LB是不确定的，可能有元素介于A[i]与B[j]之间。</p><p>可以简单证明，第K大元素不可能落在LA或RB内部，只能落在{A[i], RA}、{LB, B[j]}里面。那么就可以进行下一轮搜索，两个输入数组变成了{A[i], RA}、{LB, B[j]}，现在是搜第几大元素呢？很简答，移除了较小元素的LA，变成了搜索第K-LA大元素。</p><p>按照这个思想，问题一步步小变小，直到可直接解。</p><p>比如K为0，第0大，也就是最小元素，显然就是A[i]与B[j]中的一个，考虑到中位数，可以再把各自后一个数再拿进来比较。</p><p>比如两个数组都变的很小了，都只有各位元素了，直接合并后排序，返回第K大即可。</p><hr><p>上面描述了基本思想，实际实现的时候要注意考虑边界情况，比如LA长度大于K了呢，LB就是负的了；再或者LA较小，需要在数组B提供较多的元素LB，以达到K个元素的要求，而实际数组B并没有LB个元素呢？</p><p>一般，用二分搜索的时候，中点的取法也是要注意的，因为中点取法可以偏左，也可以偏右。二分之后，是期望下一次的子问题是变小的，如果实际没有变小，那么就可能造成无限递归了。</p><p>比如A=[3]，B=[1, 2, 5, 6]，K为3，答案为5。</p><p>如果照搬前面的实现，先对A二分，i仍然是0，LA为空，RA也为空。LB长度需要为3（以达到K），所以j下标为3，对应元素B[j]为6，这时候RB为空。这时候A[i]&lt;B[j]，下一次搜索可以剪枝LA与RB，但两者都是空的，问题并没有缩小，下一次还是同样的过程，会造成无限递归。</p><hr><p>解决办法是二分对象总是较长的那个数组，比如将上面例子的两个数组对换，A=[1, 2, 5, 6]，B=[3]，K=3。</p><p>现在对A二分，i为1，A[i]=2，LA为{1}，长度为1。需要数组B提供2个元素，但实际上数组B只有1个元素。其实这时候可以证明，第K大元素不可能落在LA中，还是可以按照常规做法将LA移除，下一次的搜索状态就变成了[2, 5, 6], [3], K=2。问题规模就减小了。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span><span class=lnt>40
+</span><span class=lnt>41
+</span><span class=lnt>42
+</span><span class=lnt>43
+</span><span class=lnt>44
+</span><span class=lnt>45
+</span><span class=lnt>46
+</span><span class=lnt>47
+</span><span class=lnt>48
+</span><span class=lnt>49
+</span><span class=lnt>50
+</span><span class=lnt>51
+</span><span class=lnt>52
+</span><span class=lnt>53
+</span><span class=lnt>54
+</span><span class=lnt>55
+</span><span class=lnt>56
+</span><span class=lnt>57
+</span><span class=lnt>58
+</span><span class=lnt>59
+</span><span class=lnt>60
+</span><span class=lnt>61
+</span><span class=lnt>62
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=k>class</span> <span class=nc>Solution</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>    <span class=k>def</span> <span class=nf>findMedianSortedArrays</span><span class=p>(</span><span class=bp>self</span><span class=p>,</span> <span class=n>nums1</span><span class=p>:</span> <span class=n>List</span><span class=p>[</span><span class=nb>int</span><span class=p>],</span> <span class=n>nums2</span><span class=p>:</span> <span class=n>List</span><span class=p>[</span><span class=nb>int</span><span class=p>])</span> <span class=o>-&gt;</span> <span class=nb>float</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=k>def</span> <span class=nf>getValue</span><span class=p>(</span><span class=n>nums</span><span class=p>,</span> <span class=n>begin</span><span class=p>,</span> <span class=n>end</span><span class=p>,</span> <span class=n>index</span><span class=p>,</span> <span class=n>defVal</span><span class=o>=</span><span class=nb>float</span><span class=p>(</span><span class=s2>&#34;inf&#34;</span><span class=p>)):</span>
+</span></span><span class=line><span class=cl>            <span class=c1># 主要添加越界检查</span>
+</span></span><span class=line><span class=cl>            <span class=k>if</span> <span class=n>index</span> <span class=o>&lt;</span> <span class=n>begin</span> <span class=ow>or</span> <span class=n>index</span> <span class=o>&gt;</span> <span class=n>end</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>                <span class=k>return</span> <span class=n>defVal</span>
+</span></span><span class=line><span class=cl>            <span class=k>return</span> <span class=n>nums</span><span class=p>[</span><span class=n>index</span><span class=p>]</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>        <span class=k>def</span> <span class=nf>helper</span><span class=p>(</span><span class=n>nums1</span><span class=p>,</span> <span class=n>b1</span><span class=p>,</span> <span class=n>e1</span><span class=p>,</span> <span class=n>nums2</span><span class=p>,</span> <span class=n>b2</span><span class=p>,</span> <span class=n>e2</span><span class=p>,</span> <span class=n>K</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>            <span class=c1># 为了中位数，结果总是返回2个元素</span>
+</span></span><span class=line><span class=cl>            <span class=n>len1</span> <span class=o>=</span> <span class=n>e1</span> <span class=o>-</span> <span class=n>b1</span> <span class=o>+</span> <span class=mi>1</span>
+</span></span><span class=line><span class=cl>            <span class=n>len2</span> <span class=o>=</span> <span class=n>e2</span> <span class=o>-</span> <span class=n>b2</span> <span class=o>+</span> <span class=mi>1</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>            <span class=k>if</span> <span class=n>K</span> <span class=o>==</span> <span class=mi>0</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>                <span class=c1># 最小元素。中位数可能需要2个元素，所以额外添加各自的后一个元素</span>
+</span></span><span class=line><span class=cl>                <span class=n>res</span> <span class=o>=</span> <span class=p>[</span><span class=n>getValue</span><span class=p>(</span><span class=n>nums1</span><span class=p>,</span> <span class=n>b1</span><span class=p>,</span> <span class=n>e1</span><span class=p>,</span> <span class=n>b1</span><span class=p>),</span> <span class=n>getValue</span><span class=p>(</span><span class=n>nums1</span><span class=p>,</span> <span class=n>b1</span><span class=p>,</span> <span class=n>e1</span><span class=p>,</span> <span class=n>b1</span> <span class=o>+</span> <span class=mi>1</span><span class=p>),</span>
+</span></span><span class=line><span class=cl>                      <span class=n>getValue</span><span class=p>(</span><span class=n>nums2</span><span class=p>,</span> <span class=n>b2</span><span class=p>,</span> <span class=n>e2</span><span class=p>,</span> <span class=n>b2</span><span class=p>),</span> <span class=n>getValue</span><span class=p>(</span><span class=n>nums2</span><span class=p>,</span> <span class=n>b2</span><span class=p>,</span> <span class=n>e2</span><span class=p>,</span> <span class=n>b2</span> <span class=o>+</span> <span class=mi>1</span><span class=p>)]</span>
+</span></span><span class=line><span class=cl>                <span class=n>res</span><span class=o>.</span><span class=n>sort</span><span class=p>()</span>  <span class=c1># 不存在的值默认为无穷大，排序在最后边</span>
+</span></span><span class=line><span class=cl>                <span class=k>return</span> <span class=n>res</span><span class=p>[:</span><span class=mi>2</span><span class=p>]</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>            <span class=k>if</span> <span class=n>len1</span> <span class=o>&lt;=</span> <span class=mi>4</span> <span class=ow>and</span> <span class=n>len2</span> <span class=o>&lt;=</span> <span class=mi>4</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>                <span class=c1># 小数组直接合并排序</span>
+</span></span><span class=line><span class=cl>                <span class=n>nums</span> <span class=o>=</span> <span class=n>nums1</span><span class=p>[</span><span class=n>b1</span><span class=p>:</span> <span class=n>e1</span> <span class=o>+</span> <span class=mi>1</span><span class=p>]</span> <span class=o>+</span> <span class=n>nums2</span><span class=p>[</span><span class=n>b2</span><span class=p>:</span> <span class=n>e2</span> <span class=o>+</span> <span class=mi>1</span><span class=p>]</span>
+</span></span><span class=line><span class=cl>                <span class=n>nums</span><span class=o>.</span><span class=n>sort</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>                <span class=c1># 相当于移除前K个元素后，就变成了找最小元素问题（K为0）</span>
+</span></span><span class=line><span class=cl>                <span class=k>return</span> <span class=n>helper</span><span class=p>(</span><span class=n>nums</span><span class=p>,</span> <span class=n>K</span><span class=p>,</span> <span class=nb>len</span><span class=p>(</span><span class=n>nums</span><span class=p>)</span> <span class=o>-</span> <span class=mi>1</span><span class=p>,</span> <span class=p>[],</span> <span class=mi>0</span><span class=p>,</span> <span class=o>-</span><span class=mi>1</span><span class=p>,</span> <span class=mi>0</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>            <span class=c1># 较长的数组在前</span>
+</span></span><span class=line><span class=cl>            <span class=k>if</span> <span class=n>len1</span> <span class=o>&lt;</span> <span class=n>len2</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>                <span class=k>return</span> <span class=n>helper</span><span class=p>(</span><span class=n>nums2</span><span class=p>,</span> <span class=n>b2</span><span class=p>,</span> <span class=n>e2</span><span class=p>,</span> <span class=n>nums1</span><span class=p>,</span> <span class=n>b1</span><span class=p>,</span> <span class=n>e1</span><span class=p>,</span> <span class=n>K</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>            <span class=k>if</span> <span class=n>len2</span> <span class=o>==</span> <span class=mi>0</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>                <span class=c1># 也就一个有序数组了，同样移除掉前K个元素，使K值变为0</span>
+</span></span><span class=line><span class=cl>                <span class=k>return</span> <span class=n>helper</span><span class=p>(</span><span class=n>nums1</span><span class=p>,</span> <span class=n>b1</span> <span class=o>+</span> <span class=n>K</span><span class=p>,</span> <span class=n>e1</span><span class=p>,</span> <span class=n>nums2</span><span class=p>,</span> <span class=n>b2</span><span class=p>,</span> <span class=n>e2</span><span class=p>,</span> <span class=mi>0</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>            <span class=c1># 有上面的小数组处理及较长数组在前，所以能保证数组A总是可以分成3部分：</span>
+</span></span><span class=line><span class=cl>            <span class=c1># LA，A[i]，RA。且LA和RA都不可能为空。</span>
+</span></span><span class=line><span class=cl>            <span class=n>i</span> <span class=o>=</span> <span class=p>(</span><span class=n>b1</span> <span class=o>+</span> <span class=n>e1</span><span class=p>)</span> <span class=o>//</span> <span class=mi>2</span>  <span class=c1># 对数组A进行分割，i的左边为LA，[b1, i)</span>
+</span></span><span class=line><span class=cl>            <span class=n>LA</span> <span class=o>=</span> <span class=n>i</span> <span class=o>-</span> <span class=n>b1</span>  <span class=c1># left part of nums1</span>
+</span></span><span class=line><span class=cl>            <span class=n>LB</span> <span class=o>=</span> <span class=n>K</span> <span class=o>-</span> <span class=n>LA</span>  <span class=c1># left part of nums2, may &lt; 0?</span>
+</span></span><span class=line><span class=cl>            <span class=n>j</span> <span class=o>=</span> <span class=n>b2</span> <span class=o>+</span> <span class=n>LB</span>  <span class=c1># j的左边为LB，[b2, j)</span>
+</span></span><span class=line><span class=cl>            <span class=k>if</span> <span class=n>j</span> <span class=o>&lt;</span> <span class=n>b2</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>                <span class=c1># LA太大，LB都为负了，可以放心去除A的右部分（RA），K保持不变，但数组A变小了</span>
+</span></span><span class=line><span class=cl>                <span class=k>return</span> <span class=n>helper</span><span class=p>(</span><span class=n>nums1</span><span class=p>,</span> <span class=n>b1</span><span class=p>,</span> <span class=n>i</span><span class=p>,</span> <span class=n>nums2</span><span class=p>,</span> <span class=n>b2</span><span class=p>,</span> <span class=n>e2</span><span class=p>,</span> <span class=n>K</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>            <span class=k>elif</span> <span class=n>j</span> <span class=o>&gt;</span> <span class=n>e2</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>                <span class=c1># LA太小，数组B提供不了LB个元素，可以放心去除A的左部分（LA），K减去LA</span>
+</span></span><span class=line><span class=cl>                <span class=k>return</span> <span class=n>helper</span><span class=p>(</span><span class=n>nums1</span><span class=p>,</span> <span class=n>i</span><span class=p>,</span> <span class=n>e1</span><span class=p>,</span> <span class=n>nums2</span><span class=p>,</span> <span class=n>b2</span><span class=p>,</span> <span class=n>e2</span><span class=p>,</span> <span class=n>K</span> <span class=o>-</span> <span class=n>LA</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>            <span class=k>else</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>                <span class=c1># i和j都是各自合法的下标</span>
+</span></span><span class=line><span class=cl>                <span class=k>if</span> <span class=n>nums1</span><span class=p>[</span><span class=n>i</span><span class=p>]</span> <span class=o>&lt;=</span> <span class=n>nums2</span><span class=p>[</span><span class=n>j</span><span class=p>]:</span>
+</span></span><span class=line><span class=cl>                    <span class=c1># 移除LA及RB</span>
+</span></span><span class=line><span class=cl>                    <span class=k>return</span> <span class=n>helper</span><span class=p>(</span><span class=n>nums1</span><span class=p>,</span> <span class=n>i</span><span class=p>,</span> <span class=n>e1</span><span class=p>,</span> <span class=n>nums2</span><span class=p>,</span> <span class=n>b2</span><span class=p>,</span> <span class=n>j</span><span class=p>,</span> <span class=n>K</span> <span class=o>-</span> <span class=n>LA</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>                <span class=k>else</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>                    <span class=c1># 镜像，移除LB及RA</span>
+</span></span><span class=line><span class=cl>                    <span class=k>return</span> <span class=n>helper</span><span class=p>(</span><span class=n>nums1</span><span class=p>,</span> <span class=n>b1</span><span class=p>,</span> <span class=n>i</span><span class=p>,</span> <span class=n>nums2</span><span class=p>,</span> <span class=n>j</span><span class=p>,</span> <span class=n>e2</span><span class=p>,</span> <span class=n>K</span> <span class=o>-</span> <span class=n>LB</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>        <span class=n>m</span><span class=p>,</span> <span class=n>n</span> <span class=o>=</span> <span class=nb>len</span><span class=p>(</span><span class=n>nums1</span><span class=p>),</span> <span class=nb>len</span><span class=p>(</span><span class=n>nums2</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=n>K</span> <span class=o>=</span> <span class=p>(</span><span class=n>m</span> <span class=o>+</span> <span class=n>n</span> <span class=o>-</span> <span class=mi>1</span><span class=p>)</span> <span class=o>//</span> <span class=mi>2</span>  <span class=c1># 从0开始计数</span>
+</span></span><span class=line><span class=cl>        <span class=n>a</span><span class=p>,</span> <span class=n>b</span> <span class=o>=</span> <span class=n>helper</span><span class=p>(</span><span class=n>nums1</span><span class=p>,</span> <span class=mi>0</span><span class=p>,</span> <span class=n>m</span> <span class=o>-</span> <span class=mi>1</span><span class=p>,</span> <span class=n>nums2</span><span class=p>,</span> <span class=mi>0</span><span class=p>,</span> <span class=n>n</span> <span class=o>-</span> <span class=mi>1</span><span class=p>,</span> <span class=n>K</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=k>if</span> <span class=p>(</span><span class=n>m</span> <span class=o>+</span> <span class=n>n</span><span class=p>)</span> <span class=o>%</span> <span class=mi>2</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>            <span class=k>return</span> <span class=n>a</span>
+</span></span><span class=line><span class=cl>        <span class=k>else</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>            <span class=k>return</span> <span class=p>(</span><span class=n>a</span> <span class=o>+</span> <span class=n>b</span><span class=p>)</span> <span class=o>/</span> <span class=mi>2</span>
+</span></span></code></pre></td></tr></table></div></div><h2 id=题解3topk>★题解3：topK</h2><p>题解2中是对数组进行二分，但数组的长度是不确定的。</p><p>另一种方法是对求解的K进行二分。我们需要剔除最小的K个元素，使得K的值归约为0。对K进行对半分，每个数组都提供K/2个元素（使得总体加起来有K个）。当然要考虑到数组并不一定有这么多元素，没关系，可以放宽条件，也就是尽可能多地提供元素（靠近K/2）。虽然总体加起来的元素没有K个，少了不影响正确结果，因为结果肯定还在剩余元素中。</p><p>这种分法下，每个数组都被分割成两部分（与题解2的三部分不同）：左部分有K/2个元素，右部分为剩余元素。分别标记为LA（left part of A）、RA（right part of A）、LB（left part of B）、RB（right part of B）。</p><p>现在，只需要比较LA与LB的最末元素，假设对应的下标分别为i和j。如果A[i]&lt;B[j]，那么LA全部小于B[j]，也就是说可以将LA从下次搜索中移除，因为LA+LB元素个数才K个，第K大元素不可能在LA中。类似地，如果B[j]比较小，那么就可以对应地移除LB。</p><p>代码写起来比题解2简短清晰。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=k>class</span> <span class=nc>Solution</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>    <span class=k>def</span> <span class=nf>findMedianSortedArrays</span><span class=p>(</span><span class=bp>self</span><span class=p>,</span> <span class=n>nums1</span><span class=p>:</span> <span class=n>List</span><span class=p>[</span><span class=nb>int</span><span class=p>],</span> <span class=n>nums2</span><span class=p>:</span> <span class=n>List</span><span class=p>[</span><span class=nb>int</span><span class=p>])</span> <span class=o>-&gt;</span> <span class=nb>float</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=k>def</span> <span class=nf>getKth</span><span class=p>(</span><span class=n>nums1</span><span class=p>,</span> <span class=n>b1</span><span class=p>,</span> <span class=n>e1</span><span class=p>,</span> <span class=n>nums2</span><span class=p>,</span> <span class=n>b2</span><span class=p>,</span> <span class=n>e2</span><span class=p>,</span> <span class=n>K</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>            <span class=n>len1</span> <span class=o>=</span> <span class=n>e1</span> <span class=o>-</span> <span class=n>b1</span> <span class=o>+</span> <span class=mi>1</span>
+</span></span><span class=line><span class=cl>            <span class=n>len2</span> <span class=o>=</span> <span class=n>e2</span> <span class=o>-</span> <span class=n>b2</span> <span class=o>+</span> <span class=mi>1</span>
+</span></span><span class=line><span class=cl>            
+</span></span><span class=line><span class=cl>            <span class=k>if</span> <span class=n>len1</span> <span class=o>&gt;</span> <span class=n>len2</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>                <span class=k>return</span> <span class=n>getKth</span><span class=p>(</span><span class=n>nums2</span><span class=p>,</span> <span class=n>b2</span><span class=p>,</span> <span class=n>e2</span><span class=p>,</span> <span class=n>nums1</span><span class=p>,</span> <span class=n>b1</span><span class=p>,</span> <span class=n>e1</span><span class=p>,</span> <span class=n>K</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>            <span class=k>if</span> <span class=n>len1</span> <span class=o>==</span> <span class=mi>0</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>                <span class=k>return</span> <span class=n>nums2</span><span class=p>[</span><span class=n>b2</span> <span class=o>+</span> <span class=n>K</span><span class=p>]</span>
+</span></span><span class=line><span class=cl>            <span class=k>if</span> <span class=n>K</span> <span class=o>==</span> <span class=mi>0</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>                <span class=k>return</span> <span class=nb>min</span><span class=p>(</span><span class=n>nums1</span><span class=p>[</span><span class=n>b1</span><span class=p>],</span> <span class=n>nums2</span><span class=p>[</span><span class=n>b2</span><span class=p>])</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>            <span class=c1># [0 .. i] --&gt; (K + 1) // 2 items</span>
+</span></span><span class=line><span class=cl>            <span class=n>i</span> <span class=o>=</span> <span class=nb>min</span><span class=p>(</span><span class=n>e1</span><span class=p>,</span> <span class=n>b1</span> <span class=o>+</span> <span class=p>(</span><span class=n>K</span> <span class=o>-</span> <span class=mi>1</span><span class=p>)</span> <span class=o>//</span> <span class=mi>2</span><span class=p>)</span>  <span class=c1># always valid</span>
+</span></span><span class=line><span class=cl>            <span class=n>j</span> <span class=o>=</span> <span class=nb>min</span><span class=p>(</span><span class=n>e2</span><span class=p>,</span> <span class=n>b2</span> <span class=o>+</span> <span class=p>(</span><span class=n>K</span> <span class=o>-</span> <span class=mi>1</span><span class=p>)</span> <span class=o>//</span> <span class=mi>2</span><span class=p>)</span>  <span class=c1># always valid</span>
+</span></span><span class=line><span class=cl>            <span class=k>if</span> <span class=n>nums1</span><span class=p>[</span><span class=n>i</span><span class=p>]</span> <span class=o>&lt;</span> <span class=n>nums2</span><span class=p>[</span><span class=n>j</span><span class=p>]:</span>
+</span></span><span class=line><span class=cl>                <span class=k>return</span> <span class=n>getKth</span><span class=p>(</span><span class=n>nums1</span><span class=p>,</span> <span class=n>i</span> <span class=o>+</span> <span class=mi>1</span><span class=p>,</span> <span class=n>e1</span><span class=p>,</span> <span class=n>nums2</span><span class=p>,</span> <span class=n>b2</span><span class=p>,</span> <span class=n>e2</span><span class=p>,</span> <span class=n>K</span> <span class=o>-</span> <span class=p>(</span><span class=n>i</span> <span class=o>-</span> <span class=n>b1</span> <span class=o>+</span> <span class=mi>1</span><span class=p>))</span>
+</span></span><span class=line><span class=cl>            <span class=k>else</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>                <span class=k>return</span> <span class=n>getKth</span><span class=p>(</span><span class=n>nums1</span><span class=p>,</span> <span class=n>b1</span><span class=p>,</span> <span class=n>e1</span><span class=p>,</span> <span class=n>nums2</span><span class=p>,</span> <span class=n>j</span> <span class=o>+</span> <span class=mi>1</span><span class=p>,</span> <span class=n>e2</span><span class=p>,</span> <span class=n>K</span> <span class=o>-</span> <span class=p>(</span><span class=n>j</span> <span class=o>-</span> <span class=n>b2</span> <span class=o>+</span> <span class=mi>1</span><span class=p>))</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>        <span class=n>m</span><span class=p>,</span> <span class=n>n</span> <span class=o>=</span> <span class=nb>len</span><span class=p>(</span><span class=n>nums1</span><span class=p>),</span> <span class=nb>len</span><span class=p>(</span><span class=n>nums2</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=n>a</span> <span class=o>=</span> <span class=n>getKth</span><span class=p>(</span><span class=n>nums1</span><span class=p>,</span> <span class=mi>0</span><span class=p>,</span> <span class=n>m</span> <span class=o>-</span> <span class=mi>1</span><span class=p>,</span> <span class=n>nums2</span><span class=p>,</span> <span class=mi>0</span><span class=p>,</span> <span class=n>n</span> <span class=o>-</span> <span class=mi>1</span><span class=p>,</span> <span class=p>(</span><span class=n>m</span> <span class=o>+</span> <span class=n>n</span> <span class=o>-</span> <span class=mi>1</span><span class=p>)</span> <span class=o>//</span> <span class=mi>2</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=n>b</span> <span class=o>=</span> <span class=n>getKth</span><span class=p>(</span><span class=n>nums1</span><span class=p>,</span> <span class=mi>0</span><span class=p>,</span> <span class=n>m</span> <span class=o>-</span> <span class=mi>1</span><span class=p>,</span> <span class=n>nums2</span><span class=p>,</span> <span class=mi>0</span><span class=p>,</span> <span class=n>n</span> <span class=o>-</span> <span class=mi>1</span><span class=p>,</span> <span class=p>(</span><span class=n>m</span> <span class=o>+</span> <span class=n>n</span><span class=p>)</span> <span class=o>//</span> <span class=mi>2</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=k>return</span> <span class=p>(</span><span class=n>a</span> <span class=o>+</span> <span class=n>b</span><span class=p>)</span> <span class=o>/</span> <span class=mi>2</span>
+</span></span></code></pre></td></tr></table></div></div><p>有几点地方还是要稍微讲一下。</p><p>getKth是求第K大元素（从0开始计数），而题目是要求中位数。</p><p>如果一组数有奇数个，中位数就是最中间的1个数；如果有偶数个，那么中位数就是最中间的2个数。这里可以把它们统一处理，奇数个的时候也表示成2个数，也就是最中间的那个数被求解了2次。所以代码中的a和b，在长度为偶数的情况下，相当于表示了第K大及第K+1大；如果长度为奇数，表示了第K大和第K大。最终取a和b的平均值。</p><hr><p>数组A的左部分以i下标结束，数组B的左部分以j下标结束。LA的长度可能是i-b1+1=(K+1)//2，同样，LB的长度也可能是j-b2+1=(K+1)//2。两者加起来的长度不是有可能为K+1么（K为奇数的情况下），不是超过K了么，第K大不就可能在LA或LB中了么？</p><p>首先，虽然两者长度和加起来可能超过K，但单单一个数组的长度并没有超过K，也就是说(K+1)//2 ≤ K。显然，这在K ≥ 1的情况下总是成立的，而K为0的情况在函数入口就处理了，所以走到下面代码，K已经是≥1了。</p><p>然后，每次准备下一次搜索的时候，我们都是移除LA或者LB，而不是两者同时移除。单单移除一个，并不会超过K个元素，所以能保证正确答案仍然留在剩余元素中，而不是被移除的元素中。</p><p>比如假设A[i]&lt;B[j]，LA+LB有K+1个元素，如果第K大元素落在LA+LB中，那么也只能是LA+LB的最末一个元素，也就是最大的元素，也就是B[j]。而按照算法，下次搜索是移除了LA，LB还是保留的，所以B[j]还是保留的。</p><p>那么，为什么允许LA+LB有K+1个元素呢，能不能严格控制K个元素？主要考虑到边界情况。我们的算法总是要求两个数组各自提供一半元素（如此才有A[i]与B[j]的比较），且至少提供1个。如果K的值为1，那么怎么分配呢？数组A提供1个，数组B不提供？还是数组A不提供，数组B提供1个？不论哪种方式，都破坏了我们的要求，各自至少提供1个。如果我们允许A提供1个，B不提供，那么我们怎么知道这个A的元素是该保留的还是被移除呢，总是要通过与B比较之后才知道。比如A=[2, 3, 4]，B=[1, 5, 6]，K=1，答案是2，A[0]不能删。</p><p>另外，我们要求每个数组至少提供1个元素，也是为了保证不管移除LA或者LB，总是有真的元素被移除，如此才能减小问题规模，否则移除一个空集，并没有减小问题规模，会出岔子。</p><hr><p>参考：</p><p><a href=https://leetcode.com/problems/median-of-two-sorted-arrays/discuss/2499/Share-my-simple-O%28log%28m%2Bn%29%29-solution-for-your-reference rel=noopener></a></p></article><hr><div class=page-end><div class=backlinks-container><h3>Backlinks</h3><ul class=backlinks><li>No backlinks found</li></ul></div><div><script src=https://cdn.jsdelivr.net/npm/d3@6.7.0/dist/d3.min.js integrity="sha256-+7jaYCp29O1JusNWHaYtgUn6EhuP0VaFuswhNV06MyI=" crossorigin=anonymous></script><h3>Interactive Graph</h3><div id=graph-container></div><style>:root{--g-node:var(--secondary);--g-node-active:var(--primary);--g-node-inactive:var(--visited);--g-link:var(--outlinegray);--g-link-active:#5a7282}</style><script src=https://lzyerste.github.io/quartz/js/graph.6fe09b3d8b5792ccf0f505be9ee8275d.js></script>
+<script>drawGraph("https://lzyerste.github.io/quartz/wiki/wiki/algorithm/OJ_online_judge/LeetCode/%E9%A2%98%E7%9B%AE%E5%88%97%E8%A1%A8/4-Median-of-Two-Sorted-Arrays-a342fd9fb68f470db95e26ec50e42dba","https://lzyerste.github.io/quartz",[{"/moc":"#4388cc"}],-1,!0,!1,!0)</script></div></div><div id=contact_buttons><footer><p>Made by Jacky Zhao using <a href=https://github.com/jackyzha0/quartz>Quartz</a>, © 2022</p><ul><li><a href=/>Home</a></li><li><a href=https://twitter.com/_jzhao>Twitter</a></li><li><a href=https://github.com/jackyzha0>Github</a></li></ul></footer></div><script src=https://lzyerste.github.io/quartz/js/popover.e57188d2e4c06b0654e020b3a734bb62.min.js></script>
+<script>initPopover("https://lzyerste.github.io/quartz")</script></div></body></html>

@@ -1,0 +1,254 @@
+<!doctype html><html lang=en><head><meta charset=utf-8><meta name=description content="每天学一个 Linux 命令（60）：scp  https://mp.weixin.qq.com/s?__biz=MzI0MDQ4MTM5NQ==&mid=2247509649&idx=2&sn=2266791f1e5ae714ccbeb468ddefbe77&chksm=e918c38dde6f4a9b22b2ad556367cb6731dcd7898fae00c8b3dda70a85ac38bedc7c299df033&xtrack=1&scene=90&subscene=93&sessionid=1615517694&clicktime=1615517698&enterid=1615517698&ascene=56&devicetype=android-29&version=2800015b&nettype=ctnet&abtest_cookie=AAACAA%3D%3D&lang=zh_CN&exportkey=AcZJY5cuoZ%2Fm3pEKQgAcJ%2Bo%3D&pass_ticket=IrWZgEJSr%2Fs%2FC%2F8HCQVz%2FVwEg8E2d94RU25cXRoqQHZ%2B62jeZzxBzULF7e1vNVvZ&wx_header=1
+昨日推荐： 每天学一个 Linux 命令（59）：ssh
+命令简介 scp 全拼secure copy，用于不同主机之间复制文件。
+scp命令常用于在Linux系统下两个不同主机之间传输文件，其功能与 cp命令相似，但是不同是，cp命令只能用于在本机环境下传输或复制拷贝文件，scp命令可以跨越不同主机，而scp传输文件是加密的。
+scp 它使用ssh进行数据传输，并使用与ssh相同的身份验证并提供相同的安全性，scp 会要求输入密码或其它方式以进行身份验证。
+语法格式 1 2 3  scp [-12346BCpqrv] [-c cipher] [-F ssh_config] [-i identity_file] [-l limit] [-o ssh_option] [-P port] [-S program] [[user@]host1:]file1 ."><title>🪴 Quartz 3.2</title><meta name=viewport content="width=device-width,initial-scale=1"><link rel="shortcut icon" type=image/png href=https://lzyerste.github.io/quartz//icon.png><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Source+Sans+Pro:wght@400;600;700&family=Fira+Code:wght@400;700&display=swap" rel=stylesheet><link href=https://lzyerste.github.io/quartz/styles.b5715611e07d622618ed61d06502131c.min.css rel=stylesheet><script src=https://lzyerste.github.io/quartz/js/darkmode.46b07878b7f5d9e26ad7a3c40f8a0605.min.js></script>
+<link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css integrity=sha384-R4558gYOUz8mP9YWpZJjofhk+zx0AS11p36HnD2ZKj/6JR5z27gSSULCNHIRReVs crossorigin=anonymous><script defer src=https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js integrity=sha384-z1fJDqw8ZApjGO3/unPWUPsIymfsJmyrDVWC8Tv/a1HeOtGmkwNd/7xUS0Xcnvsx crossorigin=anonymous></script>
+<script defer src=https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/contrib/auto-render.min.js integrity=sha384-+XBljXPPiv+OzfbB3cVmLHf4hdUFHlWNZN5spNQ7rmHTXpd7WvJum6fIACpNNfIR crossorigin=anonymous></script>
+<script>document.addEventListener("DOMContentLoaded",function(){renderMathInElement(document.body,{delimiters:[{left:"$$",right:"$$",display:!0},{left:"$",right:"$",display:!1}],throwOnError:!1})})</script><script>const BASE_URL="https://lzyerste.github.io/quartz/",fetchData=Promise.all([fetch("https://lzyerste.github.io/quartz/indices/linkIndex.0c3b9c7455a2a896802a60e8bb3e1120.min.json").then(e=>e.json()).then(e=>({index:e.index,links:e.links})),fetch("https://lzyerste.github.io/quartz/indices/contentIndex.d5cc7a6f5c397ac12ca2df88f6566f1c.min.json").then(e=>e.json())]).then(([{index:e,links:t},n])=>({index:e,links:t,content:n}))</script></head><script async src="https://www.googletagmanager.com/gtag/js?id=G-XYFD95KB4J"></script>
+<script>var doNotTrack=!1;if(!doNotTrack){window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-XYFD95KB4J",{anonymize_ip:!1})}</script><body><div id=search-container><div id=search-space><input autocomplete=off id=search-bar name=search type=text aria-label=Search placeholder="Search for something..."><div id=results-container></div></div></div><script src=https://cdn.jsdelivr.net/npm/flexsearch@0.7.21/dist/flexsearch.bundle.js integrity="sha256-i3A0NZGkhsKjVMzFxv3ksk0DZh3aXqu0l49Bbh0MdjE=" crossorigin=anonymous defer></script>
+<script defer src=https://lzyerste.github.io/quartz/js/search.7861a82db330f0a40935b7458fee3a02.min.js></script><div class=singlePage><header><h1 id=page-title><a href=https://lzyerste.github.io/quartz/>🪴 Quartz 3.2</a></h1><svg tabindex="0" id="search-icon" aria-labelledby="title desc" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 19.9 19.7"><title id="title">Search Icon</title><desc id="desc">Icon to open search</desc><g class="search-path" fill="none"><path stroke-linecap="square" d="M18.5 18.3l-5.4-5.4"/><circle cx="8" cy="8" r="7"/></g></svg><div class=spacer></div><div class=darkmode><input class=toggle id=darkmode-toggle type=checkbox tabindex=-1>
+<label id=toggle-label-light for=darkmode-toggle tabindex=-1><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="dayIcon" viewBox="0 0 35 35" style="enable-background:new 0 0 35 35"><title>Light Mode</title><path d="M6 17.5C6 16.672 5.328 16 4.5 16h-3C.672 16 0 16.672.0 17.5S.672 19 1.5 19h3C5.328 19 6 18.328 6 17.5zM7.5 26c-.414.0-.789.168-1.061.439l-2 2C4.168 28.711 4 29.086 4 29.5 4 30.328 4.671 31 5.5 31c.414.0.789-.168 1.06-.44l2-2C8.832 28.289 9 27.914 9 27.5 9 26.672 8.329 26 7.5 26zm10-20C18.329 6 19 5.328 19 4.5v-3C19 .672 18.329.0 17.5.0S16 .672 16 1.5v3C16 5.328 16.671 6 17.5 6zm10 3c.414.0.789-.168 1.06-.439l2-2C30.832 6.289 31 5.914 31 5.5 31 4.672 30.329 4 29.5 4c-.414.0-.789.168-1.061.44l-2 2C26.168 6.711 26 7.086 26 7.5 26 8.328 26.671 9 27.5 9zM6.439 8.561C6.711 8.832 7.086 9 7.5 9 8.328 9 9 8.328 9 7.5c0-.414-.168-.789-.439-1.061l-2-2C6.289 4.168 5.914 4 5.5 4 4.672 4 4 4.672 4 5.5c0 .414.168.789.439 1.06l2 2.001zM33.5 16h-3c-.828.0-1.5.672-1.5 1.5s.672 1.5 1.5 1.5h3c.828.0 1.5-.672 1.5-1.5S34.328 16 33.5 16zM28.561 26.439C28.289 26.168 27.914 26 27.5 26c-.828.0-1.5.672-1.5 1.5.0.414.168.789.439 1.06l2 2C28.711 30.832 29.086 31 29.5 31c.828.0 1.5-.672 1.5-1.5.0-.414-.168-.789-.439-1.061l-2-2zM17.5 29c-.829.0-1.5.672-1.5 1.5v3c0 .828.671 1.5 1.5 1.5s1.5-.672 1.5-1.5v-3C19 29.672 18.329 29 17.5 29zm0-22C11.71 7 7 11.71 7 17.5S11.71 28 17.5 28 28 23.29 28 17.5 23.29 7 17.5 7zm0 18c-4.136.0-7.5-3.364-7.5-7.5s3.364-7.5 7.5-7.5 7.5 3.364 7.5 7.5S21.636 25 17.5 25z"/></svg></label><label id=toggle-label-dark for=darkmode-toggle tabindex=-1><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="nightIcon" viewBox="0 0 100 100" style="enable-background='new 0 0 100 100'"><title>Dark Mode</title><path d="M96.76 66.458c-.853-.852-2.15-1.064-3.23-.534-6.063 2.991-12.858 4.571-19.655 4.571C62.022 70.495 50.88 65.88 42.5 57.5 29.043 44.043 25.658 23.536 34.076 6.47c.532-1.08.318-2.379-.534-3.23-.851-.852-2.15-1.064-3.23-.534-4.918 2.427-9.375 5.619-13.246 9.491-9.447 9.447-14.65 22.008-14.65 35.369.0 13.36 5.203 25.921 14.65 35.368s22.008 14.65 35.368 14.65c13.361.0 25.921-5.203 35.369-14.65 3.872-3.871 7.064-8.328 9.491-13.246C97.826 68.608 97.611 67.309 96.76 66.458z"/></svg></label></div></header><article><p class=meta>Last updated Unknown</p><ul class=tags></ul><aside class=mainTOC><details><summary>Table of Contents</summary><nav id=TableOfContents><ol><li><a href=#命令简介><strong>命令简介</strong></a></li><li><a href=#语法格式><strong>语法格式</strong></a></li><li><a href=#选项说明><strong>选项说明</strong></a></li><li><a href=#应用举例><strong>应用举例</strong></a></li></ol></nav></details></aside><h1 id=每天学一个-linux-命令60scp>每天学一个 Linux 命令（60）：scp</h1><p><a href="https://mp.weixin.qq.com/s?__biz=MzI0MDQ4MTM5NQ==&mid=2247509649&idx=2&sn=2266791f1e5ae714ccbeb468ddefbe77&chksm=e918c38dde6f4a9b22b2ad556367cb6731dcd7898fae00c8b3dda70a85ac38bedc7c299df033&xtrack=1&scene=90&subscene=93&sessionid=1615517694&clicktime=1615517698&enterid=1615517698&ascene=56&devicetype=android-29&version=2800015b&nettype=ctnet&abtest_cookie=AAACAA%3D%3D&lang=zh_CN&exportkey=AcZJY5cuoZ%2Fm3pEKQgAcJ%2Bo%3D&pass_ticket=IrWZgEJSr%2Fs%2FC%2F8HCQVz%2FVwEg8E2d94RU25cXRoqQHZ%2B62jeZzxBzULF7e1vNVvZ&wx_header=1" rel=noopener>https://mp.weixin.qq.com/s?__biz=MzI0MDQ4MTM5NQ==&mid=2247509649&idx=2&sn=2266791f1e5ae714ccbeb468ddefbe77&chksm=e918c38dde6f4a9b22b2ad556367cb6731dcd7898fae00c8b3dda70a85ac38bedc7c299df033&xtrack=1&scene=90&subscene=93&sessionid=1615517694&clicktime=1615517698&enterid=1615517698&ascene=56&devicetype=android-29&version=2800015b&nettype=ctnet&abtest_cookie=AAACAA%3D%3D&lang=zh_CN&exportkey=AcZJY5cuoZ%2Fm3pEKQgAcJ%2Bo%3D&pass_ticket=IrWZgEJSr%2Fs%2FC%2F8HCQVz%2FVwEg8E2d94RU25cXRoqQHZ%2B62jeZzxBzULF7e1vNVvZ&wx_header=1</a></p><p><strong>昨日推荐：</strong>
+<a href="http://mp.weixin.qq.com/s?__biz=MzI0MDQ4MTM5NQ==&mid=2247509626&idx=3&sn=27d1721b4a22a6c2e47b5f8c3a818a4f&chksm=e918c366de6f4a7066a6493f7ffa8d5b23eda002df16a222ebda4bac35c574501eaaea45d3d3&scene=21#wechat_redirect" rel=noopener>每天学一个 Linux 命令（59）：ssh</a></p><h2 id=命令简介><strong>命令简介</strong></h2><p>scp 全拼secure copy，用于不同主机之间复制文件。</p><p>scp命令常用于在Linux系统下两个不同主机之间传输文件，其功能与
+<a href="http://mp.weixin.qq.com/s?__biz=MzI0MDQ4MTM5NQ==&mid=2247505820&idx=3&sn=81901b7399074ef67b2cfe409d6dd234&chksm=e918b280de6f3b9693be662b613cb28ccec2e6a41b7bf0795936759ad80477c3ab358f61b306&scene=21#wechat_redirect" rel=noopener>cp命令</a>相似，但是不同是，cp命令只能用于在本机环境下传输或复制拷贝文件，scp命令可以跨越不同主机，而scp传输文件是加密的。</p><p>scp 它使用ssh进行数据传输，并使用与ssh相同的身份验证并提供相同的安全性，scp 会要求输入密码或其它方式以进行身份验证。</p><h2 id=语法格式><strong>语法格式</strong></h2><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>scp [-12346BCpqrv] [-c cipher] [-F ssh_config] [-i identity_file]
+</span></span><span class=line><span class=cl>    [-l limit] [-o ssh_option] [-P port] [-S program]
+</span></span><span class=line><span class=cl>    [[user@]host1:]file1 ... [[user@]host2:]file2
+</span></span></code></pre></td></tr></table></div></div><ul><li>源文件：需要复制的文件</li><li>目标文件：格式为 user@host:filename（文件名为目标文件的名称）</li></ul><h2 id=选项说明><strong>选项说明</strong></h2><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>-1	#指定使用ssh协议版本为1
+</span></span><span class=line><span class=cl>-2	#指定使用ssh协议版本为2
+</span></span><span class=line><span class=cl>-3	#指定两个主机之间的副本通过本地主机传输
+</span></span><span class=line><span class=cl>-4	#指定使用ipv4
+</span></span><span class=line><span class=cl>-6	#指定使用ipv6
+</span></span><span class=line><span class=cl>-B	#使用批处理模式
+</span></span><span class=line><span class=cl>-C	#使用压缩模式传输文件
+</span></span><span class=line><span class=cl>-F	#使用指定的ssh配置文件
+</span></span><span class=line><span class=cl>-i identity_file	#从指定文件中读取传输时使用的密钥文件
+</span></span><span class=line><span class=cl>-l	#宽带限制
+</span></span><span class=line><span class=cl>-o	#使用的ssh选项
+</span></span><span class=line><span class=cl>-P	#远程主机的端口号
+</span></span><span class=line><span class=cl>-p	#保留文件的最后修改时间，最后访问时间和权限模式
+</span></span><span class=line><span class=cl>-q	#不输出复制进度信息
+</span></span><span class=line><span class=cl>-r	#以递归方式复制
+</span></span><span class=line><span class=cl>-S program	#指定加密传输时所使用的程序
+</span></span><span class=line><span class=cl>-v	#显示传输过程的详细信息
+</span></span></code></pre></td></tr></table></div></div><h2 id=应用举例><strong>应用举例</strong></h2><p>从远程服务器复制到本地服务器</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>#复制文件
+</span></span><span class=line><span class=cl>scp root@192.168.1.2:/download/soft/nginx.tar.gz /download/soft/
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>#复制目录
+</span></span><span class=line><span class=cl>scp -r root@192.168.1.2:/app/soft/mongodb /app/soft/
+</span></span></code></pre></td></tr></table></div></div><p>以mingongge用户身份将远程主机mingongge.com上的/home/mingongge/backup.tar.gz 文件传送到当前工作目录下，并将传输限制为每秒 80 KB</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>scp -l 80 mingongge@mingongge.com:/home/mingongge/backup.tar.gz
+</span></span><span class=line><span class=cl>#也可以写成如下
+</span></span><span class=line><span class=cl>scp -l 80 mingongge@mingongge.com:/home/mingongge/backup.tar.gz ./
+</span></span></code></pre></td></tr></table></div></div><p>使用指定的端口号传输文件</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>scp -P 9999 root@192.168.1.2:/download/soft/nginx.tar.gz /download/soft/
+</span></span></code></pre></td></tr></table></div></div><p>查看详细的传输过程</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span><span class=lnt>40
+</span><span class=lnt>41
+</span><span class=lnt>42
+</span><span class=lnt>43
+</span><span class=lnt>44
+</span><span class=lnt>45
+</span><span class=lnt>46
+</span><span class=lnt>47
+</span><span class=lnt>48
+</span><span class=lnt>49
+</span><span class=lnt>50
+</span><span class=lnt>51
+</span><span class=lnt>52
+</span><span class=lnt>53
+</span><span class=lnt>54
+</span><span class=lnt>55
+</span><span class=lnt>56
+</span><span class=lnt>57
+</span><span class=lnt>58
+</span><span class=lnt>59
+</span><span class=lnt>60
+</span><span class=lnt>61
+</span><span class=lnt>62
+</span><span class=lnt>63
+</span><span class=lnt>64
+</span><span class=lnt>65
+</span><span class=lnt>66
+</span><span class=lnt>67
+</span><span class=lnt>68
+</span><span class=lnt>69
+</span><span class=lnt>70
+</span><span class=lnt>71
+</span><span class=lnt>72
+</span><span class=lnt>73
+</span><span class=lnt>74
+</span><span class=lnt>75
+</span><span class=lnt>76
+</span><span class=lnt>77
+</span><span class=lnt>78
+</span><span class=lnt>79
+</span><span class=lnt>80
+</span><span class=lnt>81
+</span><span class=lnt>82
+</span><span class=lnt>83
+</span><span class=lnt>84
+</span><span class=lnt>85
+</span><span class=lnt>86
+</span><span class=lnt>87
+</span><span class=lnt>88
+</span><span class=lnt>89
+</span><span class=lnt>90
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>[root@centos7 ~]# scp -v root@192.168.1.100:/root/nginxWebUI-1.3.5.jar  /root/download/
+</span></span><span class=line><span class=cl>Executing: program /usr/bin/ssh host 192.168.1.100, user root, command scp -v -f /root/nginxWebUI-1.3.5.jar
+</span></span><span class=line><span class=cl>OpenSSH_7.4p1, OpenSSL 1.0.2k-fips  26 Jan 2017
+</span></span><span class=line><span class=cl>debug1: Reading configuration data /etc/ssh/ssh_config
+</span></span><span class=line><span class=cl>debug1: /etc/ssh/ssh_config line 58: Applying options for *
+</span></span><span class=line><span class=cl>debug1: Connecting to 192.168.1.100 [192.168.1.100] port 22.
+</span></span><span class=line><span class=cl>debug1: Connection established.
+</span></span><span class=line><span class=cl>debug1: permanently_set_uid: 0/0
+</span></span><span class=line><span class=cl>debug1: key_load_public: No such file or directory
+</span></span><span class=line><span class=cl>debug1: identity file /root/.ssh/id_rsa type -1
+</span></span><span class=line><span class=cl>debug1: key_load_public: No such file or directory
+</span></span><span class=line><span class=cl>debug1: identity file /root/.ssh/id_rsa-cert type -1
+</span></span><span class=line><span class=cl>debug1: key_load_public: No such file or directory
+</span></span><span class=line><span class=cl>debug1: identity file /root/.ssh/id_dsa type -1
+</span></span><span class=line><span class=cl>debug1: key_load_public: No such file or directory
+</span></span><span class=line><span class=cl>debug1: identity file /root/.ssh/id_dsa-cert type -1
+</span></span><span class=line><span class=cl>debug1: key_load_public: No such file or directory
+</span></span><span class=line><span class=cl>debug1: identity file /root/.ssh/id_ecdsa type -1
+</span></span><span class=line><span class=cl>debug1: key_load_public: No such file or directory
+</span></span><span class=line><span class=cl>debug1: identity file /root/.ssh/id_ecdsa-cert type -1
+</span></span><span class=line><span class=cl>debug1: key_load_public: No such file or directory
+</span></span><span class=line><span class=cl>debug1: identity file /root/.ssh/id_ed25519 type -1
+</span></span><span class=line><span class=cl>debug1: key_load_public: No such file or directory
+</span></span><span class=line><span class=cl>debug1: identity file /root/.ssh/id_ed25519-cert type -1
+</span></span><span class=line><span class=cl>debug1: Enabling compatibility mode for protocol 2.0
+</span></span><span class=line><span class=cl>debug1: Local version string SSH-2.0-OpenSSH_7.4
+</span></span><span class=line><span class=cl>debug1: Remote protocol version 2.0, remote software version OpenSSH_7.4
+</span></span><span class=line><span class=cl>debug1: match: OpenSSH_7.4 pat OpenSSH* compat 0x04000000
+</span></span><span class=line><span class=cl>debug1: Authenticating to 192.168.1.100:22 as &#39;root&#39;
+</span></span><span class=line><span class=cl>debug1: SSH2_MSG_KEXINIT sent
+</span></span><span class=line><span class=cl>debug1: SSH2_MSG_KEXINIT received
+</span></span><span class=line><span class=cl>debug1: kex: algorithm: curve25519-sha256
+</span></span><span class=line><span class=cl>debug1: kex: host key algorithm: ecdsa-sha2-nistp256
+</span></span><span class=line><span class=cl>debug1: kex: server-&gt;client cipher: chacha20-poly1305@openssh.com MAC: &lt;implicit&gt; compression: none
+</span></span><span class=line><span class=cl>debug1: kex: client-&gt;server cipher: chacha20-poly1305@openssh.com MAC: &lt;implicit&gt; compression: none
+</span></span><span class=line><span class=cl>debug1: kex: curve25519-sha256 need=64 dh_need=64
+</span></span><span class=line><span class=cl>debug1: kex: curve25519-sha256 need=64 dh_need=64
+</span></span><span class=line><span class=cl>debug1: expecting SSH2_MSG_KEX_ECDH_REPLY
+</span></span><span class=line><span class=cl>debug1: Server host key: ecdsa-sha2-nistp256 SHA256:GqOqgdhVZyEtg/wSM8l5YB+Y6GO8K3Ii7OFsKW9R2n0
+</span></span><span class=line><span class=cl>The authenticity of host &#39;192.168.1.100 (192.168.1.100)&#39; can&#39;t be established.
+</span></span><span class=line><span class=cl>ECDSA key fingerprint is SHA256:GqOqgdhVZyEtg/wSM8l5YB+Y6GO8K3Ii7OFsKW9R2n0.
+</span></span><span class=line><span class=cl>ECDSA key fingerprint is MD5:cc:4b:7d:b6:59:0f:77:83:a9:a5:32:70:4e:87:0d:41.
+</span></span><span class=line><span class=cl>Are you sure you want to continue connecting (yes/no)? yes
+</span></span><span class=line><span class=cl>Warning: Permanently added &#39;192.168.1.100&#39; (ECDSA) to the list of known hosts.
+</span></span><span class=line><span class=cl>debug1: rekey after 134217728 blocks
+</span></span><span class=line><span class=cl>debug1: SSH2_MSG_NEWKEYS sent
+</span></span><span class=line><span class=cl>debug1: expecting SSH2_MSG_NEWKEYS
+</span></span><span class=line><span class=cl>debug1: SSH2_MSG_NEWKEYS received
+</span></span><span class=line><span class=cl>debug1: rekey after 134217728 blocks
+</span></span><span class=line><span class=cl>debug1: SSH2_MSG_EXT_INFO received
+</span></span><span class=line><span class=cl>debug1: kex_input_ext_info: server-sig-algs=&lt;rsa-sha2-256,rsa-sha2-512&gt;
+</span></span><span class=line><span class=cl>debug1: SSH2_MSG_SERVICE_ACCEPT received
+</span></span><span class=line><span class=cl>debug1: Authentications that can continue: publickey,gssapi-keyex,gssapi-with-mic,password
+</span></span><span class=line><span class=cl>debug1: Next authentication method: gssapi-keyex
+</span></span><span class=line><span class=cl>debug1: No valid Key exchange context
+</span></span><span class=line><span class=cl>debug1: Next authentication method: gssapi-with-mic
+</span></span><span class=line><span class=cl>debug1: Unspecified GSS failure.  Minor code may provide more information
+</span></span><span class=line><span class=cl>No Kerberos credentials available (default cache: KEYRING:persistent:0)
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>debug1: Unspecified GSS failure.  Minor code may provide more information
+</span></span><span class=line><span class=cl>No Kerberos credentials available (default cache: KEYRING:persistent:0)
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>debug1: Next authentication method: publickey
+</span></span><span class=line><span class=cl>debug1: Trying private key: /root/.ssh/id_rsa
+</span></span><span class=line><span class=cl>debug1: Trying private key: /root/.ssh/id_dsa
+</span></span><span class=line><span class=cl>debug1: Trying private key: /root/.ssh/id_ecdsa
+</span></span><span class=line><span class=cl>debug1: Trying private key: /root/.ssh/id_ed25519
+</span></span><span class=line><span class=cl>debug1: Next authentication method: password
+</span></span><span class=line><span class=cl>root@192.168.1.100&#39;s password:
+</span></span><span class=line><span class=cl>debug1: Authentication succeeded (password).
+</span></span><span class=line><span class=cl>Authenticated to 192.168.1.100 ([192.168.1.100]:22).
+</span></span><span class=line><span class=cl>debug1: channel 0: new [client-session]
+</span></span><span class=line><span class=cl>debug1: Requesting no-more-sessions@openssh.com
+</span></span><span class=line><span class=cl>debug1: Entering interactive session.
+</span></span><span class=line><span class=cl>debug1: pledge: network
+</span></span><span class=line><span class=cl>debug1: client_input_global_request: rtype hostkeys-00@openssh.com want_reply 0
+</span></span><span class=line><span class=cl>debug1: Sending environment.
+</span></span><span class=line><span class=cl>debug1: Sending env LANG = en_US.UTF-8
+</span></span><span class=line><span class=cl>debug1: Sending command: scp -v -f /root/nginxWebUI-1.3.5.jar
+</span></span><span class=line><span class=cl>Sending file modes: C0644 36196329 nginxWebUI-1.3.5.jar
+</span></span><span class=line><span class=cl>Sink: C0644 36196329 nginxWebUI-1.3.5.jar
+</span></span><span class=line><span class=cl>nginxWebUI-1.3.5.jar                 100%   35MB  12.1MB/s   00:02
+</span></span><span class=line><span class=cl>debug1: client_input_channel_req: channel 0 rtype exit-status reply 0
+</span></span><span class=line><span class=cl>debug1: client_input_channel_req: channel 0 rtype eow@openssh.com reply 0
+</span></span><span class=line><span class=cl>debug1: channel 0: free: client-session, nchannels 1
+</span></span><span class=line><span class=cl>debug1: fd 0 clearing O_NONBLOCK
+</span></span><span class=line><span class=cl>debug1: fd 1 clearing O_NONBLOCK
+</span></span><span class=line><span class=cl>Transferred: sent 12604, received 36237992 bytes, in 4.3 seconds
+</span></span><span class=line><span class=cl>Bytes per second: sent 2916.1, received 8384212.5
+</span></span><span class=line><span class=cl>debug1: Exit status 0
+</span></span></code></pre></td></tr></table></div></div><p>通过上述过程信息，可以知道scp传输文件的整个过程是什么样的，也可以明白一些原理。</p><p><a href="http://mp.weixin.qq.com/s?__biz=MzI0MDQ4MTM5NQ==&mid=2247509451&idx=3&sn=fb99c293c139e292396547dfb9e1cf89&chksm=e918c0d7de6f49c1850c0c77b72b870ca213d101d327bb973ac2e387e40210589b076a94a542&scene=21#wechat_redirect" rel=noopener>每天学一个 Linux 命令（57）：cal</a></p></article><hr><div class=page-end><div class=backlinks-container><h3>Backlinks</h3><ul class=backlinks><li>No backlinks found</li></ul></div><div><script src=https://cdn.jsdelivr.net/npm/d3@6.7.0/dist/d3.min.js integrity="sha256-+7jaYCp29O1JusNWHaYtgUn6EhuP0VaFuswhNV06MyI=" crossorigin=anonymous></script><h3>Interactive Graph</h3><div id=graph-container></div><style>:root{--g-node:var(--secondary);--g-node-active:var(--primary);--g-node-inactive:var(--visited);--g-link:var(--outlinegray);--g-link-active:#5a7282}</style><script src=https://lzyerste.github.io/quartz/js/graph.6fe09b3d8b5792ccf0f505be9ee8275d.js></script>
+<script>drawGraph("https://lzyerste.github.io/quartz/wiki/bash/scp/%E6%AF%8F%E5%A4%A9%E5%AD%A6%E4%B8%80%E4%B8%AA-Linux-%E5%91%BD%E4%BB%A460scp-1de49d3579c747fb8aeccfeba995510a","https://lzyerste.github.io/quartz",[{"/moc":"#4388cc"}],-1,!0,!1,!0)</script></div></div><div id=contact_buttons><footer><p>Made by Jacky Zhao using <a href=https://github.com/jackyzha0/quartz>Quartz</a>, © 2022</p><ul><li><a href=/>Home</a></li><li><a href=https://twitter.com/_jzhao>Twitter</a></li><li><a href=https://github.com/jackyzha0>Github</a></li></ul></footer></div><script src=https://lzyerste.github.io/quartz/js/popover.e57188d2e4c06b0654e020b3a734bb62.min.js></script>
+<script>initPopover("https://lzyerste.github.io/quartz")</script></div></body></html>

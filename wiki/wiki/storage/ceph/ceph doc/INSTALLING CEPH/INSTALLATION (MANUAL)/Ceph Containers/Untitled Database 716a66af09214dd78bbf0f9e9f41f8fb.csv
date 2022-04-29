@@ -1,0 +1,5 @@
+﻿Tag,Meaning
+vRELNUM,"Latest release in this series (e.g., v14 = Nautilus)"
+vRELNUM.2,"Latest stable release in this stable series (e.g., v14.2)"
+vRELNUM.Y.Z,"A specific release (e.g., v14.2.4)"
+vRELNUM.Y.Z-YYYYMMDD,"A specific build (e.g., v14.2.4-20191203)"

@@ -1,0 +1,174 @@
+<!doctype html><html lang=en><head><meta charset=utf-8><meta name=description content="5. Longest Palindromic Substring Difficulty: Medium ID: 5 Solved?: Yes Tags: DP, String 击败: 71.57 推荐指数: ⭐⭐⭐⭐
+ Loading&mldr;
+题意 给定一个字符串 s，找到 s 中最长的回文子串。你可以假设 s 的最大长度为 1000。"><title>🪴 Quartz 3.2</title><meta name=viewport content="width=device-width,initial-scale=1"><link rel="shortcut icon" type=image/png href=https://lzyerste.github.io/quartz//icon.png><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Source+Sans+Pro:wght@400;600;700&family=Fira+Code:wght@400;700&display=swap" rel=stylesheet><link href=https://lzyerste.github.io/quartz/styles.b5715611e07d622618ed61d06502131c.min.css rel=stylesheet><script src=https://lzyerste.github.io/quartz/js/darkmode.46b07878b7f5d9e26ad7a3c40f8a0605.min.js></script>
+<link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css integrity=sha384-R4558gYOUz8mP9YWpZJjofhk+zx0AS11p36HnD2ZKj/6JR5z27gSSULCNHIRReVs crossorigin=anonymous><script defer src=https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js integrity=sha384-z1fJDqw8ZApjGO3/unPWUPsIymfsJmyrDVWC8Tv/a1HeOtGmkwNd/7xUS0Xcnvsx crossorigin=anonymous></script>
+<script defer src=https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/contrib/auto-render.min.js integrity=sha384-+XBljXPPiv+OzfbB3cVmLHf4hdUFHlWNZN5spNQ7rmHTXpd7WvJum6fIACpNNfIR crossorigin=anonymous></script>
+<script>document.addEventListener("DOMContentLoaded",function(){renderMathInElement(document.body,{delimiters:[{left:"$$",right:"$$",display:!0},{left:"$",right:"$",display:!1}],throwOnError:!1})})</script><script>const BASE_URL="https://lzyerste.github.io/quartz/",fetchData=Promise.all([fetch("https://lzyerste.github.io/quartz/indices/linkIndex.0c3b9c7455a2a896802a60e8bb3e1120.min.json").then(e=>e.json()).then(e=>({index:e.index,links:e.links})),fetch("https://lzyerste.github.io/quartz/indices/contentIndex.d5cc7a6f5c397ac12ca2df88f6566f1c.min.json").then(e=>e.json())]).then(([{index:e,links:t},n])=>({index:e,links:t,content:n}))</script></head><script async src="https://www.googletagmanager.com/gtag/js?id=G-XYFD95KB4J"></script>
+<script>var doNotTrack=!1;if(!doNotTrack){window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-XYFD95KB4J",{anonymize_ip:!1})}</script><body><div id=search-container><div id=search-space><input autocomplete=off id=search-bar name=search type=text aria-label=Search placeholder="Search for something..."><div id=results-container></div></div></div><script src=https://cdn.jsdelivr.net/npm/flexsearch@0.7.21/dist/flexsearch.bundle.js integrity="sha256-i3A0NZGkhsKjVMzFxv3ksk0DZh3aXqu0l49Bbh0MdjE=" crossorigin=anonymous defer></script>
+<script defer src=https://lzyerste.github.io/quartz/js/search.7861a82db330f0a40935b7458fee3a02.min.js></script><div class=singlePage><header><h1 id=page-title><a href=https://lzyerste.github.io/quartz/>🪴 Quartz 3.2</a></h1><svg tabindex="0" id="search-icon" aria-labelledby="title desc" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 19.9 19.7"><title id="title">Search Icon</title><desc id="desc">Icon to open search</desc><g class="search-path" fill="none"><path stroke-linecap="square" d="M18.5 18.3l-5.4-5.4"/><circle cx="8" cy="8" r="7"/></g></svg><div class=spacer></div><div class=darkmode><input class=toggle id=darkmode-toggle type=checkbox tabindex=-1>
+<label id=toggle-label-light for=darkmode-toggle tabindex=-1><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="dayIcon" viewBox="0 0 35 35" style="enable-background:new 0 0 35 35"><title>Light Mode</title><path d="M6 17.5C6 16.672 5.328 16 4.5 16h-3C.672 16 0 16.672.0 17.5S.672 19 1.5 19h3C5.328 19 6 18.328 6 17.5zM7.5 26c-.414.0-.789.168-1.061.439l-2 2C4.168 28.711 4 29.086 4 29.5 4 30.328 4.671 31 5.5 31c.414.0.789-.168 1.06-.44l2-2C8.832 28.289 9 27.914 9 27.5 9 26.672 8.329 26 7.5 26zm10-20C18.329 6 19 5.328 19 4.5v-3C19 .672 18.329.0 17.5.0S16 .672 16 1.5v3C16 5.328 16.671 6 17.5 6zm10 3c.414.0.789-.168 1.06-.439l2-2C30.832 6.289 31 5.914 31 5.5 31 4.672 30.329 4 29.5 4c-.414.0-.789.168-1.061.44l-2 2C26.168 6.711 26 7.086 26 7.5 26 8.328 26.671 9 27.5 9zM6.439 8.561C6.711 8.832 7.086 9 7.5 9 8.328 9 9 8.328 9 7.5c0-.414-.168-.789-.439-1.061l-2-2C6.289 4.168 5.914 4 5.5 4 4.672 4 4 4.672 4 5.5c0 .414.168.789.439 1.06l2 2.001zM33.5 16h-3c-.828.0-1.5.672-1.5 1.5s.672 1.5 1.5 1.5h3c.828.0 1.5-.672 1.5-1.5S34.328 16 33.5 16zM28.561 26.439C28.289 26.168 27.914 26 27.5 26c-.828.0-1.5.672-1.5 1.5.0.414.168.789.439 1.06l2 2C28.711 30.832 29.086 31 29.5 31c.828.0 1.5-.672 1.5-1.5.0-.414-.168-.789-.439-1.061l-2-2zM17.5 29c-.829.0-1.5.672-1.5 1.5v3c0 .828.671 1.5 1.5 1.5s1.5-.672 1.5-1.5v-3C19 29.672 18.329 29 17.5 29zm0-22C11.71 7 7 11.71 7 17.5S11.71 28 17.5 28 28 23.29 28 17.5 23.29 7 17.5 7zm0 18c-4.136.0-7.5-3.364-7.5-7.5s3.364-7.5 7.5-7.5 7.5 3.364 7.5 7.5S21.636 25 17.5 25z"/></svg></label><label id=toggle-label-dark for=darkmode-toggle tabindex=-1><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="nightIcon" viewBox="0 0 100 100" style="enable-background='new 0 0 100 100'"><title>Dark Mode</title><path d="M96.76 66.458c-.853-.852-2.15-1.064-3.23-.534-6.063 2.991-12.858 4.571-19.655 4.571C62.022 70.495 50.88 65.88 42.5 57.5 29.043 44.043 25.658 23.536 34.076 6.47c.532-1.08.318-2.379-.534-3.23-.851-.852-2.15-1.064-3.23-.534-4.918 2.427-9.375 5.619-13.246 9.491-9.447 9.447-14.65 22.008-14.65 35.369.0 13.36 5.203 25.921 14.65 35.368s22.008 14.65 35.368 14.65c13.361.0 25.921-5.203 35.369-14.65 3.872-3.871 7.064-8.328 9.491-13.246C97.826 68.608 97.611 67.309 96.76 66.458z"/></svg></label></div></header><article><p class=meta>Last updated Unknown</p><ul class=tags></ul><aside class=mainTOC><details><summary>Table of Contents</summary><nav id=TableOfContents><ol><li><a href=#题意>题意</a></li><li><a href=#思路>思路</a></li><li><a href=#题解1由内而外>题解1：由内而外</a></li><li><a href=#题解2动态规划>题解2：动态规划</a></li><li><a href=#题解3动态规划>题解3：动态规划</a></li></ol></nav></details></aside><h1 id=5-longest-palindromic-substring>5. Longest Palindromic Substring</h1><p>Difficulty: Medium
+ID: 5
+Solved?: Yes
+Tags: DP, String
+击败: 71.57
+推荐指数: ⭐⭐⭐⭐</p><p><a href=https://leetcode.com/problems/longest-palindromic-substring/ rel=noopener>Loading&mldr;</a></p><h2 id=题意>题意</h2><p>给定一个字符串 <code>s</code>，找到 <code>s</code> 中最长的回文子串。你可以假设 <code>s</code> 的最大长度为 1000。</p><p><strong>示例 1：</strong></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>输入: &#34;babad&#34;
+</span></span><span class=line><span class=cl>输出: &#34;bab&#34;
+</span></span><span class=line><span class=cl>注意: &#34;aba&#34; 也是一个有效答案。
+</span></span></code></pre></td></tr></table></div></div><p><strong>示例 2：</strong></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>输入: &#34;cbbd&#34;
+</span></span><span class=line><span class=cl>输出: &#34;bb&#34;
+</span></span></code></pre></td></tr></table></div></div><h2 id=思路>思路</h2><ul><li>由内而外判断回文（贪心？）</li><li>由外向内判断回文（DP）</li></ul><h2 id=题解1由内而外>题解1：由内而外</h2><p>选定子串的中心点，由内而外扩散，找到尽可能大的回文串。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=k>class</span> <span class=nc>Solution</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>    <span class=k>def</span> <span class=nf>longestPalindrome</span><span class=p>(</span><span class=bp>self</span><span class=p>,</span> <span class=n>s</span><span class=p>:</span> <span class=nb>str</span><span class=p>)</span> <span class=o>-&gt;</span> <span class=nb>str</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=k>def</span> <span class=nf>extend_palin</span><span class=p>(</span><span class=n>s</span><span class=p>,</span> <span class=n>left</span><span class=p>,</span> <span class=n>right</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>            <span class=k>while</span> <span class=n>left</span> <span class=o>&gt;=</span> <span class=mi>0</span> <span class=ow>and</span> <span class=n>right</span> <span class=o>&lt;</span> <span class=nb>len</span><span class=p>(</span><span class=n>s</span><span class=p>)</span> <span class=ow>and</span> <span class=n>s</span><span class=p>[</span><span class=n>left</span><span class=p>]</span> <span class=o>==</span> <span class=n>s</span><span class=p>[</span><span class=n>right</span><span class=p>]:</span>
+</span></span><span class=line><span class=cl>                <span class=n>left</span> <span class=o>-=</span> <span class=mi>1</span>
+</span></span><span class=line><span class=cl>                <span class=n>right</span> <span class=o>+=</span> <span class=mi>1</span>
+</span></span><span class=line><span class=cl>            <span class=k>return</span> <span class=n>right</span> <span class=o>-</span> <span class=n>left</span> <span class=o>-</span> <span class=mi>1</span><span class=p>,</span> <span class=n>left</span> <span class=o>+</span> <span class=mi>1</span><span class=p>,</span> <span class=n>right</span> <span class=o>-</span> <span class=mi>1</span>
+</span></span><span class=line><span class=cl>        
+</span></span><span class=line><span class=cl>        <span class=n>R</span> <span class=o>=</span> <span class=p>(</span><span class=mi>0</span><span class=p>,</span> <span class=mi>0</span><span class=p>,</span> <span class=mi>0</span><span class=p>)</span>  <span class=c1># length, [begin, end]</span>
+</span></span><span class=line><span class=cl>        <span class=k>for</span> <span class=n>i</span> <span class=ow>in</span> <span class=nb>range</span><span class=p>(</span><span class=nb>len</span><span class=p>(</span><span class=n>s</span><span class=p>)):</span>
+</span></span><span class=line><span class=cl>            <span class=n>R</span> <span class=o>=</span> <span class=nb>max</span><span class=p>(</span><span class=n>R</span><span class=p>,</span> <span class=n>extend_palin</span><span class=p>(</span><span class=n>s</span><span class=p>,</span> <span class=n>i</span><span class=p>,</span> <span class=n>i</span><span class=p>))</span>
+</span></span><span class=line><span class=cl>            <span class=n>R</span> <span class=o>=</span> <span class=nb>max</span><span class=p>(</span><span class=n>R</span><span class=p>,</span> <span class=n>extend_palin</span><span class=p>(</span><span class=n>s</span><span class=p>,</span> <span class=n>i</span><span class=p>,</span> <span class=n>i</span> <span class=o>+</span> <span class=mi>1</span><span class=p>))</span>
+</span></span><span class=line><span class=cl>        <span class=k>return</span> <span class=n>s</span><span class=p>[</span><span class=n>R</span><span class=p>[</span><span class=mi>1</span><span class=p>]:</span> <span class=n>R</span><span class=p>[</span><span class=mi>2</span><span class=p>]</span> <span class=o>+</span> <span class=mi>1</span><span class=p>]</span>
+</span></span></code></pre></td></tr></table></div></div><p>extend_palin函数表示从中心点left与right往外扩散能得到的最大回文串，返回值是一个三元组，回文串长度、起始点下标、终点下标。</p><p>extend_palin从left开始往左扩散，right开始同步往右扩散，直到破坏回文规则（left与right对应的字符不等或越界）。while停止的时候，left与right对应的下标是回文串的边界，但不包含left与right，所以返回的时候，回文串的首字符位置为left+1，末字符位置是right-1。</p><p>如果是奇数长的回文串，一开始中心点的left与right是一样的。</p><p>如果是偶数长的回文串，right是left的右邻。</p><h2 id=题解2动态规划>题解2：动态规划</h2><p>动态规划重要的是定义好递推式。</p><p>dp(i, j)表示从i到j这段区间内能得到的最大回文串（同样返回三元组：长度、起始位置、结束位置）。题目就转换为求解dp(0, n-1)，n为输入字符串s的长度。</p><p>dp(i, j)可拆解为3个子问题：</p><ol><li>dp(i, j-1)，去掉末尾的j</li><li>dp(i+1, j)，去掉开始的i</li><li>如果s[i]与s[j]相等的情况下，要求解dp(i+1, j-1)，去掉收尾的i和j。如果[i+1, j-1]子串为回文的话（思考下如何判断？），那么[i, j]也是回文串。注意，上面两种情况都是去掉1个元素，这里去掉了2个元素，所以上面的两种情况实际上是包含dp(i+1, j-1)的。</li></ol><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=k>class</span> <span class=nc>Solution</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>    <span class=k>def</span> <span class=nf>longestPalindrome</span><span class=p>(</span><span class=bp>self</span><span class=p>,</span> <span class=n>s</span><span class=p>:</span> <span class=nb>str</span><span class=p>)</span> <span class=o>-&gt;</span> <span class=nb>str</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=k>def</span> <span class=nf>dp</span><span class=p>(</span><span class=n>G</span><span class=p>,</span> <span class=n>s</span><span class=p>,</span> <span class=n>i</span><span class=p>,</span> <span class=n>j</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>            <span class=n>length</span> <span class=o>=</span> <span class=n>j</span> <span class=o>-</span> <span class=n>i</span> <span class=o>+</span> <span class=mi>1</span>
+</span></span><span class=line><span class=cl>            <span class=n>p</span> <span class=o>=</span> <span class=n>i</span><span class=p>,</span> <span class=n>j</span>
+</span></span><span class=line><span class=cl>            <span class=k>if</span> <span class=n>p</span> <span class=ow>in</span> <span class=n>G</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>                <span class=k>return</span> <span class=n>G</span><span class=p>[</span><span class=n>p</span><span class=p>]</span>
+</span></span><span class=line><span class=cl>            <span class=k>if</span> <span class=n>j</span> <span class=o>&lt;=</span> <span class=n>i</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>                <span class=k>return</span> <span class=n>length</span><span class=p>,</span> <span class=n>i</span><span class=p>,</span> <span class=n>j</span>
+</span></span><span class=line><span class=cl>            <span class=n>r0</span> <span class=o>=</span> <span class=n>dp</span><span class=p>(</span><span class=n>G</span><span class=p>,</span> <span class=n>s</span><span class=p>,</span> <span class=n>i</span> <span class=o>+</span> <span class=mi>1</span><span class=p>,</span> <span class=n>j</span> <span class=o>-</span> <span class=mi>1</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>            <span class=k>if</span> <span class=n>s</span><span class=p>[</span><span class=n>i</span><span class=p>]</span> <span class=o>==</span> <span class=n>s</span><span class=p>[</span><span class=n>j</span><span class=p>]</span> <span class=ow>and</span> <span class=n>r0</span><span class=p>[</span><span class=mi>0</span><span class=p>]</span> <span class=o>+</span> <span class=mi>2</span> <span class=o>==</span> <span class=n>length</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>                <span class=n>G</span><span class=p>[</span><span class=n>p</span><span class=p>]</span> <span class=o>=</span> <span class=n>length</span><span class=p>,</span> <span class=n>i</span><span class=p>,</span> <span class=n>j</span>
+</span></span><span class=line><span class=cl>            <span class=k>else</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>                <span class=n>r1</span> <span class=o>=</span> <span class=n>dp</span><span class=p>(</span><span class=n>G</span><span class=p>,</span> <span class=n>s</span><span class=p>,</span> <span class=n>i</span><span class=p>,</span> <span class=n>j</span> <span class=o>-</span> <span class=mi>1</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>                <span class=n>r2</span> <span class=o>=</span> <span class=n>dp</span><span class=p>(</span><span class=n>G</span><span class=p>,</span> <span class=n>s</span><span class=p>,</span> <span class=n>i</span> <span class=o>+</span> <span class=mi>1</span><span class=p>,</span> <span class=n>j</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>                <span class=n>G</span><span class=p>[</span><span class=n>p</span><span class=p>]</span> <span class=o>=</span> <span class=nb>max</span><span class=p>(</span><span class=n>r1</span><span class=p>,</span> <span class=n>r2</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>            <span class=k>return</span> <span class=n>G</span><span class=p>[</span><span class=n>p</span><span class=p>]</span>
+</span></span><span class=line><span class=cl>        
+</span></span><span class=line><span class=cl>        <span class=n>res</span> <span class=o>=</span> <span class=n>dp</span><span class=p>({},</span> <span class=n>s</span><span class=p>,</span> <span class=mi>0</span><span class=p>,</span> <span class=nb>len</span><span class=p>(</span><span class=n>s</span><span class=p>)</span> <span class=o>-</span> <span class=mi>1</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=k>return</span> <span class=n>s</span><span class=p>[</span><span class=n>res</span><span class=p>[</span><span class=mi>1</span><span class=p>]:</span> <span class=n>res</span><span class=p>[</span><span class=mi>2</span><span class=p>]</span> <span class=o>+</span> <span class=mi>1</span><span class=p>]</span>
+</span></span></code></pre></td></tr></table></div></div><p>可惜，超时了，102/103个case。</p><p>但这个思路可以用来解题目的变种：不是回文子串，而是回文子序列（也就是字符间不一定是连续的）。</p><p>比如输入字符串为abcdefdcba，最大回文子序列长度为9，外围的abcd与dcba，中间ef选一个。</p><p><a href=https://ideone.com/JqXDEo rel=noopener>Ideone.com</a></p><h2 id=题解3动态规划>题解3：动态规划</h2><p>修改递推式的定义，dp(i, j)返回的是子串[i, j]是否为回文串。题目求解就转化为遍历所有(i, j)组合，检查是否为回文串并记录最大值。</p><p>dp(i, j)是否为回文串只需要先判断首尾两个字符是否相等。若不相等，那肯定就不是回文串了；若相等，则继续判断dp(i+1, j-1)即可。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=k>class</span> <span class=nc>Solution</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>    <span class=k>def</span> <span class=nf>longestPalindrome</span><span class=p>(</span><span class=bp>self</span><span class=p>,</span> <span class=n>s</span><span class=p>:</span> <span class=nb>str</span><span class=p>)</span> <span class=o>-&gt;</span> <span class=nb>str</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=k>def</span> <span class=nf>dp</span><span class=p>(</span><span class=n>G</span><span class=p>,</span> <span class=n>s</span><span class=p>,</span> <span class=n>i</span><span class=p>,</span> <span class=n>j</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>            <span class=n>p</span> <span class=o>=</span> <span class=n>i</span><span class=p>,</span> <span class=n>j</span>
+</span></span><span class=line><span class=cl>            <span class=k>if</span> <span class=n>p</span> <span class=ow>in</span> <span class=n>G</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>                <span class=k>return</span> <span class=n>G</span><span class=p>[</span><span class=n>p</span><span class=p>]</span>
+</span></span><span class=line><span class=cl>            <span class=k>if</span> <span class=n>j</span> <span class=o>&lt;=</span> <span class=n>i</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>                <span class=k>return</span> <span class=kc>True</span>
+</span></span><span class=line><span class=cl>            <span class=k>if</span> <span class=n>s</span><span class=p>[</span><span class=n>i</span><span class=p>]</span> <span class=o>!=</span> <span class=n>s</span><span class=p>[</span><span class=n>j</span><span class=p>]:</span>
+</span></span><span class=line><span class=cl>                <span class=k>return</span> <span class=kc>False</span>
+</span></span><span class=line><span class=cl>            <span class=n>G</span><span class=p>[</span><span class=n>p</span><span class=p>]</span> <span class=o>=</span> <span class=n>dp</span><span class=p>(</span><span class=n>G</span><span class=p>,</span> <span class=n>s</span><span class=p>,</span> <span class=n>i</span> <span class=o>+</span> <span class=mi>1</span><span class=p>,</span> <span class=n>j</span> <span class=o>-</span> <span class=mi>1</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>            <span class=k>return</span> <span class=n>G</span><span class=p>[</span><span class=n>p</span><span class=p>]</span>
+</span></span><span class=line><span class=cl>        
+</span></span><span class=line><span class=cl>        <span class=n>G</span> <span class=o>=</span> <span class=p>{}</span>
+</span></span><span class=line><span class=cl>        <span class=n>n</span> <span class=o>=</span> <span class=nb>len</span><span class=p>(</span><span class=n>s</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=n>longest</span> <span class=o>=</span> <span class=mi>0</span>
+</span></span><span class=line><span class=cl>        <span class=n>idx</span> <span class=o>=</span> <span class=mi>0</span>
+</span></span><span class=line><span class=cl>        <span class=k>for</span> <span class=n>i</span> <span class=ow>in</span> <span class=nb>range</span><span class=p>(</span><span class=n>n</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>            <span class=k>for</span> <span class=n>j</span> <span class=ow>in</span> <span class=nb>range</span><span class=p>(</span><span class=n>i</span><span class=p>,</span> <span class=n>n</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>                <span class=k>if</span> <span class=n>dp</span><span class=p>(</span><span class=n>G</span><span class=p>,</span> <span class=n>s</span><span class=p>,</span> <span class=n>i</span><span class=p>,</span> <span class=n>j</span><span class=p>)</span> <span class=ow>and</span> <span class=n>longest</span> <span class=o>&lt;</span> <span class=n>j</span> <span class=o>-</span> <span class=n>i</span> <span class=o>+</span> <span class=mi>1</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>                    <span class=n>longest</span> <span class=o>=</span> <span class=n>j</span> <span class=o>-</span> <span class=n>i</span> <span class=o>+</span> <span class=mi>1</span>
+</span></span><span class=line><span class=cl>                    <span class=n>idx</span> <span class=o>=</span> <span class=n>i</span>
+</span></span><span class=line><span class=cl>        <span class=k>return</span> <span class=n>s</span><span class=p>[</span><span class=n>idx</span><span class=p>:</span> <span class=n>idx</span> <span class=o>+</span> <span class=n>longest</span><span class=p>]</span>
+</span></span></code></pre></td></tr></table></div></div><p>勉强通过。</p><hr><p>可将递归方式改为循环式。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=k>class</span> <span class=nc>Solution</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>    <span class=k>def</span> <span class=nf>longestPalindrome</span><span class=p>(</span><span class=bp>self</span><span class=p>,</span> <span class=n>s</span><span class=p>:</span> <span class=nb>str</span><span class=p>)</span> <span class=o>-&gt;</span> <span class=nb>str</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=n>n</span> <span class=o>=</span> <span class=nb>len</span><span class=p>(</span><span class=n>s</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=n>G</span> <span class=o>=</span> <span class=p>{}</span>
+</span></span><span class=line><span class=cl>        <span class=k>for</span> <span class=n>i</span> <span class=ow>in</span> <span class=nb>range</span><span class=p>(</span><span class=n>n</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>            <span class=n>G</span><span class=p>[(</span><span class=n>i</span><span class=p>,</span> <span class=n>i</span><span class=p>)]</span> <span class=o>=</span> <span class=kc>True</span>
+</span></span><span class=line><span class=cl>            <span class=n>G</span><span class=p>[(</span><span class=n>i</span><span class=p>,</span> <span class=n>i</span> <span class=o>-</span> <span class=mi>1</span><span class=p>)]</span> <span class=o>=</span> <span class=kc>True</span>
+</span></span><span class=line><span class=cl>        <span class=n>longest</span> <span class=o>=</span> <span class=mi>1</span>
+</span></span><span class=line><span class=cl>        <span class=n>idx</span> <span class=o>=</span> <span class=mi>0</span>
+</span></span><span class=line><span class=cl>        <span class=k>for</span> <span class=n>d</span> <span class=ow>in</span> <span class=nb>range</span><span class=p>(</span><span class=mi>2</span><span class=p>,</span> <span class=n>n</span> <span class=o>+</span> <span class=mi>1</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>            <span class=k>for</span> <span class=n>i</span> <span class=ow>in</span> <span class=nb>range</span><span class=p>(</span><span class=n>n</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>                <span class=n>j</span> <span class=o>=</span> <span class=n>i</span> <span class=o>+</span> <span class=n>d</span> <span class=o>-</span> <span class=mi>1</span>
+</span></span><span class=line><span class=cl>                <span class=k>if</span> <span class=n>j</span> <span class=o>&gt;=</span> <span class=n>n</span><span class=p>:</span> <span class=k>break</span>
+</span></span><span class=line><span class=cl>                <span class=n>G</span><span class=p>[(</span><span class=n>i</span><span class=p>,</span> <span class=n>j</span><span class=p>)]</span> <span class=o>=</span> <span class=n>s</span><span class=p>[</span><span class=n>i</span><span class=p>]</span> <span class=o>==</span> <span class=n>s</span><span class=p>[</span><span class=n>j</span><span class=p>]</span> <span class=ow>and</span> <span class=n>G</span><span class=p>[(</span><span class=n>i</span> <span class=o>+</span> <span class=mi>1</span><span class=p>,</span> <span class=n>j</span> <span class=o>-</span> <span class=mi>1</span><span class=p>)]</span>
+</span></span><span class=line><span class=cl>                <span class=k>if</span> <span class=n>G</span><span class=p>[(</span><span class=n>i</span><span class=p>,</span> <span class=n>j</span><span class=p>)]</span> <span class=ow>and</span> <span class=n>longest</span> <span class=o>&lt;</span> <span class=n>d</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>                    <span class=n>longest</span> <span class=o>=</span> <span class=n>d</span>
+</span></span><span class=line><span class=cl>                    <span class=n>idx</span> <span class=o>=</span> <span class=n>i</span>
+</span></span><span class=line><span class=cl>        <span class=k>return</span> <span class=n>s</span><span class=p>[</span><span class=n>idx</span> <span class=p>:</span> <span class=n>idx</span> <span class=o>+</span> <span class=n>longest</span><span class=p>]</span>
+</span></span></code></pre></td></tr></table></div></div><p>d表示子串的长度，从2到n，inclusive。</p></article><hr><div class=page-end><div class=backlinks-container><h3>Backlinks</h3><ul class=backlinks><li>No backlinks found</li></ul></div><div><script src=https://cdn.jsdelivr.net/npm/d3@6.7.0/dist/d3.min.js integrity="sha256-+7jaYCp29O1JusNWHaYtgUn6EhuP0VaFuswhNV06MyI=" crossorigin=anonymous></script><h3>Interactive Graph</h3><div id=graph-container></div><style>:root{--g-node:var(--secondary);--g-node-active:var(--primary);--g-node-inactive:var(--visited);--g-link:var(--outlinegray);--g-link-active:#5a7282}</style><script src=https://lzyerste.github.io/quartz/js/graph.6fe09b3d8b5792ccf0f505be9ee8275d.js></script>
+<script>drawGraph("https://lzyerste.github.io/quartz/wiki/wiki/algorithm/OJ_online_judge/LeetCode/%E9%A2%98%E7%9B%AE%E5%88%97%E8%A1%A8/5-Longest-Palindromic-Substring-06136fe2c2c14916bca7b1552269ab63","https://lzyerste.github.io/quartz",[{"/moc":"#4388cc"}],-1,!0,!1,!0)</script></div></div><div id=contact_buttons><footer><p>Made by Jacky Zhao using <a href=https://github.com/jackyzha0/quartz>Quartz</a>, © 2022</p><ul><li><a href=/>Home</a></li><li><a href=https://twitter.com/_jzhao>Twitter</a></li><li><a href=https://github.com/jackyzha0>Github</a></li></ul></footer></div><script src=https://lzyerste.github.io/quartz/js/popover.e57188d2e4c06b0654e020b3a734bb62.min.js></script>
+<script>initPopover("https://lzyerste.github.io/quartz")</script></div></body></html>
