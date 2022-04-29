@@ -1,3 +1,0 @@
-﻿Name,Description,备注
-DijkstraSP.py,"Single-source shortest paths. Given an edge-weighted digraph and a source ver- tex s, support queries of the form Is there a directed path from s to a given target vertex t? If so, find a shortest such path (one whose total weight is minimal).",有向图，单点出发最短路径
-Bellman-Ford,,针对每条边做V-1次relax
