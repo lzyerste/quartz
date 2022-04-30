@@ -1,7 +1,7 @@
 *.pdf
 *.py
 *.sh
-.git/
+.git
 .obsidian/
 assets/
 config/
