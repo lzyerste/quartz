@@ -1,0 +1,4 @@
+﻿Tag,Meaning
+latest-master,Build of master branch a last ceph-container.git update
+latest-master-devel,Daily build of the master branch
+latest-RELEASE-devel,"Daily build of the RELEASE (e.g., nautilus) branch"
