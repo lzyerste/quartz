@@ -1,0 +1,8 @@
+﻿Code,Description,其他
+Graph.py,无向图的表示,
+DepthFirstSearch.py,"Single-source connectivity. Given a graph, support queries of the form Are two given vertices connected? and How many connected components does the graph have?",单点出发可达性问题
+DepthFirstPaths.py,"Single-source paths. Given a graph and a source vertex s, support queries of the form Is there a path from s to a given target vertex v? If so, find such a path.",单点出发到其他节点的路径
+BreadthFirstPaths.py,"Single-source shortest paths. Given a graph and a source vertex s, support queries of the form Is there a path from s to a given target vertex v? If so, find a shortest such path (one with a minimal number of edges).",单点出发到其他节点的最短路径
+CC.py,Connected components.,无向图中的连通体
+Cycle.py,Cycle detection. Support this query: Is a given graph acylic?,无向图中环的检测
+TwoColor.py,Two-colorability. Support this query: Can the vertices of a given graph be assigned one of two colors in such a way that no edge connects vertices of the same color ? which is equivalent to this question: Is the graph bipartite ?,相邻两个节点颜色不同

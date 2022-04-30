@@ -1,0 +1,1173 @@
+<!doctype html><html lang=en><head><meta charset=utf-8><meta name=description content="linux kernel soft lockup/hard lockup简介及其解决思路_悟空明镜-CSDN博客_config_softlockup_detector  https://blog.csdn.net/wukongmingjing/article/details/82870807
+最近有一个朋友问到我一个kernel panic问题.由于不是做这方面的,但是了解下和其解决思路还是有必要的.
+一 概述 在linux kernel里，有一个debug选项CONFIG_HARDLOCKUP_DETECTOR。使能它可以打开kernel中的soft lockup和hard lockup探测。这两个东西到底有什么用处那？首先，soft/hard lockup的实现在kernel/watchdog.c中，主体涉及到了3个东西：kernel线程，时钟中断，NMI中断（不可屏蔽中断）。这3个东西具有不一样的优先级，依次是kernel线程 < 时钟中断 < NMI中断。而正是用到了他们之间优先级的区别，所以才可以调试系统运行中的两种问题："><title>linux_kernel_soft_lockup_hard_lockup简介及其解决思路_悟空明镜-_c2aa9d6231ce4b30979941e4ff806974</title><meta name=viewport content="width=device-width,initial-scale=1"><link rel="shortcut icon" type=image/png href=https://lzyerste.github.io/quartz//icon.png><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Source+Sans+Pro:wght@400;600;700&family=Fira+Code:wght@400;700&display=swap" rel=stylesheet><link href=https://lzyerste.github.io/quartz/styles.48db36360688fe00f0a39f3cf1417c4b.min.css rel=stylesheet><script src=https://lzyerste.github.io/quartz/js/darkmode.46b07878b7f5d9e26ad7a3c40f8a0605.min.js></script>
+<link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css integrity=sha384-R4558gYOUz8mP9YWpZJjofhk+zx0AS11p36HnD2ZKj/6JR5z27gSSULCNHIRReVs crossorigin=anonymous><script defer src=https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js integrity=sha384-z1fJDqw8ZApjGO3/unPWUPsIymfsJmyrDVWC8Tv/a1HeOtGmkwNd/7xUS0Xcnvsx crossorigin=anonymous></script>
+<script defer src=https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/contrib/auto-render.min.js integrity=sha384-+XBljXPPiv+OzfbB3cVmLHf4hdUFHlWNZN5spNQ7rmHTXpd7WvJum6fIACpNNfIR crossorigin=anonymous></script>
+<script>document.addEventListener("DOMContentLoaded",function(){renderMathInElement(document.body,{delimiters:[{left:"$$",right:"$$",display:!0},{left:"$",right:"$",display:!1}],throwOnError:!1})})</script><script>const BASE_URL="https://lzyerste.github.io/quartz/",fetchData=Promise.all([fetch("https://lzyerste.github.io/quartz/indices/linkIndex.6917b9827f2e252da057e45083eab4c3.min.json").then(e=>e.json()).then(e=>({index:e.index,links:e.links})),fetch("https://lzyerste.github.io/quartz/indices/contentIndex.7381bf6cf3d552607f662193103a31c9.min.json").then(e=>e.json())]).then(([{index:e,links:t},n])=>({index:e,links:t,content:n}))</script></head><script async src="https://www.googletagmanager.com/gtag/js?id=G-XYFD95KB4J"></script>
+<script>var doNotTrack=!1;if(!doNotTrack){window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-XYFD95KB4J",{anonymize_ip:!1})}</script><body><div id=search-container><div id=search-space><input autocomplete=off id=search-bar name=search type=text aria-label=Search placeholder="Search for something..."><div id=results-container></div></div></div><script src=https://cdn.jsdelivr.net/npm/flexsearch@0.7.21/dist/flexsearch.bundle.js integrity="sha256-i3A0NZGkhsKjVMzFxv3ksk0DZh3aXqu0l49Bbh0MdjE=" crossorigin=anonymous defer></script>
+<script defer src=https://lzyerste.github.io/quartz/js/search.7861a82db330f0a40935b7458fee3a02.min.js></script><div class=singlePage><header><h1 id=page-title><a href=https://lzyerste.github.io/quartz/>🪴 Quartz 3.2</a></h1><svg tabindex="0" id="search-icon" aria-labelledby="title desc" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 19.9 19.7"><title id="title">Search Icon</title><desc id="desc">Icon to open search</desc><g class="search-path" fill="none"><path stroke-linecap="square" d="M18.5 18.3l-5.4-5.4"/><circle cx="8" cy="8" r="7"/></g></svg><div class=spacer></div><div class=darkmode><input class=toggle id=darkmode-toggle type=checkbox tabindex=-1>
+<label id=toggle-label-light for=darkmode-toggle tabindex=-1><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="dayIcon" viewBox="0 0 35 35" style="enable-background:new 0 0 35 35"><title>Light Mode</title><path d="M6 17.5C6 16.672 5.328 16 4.5 16h-3C.672 16 0 16.672.0 17.5S.672 19 1.5 19h3C5.328 19 6 18.328 6 17.5zM7.5 26c-.414.0-.789.168-1.061.439l-2 2C4.168 28.711 4 29.086 4 29.5 4 30.328 4.671 31 5.5 31c.414.0.789-.168 1.06-.44l2-2C8.832 28.289 9 27.914 9 27.5 9 26.672 8.329 26 7.5 26zm10-20C18.329 6 19 5.328 19 4.5v-3C19 .672 18.329.0 17.5.0S16 .672 16 1.5v3C16 5.328 16.671 6 17.5 6zm10 3c.414.0.789-.168 1.06-.439l2-2C30.832 6.289 31 5.914 31 5.5 31 4.672 30.329 4 29.5 4c-.414.0-.789.168-1.061.44l-2 2C26.168 6.711 26 7.086 26 7.5 26 8.328 26.671 9 27.5 9zM6.439 8.561C6.711 8.832 7.086 9 7.5 9 8.328 9 9 8.328 9 7.5c0-.414-.168-.789-.439-1.061l-2-2C6.289 4.168 5.914 4 5.5 4 4.672 4 4 4.672 4 5.5c0 .414.168.789.439 1.06l2 2.001zM33.5 16h-3c-.828.0-1.5.672-1.5 1.5s.672 1.5 1.5 1.5h3c.828.0 1.5-.672 1.5-1.5S34.328 16 33.5 16zM28.561 26.439C28.289 26.168 27.914 26 27.5 26c-.828.0-1.5.672-1.5 1.5.0.414.168.789.439 1.06l2 2C28.711 30.832 29.086 31 29.5 31c.828.0 1.5-.672 1.5-1.5.0-.414-.168-.789-.439-1.061l-2-2zM17.5 29c-.829.0-1.5.672-1.5 1.5v3c0 .828.671 1.5 1.5 1.5s1.5-.672 1.5-1.5v-3C19 29.672 18.329 29 17.5 29zm0-22C11.71 7 7 11.71 7 17.5S11.71 28 17.5 28 28 23.29 28 17.5 23.29 7 17.5 7zm0 18c-4.136.0-7.5-3.364-7.5-7.5s3.364-7.5 7.5-7.5 7.5 3.364 7.5 7.5S21.636 25 17.5 25z"/></svg></label><label id=toggle-label-dark for=darkmode-toggle tabindex=-1><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="nightIcon" viewBox="0 0 100 100" style="enable-background='new 0 0 100 100'"><title>Dark Mode</title><path d="M96.76 66.458c-.853-.852-2.15-1.064-3.23-.534-6.063 2.991-12.858 4.571-19.655 4.571C62.022 70.495 50.88 65.88 42.5 57.5 29.043 44.043 25.658 23.536 34.076 6.47c.532-1.08.318-2.379-.534-3.23-.851-.852-2.15-1.064-3.23-.534-4.918 2.427-9.375 5.619-13.246 9.491-9.447 9.447-14.65 22.008-14.65 35.369.0 13.36 5.203 25.921 14.65 35.368s22.008 14.65 35.368 14.65c13.361.0 25.921-5.203 35.369-14.65 3.872-3.871 7.064-8.328 9.491-13.246C97.826 68.608 97.611 67.309 96.76 66.458z"/></svg></label></div></header><article><h1>linux_kernel_soft_lockup_hard_lockup简介及其解决思路_悟空明镜-_c2aa9d6231ce4b30979941e4ff806974</h1><p class=meta>Last updated Unknown</p><ul class=tags></ul><aside class=mainTOC><details><summary>Table of Contents</summary><nav id=TableOfContents><ol><li><a href=#一-概述>一 概述</a></li><li><a href=#二-soft-lockup简介>二 soft lockup简介</a></li><li><a href=#三-hard-lockup简介>三 hard lockup简介</a></li><li><a href=#四-案例分析>四 案例分析</a></li></ol></nav></details></aside><h1 id=linux-kernel-soft-lockuphard-lockup简介及其解决思路_悟空明镜-csdn博客_config_softlockup_detector>linux kernel soft lockup/hard lockup简介及其解决思路_悟空明镜-CSDN博客_config_softlockup_detector</h1><p><a href=https://blog.csdn.net/wukongmingjing/article/details/82870807 rel=noopener>https://blog.csdn.net/wukongmingjing/article/details/82870807</a></p><p>最近有一个朋友问到我一个kernel panic问题.由于不是做这方面的,但是了解下和其解决思路还是有必要的.</p><h2 id=一-概述>一 概述</h2><p>在linux kernel里，有一个debug选项CONFIG_HARDLOCKUP_DETECTOR。使能它可以打开kernel中的soft lockup和hard lockup探测。这两个东西到底有什么用处那？首先，soft/hard lockup的实现在kernel/watchdog.c中，主体涉及到了3个东西：kernel线程，时钟中断，NMI中断（不可屏蔽中断）。这3个东西具有不一样的优先级，依次是kernel线程 &lt; 时钟中断 &lt; NMI中断。而正是用到了他们之间优先级的区别，所以才可以调试系统运行中的两种问题：</p><ul><li>由于某种原因导致系统处于内核态超过20s导致进程无法运行(soft lockup)</li><li>由于某种原因导致系统处于内核态超过10s导致中断无法运行(hard lockup)</li></ul><p>下面是kernel document对这两者的简介:</p><ul><li>A ‘softlockup’ is defined as a bug that causes the kernel to loop in kernel mode for more than 20 seconds (see “Implementation” below for details), without giving other tasks a chance to run. The current stack trace is displayed upon detection and, by default, the system will stay locked up. Alternatively, the kernel can be configured to panic; a sysctl, “kernel.softlockup_panic”, a kernel parameter,“softlockup_panic” (see “Documentation/kernel-parameters.txt” for details), and a compile option,“BOOTPARAM_SOFTLOCKUP_PANIC”, are provided for this.</li><li>A ‘hardlockup’ is defined as a bug that causes the CPU to loop in kernel mode for more than 10 seconds (see “Implementation” below for details), without letting other interrupts have a chance to run. Similarly to the softlockup case, the current stack trace is displayed upon detection and the system will stay locked up unless the default behavior is changed, which can be done through a sysctl, ‘hardlockup_panic’, a compile time knob,“BOOTPARAM_HARDLOCKUP_PANIC”, and a kernel parameter, “nmi_watchdog”</li></ul><p>具体可以参考: Document/lockup-watchdogs.txt:
+<a href=https://elixir.bootlin.com/linux/latest/source/Documentation/lockup-watchdogs.txt rel=noopener>https://elixir.bootlin.com/linux/latest/source/Documentation/lockup-watchdogs.txt</a></p><h2 id=二-soft-lockup简介>二 soft lockup简介</h2><p>接下来我们从具体代码入手分析linux(4.4.83)是如何实现这两种lockup的探测的：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span><span class=lnt>40
+</span><span class=lnt>41
+</span><span class=lnt>42
+</span><span class=lnt>43
+</span><span class=lnt>44
+</span><span class=lnt>45
+</span><span class=lnt>46
+</span><span class=lnt>47
+</span><span class=lnt>48
+</span><span class=lnt>49
+</span><span class=lnt>50
+</span><span class=lnt>51
+</span><span class=lnt>52
+</span><span class=lnt>53
+</span><span class=lnt>54
+</span><span class=lnt>55
+</span><span class=lnt>56
+</span><span class=lnt>57
+</span><span class=lnt>58
+</span><span class=lnt>59
+</span><span class=lnt>60
+</span><span class=lnt>61
+</span><span class=lnt>62
+</span><span class=lnt>63
+</span><span class=lnt>64
+</span><span class=lnt>65
+</span><span class=lnt>66
+</span><span class=lnt>67
+</span><span class=lnt>68
+</span><span class=lnt>69
+</span><span class=lnt>70
+</span><span class=lnt>71
+</span><span class=lnt>72
+</span><span class=lnt>73
+</span><span class=lnt>74
+</span><span class=lnt>75
+</span><span class=lnt>76
+</span><span class=lnt>77
+</span><span class=lnt>78
+</span><span class=lnt>79
+</span><span class=lnt>80
+</span><span class=lnt>81
+</span><span class=lnt>82
+</span><span class=lnt>83
+</span><span class=lnt>84
+</span><span class=lnt>85
+</span><span class=lnt>86
+</span><span class=lnt>87
+</span><span class=lnt>88
+</span><span class=lnt>89
+</span><span class=lnt>90
+</span><span class=lnt>91
+</span><span class=lnt>92
+</span><span class=lnt>93
+</span><span class=lnt>94
+</span><span class=lnt>95
+</span><span class=lnt>96
+</span><span class=lnt>97
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>static struct smp_hotplug_thread watchdog_threads = {  
+</span></span><span class=line><span class=cl>    .store          = &amp;softlockup_watchdog,  
+</span></span><span class=line><span class=cl>    .thread_should_run  = watchdog_should_run,  
+</span></span><span class=line><span class=cl>    .thread_fn      = watchdog,  
+</span></span><span class=line><span class=cl>    .thread_comm        = &#34;watchdog/%u&#34;,  
+</span></span><span class=line><span class=cl>    .setup          = watchdog_enable,  
+</span></span><span class=line><span class=cl>    .cleanup        = watchdog_cleanup,  
+</span></span><span class=line><span class=cl>    .park           = watchdog_disable,  
+</span></span><span class=line><span class=cl>    .unpark         = watchdog_enable,  
+</span></span><span class=line><span class=cl>};  
+</span></span><span class=line><span class=cl>  
+</span></span><span class=line><span class=cl>void __init lockup_detector_init(void)  
+</span></span><span class=line><span class=cl>{   /*获取采用周期*/
+</span></span><span class=line><span class=cl>    set_sample_period();  
+</span></span><span class=line><span class=cl>  
+</span></span><span class=line><span class=cl>#ifdef CONFIG_NO_HZ_FULL  
+</span></span><span class=line><span class=cl>    if (tick_nohz_full_enabled()) {  
+</span></span><span class=line><span class=cl>        pr_info(&#34;Disabling watchdog on nohz_full cores by default\n&#34;);  
+</span></span><span class=line><span class=cl>        cpumask_copy(&amp;watchdog_cpumask, housekeeping_mask);  
+</span></span><span class=line><span class=cl>    } else  
+</span></span><span class=line><span class=cl>        cpumask_copy(&amp;watchdog_cpumask, cpu_possible_mask);  
+</span></span><span class=line><span class=cl>#else  
+</span></span><span class=line><span class=cl>    cpumask_copy(&amp;watchdog_cpumask, cpu_possible_mask);  
+</span></span><span class=line><span class=cl>#endif  
+</span></span><span class=line><span class=cl>    /*在系统初始化的时候,为每个online cpu创建watch_threads线程信息.*/
+</span></span><span class=line><span class=cl>    if (watchdog_enabled)  
+</span></span><span class=line><span class=cl>        watchdog_enable_all_cpus();  
+</span></span><span class=line><span class=cl>}  
+</span></span><span class=line><span class=cl>  
+</span></span><span class=line><span class=cl>static int watchdog_enable_all_cpus(void)  
+</span></span><span class=line><span class=cl>{  
+</span></span><span class=line><span class=cl>    int err = 0;  
+</span></span><span class=line><span class=cl>  
+</span></span><span class=line><span class=cl>    if (!watchdog_running) { 
+</span></span><span class=line><span class=cl>        /*初始化的时候,创建watchdog线程,同时关联percpu 
+</span></span><span class=line><span class=cl>              watchdog_cpumask=cpu_possible_mask*/ 
+</span></span><span class=line><span class=cl>        err = smpboot_register_percpu_thread_cpumask(&amp;watchdog_threads,  
+</span></span><span class=line><span class=cl>                                 &amp;watchdog_cpumask);  
+</span></span><span class=line><span class=cl>        if (err)  
+</span></span><span class=line><span class=cl>            pr_err(&#34;Failed to create watchdog threads, disabled\n&#34;);  
+</span></span><span class=line><span class=cl>        else  
+</span></span><span class=line><span class=cl>            watchdog_running = 1;  
+</span></span><span class=line><span class=cl>    } else {  
+</span></span><span class=line><span class=cl>        /* 
+</span></span><span class=line><span class=cl>         * Enable/disable the lockup detectors or 
+</span></span><span class=line><span class=cl>         * change the sample period &#39;on the fly&#39;. 
+</span></span><span class=line><span class=cl>         */  
+</span></span><span class=line><span class=cl>        err = update_watchdog_all_cpus();  
+</span></span><span class=line><span class=cl>  
+</span></span><span class=line><span class=cl>        if (err) {  
+</span></span><span class=line><span class=cl>            watchdog_disable_all_cpus();  
+</span></span><span class=line><span class=cl>            pr_err(&#34;Failed to update lockup detectors, disabled\n&#34;);  
+</span></span><span class=line><span class=cl>        }  
+</span></span><span class=line><span class=cl>    }  
+</span></span><span class=line><span class=cl>  
+</span></span><span class=line><span class=cl>    if (err)  
+</span></span><span class=line><span class=cl>        watchdog_enabled = 0;  
+</span></span><span class=line><span class=cl>  
+</span></span><span class=line><span class=cl>    return err;  
+</span></span><span class=line><span class=cl>}  
+</span></span><span class=line><span class=cl>  
+</span></span><span class=line><span class=cl>/** 
+</span></span><span class=line><span class=cl> * smpboot_register_percpu_thread_cpumask - Register a per_cpu thread related 
+</span></span><span class=line><span class=cl> *                      to hotplug 
+</span></span><span class=line><span class=cl> * @plug_thread:    Hotplug thread descriptor 
+</span></span><span class=line><span class=cl> * @cpumask:        The cpumask where threads run 
+</span></span><span class=line><span class=cl> * 
+</span></span><span class=line><span class=cl> * Creates and starts the threads on all online cpus. 
+</span></span><span class=line><span class=cl> */  
+</span></span><span class=line><span class=cl>int smpboot_register_percpu_thread_cpumask(struct smp_hotplug_thread *plug_thread,  
+</span></span><span class=line><span class=cl>                       const struct cpumask *cpumask)  
+</span></span><span class=line><span class=cl>{  
+</span></span><span class=line><span class=cl>    unsigned int cpu;  
+</span></span><span class=line><span class=cl>    int ret = 0;  
+</span></span><span class=line><span class=cl>  
+</span></span><span class=line><span class=cl>    if (!alloc_cpumask_var(&amp;plug_thread-&gt;cpumask, GFP_KERNEL))  
+</span></span><span class=line><span class=cl>        return -ENOMEM;  
+</span></span><span class=line><span class=cl>    cpumask_copy(plug_thread-&gt;cpumask, cpumask);  
+</span></span><span class=line><span class=cl>  
+</span></span><span class=line><span class=cl>    get_online_cpus();  
+</span></span><span class=line><span class=cl>    mutex_lock(&amp;smpboot_threads_lock);  
+</span></span><span class=line><span class=cl>    for_each_online_cpu(cpu) {  
+</span></span><span class=line><span class=cl>        ret = __smpboot_create_thread(plug_thread, cpu);  
+</span></span><span class=line><span class=cl>        if (ret) {  
+</span></span><span class=line><span class=cl>            smpboot_destroy_threads(plug_thread);  
+</span></span><span class=line><span class=cl>            free_cpumask_var(plug_thread-&gt;cpumask);  
+</span></span><span class=line><span class=cl>            goto out;  
+</span></span><span class=line><span class=cl>        }  
+</span></span><span class=line><span class=cl>        if (cpumask_test_cpu(cpu, cpumask))  
+</span></span><span class=line><span class=cl>            smpboot_unpark_thread(plug_thread, cpu);  
+</span></span><span class=line><span class=cl>    }  
+</span></span><span class=line><span class=cl>    list_add(&amp;plug_thread-&gt;list, &amp;hotplug_threads);  
+</span></span><span class=line><span class=cl>out:  
+</span></span><span class=line><span class=cl>    mutex_unlock(&amp;smpboot_threads_lock);  
+</span></span><span class=line><span class=cl>    put_online_cpus();  
+</span></span><span class=line><span class=cl>    return ret;  
+</span></span><span class=line><span class=cl>}  
+</span></span></code></pre></td></tr></table></div></div><p>实际的逻辑如下:首先，系统会为每个cpu core注册一个一般的kernel线程，名字叫watchdog/0, watchdog/1…以此类推。这个线程会定期得调用watchdog函数</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span><span class=lnt>40
+</span><span class=lnt>41
+</span><span class=lnt>42
+</span><span class=lnt>43
+</span><span class=lnt>44
+</span><span class=lnt>45
+</span><span class=lnt>46
+</span><span class=lnt>47
+</span><span class=lnt>48
+</span><span class=lnt>49
+</span><span class=lnt>50
+</span><span class=lnt>51
+</span><span class=lnt>52
+</span><span class=lnt>53
+</span><span class=lnt>54
+</span><span class=lnt>55
+</span><span class=lnt>56
+</span><span class=lnt>57
+</span><span class=lnt>58
+</span><span class=lnt>59
+</span><span class=lnt>60
+</span><span class=lnt>61
+</span><span class=lnt>62
+</span><span class=lnt>63
+</span><span class=lnt>64
+</span><span class=lnt>65
+</span><span class=lnt>66
+</span><span class=lnt>67
+</span><span class=lnt>68
+</span><span class=lnt>69
+</span><span class=lnt>70
+</span><span class=lnt>71
+</span><span class=lnt>72
+</span><span class=lnt>73
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>static DEFINE_PER_CPU(unsigned long, soft_lockup_hrtimer_cnt);  
+</span></span><span class=line><span class=cl>static DEFINE_PER_CPU(unsigned long, watchdog_touch_ts);  
+</span></span><span class=line><span class=cl>static DEFINE_PER_CPU(unsigned long, hrtimer_interrupts);  
+</span></span><span class=line><span class=cl>  
+</span></span><span class=line><span class=cl>/* 
+</span></span><span class=line><span class=cl> * The watchdog thread function - touches the timestamp. 
+</span></span><span class=line><span class=cl> * 
+</span></span><span class=line><span class=cl> * It only runs once every sample_period seconds (4 seconds by 
+</span></span><span class=line><span class=cl> * default) to reset the softlockup timestamp. If this gets delayed 
+</span></span><span class=line><span class=cl> * for more than 2*watchdog_thresh seconds then the debug-printout 
+</span></span><span class=line><span class=cl> * triggers in watchdog_timer_fn(). 
+</span></span><span class=line><span class=cl> */  
+</span></span><span class=line><span class=cl>static void watchdog(unsigned int cpu)  
+</span></span><span class=line><span class=cl>{   /*将变量hrtimer_interrupts数值赋值给 soft_lockup_hrtimer_cnt*/
+</span></span><span class=line><span class=cl>    __this_cpu_write(soft_lockup_hrtimer_cnt,  
+</span></span><span class=line><span class=cl>             __this_cpu_read(hrtimer_interrupts));  
+</span></span><span class=line><span class=cl>    __touch_watchdog();  
+</span></span><span class=line><span class=cl>  
+</span></span><span class=line><span class=cl>    /* 
+</span></span><span class=line><span class=cl>     * watchdog_nmi_enable() clears the NMI_WATCHDOG_ENABLED bit in the 
+</span></span><span class=line><span class=cl>     * failure path. Check for failures that can occur asynchronously - 
+</span></span><span class=line><span class=cl>     * for example, when CPUs are on-lined - and shut down the hardware 
+</span></span><span class=line><span class=cl>     * perf event on each CPU accordingly. 
+</span></span><span class=line><span class=cl>     * 
+</span></span><span class=line><span class=cl>     * The only non-obvious place this bit can be cleared is through 
+</span></span><span class=line><span class=cl>     * watchdog_nmi_enable(), so a pr_info() is placed there.  Placing a 
+</span></span><span class=line><span class=cl>     * pr_info here would be too noisy as it would result in a message 
+</span></span><span class=line><span class=cl>     * every few seconds if the hardlockup was disabled but the softlockup 
+</span></span><span class=line><span class=cl>     * enabled. 
+</span></span><span class=line><span class=cl>     */  
+</span></span><span class=line><span class=cl>    if (!(watchdog_enabled &amp; NMI_WATCHDOG_ENABLED))  
+</span></span><span class=line><span class=cl>        watchdog_nmi_disable(cpu);  
+</span></span><span class=line><span class=cl>}  
+</span></span><span class=line><span class=cl>  
+</span></span><span class=line><span class=cl>  
+</span></span><span class=line><span class=cl>/* Commands for resetting the watchdog */  
+</span></span><span class=line><span class=cl>static void __touch_watchdog(void)  
+</span></span><span class=line><span class=cl>{  /*获取当前时间并赋值给watchdog_touch_ts,目的是周期性的检测是否是soft_lockup*/
+</span></span><span class=line><span class=cl>    __this_cpu_write(watchdog_touch_ts, get_timestamp());  
+</span></span><span class=line><span class=cl>}
+</span></span><span class=line><span class=cl>/*watdog函数更新watchdog_touch_ts时间戳,在哪里被调用呢?*/
+</span></span><span class=line><span class=cl>/** 
+</span></span><span class=line><span class=cl> * smpboot_thread_fn - percpu hotplug thread loop function 
+</span></span><span class=line><span class=cl> * @data:   thread data pointer 
+</span></span><span class=line><span class=cl> * 
+</span></span><span class=line><span class=cl> * Checks for thread stop and park conditions. Calls the necessary 
+</span></span><span class=line><span class=cl> * setup, cleanup, park and unpark functions for the registered 
+</span></span><span class=line><span class=cl> * thread. 
+</span></span><span class=line><span class=cl> * 
+</span></span><span class=line><span class=cl> * Returns 1 when the thread should exit, 0 otherwise. 
+</span></span><span class=line><span class=cl> */  
+</span></span><span class=line><span class=cl>static int smpboot_thread_fn(void *data)  
+</span></span><span class=line><span class=cl>{  
+</span></span><span class=line><span class=cl>    struct smpboot_thread_data *td = data;  
+</span></span><span class=line><span class=cl>    struct smp_hotplug_thread *ht = td-&gt;ht;  
+</span></span><span class=line><span class=cl>  
+</span></span><span class=line><span class=cl>    while (1) {  
+</span></span><span class=line><span class=cl>        set_current_state(TASK_INTERRUPTIBLE);  
+</span></span><span class=line><span class=cl>        preempt_disable();  
+</span></span><span class=line><span class=cl>  
+</span></span><span class=line><span class=cl>        if (!ht-&gt;thread_should_run(td-&gt;cpu)) {  
+</span></span><span class=line><span class=cl>            preempt_enable_no_resched();  
+</span></span><span class=line><span class=cl>            schedule();  
+</span></span><span class=line><span class=cl>        } else {  
+</span></span><span class=line><span class=cl>            __set_current_state(TASK_RUNNING);  
+</span></span><span class=line><span class=cl>            preempt_enable();
+</span></span><span class=line><span class=cl>            /*在这里被call,在init时,为每个online cpu关联watchdog_threads结构体信息
+</span></span><span class=line><span class=cl>           的时候被调用到.smpboot_register_percpu_thread_cpumask*/  
+</span></span><span class=line><span class=cl>            ht-&gt;thread_fn(td-&gt;cpu);  
+</span></span><span class=line><span class=cl>        }  
+</span></span><span class=line><span class=cl>    }  
+</span></span><span class=line><span class=cl>}  
+</span></span><span class=line><span class=cl>  
+</span></span></code></pre></td></tr></table></div></div><p>我们先不理会这个线程处理函数watchdog多久被调用一次，我们就先简单的认为，这个线程是负责更新watchdog_touch_ts的。然后我们要看一下时钟中断了：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span><span class=lnt>40
+</span><span class=lnt>41
+</span><span class=lnt>42
+</span><span class=lnt>43
+</span><span class=lnt>44
+</span><span class=lnt>45
+</span><span class=lnt>46
+</span><span class=lnt>47
+</span><span class=lnt>48
+</span><span class=lnt>49
+</span><span class=lnt>50
+</span><span class=lnt>51
+</span><span class=lnt>52
+</span><span class=lnt>53
+</span><span class=lnt>54
+</span><span class=lnt>55
+</span><span class=lnt>56
+</span><span class=lnt>57
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-zed data-lang=zed><span class=line><span class=cl><span class=n>static</span><span class=w> </span><span class=n>void</span><span class=w> </span><span class=n>watchdog_enable</span><span class=p>(</span><span class=n>unsigned</span><span class=w> </span><span class=n>int</span><span class=w> </span><span class=n>cpu</span><span class=p>)</span><span class=w>  
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=p>{</span><span class=w>  </span><span class=cm>/*static DEFINE_PER_CPU(struct hrtimer, watchdog_hrtimer)*/</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=n>struct</span><span class=w> </span><span class=n>hrtimer</span><span class=w> </span><span class=o>*</span><span class=n>hrtimer</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=n>raw_cpu_ptr</span><span class=p>(</span><span class=o>&amp;</span><span class=n>watchdog_hrtimer</span><span class=p>);</span><span class=w>  
+</span></span></span><span class=line><span class=cl><span class=w>  
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=cm>/* kick off the timer for the hardlockup detector */</span><span class=w>  
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=n>hrtimer_init</span><span class=p>(</span><span class=n>hrtimer</span><span class=p>,</span><span class=w> </span><span class=n>CLOCK_MONOTONIC</span><span class=p>,</span><span class=w> </span><span class=n>HRTIMER_MODE_REL</span><span class=p>);</span><span class=w>  
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=cm>/*将时钟中断函数赋值给hrtimer callback function*/</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=n>hrtimer</span><span class=o>-&gt;</span><span class=n>function</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=n>watchdog_timer_fn</span><span class=p>;</span><span class=w>  
+</span></span></span><span class=line><span class=cl><span class=w>  
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=cm>/* Enable the perf event */</span><span class=w>  
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=n>watchdog_nmi_enable</span><span class=p>(</span><span class=n>cpu</span><span class=p>);</span><span class=w>  
+</span></span></span><span class=line><span class=cl><span class=w>  
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=cm>/* done here because hrtimer_start can only pin to smp_processor_id() 在当前cpu上以周期sample_period运行*/</span><span class=w>  
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=n>hrtimer_start</span><span class=p>(</span><span class=n>hrtimer</span><span class=p>,</span><span class=w> </span><span class=n>ns_to_ktime</span><span class=p>(</span><span class=n>sample_period</span><span class=p>),</span><span class=w>  
+</span></span></span><span class=line><span class=cl><span class=w>              </span><span class=n>HRTIMER_MODE_REL_PINNED</span><span class=p>);</span><span class=w>  
+</span></span></span><span class=line><span class=cl><span class=w>  
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=cm>/* initialize timestamp 设置watchdog线程的优先级为RT线程,优先级
+</span></span></span><span class=line><span class=cl><span class=cm>    为prio:99*/</span><span class=w>  
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=n>watchdog_set_prio</span><span class=p>(</span><span class=n>SCHED_FIFO</span><span class=p>,</span><span class=w> </span><span class=n>MAX_RT_PRIO</span><span class=w> </span><span class=o>-</span><span class=w> </span><span class=err>1</span><span class=p>);</span><span class=w>  
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=n>__touch_watchdog</span><span class=p>();</span><span class=w>  
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=p>}</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=cm>/*下面是计算sample_period=4s*/</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=n>static</span><span class=w> </span><span class=n>u64</span><span class=w> </span><span class=n>__read_mostly</span><span class=w> </span><span class=n>sample_period</span><span class=p>;</span><span class=w>  
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=n>int</span><span class=w> </span><span class=n>__read_mostly</span><span class=w> </span><span class=n>watchdog_thresh</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=err>10</span><span class=p>;</span><span class=w>  
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=cm>/* 
+</span></span></span><span class=line><span class=cl><span class=cm> * Hard-lockup warnings should be triggered after just a few seconds. Soft- 
+</span></span></span><span class=line><span class=cl><span class=cm> * lockups can have false positives under extreme conditions. So we generally 
+</span></span></span><span class=line><span class=cl><span class=cm> * want a higher threshold for soft lockups than for hard lockups. So we couple 
+</span></span></span><span class=line><span class=cl><span class=cm> * the thresholds with a factor: we make the soft threshold twice the amount of 
+</span></span></span><span class=line><span class=cl><span class=cm> * time the hard threshold is. 
+</span></span></span><span class=line><span class=cl><span class=cm> */</span><span class=w>  
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=n>static</span><span class=w> </span><span class=n>int</span><span class=w> </span><span class=n>get_softlockup_thresh</span><span class=p>(</span><span class=n>void</span><span class=p>)</span><span class=w>  
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=p>{</span><span class=w>  
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=n>return</span><span class=w> </span><span class=n>watchdog_thresh</span><span class=w> </span><span class=o>*</span><span class=w> </span><span class=err>2</span><span class=p>;</span><span class=w>  </span><span class=cm>/*20s*/</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=p>}</span><span class=w>  
+</span></span></span><span class=line><span class=cl><span class=w>  
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=cm>/* 
+</span></span></span><span class=line><span class=cl><span class=cm> * Returns seconds, approximately.  We don&#39;t need nanosecond 
+</span></span></span><span class=line><span class=cl><span class=cm> * resolution, and we don&#39;t need to waste time with a big divide when 
+</span></span></span><span class=line><span class=cl><span class=cm> * 2^30ns == 1.074s. 
+</span></span></span><span class=line><span class=cl><span class=cm> */</span><span class=w>  
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=n>static</span><span class=w> </span><span class=n>unsigned</span><span class=w> </span><span class=n>long</span><span class=w> </span><span class=n>get_timestamp</span><span class=p>(</span><span class=n>void</span><span class=p>)</span><span class=w>  
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=p>{</span><span class=w>  
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=n>return</span><span class=w> </span><span class=n>running_clock</span><span class=p>()</span><span class=w> </span><span class=o>&gt;&gt;</span><span class=w> </span><span class=err>30</span><span class=n>LL</span><span class=p>;</span><span class=w>  </span><span class=cm>/* 2^30 ~= 10^9 */</span><span class=w>  
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=p>}</span><span class=w>  
+</span></span></span><span class=line><span class=cl><span class=w>  
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=n>static</span><span class=w> </span><span class=n>void</span><span class=w> </span><span class=n>set_sample_period</span><span class=p>(</span><span class=n>void</span><span class=p>)</span><span class=w>  
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=p>{</span><span class=w>  
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=cm>/* 
+</span></span></span><span class=line><span class=cl><span class=cm>     * convert watchdog_thresh from seconds to ns 
+</span></span></span><span class=line><span class=cl><span class=cm>     * the divide by 5 is to give hrtimer several chances (two 
+</span></span></span><span class=line><span class=cl><span class=cm>     * or three with the current relation between the soft 
+</span></span></span><span class=line><span class=cl><span class=cm>     * and hard thresholds) to increment before the 
+</span></span></span><span class=line><span class=cl><span class=cm>     * hardlockup detector generates a warning 
+</span></span></span><span class=line><span class=cl><span class=cm>     */</span><span class=w>  
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=n>sample_period</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=n>get_softlockup_thresh</span><span class=p>()</span><span class=w> </span><span class=o>*</span><span class=w> </span><span class=p>((</span><span class=n>u64</span><span class=p>)</span><span class=n>NSEC_PER_SEC</span><span class=w> </span><span class=o>/</span><span class=w> </span><span class=err>5</span><span class=p>);</span><span class=w>  
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=p>}</span><span class=w>  
+</span></span></span></code></pre></td></tr></table></div></div><p>时钟中断处理函数是watchdog_timer_fn(注意关键字:HRTIMER_RESTART,会周期性的执行.):</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>  1
+</span><span class=lnt>  2
+</span><span class=lnt>  3
+</span><span class=lnt>  4
+</span><span class=lnt>  5
+</span><span class=lnt>  6
+</span><span class=lnt>  7
+</span><span class=lnt>  8
+</span><span class=lnt>  9
+</span><span class=lnt> 10
+</span><span class=lnt> 11
+</span><span class=lnt> 12
+</span><span class=lnt> 13
+</span><span class=lnt> 14
+</span><span class=lnt> 15
+</span><span class=lnt> 16
+</span><span class=lnt> 17
+</span><span class=lnt> 18
+</span><span class=lnt> 19
+</span><span class=lnt> 20
+</span><span class=lnt> 21
+</span><span class=lnt> 22
+</span><span class=lnt> 23
+</span><span class=lnt> 24
+</span><span class=lnt> 25
+</span><span class=lnt> 26
+</span><span class=lnt> 27
+</span><span class=lnt> 28
+</span><span class=lnt> 29
+</span><span class=lnt> 30
+</span><span class=lnt> 31
+</span><span class=lnt> 32
+</span><span class=lnt> 33
+</span><span class=lnt> 34
+</span><span class=lnt> 35
+</span><span class=lnt> 36
+</span><span class=lnt> 37
+</span><span class=lnt> 38
+</span><span class=lnt> 39
+</span><span class=lnt> 40
+</span><span class=lnt> 41
+</span><span class=lnt> 42
+</span><span class=lnt> 43
+</span><span class=lnt> 44
+</span><span class=lnt> 45
+</span><span class=lnt> 46
+</span><span class=lnt> 47
+</span><span class=lnt> 48
+</span><span class=lnt> 49
+</span><span class=lnt> 50
+</span><span class=lnt> 51
+</span><span class=lnt> 52
+</span><span class=lnt> 53
+</span><span class=lnt> 54
+</span><span class=lnt> 55
+</span><span class=lnt> 56
+</span><span class=lnt> 57
+</span><span class=lnt> 58
+</span><span class=lnt> 59
+</span><span class=lnt> 60
+</span><span class=lnt> 61
+</span><span class=lnt> 62
+</span><span class=lnt> 63
+</span><span class=lnt> 64
+</span><span class=lnt> 65
+</span><span class=lnt> 66
+</span><span class=lnt> 67
+</span><span class=lnt> 68
+</span><span class=lnt> 69
+</span><span class=lnt> 70
+</span><span class=lnt> 71
+</span><span class=lnt> 72
+</span><span class=lnt> 73
+</span><span class=lnt> 74
+</span><span class=lnt> 75
+</span><span class=lnt> 76
+</span><span class=lnt> 77
+</span><span class=lnt> 78
+</span><span class=lnt> 79
+</span><span class=lnt> 80
+</span><span class=lnt> 81
+</span><span class=lnt> 82
+</span><span class=lnt> 83
+</span><span class=lnt> 84
+</span><span class=lnt> 85
+</span><span class=lnt> 86
+</span><span class=lnt> 87
+</span><span class=lnt> 88
+</span><span class=lnt> 89
+</span><span class=lnt> 90
+</span><span class=lnt> 91
+</span><span class=lnt> 92
+</span><span class=lnt> 93
+</span><span class=lnt> 94
+</span><span class=lnt> 95
+</span><span class=lnt> 96
+</span><span class=lnt> 97
+</span><span class=lnt> 98
+</span><span class=lnt> 99
+</span><span class=lnt>100
+</span><span class=lnt>101
+</span><span class=lnt>102
+</span><span class=lnt>103
+</span><span class=lnt>104
+</span><span class=lnt>105
+</span><span class=lnt>106
+</span><span class=lnt>107
+</span><span class=lnt>108
+</span><span class=lnt>109
+</span><span class=lnt>110
+</span><span class=lnt>111
+</span><span class=lnt>112
+</span><span class=lnt>113
+</span><span class=lnt>114
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>/* watchdog kicker functions */  
+</span></span><span class=line><span class=cl>static enum hrtimer_restart watchdog_timer_fn(struct hrtimer *hrtimer)  
+</span></span><span class=line><span class=cl>{   /*获取执行函数watchdog时候更新watchdog_touch_ts时间戳*/
+</span></span><span class=line><span class=cl>    unsigned long touch_ts = __this_cpu_read(watchdog_touch_ts);  
+</span></span><span class=line><span class=cl>    struct pt_regs *regs = get_irq_regs();  
+</span></span><span class=line><span class=cl>    int duration;  
+</span></span><span class=line><span class=cl>    int softlockup_all_cpu_backtrace = sysctl_softlockup_all_cpu_backtrace;  
+</span></span><span class=line><span class=cl>    
+</span></span><span class=line><span class=cl>    /* kick the hardlockup detector */  
+</span></span><span class=line><span class=cl>    watchdog_interrupt_count();  
+</span></span><span class=line><span class=cl>  
+</span></span><span class=line><span class=cl>    /* test for hardlockups on the next cpu */  
+</span></span><span class=line><span class=cl>    watchdog_check_hardlockup_other_cpu();  
+</span></span><span class=line><span class=cl>  
+</span></span><span class=line><span class=cl>    /* kick the softlockup detector */  
+</span></span><span class=line><span class=cl>    wake_up_process(__this_cpu_read(softlockup_watchdog));  
+</span></span><span class=line><span class=cl>  
+</span></span><span class=line><span class=cl>    /* .. and repeat */  
+</span></span><span class=line><span class=cl>    hrtimer_forward_now(hrtimer, ns_to_ktime(sample_period));  
+</span></span><span class=line><span class=cl>    /*第一次执行,watchdog_touch_ts时间戳可能为零,需要更新touch_ts
+</span></span><span class=line><span class=cl>    为当前时间戳*/
+</span></span><span class=line><span class=cl>    if (touch_ts == 0) {  
+</span></span><span class=line><span class=cl>        if (unlikely(__this_cpu_read(softlockup_touch_sync))) {  
+</span></span><span class=line><span class=cl>            /* 
+</span></span><span class=line><span class=cl>             * If the time stamp was touched atomically 
+</span></span><span class=line><span class=cl>             * make sure the scheduler tick is up to date. 
+</span></span><span class=line><span class=cl>             */  
+</span></span><span class=line><span class=cl>            __this_cpu_write(softlockup_touch_sync, false);  
+</span></span><span class=line><span class=cl>            sched_clock_tick();  
+</span></span><span class=line><span class=cl>        }  
+</span></span><span class=line><span class=cl>  
+</span></span><span class=line><span class=cl>        /* Clear the guest paused flag on watchdog reset */  
+</span></span><span class=line><span class=cl>        kvm_check_and_clear_guest_paused();  
+</span></span><span class=line><span class=cl>        __touch_watchdog();  
+</span></span><span class=line><span class=cl>        return HRTIMER_RESTART;  
+</span></span><span class=line><span class=cl>    }  
+</span></span><span class=line><span class=cl>  
+</span></span><span class=line><span class=cl>    /* check for a softlockup 
+</span></span><span class=line><span class=cl>     * This is done by making sure a high priority task is 
+</span></span><span class=line><span class=cl>     * being scheduled.  The task touches the watchdog to 
+</span></span><span class=line><span class=cl>     * indicate it is getting cpu time.  If it hasn&#39;t then 
+</span></span><span class=line><span class=cl>     * this is a good indication some task is hogging the cpu 
+</span></span><span class=line><span class=cl>     */ /*检测系统是否处于内核mode超过20s,并做出决策*/ 
+</span></span><span class=line><span class=cl>    duration = is_softlockup(touch_ts);  
+</span></span><span class=line><span class=cl>    if (unlikely(duration)) {  
+</span></span><span class=line><span class=cl>        /* 
+</span></span><span class=line><span class=cl>         * If a virtual machine is stopped by the host it can look to 
+</span></span><span class=line><span class=cl>         * the watchdog like a soft lockup, check to see if the host 
+</span></span><span class=line><span class=cl>         * stopped the vm before we issue the warning 
+</span></span><span class=line><span class=cl>         */  
+</span></span><span class=line><span class=cl>        if (kvm_check_and_clear_guest_paused())  
+</span></span><span class=line><span class=cl>            return HRTIMER_RESTART;  
+</span></span><span class=line><span class=cl>  
+</span></span><span class=line><span class=cl>        /* only warn once */  
+</span></span><span class=line><span class=cl>        if (__this_cpu_read(soft_watchdog_warn) == true) {  
+</span></span><span class=line><span class=cl>            /* 
+</span></span><span class=line><span class=cl>             * When multiple processes are causing softlockups the 
+</span></span><span class=line><span class=cl>             * softlockup detector only warns on the first one 
+</span></span><span class=line><span class=cl>             * because the code relies on a full quiet cycle to 
+</span></span><span class=line><span class=cl>             * re-arm.  The second process prevents the quiet cycle 
+</span></span><span class=line><span class=cl>             * and never gets reported.  Use task pointers to detect 
+</span></span><span class=line><span class=cl>             * this. 
+</span></span><span class=line><span class=cl>             */  
+</span></span><span class=line><span class=cl>            if (__this_cpu_read(softlockup_task_ptr_saved) !=  
+</span></span><span class=line><span class=cl>                current) {  
+</span></span><span class=line><span class=cl>                __this_cpu_write(soft_watchdog_warn, false);  
+</span></span><span class=line><span class=cl>                __touch_watchdog();  
+</span></span><span class=line><span class=cl>            }  
+</span></span><span class=line><span class=cl>            return HRTIMER_RESTART;  
+</span></span><span class=line><span class=cl>        }  
+</span></span><span class=line><span class=cl>  
+</span></span><span class=line><span class=cl>        if (softlockup_all_cpu_backtrace) {  
+</span></span><span class=line><span class=cl>            /* Prevent multiple soft-lockup reports if one cpu is already 
+</span></span><span class=line><span class=cl>             * engaged in dumping cpu back traces 
+</span></span><span class=line><span class=cl>             */  
+</span></span><span class=line><span class=cl>            if (test_and_set_bit(0, &amp;soft_lockup_nmi_warn)) {  
+</span></span><span class=line><span class=cl>                /* Someone else will report us. Let&#39;s give up */  
+</span></span><span class=line><span class=cl>                __this_cpu_write(soft_watchdog_warn, true);  
+</span></span><span class=line><span class=cl>                return HRTIMER_RESTART;  
+</span></span><span class=line><span class=cl>            }  
+</span></span><span class=line><span class=cl>        }  
+</span></span><span class=line><span class=cl>        /*上面是一些条件的判断是否是真正的soft_lockup.下面是当soft_lockup出现的话会将
+</span></span><span class=line><span class=cl>     一些必要的信息dump出来.*/
+</span></span><span class=line><span class=cl>        pr_emerg(&#34;BUG: soft lockup - CPU#%d stuck for %us! [%s:%d]\n&#34;,  
+</span></span><span class=line><span class=cl>            smp_processor_id(), duration,  
+</span></span><span class=line><span class=cl>            current-&gt;comm, task_pid_nr(current));  
+</span></span><span class=line><span class=cl>        __this_cpu_write(softlockup_task_ptr_saved, current);  
+</span></span><span class=line><span class=cl>        print_modules();  
+</span></span><span class=line><span class=cl>        print_irqtrace_events(current);  
+</span></span><span class=line><span class=cl>        if (regs)  
+</span></span><span class=line><span class=cl>            show_regs(regs);  
+</span></span><span class=line><span class=cl>        else  
+</span></span><span class=line><span class=cl>            dump_stack();  
+</span></span><span class=line><span class=cl>  
+</span></span><span class=line><span class=cl>        if (softlockup_all_cpu_backtrace) {  
+</span></span><span class=line><span class=cl>            /* Avoid generating two back traces for current 
+</span></span><span class=line><span class=cl>             * given that one is already made above 
+</span></span><span class=line><span class=cl>             */  
+</span></span><span class=line><span class=cl>            trigger_allbutself_cpu_backtrace();  
+</span></span><span class=line><span class=cl>  
+</span></span><span class=line><span class=cl>            clear_bit(0, &amp;soft_lockup_nmi_warn);  
+</span></span><span class=line><span class=cl>            /* Barrier to sync with other cpus */  
+</span></span><span class=line><span class=cl>            smp_mb__after_atomic();  
+</span></span><span class=line><span class=cl>        }  
+</span></span><span class=line><span class=cl>  
+</span></span><span class=line><span class=cl>        add_taint(TAINT_SOFTLOCKUP, LOCKDEP_STILL_OK);  
+</span></span><span class=line><span class=cl>        if (softlockup_panic)  
+</span></span><span class=line><span class=cl>            panic(&#34;softlockup: hung tasks&#34;);  
+</span></span><span class=line><span class=cl>        __this_cpu_write(soft_watchdog_warn, true);  
+</span></span><span class=line><span class=cl>    } else  
+</span></span><span class=line><span class=cl>        __this_cpu_write(soft_watchdog_warn, false);  
+</span></span><span class=line><span class=cl>  
+</span></span><span class=line><span class=cl>    return HRTIMER_RESTART;  
+</span></span><span class=line><span class=cl>}  
+</span></span></code></pre></td></tr></table></div></div><p>watchdog_timer_fn这个函数的目的如下:</p><ul><li>watchdog_interrupt_count函数更新hrtimer_interrupts变量</li></ul><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>static void watchdog_interrupt_count(void)  
+</span></span><span class=line><span class=cl>{  
+</span></span><span class=line><span class=cl>    __this_cpu_inc(hrtimer_interrupts);  
+</span></span><span class=line><span class=cl>}  
+</span></span></code></pre></td></tr></table></div></div><ul><li>is_softlockup判断是否出现了soft_lockup</li></ul><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>static int is_softlockup(unsigned long touch_ts)  
+</span></span><span class=line><span class=cl>{  
+</span></span><span class=line><span class=cl>    unsigned long now = get_timestamp();  
+</span></span><span class=line><span class=cl>  
+</span></span><span class=line><span class=cl>    if ((watchdog_enabled &amp; SOFT_WATCHDOG_ENABLED) &amp;&amp; watchdog_thresh){  
+</span></span><span class=line><span class=cl>        /* Warn about unreasonable delays. */  
+</span></span><span class=line><span class=cl>        if (time_after(now, touch_ts + get_softlockup_thresh()))  
+</span></span><span class=line><span class=cl>            return now - touch_ts;  
+</span></span><span class=line><span class=cl>    }  
+</span></span><span class=line><span class=cl>    return 0;  
+</span></span><span class=line><span class=cl>}  
+</span></span></code></pre></td></tr></table></div></div><p>很容易理解，其实就是查看watchdog_touch_ts变量在最近20秒的时间内，有没有被创建的kernel thread(即watchdog函数有没有在某个cpu上超过20s没有执行过来更新watchdog_touch_ts变量)更新过。假如没有，那就意味着线程得不到调度，所以很有可能就是系统处于内核态太久了，导致调度器没有办法进行调度。这种情况下，系统往往不会死掉，但是会很慢。有了soft lockup的机制，我们就能尽早的发现这样的问题了。</p><h2 id=三-hard-lockup简介>三 hard lockup简介</h2><p>我们接着分析hard lockup</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span><span class=lnt>40
+</span><span class=lnt>41
+</span><span class=lnt>42
+</span><span class=lnt>43
+</span><span class=lnt>44
+</span><span class=lnt>45
+</span><span class=lnt>46
+</span><span class=lnt>47
+</span><span class=lnt>48
+</span><span class=lnt>49
+</span><span class=lnt>50
+</span><span class=lnt>51
+</span><span class=lnt>52
+</span><span class=lnt>53
+</span><span class=lnt>54
+</span><span class=lnt>55
+</span><span class=lnt>56
+</span><span class=lnt>57
+</span><span class=lnt>58
+</span><span class=lnt>59
+</span><span class=lnt>60
+</span><span class=lnt>61
+</span><span class=lnt>62
+</span><span class=lnt>63
+</span><span class=lnt>64
+</span><span class=lnt>65
+</span><span class=lnt>66
+</span><span class=lnt>67
+</span><span class=lnt>68
+</span><span class=lnt>69
+</span><span class=lnt>70
+</span><span class=lnt>71
+</span><span class=lnt>72
+</span><span class=lnt>73
+</span><span class=lnt>74
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>static int watchdog_nmi_enable(unsigned int cpu)  
+</span></span><span class=line><span class=cl>{  
+</span></span><span class=line><span class=cl>    struct perf_event_attr *wd_attr;  
+</span></span><span class=line><span class=cl>    struct perf_event *event = per_cpu(watchdog_ev, cpu);  
+</span></span><span class=line><span class=cl>  
+</span></span><span class=line><span class=cl>    /* nothing to do if the hard lockup detector is disabled */  
+</span></span><span class=line><span class=cl>    if (!(watchdog_enabled &amp; NMI_WATCHDOG_ENABLED))  
+</span></span><span class=line><span class=cl>        goto out;  
+</span></span><span class=line><span class=cl>  
+</span></span><span class=line><span class=cl>    /* is it already setup and enabled? */  
+</span></span><span class=line><span class=cl>    if (event &amp;&amp; event-&gt;state &gt; PERF_EVENT_STATE_OFF)  
+</span></span><span class=line><span class=cl>        goto out;  
+</span></span><span class=line><span class=cl>  
+</span></span><span class=line><span class=cl>    /* it is setup but not enabled */  
+</span></span><span class=line><span class=cl>    if (event != NULL)  
+</span></span><span class=line><span class=cl>        goto out_enable;  
+</span></span><span class=line><span class=cl>  
+</span></span><span class=line><span class=cl>    wd_attr = &amp;wd_hw_attr;
+</span></span><span class=line><span class=cl>   /*获取hard lockup周期性检测的时间*/  
+</span></span><span class=line><span class=cl>    wd_attr-&gt;sample_period = hw_nmi_get_sample_period(watchdog_thresh);  
+</span></span><span class=line><span class=cl>    /* 通过HW event,即通过NMI将信号发送给cpu来处理hard lockup.核心函数watchdog_ov
+</span></span><span class=line><span class=cl>   erflow_callback */
+</span></span><span class=line><span class=cl>    /* Try to register using hardware perf events */  
+</span></span><span class=line><span class=cl>    event = perf_event_create_kernel_counter(wd_attr, cpu, NULL, watchdog_overflow_callback, NULL);  
+</span></span><span class=line><span class=cl>  
+</span></span><span class=line><span class=cl>    /* save cpu0 error for future comparision */  
+</span></span><span class=line><span class=cl>    if (cpu == 0 &amp;&amp; IS_ERR(event))  
+</span></span><span class=line><span class=cl>        cpu0_err = PTR_ERR(event);  
+</span></span><span class=line><span class=cl>  
+</span></span><span class=line><span class=cl>    if (!IS_ERR(event)) {  
+</span></span><span class=line><span class=cl>        /* only print for cpu0 or different than cpu0 */  
+</span></span><span class=line><span class=cl>        if (cpu == 0 || cpu0_err)  
+</span></span><span class=line><span class=cl>            pr_info(&#34;enabled on all CPUs, permanently consumes one hw-PMU counter.\n&#34;);  
+</span></span><span class=line><span class=cl>        goto out_save;  
+</span></span><span class=line><span class=cl>    }  
+</span></span><span class=line><span class=cl>  
+</span></span><span class=line><span class=cl>    /* 
+</span></span><span class=line><span class=cl>     * Disable the hard lockup detector if _any_ CPU fails to set up 
+</span></span><span class=line><span class=cl>     * set up the hardware perf event. The watchdog() function checks 
+</span></span><span class=line><span class=cl>     * the NMI_WATCHDOG_ENABLED bit periodically. 
+</span></span><span class=line><span class=cl>     * 
+</span></span><span class=line><span class=cl>     * The barriers are for syncing up watchdog_enabled across all the 
+</span></span><span class=line><span class=cl>     * cpus, as clear_bit() does not use barriers. 
+</span></span><span class=line><span class=cl>     */  
+</span></span><span class=line><span class=cl>    smp_mb__before_atomic();  
+</span></span><span class=line><span class=cl>    clear_bit(NMI_WATCHDOG_ENABLED_BIT, &amp;watchdog_enabled);  
+</span></span><span class=line><span class=cl>    smp_mb__after_atomic();  
+</span></span><span class=line><span class=cl>  
+</span></span><span class=line><span class=cl>    /* skip displaying the same error again */  
+</span></span><span class=line><span class=cl>    if (cpu &gt; 0 &amp;&amp; (PTR_ERR(event) == cpu0_err))  
+</span></span><span class=line><span class=cl>        return PTR_ERR(event);  
+</span></span><span class=line><span class=cl>  
+</span></span><span class=line><span class=cl>    /* vary the KERN level based on the returned errno */  
+</span></span><span class=line><span class=cl>    if (PTR_ERR(event) == -EOPNOTSUPP)  
+</span></span><span class=line><span class=cl>        pr_info(&#34;disabled (cpu%i): not supported (no LAPIC?)\n&#34;, cpu);  
+</span></span><span class=line><span class=cl>    else if (PTR_ERR(event) == -ENOENT)  
+</span></span><span class=line><span class=cl>        pr_warn(&#34;disabled (cpu%i): hardware events not enabled\n&#34;,  
+</span></span><span class=line><span class=cl>             cpu);  
+</span></span><span class=line><span class=cl>    else  
+</span></span><span class=line><span class=cl>        pr_err(&#34;disabled (cpu%i): unable to create perf event: %ld\n&#34;,  
+</span></span><span class=line><span class=cl>            cpu, PTR_ERR(event));  
+</span></span><span class=line><span class=cl>  
+</span></span><span class=line><span class=cl>    pr_info(&#34;Shutting down hard lockup detector on all cpus\n&#34;);  
+</span></span><span class=line><span class=cl>  
+</span></span><span class=line><span class=cl>    return PTR_ERR(event);  
+</span></span><span class=line><span class=cl>  
+</span></span><span class=line><span class=cl>    /* success path */  
+</span></span><span class=line><span class=cl>out_save:  
+</span></span><span class=line><span class=cl>    per_cpu(watchdog_ev, cpu) = event;  
+</span></span><span class=line><span class=cl>out_enable:  
+</span></span><span class=line><span class=cl>    perf_event_enable(per_cpu(watchdog_ev, cpu));  
+</span></span><span class=line><span class=cl>out:  
+</span></span><span class=line><span class=cl>    return 0;  
+</span></span><span class=line><span class=cl>}  
+</span></span></code></pre></td></tr></table></div></div><p>perf_event_create_kernel_counter函数主要是注册了一个硬件的事件。这个硬件在x86里叫performance monitoring，这个硬件有一个功能就是在cpu clock经过了多少个周期后发出一个NMI中断出来。 核心函数分析:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span><span class=lnt>40
+</span><span class=lnt>41
+</span><span class=lnt>42
+</span><span class=lnt>43
+</span><span class=lnt>44
+</span><span class=lnt>45
+</span><span class=lnt>46
+</span><span class=lnt>47
+</span><span class=lnt>48
+</span><span class=lnt>49
+</span><span class=lnt>50
+</span><span class=lnt>51
+</span><span class=lnt>52
+</span><span class=lnt>53
+</span><span class=lnt>54
+</span><span class=lnt>55
+</span><span class=lnt>56
+</span><span class=lnt>57
+</span><span class=lnt>58
+</span><span class=lnt>59
+</span><span class=lnt>60
+</span><span class=lnt>61
+</span><span class=lnt>62
+</span><span class=lnt>63
+</span><span class=lnt>64
+</span><span class=lnt>65
+</span><span class=lnt>66
+</span><span class=lnt>67
+</span><span class=lnt>68
+</span><span class=lnt>69
+</span><span class=lnt>70
+</span><span class=lnt>71
+</span><span class=lnt>72
+</span><span class=lnt>73
+</span><span class=lnt>74
+</span><span class=lnt>75
+</span><span class=lnt>76
+</span><span class=lnt>77
+</span><span class=lnt>78
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>#ifdef CONFIG_HARDLOCKUP_DETECTOR_NMI  
+</span></span><span class=line><span class=cl>  
+</span></span><span class=line><span class=cl>static struct perf_event_attr wd_hw_attr = {  
+</span></span><span class=line><span class=cl>    .type       = PERF_TYPE_HARDWARE,  
+</span></span><span class=line><span class=cl>    .config     = PERF_COUNT_HW_CPU_CYCLES,  
+</span></span><span class=line><span class=cl>    .size       = sizeof(struct perf_event_attr),  
+</span></span><span class=line><span class=cl>    .pinned     = 1,  
+</span></span><span class=line><span class=cl>    .disabled   = 1,  
+</span></span><span class=line><span class=cl>};  
+</span></span><span class=line><span class=cl>  
+</span></span><span class=line><span class=cl>/* Callback function for perf event subsystem */  
+</span></span><span class=line><span class=cl>static void watchdog_overflow_callback(struct perf_event *event,  
+</span></span><span class=line><span class=cl>         struct perf_sample_data *data,  
+</span></span><span class=line><span class=cl>         struct pt_regs *regs)  
+</span></span><span class=line><span class=cl>{  
+</span></span><span class=line><span class=cl>    /* Ensure the watchdog never gets throttled */  
+</span></span><span class=line><span class=cl>    event-&gt;hw.interrupts = 0;  
+</span></span><span class=line><span class=cl>  
+</span></span><span class=line><span class=cl>    if (__this_cpu_read(watchdog_nmi_touch) == true) {  
+</span></span><span class=line><span class=cl>        __this_cpu_write(watchdog_nmi_touch, false);  
+</span></span><span class=line><span class=cl>        return;  
+</span></span><span class=line><span class=cl>    }  
+</span></span><span class=line><span class=cl>  
+</span></span><span class=line><span class=cl>    /* check for a hardlockup 
+</span></span><span class=line><span class=cl>     * This is done by making sure our timer interrupt 
+</span></span><span class=line><span class=cl>     * is incrementing.  The timer interrupt should have 
+</span></span><span class=line><span class=cl>     * fired multiple times before we overflow&#39;d.  If it hasn&#39;t 
+</span></span><span class=line><span class=cl>     * then this is a good indication the cpu is stuck 
+</span></span><span class=line><span class=cl>     *//*hrtimer_interrupts_saved上次保存的数值与当前hrtimer_interrupts是否有差异
+</span></span><span class=line><span class=cl>     */  
+</span></span><span class=line><span class=cl>    if (is_hardlockup()) {  
+</span></span><span class=line><span class=cl>        int this_cpu = smp_processor_id();  
+</span></span><span class=line><span class=cl>  
+</span></span><span class=line><span class=cl>        /* only print hardlockups once */  
+</span></span><span class=line><span class=cl>        if (__this_cpu_read(hard_watchdog_warn) == true)  
+</span></span><span class=line><span class=cl>            return;  
+</span></span><span class=line><span class=cl>  
+</span></span><span class=line><span class=cl>        pr_emerg(&#34;Watchdog detected hard LOCKUP on cpu %d&#34;, this_cpu);  
+</span></span><span class=line><span class=cl>        print_modules();  
+</span></span><span class=line><span class=cl>        print_irqtrace_events(current);  
+</span></span><span class=line><span class=cl>        if (regs)  
+</span></span><span class=line><span class=cl>            show_regs(regs);  
+</span></span><span class=line><span class=cl>        else  
+</span></span><span class=line><span class=cl>            dump_stack();  
+</span></span><span class=line><span class=cl>  
+</span></span><span class=line><span class=cl>        /* 
+</span></span><span class=line><span class=cl>         * Perform all-CPU dump only once to avoid multiple hardlockups 
+</span></span><span class=line><span class=cl>         * generating interleaving traces 
+</span></span><span class=line><span class=cl>         */  
+</span></span><span class=line><span class=cl>        if (sysctl_hardlockup_all_cpu_backtrace &amp;&amp;  
+</span></span><span class=line><span class=cl>                !test_and_set_bit(0, &amp;hardlockup_allcpu_dumped))  
+</span></span><span class=line><span class=cl>            trigger_allbutself_cpu_backtrace();  
+</span></span><span class=line><span class=cl>  
+</span></span><span class=line><span class=cl>        if (hardlockup_panic)  
+</span></span><span class=line><span class=cl>            panic(&#34;Hard LOCKUP&#34;);  
+</span></span><span class=line><span class=cl>  
+</span></span><span class=line><span class=cl>        __this_cpu_write(hard_watchdog_warn, true);  
+</span></span><span class=line><span class=cl>        return;  
+</span></span><span class=line><span class=cl>    }  
+</span></span><span class=line><span class=cl>  
+</span></span><span class=line><span class=cl>    __this_cpu_write(hard_watchdog_warn, false);  
+</span></span><span class=line><span class=cl>    return;  
+</span></span><span class=line><span class=cl>}  
+</span></span><span class=line><span class=cl>#endif /* CONFIG_HARDLOCKUP_DETECTOR_NMI */ 
+</span></span><span class=line><span class=cl> 
+</span></span><span class=line><span class=cl>#ifdef CONFIG_HARDLOCKUP_DETECTOR_NMI  
+</span></span><span class=line><span class=cl>/* watchdog detector functions */  
+</span></span><span class=line><span class=cl>static bool is_hardlockup(void)  
+</span></span><span class=line><span class=cl>{  
+</span></span><span class=line><span class=cl>    unsigned long hrint = __this_cpu_read(hrtimer_interrupts);  
+</span></span><span class=line><span class=cl>  
+</span></span><span class=line><span class=cl>    if (__this_cpu_read(hrtimer_interrupts_saved) == hrint)  
+</span></span><span class=line><span class=cl>        return true;  
+</span></span><span class=line><span class=cl>  
+</span></span><span class=line><span class=cl>    __this_cpu_write(hrtimer_interrupts_saved, hrint);  
+</span></span><span class=line><span class=cl>    return false;  
+</span></span><span class=line><span class=cl>}  
+</span></span><span class=line><span class=cl>#endif  
+</span></span></code></pre></td></tr></table></div></div><p>而这个函数主要就是查看hrtimer_interrupts变量在时钟中断处理函数里有没有被更新。假如没有更新，就意味着中断出了问题，可能被错误代码长时间的关中断了。那这样，相应的问题也就暴露出来了。</p><h2 id=四-案例分析>四 案例分析</h2><p>出现panic的dmesg信息如下:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span><span class=lnt>40
+</span><span class=lnt>41
+</span><span class=lnt>42
+</span><span class=lnt>43
+</span><span class=lnt>44
+</span><span class=lnt>45
+</span><span class=lnt>46
+</span><span class=lnt>47
+</span><span class=lnt>48
+</span><span class=lnt>49
+</span><span class=lnt>50
+</span><span class=lnt>51
+</span><span class=lnt>52
+</span><span class=lnt>53
+</span><span class=lnt>54
+</span><span class=lnt>55
+</span><span class=lnt>56
+</span><span class=lnt>57
+</span><span class=lnt>58
+</span><span class=lnt>59
+</span><span class=lnt>60
+</span><span class=lnt>61
+</span><span class=lnt>62
+</span><span class=lnt>63
+</span><span class=lnt>64
+</span><span class=lnt>65
+</span><span class=lnt>66
+</span><span class=lnt>67
+</span><span class=lnt>68
+</span><span class=lnt>69
+</span><span class=lnt>70
+</span><span class=lnt>71
+</span><span class=lnt>72
+</span><span class=lnt>73
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>[5561883.978551] NMI watchdog: Watchdog detected hard LOCKUP on cpu 15  
+</span></span><span class=line><span class=cl>[5561883.978593] Modules linked in:  
+</span></span><span class=line><span class=cl>[5561883.978598]  dm_mod sctp_diag sctp dccp_diag dccp tcp_diag udp_diag inet_diag unix_diag af_packet_diag netlink_diag iptable_filter binfmt_misc bonding skx_edac edac_core intel_powerclamp coretemp intel_rapl iTCO_wdt iosf_mbi kvm_intel iTCO_vendor_support kvm dcdbas irqbypass crc32_pclmul ghash_clmulni_intel aesni_intel lrw gf128mul glue_helper ablk_helper cryptd sg ipmi_ssif pcspkr ipmi_si shpchp ipmi_devintf mei_me ipmi_msghandler mei lpc_ich nfit i2c_i801 libnvdimm acpi_power_meter acpi_pad ip_tables xfs libcrc32c sd_mod crc_t10dif crct10dif_generic mgag200 i2c_algo_bit drm_kms_helper crct10dif_pclmul syscopyarea crct10dif_common sysfillrect crc32c_intel sysimgblt fb_sys_fops ttm i40e drm ahci libahci tg3 libata megaraid_sas ptp i2c_core pps_core  
+</span></span><span class=line><span class=cl>[5561883.978652] CPU: 15 PID: 0 Comm: swapper/15 Not tainted 3.10.0-693.el7.x86_64 #1  
+</span></span><span class=line><span class=cl>[5561883.978654] Hardware name: Dell Inc. PowerEdge R540/0NJK2F, BIOS 1.3.7 02/09/2018  
+</span></span><span class=line><span class=cl>[5561883.978657] task: ffff88289bb1bf40 ti: ffff88289bb90000 task.ti: ffff88289bb90000  
+</span></span><span class=line><span class=cl>[5561883.978659] RIP: 0010:[&lt;ffffffff810bf107&gt;]  [&lt;ffffffff810bf107&gt;] finish_task_switch+0x57/0x160  
+</span></span><span class=line><span class=cl>[5561883.978671] RSP: 0000:ffff88289bb93e48  EFLAGS: 00000286  
+</span></span><span class=line><span class=cl>[5561883.978672] RAX: ffff882899e0dee0 RBX: ffffffff810b4155 RCX: 0000000000000000  
+</span></span><span class=line><span class=cl>[5561883.978673] RDX: ffff88289bb91fd8 RSI: ffff88289bb1bf40 RDI: ffff883fdbfd6cc0  
+</span></span><span class=line><span class=cl>[5561883.978675] RBP: ffff88289bb93e68 R08: ffff88289bb90000 R09: 0000000000000002  
+</span></span><span class=line><span class=cl>[5561883.978676] R10: 000000000000000f R11: 0000000000000000 R12: ffff883fdbfcfe80  
+</span></span><span class=line><span class=cl>[5561883.978677] R13: ffff883fdbfcf960 R14: ffffffff8132bfe0 R15: ffff88289bb93db8  
+</span></span><span class=line><span class=cl>[5561883.978679] FS:  0000000000000000(0000) GS:ffff883fdbfc0000(0000) knlGS:0000000000000000  
+</span></span><span class=line><span class=cl>[5561883.978680] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033  
+</span></span><span class=line><span class=cl>[5561883.978682] CR2: 00007f3fe8b4aff8 CR3: 00000004981d8000 CR4: 00000000003407e0  
+</span></span><span class=line><span class=cl>[5561883.978683] DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000  
+</span></span><span class=line><span class=cl>[5561883.978684] DR3: 0000000000000000 DR6: 00000000fffe0ff0 DR7: 0000000000000400  
+</span></span><span class=line><span class=cl>[5561883.978685] Stack:  
+</span></span><span class=line><span class=cl>[5561883.978686]  0000000000000000 ffff883fdbfd6cc0 ffff88026b7ce400 0000000000000000  
+</span></span><span class=line><span class=cl>[5561883.978689]  ffff88289bb93ec8 ffffffff816a8f8d ffff88289bb1bf40 ffff88289bb93fd8  
+</span></span><span class=line><span class=cl>[5561883.978691]  ffff88289bb93fd8 ffff88289bb93fd8 ffff88289bb1bf40 ffffffff81b1c820  
+</span></span><span class=line><span class=cl>[5561883.978694] Call Trace:  
+</span></span><span class=line><span class=cl>[5561883.978700]  [&lt;ffffffff816a8f8d&gt;] __schedule+0x39d/0x8b0  
+</span></span><span class=line><span class=cl>[5561883.978703]  [&lt;ffffffff816aa3e9&gt;] schedule_preempt_disabled+0x29/0x70  
+</span></span><span class=line><span class=cl>[5561883.978710]  [&lt;ffffffff810e7c0a&gt;] cpu_startup_entry+0x18a/0x1c0  
+</span></span><span class=line><span class=cl>[5561883.978715]  [&lt;ffffffff81051af6&gt;] start_secondary+0x1b6/0x230  
+</span></span><span class=line><span class=cl>[5561883.978717] Code: 1f 44 00 00 65 48 8b 34 25 00 ce 00 00 0f 1f 44 00 00 41 c7 45 28 00 00 00 00 48 89 df c6 07 00 0f 1f 40 00 fb 66 0f 1f 44 00 00 &lt;65&gt; 48 8b 04 25 00 ce 00 00 48 8b 98 78 01 00 00 48 85 db 74 1c  
+</span></span><span class=line><span class=cl>[5561883.978741] Kernel panic - not syncing: Hard LOCKUP  
+</span></span><span class=line><span class=cl>[5561883.978767] CPU: 15 PID: 0 Comm: swapper/15 Not tainted 3.10.0-693.el7.x86_64 #1  
+</span></span><span class=line><span class=cl>[5561883.978802] Hardware name: Dell Inc. PowerEdge R540/0NJK2F, BIOS 1.3.7 02/09/2018  
+</span></span><span class=line><span class=cl>[5561883.978837]  ffff88289bb93d00 d5511a25db39e950 ffff883fdbfc5b18 ffffffff816a3d91  
+</span></span><span class=line><span class=cl>[5561883.978879]  ffff883fdbfc5b98 ffffffff8169dc54 0000000000000010 ffff883fdbfc5ba8  
+</span></span><span class=line><span class=cl>[5561883.978923]  ffff883fdbfc5b48 d5511a25db39e950 0000000000000000 ffffffff8190ac0f  
+</span></span><span class=line><span class=cl>[5561883.978966] Call Trace:  
+</span></span><span class=line><span class=cl>[5561883.978980]  &lt;NMI&gt;  [&lt;ffffffff816a3d91&gt;] dump_stack+0x19/0x1b  
+</span></span><span class=line><span class=cl>[5561883.979019]  [&lt;ffffffff8169dc54&gt;] panic+0xe8/0x20d  
+</span></span><span class=line><span class=cl>[5561883.979046]  [&lt;ffffffff8108771f&gt;] nmi_panic+0x3f/0x40  
+</span></span><span class=line><span class=cl>[5561883.979073]  [&lt;ffffffff8112fa75&gt;] watchdog_overflow_callback+0xf5/0x100  
+</span></span><span class=line><span class=cl>[5561883.979108]  [&lt;ffffffff8116e561&gt;] __perf_event_overflow+0x51/0xf0  
+</span></span><span class=line><span class=cl>[5561883.979139]  [&lt;ffffffff811770b4&gt;] perf_event_overflow+0x14/0x20  
+</span></span><span class=line><span class=cl>[5561883.979170]  [&lt;ffffffff81009f78&gt;] intel_pmu_handle_irq+0x218/0x4f0  
+</span></span><span class=line><span class=cl>[5561883.979204]  [&lt;ffffffff81324abc&gt;] ? ioremap_page_range+0x26c/0x3d0  
+</span></span><span class=line><span class=cl>[5561883.979236]  [&lt;ffffffff811c0a04&gt;] ? vunmap_page_range+0x1b4/0x300  
+</span></span><span class=line><span class=cl>[5561883.979266]  [&lt;ffffffff811c0b61&gt;] ? unmap_kernel_range_noflush+0x11/0x20  
+</span></span><span class=line><span class=cl>[5561883.979300]  [&lt;ffffffff813da15e&gt;] ? ghes_copy_tofrom_phys+0x10e/0x210  
+</span></span><span class=line><span class=cl>[5561883.979332]  [&lt;ffffffff813da300&gt;] ? ghes_read_estatus+0xa0/0x190  
+</span></span><span class=line><span class=cl>[5561883.979363]  [&lt;ffffffff816ac06b&gt;] perf_event_nmi_handler+0x2b/0x50  
+</span></span><span class=line><span class=cl>[5561883.979394]  [&lt;ffffffff816ad427&gt;] nmi_handle.isra.0+0x87/0x160  
+</span></span><span class=line><span class=cl>[5561883.979424]  [&lt;ffffffff816ad710&gt;] do_nmi+0x210/0x450  
+</span></span><span class=line><span class=cl>[5561883.979451]  [&lt;ffffffff810c89b0&gt;] ? task_scan_max+0x40/0x40  
+</span></span><span class=line><span class=cl>[5561883.979480]  [&lt;ffffffff816ac8d3&gt;] end_repeat_nmi+0x1e/0x2e  
+</span></span><span class=line><span class=cl>[5561883.979508]  [&lt;ffffffff810c89b0&gt;] ? task_scan_max+0x40/0x40  
+</span></span><span class=line><span class=cl>[5561883.979536]  [&lt;ffffffff810c89ce&gt;] ? tg_unthrottle_up+0x1e/0x50  
+</span></span><span class=line><span class=cl>[5561883.979566]  [&lt;ffffffff810c89ce&gt;] ? tg_unthrottle_up+0x1e/0x50  
+</span></span><span class=line><span class=cl>[5561883.979595]  [&lt;ffffffff810c89ce&gt;] ? tg_unthrottle_up+0x1e/0x50  
+</span></span><span class=line><span class=cl>[5561883.979624]  &lt;&lt;EOE&gt;&gt;  &lt;IRQ&gt;  [&lt;ffffffff810c0bcb&gt;] walk_tg_tree_from+0x7b/0x110  
+</span></span><span class=line><span class=cl>[5561883.979666]  [&lt;ffffffff810ba190&gt;] ? __smp_mb__after_atomic+0x10/0x10  
+</span></span><span class=line><span class=cl>[5561883.979698]  [&lt;ffffffff810d0977&gt;] unthrottle_cfs_rq+0xb7/0x170  
+</span></span><span class=line><span class=cl>[5561883.979726]  [&lt;ffffffff810d0bfa&gt;] distribute_cfs_runtime+0x10a/0x130  
+</span></span><span class=line><span class=cl>[5561883.979759]  [&lt;ffffffff810d0da7&gt;] sched_cfs_period_timer+0xb7/0x150  
+</span></span><span class=line><span class=cl>[5561883.979790]  [&lt;ffffffff810d0cf0&gt;] ? sched_cfs_slack_timer+0xd0/0xd0  
+</span></span><span class=line><span class=cl>[5561883.979822]  [&lt;ffffffff810b4ae4&gt;] __hrtimer_run_queues+0xd4/0x260  
+</span></span><span class=line><span class=cl>[5561883.979853]  [&lt;ffffffff810b507f&gt;] hrtimer_interrupt+0xaf/0x1d0  
+</span></span><span class=line><span class=cl>[5561883.979883]  [&lt;ffffffff81053895&gt;] local_apic_timer_interrupt+0x35/0x60  
+</span></span><span class=line><span class=cl>[5561883.979917]  [&lt;ffffffff816b76bd&gt;] smp_apic_timer_interrupt+0x3d/0x50  
+</span></span><span class=line><span class=cl>[5561883.979949]  [&lt;ffffffff816b5c1d&gt;] apic_timer_interrupt+0x6d/0x80  
+</span></span><span class=line><span class=cl>[5561883.979977]  &lt;EOI&gt;  [&lt;ffffffff810b4155&gt;] ? enqueue_hrtimer+0x25/0x80  
+</span></span><span class=line><span class=cl>[5561883.980013]  [&lt;ffffffff810bf107&gt;] ? finish_task_switch+0x57/0x160  
+</span></span><span class=line><span class=cl>[5561883.980044]  [&lt;ffffffff816a8f8d&gt;] __schedule+0x39d/0x8b0  
+</span></span><span class=line><span class=cl>[5561883.980071]  [&lt;ffffffff816aa3e9&gt;] schedule_preempt_disabled+0x29/0x70  
+</span></span><span class=line><span class=cl>[5561883.981014]  [&lt;ffffffff810e7c0a&gt;] cpu_startup_entry+0x18a/0x1c0  
+</span></span><span class=line><span class=cl>[5561883.981889]  [&lt;ffffffff81051af6&gt;] start_secondary+0x1b6/0x230  
+</span></span></code></pre></td></tr></table></div></div><p>可以看到是hard lockup, 看dump出来的栈信息,可以基本判断是出现cfs在做unthrottle的时候出现的问题. 因为cfs检测throttle是定时中断周期性检测的,导致hard lockup hrtimer_interrupts变量长时间没有更新. 即系统在给进程重新分析调度时间的时候出现的问题. 仅仅是怀疑,没有现场和使用crash tool去debug. 后续在update.</p></article><hr><div class=page-end><div class=backlinks-container><h3>Backlinks</h3><ul class=backlinks><li>No backlinks found</li></ul></div></div><div id=contact_buttons><footer><p>Made by Jacky Zhao using <a href=https://github.com/jackyzha0/quartz>Quartz</a>, © 2022</p><ul><li><a href=/>Home</a></li><li><a href=https://twitter.com/_jzhao>Twitter</a></li><li><a href=https://github.com/jackyzha0>Github</a></li></ul></footer></div><script src=https://lzyerste.github.io/quartz/js/popover.e57188d2e4c06b0654e020b3a734bb62.min.js></script>
+<script>initPopover("https://lzyerste.github.io/quartz")</script></div></body></html>
