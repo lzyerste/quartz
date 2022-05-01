@@ -4,6 +4,8 @@ title: vim
 
 #vim #神器 #必备
 
+[vim_old](vim_old.md)
+
 .vimrc位置: config/.vimrc
 
 [★vim8推荐配置](../other/software/vim/★vim8推荐配置.md)
@@ -124,28 +126,9 @@ https://stackoverflow.com/questions/1061933/how-to-select-between-brackets-or-qu
 
 如果有多层级嵌套，vib选中之后，继续按`ib`就会选中下一级。
 
-# vim old
+### vim启动时hang住
 
-[安装vim 8.2](../other/software/vim/安装vim%208_2.md)
-
-[vim常用命令](../other/software/vim/vim常用命令%20020b1e9960e94647ae0038a80d9192c1.md)
-
-[Vim Cheat Sheet](https://vim.rtorr.com/)
-
-[VimGolf - real Vim ninjas count every keystroke!](https://www.vimgolf.com/)
-
-[尽量少的插件配置](../other/software/vim/尽量少的插件配置%2060183931f42f4094881568f2bf845113.md)
-
-[基本配置](../other/software/vim/基本配置%202d6c03e900744ec2a25263313ce268a0.md)
-
-[修改配置貌似不起作用](../other/software/vim/修改配置貌似不起作用%20c7571b19da5a4a608b4f47b1e81bc46e.md)
-
-[spacevim](../other/software/vim/spacevim%206dc004bd705e42ac9a97e42049cab440.md)
-
-[《Practical Vim》](../other/software/vim/《Practical%20Vim》%207abf29bdaf504642a0b9a31deeb86c54.md)
-
-[Vim for VSCode: Remap ctrl + e to go to end of line in insert mode](https://stackoverflow.com/questions/53897590/vim-for-vscode-remap-ctrl-e-to-go-to-end-of-line-in-insert-mode)
-
-映射vscode命令
-
-[Understanding Vim’s Jump List. One of the great joys of Vim is its… | by Kade Killary | Medium](../other/software/vim/Understanding%20Vim’s%20Jump%20List%20One%20of%20the%20great%20joy%2003d0b9522f1d4fa488b880e3e454fd0d.md)
+> [!faq]+ wsl中vim启动时hang住
+> 使用`strace vim`跟踪hang在哪里，跟X11有关，是不是跟之前的gwsl有关？
+> 开着gwsl恢复正常了，跟windows间的复制粘贴也都正常。
+> 如果`vi -X <file>`的话，能正常编辑，但复制粘贴有问题。

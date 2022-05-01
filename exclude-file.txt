@@ -1,6 +1,7 @@
 *.pdf
 *.py
 *.sh
+*NSConflict*
 .git
 .obsidian/
 assets/
