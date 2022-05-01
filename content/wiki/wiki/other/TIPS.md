@@ -12,6 +12,6 @@ title: TIPS
 
 [批量下载B站视频](TIPS/%E6%89%B9%E9%87%8F%E4%B8%8B%E8%BD%BDB%E7%AB%99%E8%A7%86%E9%A2%91.md)
 
-[入职体检，上海长征医院](TIPS/%E5%85%A5%E8%81%8C%E4%BD%93%E6%A3%80%EF%BC%8C%E4%B8%8A%E6%B5%B7%E9%95%BF%E5%BE%81%E5%8C%BB%E9%99%A2.md)
+[入职体检，上海长征医院](../../personal/入职体检，上海长征医院.md)
 
-[赵朋磊摘要翻译](TIPS/%E8%B5%B5%E6%9C%8B%E7%A3%8A%E6%91%98%E8%A6%81%E7%BF%BB%E8%AF%91.md)
+[赵朋磊摘要翻译](../../personal/赵朋磊摘要翻译.md)
