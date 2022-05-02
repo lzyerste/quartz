@@ -8,7 +8,7 @@ Desc: Server3 is an "echo" server that displays request parameters.
 Source: gopl.io/ch1/server3
 章节: 1.7
 
-![](assets/0e303ab4319f0187ed0656217ec3058f.png)
+![0e303ab4319f0187ed0656217ec3058f](assets/0e303ab4319f0187ed0656217ec3058f.png)
 
 ```go
 // Copyright © 2016 Alan A. A. Donovan & Brian W. Kernighan.

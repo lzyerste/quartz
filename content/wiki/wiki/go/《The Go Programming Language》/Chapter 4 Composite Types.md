@@ -16,4 +16,4 @@ title: Chapter_4_Composite_Types
 
 go run issues/main.go repo:golang/go is:open json decoder
 
-![](assets/b19a5ba1ee20aeb8f2cff2b86b0c1023.png)
+![b19a5ba1ee20aeb8f2cff2b86b0c1023](assets/b19a5ba1ee20aeb8f2cff2b86b0c1023.png)

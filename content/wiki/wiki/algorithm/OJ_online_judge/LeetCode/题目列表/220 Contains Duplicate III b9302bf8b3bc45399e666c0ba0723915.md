@@ -13,7 +13,7 @@ Tags: Ordered Map, Sliding Window, Sort
 
 [Contains Duplicate III - LeetCode](https://leetcode.com/problems/contains-duplicate-iii/)
 
-[219. Contains Duplicate II](219 Contains Duplicate II 66b434bc595e4f2c9f5ea4ef6281e667.md) 
+[219. Contains Duplicate II](219%20Contains%20Duplicate%20II%2066b434bc595e4f2c9f5ea4ef6281e667.md) 
 
 ## 题意
 

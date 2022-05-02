@@ -17,7 +17,7 @@ Tags: DP, Tree
 
 ## 题解1：DP
 
-跟题目 [95. Unique Binary Search Trees II](95 Unique Binary Search Trees II a1b1891b58364691b8b8013e762286b6.md) 一样。
+跟题目 [95. Unique Binary Search Trees II](95%20Unique%20Binary%20Search%20Trees%20II%20a1b1891b58364691b8b8013e762286b6.md) 一样。
 
 ```python
 class Solution:

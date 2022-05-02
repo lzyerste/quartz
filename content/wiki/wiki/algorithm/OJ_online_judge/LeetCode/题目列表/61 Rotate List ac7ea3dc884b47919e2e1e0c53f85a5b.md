@@ -44,7 +44,7 @@ rotate 4 steps to the right: 2->0->1->NULL
 
 1. 计算链表的长度，同时找到tail，将它指向head，形成循环链表；接着tail根据k走到最终的位置（倒着走k步，也就是正向走length-k步），在此处断开即可。
     
-    [My clean C++ code, quite standard (find tail and reconnect the list) - LeetCode Discuss](find tail and reconnect the list) - LeetCode Discuss)%20-%20LeetCode%20Discuss](https://leetcode.com/problems/rotate-list/discuss/22735/My-clean-C%2B%2B-code-quite-standard-(find-tail-and-reconnect-the-list))
+    [My clean C++ code, quite standard (find tail and reconnect the list) - LeetCode Discuss](find%20tail%20and%20reconnect%20the%20list)%20-%20LeetCode%20Discuss) - LeetCode Discuss)%20-%20LeetCode%20Discuss](https://leetcode.com/problems/rotate-list/discuss/22735/My-clean-C%2B%2B-code-quite-standard-(find-tail-and-reconnect-the-list))
     
 
 ## 题解

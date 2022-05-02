@@ -168,4 +168,4 @@ Kernel developers should do their part by writing code that implements smart, sa
 
 **Robert Love** ([rml@tech9.net](mailto:rml@tech9.net)) is a Computer Science and Mathematics student at the University of Florida and a kernel engineer at MontaVista Software. Robert is the maintainer of the preemptible kernel and is involved in various other kernel development projects. He loves Jack Handy books and Less than Jake.
 
-![technologic-v2.0](Kernel Locking Techniques Linux Journal/technologic-v2.0.jpg)
+![technologic-v2.0](Kernel%20Locking%20Techniques%20Linux%20Journal/technologic-v2.0.jpg)

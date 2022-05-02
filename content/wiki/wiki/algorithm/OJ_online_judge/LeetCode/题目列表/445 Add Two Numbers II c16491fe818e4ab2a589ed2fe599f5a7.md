@@ -29,5 +29,5 @@ Output: 7 -> 8 -> 0 -> 7
 
 ## 思路
 
-1. 将两个链表先反转，然后相加，最后将结果链表再反转。参考 [2. Add Two Numbers](2 Add Two Numbers 6843dc5ed34e4be89ef1efade5c3e103.md) 。
+1. 将两个链表先反转，然后相加，最后将结果链表再反转。参考 [2. Add Two Numbers](2%20Add%20Two%20Numbers%206843dc5ed34e4be89ef1efade5c3e103.md) 。
 2. 使用递归法，比如两个链表长度一样，那么它们的相加就相当于head.next子链表相加，然后把head跟carry相加。如果链表长度不一样，处理起来啰嗦一些。

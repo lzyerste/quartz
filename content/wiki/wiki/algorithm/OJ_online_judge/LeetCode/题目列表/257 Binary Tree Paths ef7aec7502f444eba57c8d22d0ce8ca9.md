@@ -58,7 +58,7 @@ class Solution:
     
     def dfs(self, root: TreeNode) -> List[List[str]]:
         if root.left is None and root.right is None:
-            return [str(root.val)](str(root.val))
+            return [str(root.val)](root.val)))
         tmp = []
         if root.left:
             tmp.extend(self.dfs(root.left))

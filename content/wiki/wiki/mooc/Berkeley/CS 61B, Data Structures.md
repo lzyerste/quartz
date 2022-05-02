@@ -34,11 +34,11 @@ B站视频（2018年）
 
 ## 课程笔记
 
-[20. Disjoint Sets, Union Find](CS 61B, Data Structures/20 Disjoint Sets, Union Find c73cb6ecf6324dcc8fd88544854c9bbf.md)
+[20. Disjoint Sets, Union Find](CS%2061B,%20Data%20Structures/20%20Disjoint%20Sets,%20Union%20Find%20c73cb6ecf6324dcc8fd88544854c9bbf.md)
 
-[21. Tree, BSTs](CS 61B, Data Structures/21 Tree, BSTs eea32a80e60e4f4f8e0723b31140930d.md)
+[21. Tree, BSTs](CS%2061B,%20Data%20Structures/21%20Tree,%20BSTs%20eea32a80e60e4f4f8e0723b31140930d.md)
 
-[22. Balanced BSTs](CS 61B, Data Structures/22 Balanced BSTs 24e693bc6ca04a3d9ab91bba9559bba3.md)
+[22. Balanced BSTs](CS%2061B,%20Data%20Structures/22%20Balanced%20BSTs%2024e693bc6ca04a3d9ab91bba9559bba3.md)
 
 ## 其他
 

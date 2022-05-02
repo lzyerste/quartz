@@ -28,19 +28,19 @@ title: Chapter_3_Basic_Data_Types
 - &^：bit clear (AND NOT)，z = x &^ y，如果y上的对应位为1，则z对应位为0；否则如果y上的对应位为0，则z对应位保持x对应位。相当于将y视为mask，对x进行清理。相当于z = x & (^y)。
 - ^有两个作用：如果作为二目运算符，则是异或操作；如果是单目运算，则作为NOT操作。
 
-![](assets/a0086ca3ec1a7e9cec73258395fea188.png)
+![a0086ca3ec1a7e9cec73258395fea188](assets/a0086ca3ec1a7e9cec73258395fea188.png)
 
 ## 3.2 Floating-Point Numbers
 
 - Figure 3.1：go run surface/main.go > surface.svg
 
-![](Chapter%203%20Basic%20Data%20Types/surface.svg)
+![surface](Chapter%203%20Basic%20Data%20Types/surface.svg)
 
 ## 3.3 Complex Numbers
 
 - Figure 3.3：go run mandelbrot/main.go > mandelbrot.png
 
-![](assets/mandelbrot.png)
+![mandelbrot](assets/mandelbrot.png)
 
 ## 3.4 Booleans
 

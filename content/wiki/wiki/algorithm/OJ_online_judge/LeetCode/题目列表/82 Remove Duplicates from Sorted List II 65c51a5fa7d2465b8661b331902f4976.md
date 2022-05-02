@@ -35,7 +35,7 @@ Output: 2->3
 
 ## 思路
 
-- 简洁：与 [83. Remove Duplicates from Sorted List](83 Remove Duplicates from Sorted List 6652f03a615c4b76b266773a734b83db.md) 类似，只是对首次出现的项的处理稍有不同。83是直接收集，而82得再看一步，确定它是唯一的，也就是它的next值跟它不同。之后的过滤流程是一致的。
+- 简洁：与 [83. Remove Duplicates from Sorted List](83%20Remove%20Duplicates%20from%20Sorted%20List%206652f03a615c4b76b266773a734b83db.md) 类似，只是对首次出现的项的处理稍有不同。83是直接收集，而82得再看一步，确定它是唯一的，也就是它的next值跟它不同。之后的过滤流程是一致的。
 
 ## ★题解：简洁
 

@@ -13,7 +13,7 @@ Tags: BFS, DFS, Graph, Topological Sort
 
 [Course Schedule II - LeetCode](https://leetcode.com/problems/course-schedule-ii/)
 
-[207. Course Schedule](207 Course Schedule 08422da8f3b34f0c8c494546eb27182d.md) 
+[207. Course Schedule](207%20Course%20Schedule%2008422da8f3b34f0c8c494546eb27182d.md) 
 
 ## 题意
 

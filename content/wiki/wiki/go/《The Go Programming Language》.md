@@ -33,7 +33,7 @@ Go自带的包源码路径：/usr/local/go/src
 
 ---
 
-[《The Go Programming Language》/Preface](《The%20Go%20Programming%20Language》/Preface.md)
+[Preface](《The%20Go%20Programming%20Language》/Preface.md)
 
 [Chapter 1: Tutorial](《The%20Go%20Programming%20Language》/Chapter%201%20Tutorial.md)
 

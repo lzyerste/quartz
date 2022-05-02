@@ -12,4 +12,4 @@ title: NUMA_[wiki]
 
 [Intel Xeon E5 Version 3: Up to 18 Haswell EP Cores](https://www.anandtech.com/show/8423/intel-xeon-e5-version-3-up-to-18-haswell-ep-cores-/4)
 
-[NUMA (Non-Uniform Memory Access): An Overview](Non-Uniform Memory Access): An Overview):%20An%20Overview](https://queue.acm.org/detail.cfm?id=2513149)
+[NUMA (Non-Uniform Memory Access): An Overview](Non-Uniform%20Memory%20Access):%20An%20Overview): An Overview):%20An%20Overview](https://queue.acm.org/detail.cfm?id=2513149)

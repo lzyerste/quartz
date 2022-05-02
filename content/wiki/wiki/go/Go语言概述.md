@@ -151,7 +151,7 @@ ch <- fmt.Sprintf("%.2fs %7d %s", secs, nbytes, url)
 - fmt.Println()
 - fmt.Printf()
     
-    ![](assets/fdcc9a0cbd6bffc1602fdfd6348d12c5.png)
+    ![fdcc9a0cbd6bffc1602fdfd6348d12c5](assets/fdcc9a0cbd6bffc1602fdfd6348d12c5.png)
     
 
 ## os

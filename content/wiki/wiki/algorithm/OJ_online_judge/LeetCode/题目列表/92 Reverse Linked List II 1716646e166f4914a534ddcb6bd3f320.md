@@ -28,7 +28,7 @@ Output: 1->4->3->2->5->NULL
 
 ## 思路
 
-1. 每次反转一个元素，保持链表完整。参考 [206. Reverse Linked List](206 Reverse Linked List 7107cc6b82674a8aaa8934b045a62ff6.md)
+1. 每次反转一个元素，保持链表完整。参考 [206. Reverse Linked List](206%20Reverse%20Linked%20List%207107cc6b82674a8aaa8934b045a62ff6.md)
 2. 先确定m、n对应的元素及其前后元素，然后对这个子串进行反转，再串起来。
 
 ## 题解

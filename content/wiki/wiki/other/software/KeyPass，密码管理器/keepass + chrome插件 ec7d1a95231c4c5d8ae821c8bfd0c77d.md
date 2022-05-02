@@ -14,4 +14,4 @@ title: keepass_+_chrome插件_ec7d1a95231c4c5d8ae821c8bfd0c77d
 - 重启keepass客户端，会提示Kee想连接，生成验证码，填到chrome插件Kee即可。
 - keepass需要常驻后台，不能锁定。
 
-![2022-05-02_11-21-13](keepass + chrome插件 ec7d1a95231c4c5d8ae821c8bfd0c77d/2022-05-02_11-21-13.png)
+![2022-05-02_11-21-13](keepass%20+%20chrome插件%20ec7d1a95231c4c5d8ae821c8bfd0c77d/2022-05-02_11-21-13.png)

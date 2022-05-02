@@ -13,7 +13,7 @@ Tags: Design, Stack
 
 [Implement Queue using Stacks - LeetCode](https://leetcode.com/problems/implement-queue-using-stacks/)
 
-[225. Implement Stack using Queues](225 Implement Stack using Queues d7e6996648b449489a25fd7786b3178e.md) 
+[225. Implement Stack using Queues](225%20Implement%20Stack%20using%20Queues%20d7e6996648b449489a25fd7786b3178e.md) 
 
 ## 题意
 

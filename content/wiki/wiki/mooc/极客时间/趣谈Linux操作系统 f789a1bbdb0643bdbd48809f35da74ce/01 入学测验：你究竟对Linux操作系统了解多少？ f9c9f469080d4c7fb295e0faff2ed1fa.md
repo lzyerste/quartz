@@ -6,7 +6,7 @@ title: 01_入学测验：你究竟对Linux操作系统了解多少？_f9c9f46908
 
 [01 | 入学测验：你究竟对Linux操作系统了解多少？-极客时间](https://time.geekbang.org/column/article/87111)
 
-![2022-05-02_11-22-01](01 入学测验：你究竟对Linux操作系统了解多少？ f9c9f469080d4c7fb295e0faff2ed1fa/2022-05-02_11-22-01.png)
+![2022-05-02_11-22-01](01%20入学测验：你究竟对Linux操作系统了解多少？%20f9c9f469080d4c7fb295e0faff2ed1fa/2022-05-02_11-22-01.png)
 
 ![Untitled 1](assets/56b73facc842d2bfc801782c77ce0288.png)
 

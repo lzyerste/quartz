@@ -13,7 +13,7 @@ Tags: Backtracking, DP
 
 [Palindrome Partitioning - LeetCode](https://leetcode.com/problems/palindrome-partitioning/)
 
-[132. Palindrome Partitioning II](132 Palindrome Partitioning II 61be1ec0a4b1411ea36cea231e71e923.md) 
+[132. Palindrome Partitioning II](132%20Palindrome%20Partitioning%20II%2061be1ec0a4b1411ea36cea231e71e923.md) 
 
 ## 题意
 

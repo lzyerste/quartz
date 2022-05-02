@@ -13,7 +13,7 @@ title: 5_Strings
         
         ---
         
-        实现请查看 [Radix Sort，基数排序](../经典算法&数据结构/Radix Sort，基数排序.md)。
+        实现请查看 [Radix Sort，基数排序](../经典算法&数据结构/Radix%20Sort，基数排序.md)。
         
     - `LSD`，least-significant-digit first (LSD) string sort
         - 等宽字符串排序，基于Radix Sort
@@ -81,7 +81,7 @@ title: 5_Strings
         
         例子示意图：注意i那一列是一个个递增上去的。
         
-        ![2022-05-02_11-25-11](5 Strings f7c9a2f2411a4a81b0e6c109fa5ec98e/2022-05-02_11-25-11.png)
+        ![2022-05-02_11-25-11](5%20Strings%20f7c9a2f2411a4a81b0e6c109fa5ec98e/2022-05-02_11-25-11.png)
         
         ---
         

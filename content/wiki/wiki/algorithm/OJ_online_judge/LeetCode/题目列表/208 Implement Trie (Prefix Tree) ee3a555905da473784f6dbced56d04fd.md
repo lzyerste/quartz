@@ -11,7 +11,7 @@ Tags: Design, Trie
 击败: 29.54
 推荐指数: ⭐⭐⭐
 
-[Implement Trie (Prefix Tree) - LeetCode](Prefix Tree) - LeetCode)%20-%20LeetCode](https://leetcode.com/problems/implement-trie-prefix-tree/)
+[Implement Trie (Prefix Tree) - LeetCode](Prefix%20Tree)%20-%20LeetCode) - LeetCode)%20-%20LeetCode](https://leetcode.com/problems/implement-trie-prefix-tree/)
 
 ## 题意
 

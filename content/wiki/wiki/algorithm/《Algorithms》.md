@@ -14,7 +14,7 @@ title: 《Algorithms》
 
 [经典算法&数据结构](经典算法&数据结构.md)
 
-[环境准备](《Algorithms》/环境准备 64dcd48ea4344bed83996c55134167d5.md)
+[环境准备](《Algorithms》/环境准备%2064dcd48ea4344bed83996c55134167d5.md)
 
 - 如何`直接运行algs4.jar`里的程序
     - 下载两个脚本，放到PATH目录，如~/bin
@@ -28,11 +28,11 @@ title: 《Algorithms》
 
 ## 学习进度
 
-[1. Fundamentals](《Algorithms》/1 Fundamentals 846f6538908844ce88c20fe8509bedef.md)
+[1. Fundamentals](《Algorithms》/1%20Fundamentals%20846f6538908844ce88c20fe8509bedef.md)
 
-[2. Sorting](《Algorithms》/2 Sorting c31232812105447884bb5307ab2b1a8d.md)
+[2. Sorting](《Algorithms》/2%20Sorting%20c31232812105447884bb5307ab2b1a8d.md)
 
-[3. Searching](《Algorithms》/3 Searching 8d64e843107e4e07a748f6866b6afb00.md)
+[3. Searching](《Algorithms》/3%20Searching%208d64e843107e4e07a748f6866b6afb00.md)
 
 [4. Graph](《Algorithms》/4_Graph.md)
 

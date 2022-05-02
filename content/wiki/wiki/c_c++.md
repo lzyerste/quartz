@@ -6,17 +6,17 @@ title: c_c++
 
 [macro](macro.md)
 
-[C项目推荐](c c++/C项目推荐 425c4fee733648f3aa28591f2ee5f8cd.md)
+[C项目推荐](c%20c++/C项目推荐%20425c4fee733648f3aa28591f2ee5f8cd.md)
 
-[C语言hashmap实现](c c++/C语言hashmap实现 e8a9a5010a5e48b8b03070009f288e1c.md)
+[C语言hashmap实现](c%20c++/C语言hashmap实现%20e8a9a5010a5e48b8b03070009f288e1c.md)
 
-[C语言红黑树实现](c c++/C语言红黑树实现 e597bd43eff24bfcadcf48f6b530dd4d.md)
+[C语言红黑树实现](c%20c++/C语言红黑树实现%20e597bd43eff24bfcadcf48f6b530dd4d.md)
 
 [fragglet/c-algorithms](https://github.com/fragglet/c-algorithms)
 
-[Tips](c c++/Tips 11ab7b5246fa49fea08ff574a08fc044.md)
+[Tips](c%20c++/Tips%2011ab7b5246fa49fea08ff574a08fc044.md)
 
-[C++标准库](c c++/C++标准库 b76c5e0fb5ed4e0489d8dd818fab1591.md)
+[C++标准库](c%20c++/C++标准库%20b76c5e0fb5ed4e0489d8dd818fab1591.md)
 
 - C99标准
     
@@ -47,14 +47,14 @@ title: c_c++
 
 ## 教程
 
-[C语言提高、进阶视频（B站）](c c++/C语言提高、进阶视频（B站） 725f7faaec084506892b36afaea10ec2.md)
+[C语言提高、进阶视频（B站）](c%20c++/C语言提高、进阶视频（B站）%20725f7faaec084506892b36afaea10ec2.md)
 
 ## 书籍
 
-[《C Interfaces and Implementations》](c c++/《C Interfaces and Implementations》 ef4b794defc44e258af6b09698e7f6ed.md)
+[《C Interfaces and Implementations》](c%20c++/《C%20Interfaces%20and%20Implementations》%20ef4b794defc44e258af6b09698e7f6ed.md)
 
 ## 收集
 
-[再谈C语言位域 | Tony Bai](c c++/再谈C语言位域 Tony Bai 2bd165a29d224276ba1829fe848d8c4d.md)
+[再谈C语言位域 | Tony Bai](c%20c++/再谈C语言位域%20Tony%20Bai%202bd165a29d224276ba1829fe848d8c4d.md)
 
 [Object-Oriented Programming is Bad](https://www.youtube.com/watch?v=QM1iUe6IofM&app=desktop)

@@ -6,7 +6,7 @@ title: uva
 
 [Online Judge](https://onlinejudge.org/)
 
-[10245, The Closest Pair Problem](uva/10245, The Closest Pair Problem.md)
+[10245, The Closest Pair Problem](uva/10245,%20The%20Closest%20Pair%20Problem.md)
 
 ## 排名
 

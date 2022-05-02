@@ -6,7 +6,7 @@ title: kopia
 
 支持GUI。
 
-![Pasted image 20220310172642](assets/Pasted image 20220310172642.png)
+![Pasted image 20220310172642](assets/Pasted%20image%2020220310172642.png)
 
 ## 安装命令行工具
 

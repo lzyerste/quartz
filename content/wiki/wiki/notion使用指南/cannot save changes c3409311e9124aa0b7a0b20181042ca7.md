@@ -4,7 +4,7 @@ title: cannot_save_changes_c3409311e9124aa0b7a0b20181042ca7
 
 # cannot save changes
 
-![2022-05-02_11-21-31](cannot save changes c3409311e9124aa0b7a0b20181042ca7/2022-05-02_11-21-31.png)
+![2022-05-02_11-21-31](cannot%20save%20changes%20c3409311e9124aa0b7a0b20181042ca7/2022-05-02_11-21-31.png)
 
 用chrome的隐私模式又是可以的。
 

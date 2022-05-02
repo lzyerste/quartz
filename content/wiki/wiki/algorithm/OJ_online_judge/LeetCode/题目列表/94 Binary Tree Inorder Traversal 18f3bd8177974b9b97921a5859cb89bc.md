@@ -13,9 +13,9 @@ Tags: Recursive, Stack, Tree
 
 [Binary Tree Inorder Traversal - LeetCode](https://leetcode.com/problems/binary-tree-inorder-traversal/)
 
-[144. Binary Tree Preorder Traversal](144 Binary Tree Preorder Traversal c7855ea336f6459da3adcd286d7c59a8.md) 
+[144. Binary Tree Preorder Traversal](144%20Binary%20Tree%20Preorder%20Traversal%20c7855ea336f6459da3adcd286d7c59a8.md) 
 
-[145. Binary Tree Postorder Traversal](145 Binary Tree Postorder Traversal 194edeae07e444adbb9ba799a4ab6e66.md) 
+[145. Binary Tree Postorder Traversal](145%20Binary%20Tree%20Postorder%20Traversal%20194edeae07e444adbb9ba799a4ab6e66.md) 
 
 ## 题意
 
@@ -114,7 +114,7 @@ class Solution:
         return res
 
     def inorderTraversal2(self, root: TreeNode) -> List[int]:
-        stack = [root, 0](root, 0)
+        stack = [root, 0](root,%200)
         res = []
         while stack:
             top = root, state = stack[-1]

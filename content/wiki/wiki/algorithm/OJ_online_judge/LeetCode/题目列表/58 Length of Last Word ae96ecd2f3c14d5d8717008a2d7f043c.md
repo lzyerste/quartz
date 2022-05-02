@@ -19,7 +19,7 @@ Tags: String
 
 找到起始、终止位置。
 
-![2022-05-02_11-25-36](58 Length of Last Word ae96ecd2f3c14d5d8717008a2d7f043c/2022-05-02_11-25-36.png)
+![2022-05-02_11-25-36](58%20Length%20of%20Last%20Word%20ae96ecd2f3c14d5d8717008a2d7f043c/2022-05-02_11-25-36.png)
 
 ```python
 class Solution:

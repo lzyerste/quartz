@@ -13,7 +13,7 @@ Tags: Array, DFS, Tree
 
 [Construct Binary Tree from Inorder and Postorder Traversal - LeetCode](https://leetcode.com/problems/construct-binary-tree-from-inorder-and-postorder-traversal/)
 
-[105. Construct Binary Tree from Preorder and Inorder Traversal](105 Construct Binary Tree from Preorder and Inorde 5247cc18803a46358c26fe5ef086cf5e.md) 
+[105. Construct Binary Tree from Preorder and Inorder Traversal](105%20Construct%20Binary%20Tree%20from%20Preorder%20and%20Inorde%205247cc18803a46358c26fe5ef086cf5e.md) 
 
 ## 题意
 

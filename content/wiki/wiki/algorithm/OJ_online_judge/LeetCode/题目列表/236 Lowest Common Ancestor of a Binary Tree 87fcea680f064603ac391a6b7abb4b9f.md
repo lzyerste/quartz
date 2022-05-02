@@ -13,7 +13,7 @@ Tags: Tree
 
 [Lowest Common Ancestor of a Binary Tree - LeetCode](https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree/)
 
-[235. Lowest Common Ancestor of a Binary Search Tree](235 Lowest Common Ancestor of a Binary Search Tree ef7423c384804b41913e46988e21fc6b.md) 
+[235. Lowest Common Ancestor of a Binary Search Tree](235%20Lowest%20Common%20Ancestor%20of%20a%20Binary%20Search%20Tree%20ef7423c384804b41913e46988e21fc6b.md) 
 
 ## 题意
 

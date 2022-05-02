@@ -12,4 +12,4 @@ Linux下截图软件，蛮不错，操作丰富。
 flameshot gui -c
 ```
 
-![Pasted image 20220209173424](assets/Pasted image 20220209173424.png)
+![Pasted image 20220209173424](assets/Pasted%20image%2020220209173424.png)

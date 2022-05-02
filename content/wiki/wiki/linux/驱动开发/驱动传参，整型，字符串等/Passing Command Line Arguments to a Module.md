@@ -12,11 +12,11 @@ To allow arguments to be passed to your module, declare the variables that will 
 
 The module_param() macro takes 3 arguments: the name of the variable, its type and permissions for the corresponding file in sysfs. Integer types can be signed as usual or unsigned. If you'd like to use arrays of integers or strings see module_param_array() and module_param_string().
 
-[Untitled](Passing Command Line Arguments to a Module/Untitled Database b3695e0655a24092b008dfac4f16ff21.csv)
+[Untitled](Passing%20Command%20Line%20Arguments%20to%20a%20Module/Untitled%20Database%20b3695e0655a24092b008dfac4f16ff21.csv)
 
 Arrays are supported too, but things are a bit different now than they were in the 2.4. days. To keep track of the number of parameters you need to pass a pointer to a count variable as third parameter. At your option, you could also ignore the count and pass NULL instead. We show both possibilities here:
 
-[Untitled](Passing Command Line Arguments to a Module/Untitled Database 03ce2a7082ca492fbd424dea35b518eb.csv)
+[Untitled](Passing%20Command%20Line%20Arguments%20to%20a%20Module/Untitled%20Database%2003ce2a7082ca492fbd424dea35b518eb.csv)
 
 A good use for this is to have the module variable's default values set, like an port or IO address. If the variables contain the default values, then perform autodetection (explained elsewhere). Otherwise, keep the current value. This will be made clear later on.
 
@@ -24,8 +24,8 @@ Lastly, there's a macro function, MODULE_PARM_DESC(), that is used to document a
 
 **Example 2-7. hello-5.c**
 
-[Untitled](Passing Command Line Arguments to a Module/Untitled Database 7bcd9810c8b94385b6ae031a972166b4.csv)
+[Untitled](Passing%20Command%20Line%20Arguments%20to%20a%20Module/Untitled%20Database%207bcd9810c8b94385b6ae031a972166b4.csv)
 
 I would recommend playing around with this code:
 
-[Untitled](Passing Command Line Arguments to a Module/Untitled Database a736708e02994dedb336b3e46afcaa0d.csv)
+[Untitled](Passing%20Command%20Line%20Arguments%20to%20a%20Module/Untitled%20Database%20a736708e02994dedb336b3e46afcaa0d.csv)

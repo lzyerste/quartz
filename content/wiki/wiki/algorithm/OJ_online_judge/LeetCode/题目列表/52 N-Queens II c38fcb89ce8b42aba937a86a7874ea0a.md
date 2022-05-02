@@ -17,7 +17,7 @@ Tags: Backtracking
 
 ## 题解1：回溯
 
-统计个数，参考 [51. N-Queens](51 N-Queens c98bbda0e41c4fcc866444efafd8f5be.md) 就行。
+统计个数，参考 [51. N-Queens](51%20N-Queens%20c98bbda0e41c4fcc866444efafd8f5be.md) 就行。
 
 ```python
 class Solution:

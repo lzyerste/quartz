@@ -34,7 +34,7 @@ Output: 1->2->2->4->3->5
 
 与快排相结合。
 
-[148. Sort List](148 Sort List fcae33b05f7a4dba99041f79a55b7964.md) 
+[148. Sort List](148%20Sort%20List%20fcae33b05f7a4dba99041f79a55b7964.md) 
 
 ## 题解1
 

@@ -62,7 +62,7 @@ class Solution:
 
 ## 题解2：反转整数
 
-类似：[7. Reverse Integer](7 Reverse Integer d3225ff3723e481eafc6c2cb43380337.md)
+类似：[7. Reverse Integer](7%20Reverse%20Integer%20d3225ff3723e481eafc6c2cb43380337.md)
 
 输入整数ABCDE，反转后变成EDCBA，比较这两个整数即可。
 

@@ -32,14 +32,14 @@ Status: Done
     - C++11?
 6. `DATABASE RESEARCH`
     
-    ![2022-05-02_11-22-08](Course Introduction and the Relational Model/2022-05-02_11-22-08.png)
+    ![2022-05-02_11-22-08](Course%20Introduction%20and%20the%20Relational%20Model/2022-05-02_11-22-08.png)
     
 7. `DATABASE EXAMPLE`
     - Create a database that models a **digital music store** to keep track of **artists** and **albums**.
 8. `Flat Files`
     - 比如使用csv文件格式，每一行代表一条记录
         
-        ![c699575f012de519bf1fca16b7cc7ac1](Course Introduction and the Relational Model/c699575f012de519bf1fca16b7cc7ac1.png)
+        ![c699575f012de519bf1fca16b7cc7ac1](Course%20Introduction%20and%20the%20Relational%20Model/c699575f012de519bf1fca16b7cc7ac1.png)
         
     - **FLAT FILES: IMPLEMENTATION**
         - How do you find a particular record?
@@ -76,7 +76,7 @@ Status: Done
     
     ---
     
-    ![ae00f4ce46f3fec4172e2103e4f9c4cc](Course Introduction and the Relational Model/ae00f4ce46f3fec4172e2103e4f9c4cc.png)
+    ![ae00f4ce46f3fec4172e2103e4f9c4cc](Course%20Introduction%20and%20the%20Relational%20Model/ae00f4ce46f3fec4172e2103e4f9c4cc.png)
     
 13. RELATIONAL MODEL: `PRIMARY KEYS`
     - A relation’s **primary key** uniquely identifies a single tuple.
@@ -88,7 +88,7 @@ Status: Done
 14. RELATIONAL MODEL: `FOREIGN KEYS`
     - A foreign key specifies that an attribute from one relation has to map to a tuple in another relation.
     
-    ![a846cef4833cc6c90aa0c349c4cf73f0](Course Introduction and the Relational Model/a846cef4833cc6c90aa0c349c4cf73f0.png)
+    ![a846cef4833cc6c90aa0c349c4cf73f0](Course%20Introduction%20and%20the%20Relational%20Model/a846cef4833cc6c90aa0c349c4cf73f0.png)
     
     ArtistAlbum表中保存的就是2个外键，指向Artist与Album表。
     
@@ -102,25 +102,25 @@ Status: Done
     
     [](https://www.jianshu.com/p/cea2e509f640)
     
-    ![897c392e8a72173f020f1bcaac0cec63](Course Introduction and the Relational Model/897c392e8a72173f020f1bcaac0cec63.png)
+    ![897c392e8a72173f020f1bcaac0cec63](Course%20Introduction%20and%20the%20Relational%20Model/897c392e8a72173f020f1bcaac0cec63.png)
     
 16. RELATIONAL ALGEBRA: `**SELECT**`
     
     根据某些过滤条件挑选出子集，输出的表结构属性仍保持不变
     
-    ![163cec27972d14ce6f1f58ea005f543a](Course Introduction and the Relational Model/163cec27972d14ce6f1f58ea005f543a.png)
+    ![163cec27972d14ce6f1f58ea005f543a](Course%20Introduction%20and%20the%20Relational%20Model/163cec27972d14ce6f1f58ea005f543a.png)
     
 17. RELATIONAL ALGEBRA: `PROJECTION`
     
     选择表结构的部分属性，属性的顺序也可以调整，值还可以进行简单的计算
     
-    ![07ba8c8778dcb60b5d1ee23280d79bf7](Course Introduction and the Relational Model/07ba8c8778dcb60b5d1ee23280d79bf7.png)
+    ![07ba8c8778dcb60b5d1ee23280d79bf7](Course%20Introduction%20and%20the%20Relational%20Model/07ba8c8778dcb60b5d1ee23280d79bf7.png)
     
 18. RELATIONAL ALGEBRA: **`UNION`**
     
     两张表结构要一样，需不需要去重（看网上其他资料都是去重的）？比如下面的<a3, 103>在结果中出现2次。顺序不重要。
     
-    ![eee7c2cb03fbc281560985ec12edb8a4](Course Introduction and the Relational Model/eee7c2cb03fbc281560985ec12edb8a4.png)
+    ![eee7c2cb03fbc281560985ec12edb8a4](Course%20Introduction%20and%20the%20Relational%20Model/eee7c2cb03fbc281560985ec12edb8a4.png)
     
 19. RELATIONAL ALGEBRA: `INTERSECTION`
     
@@ -128,7 +128,7 @@ Status: Done
     
     在R表和S表中都存在的记录
     
-    ![a085706ea44989254d17150db0c40a41](Course Introduction and the Relational Model/a085706ea44989254d17150db0c40a41.png)
+    ![a085706ea44989254d17150db0c40a41](Course%20Introduction%20and%20the%20Relational%20Model/a085706ea44989254d17150db0c40a41.png)
     
 20. RELATIONAL ALGEBRA: `DIFFERENCE`
     
@@ -136,13 +136,13 @@ Status: Done
     
     R表存在，S表不存在的记录
     
-    ![b10f101f98669d6e01a544fcc6f36263](Course Introduction and the Relational Model/b10f101f98669d6e01a544fcc6f36263.png)
+    ![b10f101f98669d6e01a544fcc6f36263](Course%20Introduction%20and%20the%20Relational%20Model/b10f101f98669d6e01a544fcc6f36263.png)
     
 21. RELATIONAL ALGEBRA: `PRODUCT`
     
     也叫笛卡尔积，或者cross join，cross product。两张表的所有组合，相当于两层for循环
     
-    ![c9852215cd5f473a9ece72bf33b4ad02](Course Introduction and the Relational Model/c9852215cd5f473a9ece72bf33b4ad02.png)
+    ![c9852215cd5f473a9ece72bf33b4ad02](Course%20Introduction%20and%20the%20Relational%20Model/c9852215cd5f473a9ece72bf33b4ad02.png)
     
 22. RELATIONAL ALGEBRA: `JOIN`
     
@@ -158,7 +158,7 @@ Status: Done
     
     笛卡尔积的输出包含了两张表的所有属性，而natural join则将相同属性去重了，比如结果中a_id只出现一次。
     
-    ![f3c313b205c1d09b77e25b41c5738e0d](Course Introduction and the Relational Model/f3c313b205c1d09b77e25b41c5738e0d.png)
+    ![f3c313b205c1d09b77e25b41c5738e0d](Course%20Introduction%20and%20the%20Relational%20Model/f3c313b205c1d09b77e25b41c5738e0d.png)
     
     JOIN操作实际可细分为Inner Join跟Outer Join。
     
@@ -175,12 +175,12 @@ Status: Done
     - Full Outer Join，左右表都要顾虑
 23. RELATIONAL ALGEBRA: `EXTRA OPERATORS`
     
-    ![a1d5e32c1cd15ab1a62df07274fb9ae8](Course Introduction and the Relational Model/a1d5e32c1cd15ab1a62df07274fb9ae8.png)
+    ![a1d5e32c1cd15ab1a62df07274fb9ae8](Course%20Introduction%20and%20the%20Relational%20Model/a1d5e32c1cd15ab1a62df07274fb9ae8.png)
     
 24. OBSERVATION
     
-    ![05224418295bf8f0dbc38ca0b471bf57](Course Introduction and the Relational Model/05224418295bf8f0dbc38ca0b471bf57.png)
+    ![05224418295bf8f0dbc38ca0b471bf57](Course%20Introduction%20and%20the%20Relational%20Model/05224418295bf8f0dbc38ca0b471bf57.png)
     
 25. RELATIONAL MODEL: `QUERIES`
     
-    ![5d29b38ecd9dc0498b0af1a98b214ac7](Course Introduction and the Relational Model/5d29b38ecd9dc0498b0af1a98b214ac7.png)
+    ![5d29b38ecd9dc0498b0af1a98b214ac7](Course%20Introduction%20and%20the%20Relational%20Model/5d29b38ecd9dc0498b0af1a98b214ac7.png)

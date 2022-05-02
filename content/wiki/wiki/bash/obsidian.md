@@ -57,7 +57,7 @@ markdown文件管理及浏览使用obsidian，编辑可使用[typora](../other/s
 
 它把附件挪到文档本地
 
-![Pasted image 20220502132956](assets/Pasted image 20220502132956.png)
+![Pasted image 20220502132956](assets/Pasted%20image%2020220502132956.png)
 
 ## calendar，3星
 
@@ -83,7 +83,7 @@ markdown文件管理及浏览使用obsidian，编辑可使用[typora](../other/s
 
 使用一个md文件来做kanban。
 
-![Pasted image 20220117100624](../../personal/assets/Pasted image 20220117100624.png)
+![Pasted image 20220117100624](../../personal/assets/Pasted%20image%2020220117100624.png)
 
 ## link-converter，4星
 
@@ -217,7 +217,7 @@ https://stackoverflow.com/a/63851626/1148981
 显示400宽度的图片：
 
 ```
-![400](image file)
+![400](image%20file)
 ```
 
 ## 块引用
@@ -329,9 +329,9 @@ cpu1: Active zones=4 others=1511 capacity=0011B800 size=00200000 dtags=154
 
 深色主题效果：
 
-![Pasted image 20220424175829](assets/Pasted image 20220424175829.png)
+![Pasted image 20220424175829](assets/Pasted%20image%2020220424175829.png)
 
-![Pasted image 20220424175921](assets/Pasted image 20220424175921.png)
+![Pasted image 20220424175921](assets/Pasted%20image%2020220424175921.png)
 
 ---
 

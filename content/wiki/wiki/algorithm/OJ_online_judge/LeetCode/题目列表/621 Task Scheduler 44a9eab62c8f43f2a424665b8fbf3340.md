@@ -11,7 +11,7 @@ Solved?: No
 
 [Task Scheduler - LeetCode](https://leetcode.com/problems/task-scheduler/)
 
-![e03a528ee7c027561db29db7504b0914](621 Task Scheduler 44a9eab62c8f43f2a424665b8fbf3340/e03a528ee7c027561db29db7504b0914.png)
+![e03a528ee7c027561db29db7504b0914](621%20Task%20Scheduler%2044a9eab62c8f43f2a424665b8fbf3340/e03a528ee7c027561db29db7504b0914.png)
 
 这个解的巧妙呀
 它的思路是将最高频的铺开来（间隔n，中间还有很多空位），定位打桩，将其余元素一个个插进来。

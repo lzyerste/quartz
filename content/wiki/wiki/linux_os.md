@@ -6,19 +6,19 @@ title: linux_os
 
 [tips](linux/tips.md)
 
-[Linux内核分析（基于v5.0）](linux/Linux内核分析（基于v5 0）.md)
+[Linux内核分析（基于v5.0）](linux/Linux内核分析（基于v5%200）.md)
 
 [xv6](linux/xv6.md)
 
-[Linux BPF](linux/Linux BPF.md)
+[Linux BPF](linux/Linux%20BPF.md)
 
 - MAC下克隆Linux内核源代码，主要问题是有些文件重名（大小写），git pull的时候会报冲突，临时解决办法是在当前仓库中删除冲突文件，然后再git pull。
 
-[GNU Core Utilities](linux/GNU Core Utilities.md)
+[GNU Core Utilities](linux/GNU%20Core%20Utilities.md)
 
 [gdb](bash/gdb.md)
 
-[Linux Release Versions](linux/Linux Release Versions.md)
+[Linux Release Versions](linux/Linux%20Release%20Versions.md)
 
 [perf性能工具](linux/perf性能工具.md)
 
@@ -62,6 +62,6 @@ title: linux_os
 
 [yooooooo](https://www.cnblogs.com/linhaostudy/)
 
-[The Linux Kernel Archives - Releases](linux/The Linux Kernel Archives - Releases.md)
+[The Linux Kernel Archives - Releases](linux/The%20Linux%20Kernel%20Archives%20-%20Releases.md)
 
 [简介](https://xinqiu.gitbooks.io/linux-insides-cn/content/)

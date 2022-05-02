@@ -11,6 +11,6 @@ title: Chapter_5_Functions
     - go build [gopl.io/ch5/findlinks1](http://gopl.io/ch5/findlinks1)
     - ./fetch [https://golang.google.cn/](https://golang.google.cn/) | ./findlinks1
         
-        ![](assets/05449503120eede90a8b98f6afb73235.png)
+        ![05449503120eede90a8b98f6afb73235](assets/05449503120eede90a8b98f6afb73235.png)
         
     -

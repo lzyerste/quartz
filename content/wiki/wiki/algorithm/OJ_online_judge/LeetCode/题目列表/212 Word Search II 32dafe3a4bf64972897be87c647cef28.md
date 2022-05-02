@@ -13,7 +13,7 @@ Tags: Backtracking, Trie
 
 [Word Search II - LeetCode](https://leetcode.com/problems/word-search-ii/)
 
-[79. Word Search](79 Word Search 47a59c6293c64ab2a00ef07f9b32f5bb.md) 
+[79. Word Search](79%20Word%20Search%2047a59c6293c64ab2a00ef07f9b32f5bb.md) 
 
 ## 题意
 
