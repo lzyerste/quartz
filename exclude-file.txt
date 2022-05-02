@@ -4,7 +4,6 @@
 *NSConflict*
 .git
 .obsidian/
-assets/
 config/
 daily/
 innogrit/
