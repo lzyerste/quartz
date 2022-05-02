@@ -1,0 +1,4 @@
+﻿Tag,Meaning
+BRANCH,"Latest build of a given GIT branch (e.g., wip-foo)"
+BRANCH-SHORTSHA1-BASEOS-ARCH-devel,A specific build of a branch
+SHA1,A specific build
