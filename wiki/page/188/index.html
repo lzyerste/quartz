@@ -1,103 +1,48 @@
 <!doctype html><html lang=en><head><meta charset=utf-8><meta name=description content><title>Wikis</title><meta name=viewport content="width=device-width,initial-scale=1"><link rel="shortcut icon" type=image/png href=https://lzyerste.github.io/quartz//icon.png><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Source+Sans+Pro:wght@400;600;700&family=Fira+Code:wght@400;700&display=swap" rel=stylesheet><link href=https://lzyerste.github.io/quartz/styles.48db36360688fe00f0a39f3cf1417c4b.min.css rel=stylesheet><script src=https://lzyerste.github.io/quartz/js/darkmode.46b07878b7f5d9e26ad7a3c40f8a0605.min.js></script>
 <link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css integrity=sha384-R4558gYOUz8mP9YWpZJjofhk+zx0AS11p36HnD2ZKj/6JR5z27gSSULCNHIRReVs crossorigin=anonymous><script defer src=https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js integrity=sha384-z1fJDqw8ZApjGO3/unPWUPsIymfsJmyrDVWC8Tv/a1HeOtGmkwNd/7xUS0Xcnvsx crossorigin=anonymous></script>
 <script defer src=https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/contrib/auto-render.min.js integrity=sha384-+XBljXPPiv+OzfbB3cVmLHf4hdUFHlWNZN5spNQ7rmHTXpd7WvJum6fIACpNNfIR crossorigin=anonymous></script>
-<script>document.addEventListener("DOMContentLoaded",function(){renderMathInElement(document.body,{delimiters:[{left:"$$",right:"$$",display:!0},{left:"$",right:"$",display:!1}],throwOnError:!1})})</script><script>const BASE_URL="https://lzyerste.github.io/quartz/",fetchData=Promise.all([fetch("https://lzyerste.github.io/quartz/indices/linkIndex.1b63fcfc446a33a5fbbbcb873e45a67c.min.json").then(e=>e.json()).then(e=>({index:e.index,links:e.links})),fetch("https://lzyerste.github.io/quartz/indices/contentIndex.f4106c4b160efe5b6123c6231aa626db.min.json").then(e=>e.json())]).then(([{index:e,links:t},n])=>({index:e,links:t,content:n}))</script></head><script async src="https://www.googletagmanager.com/gtag/js?id=G-XYFD95KB4J"></script>
+<script>document.addEventListener("DOMContentLoaded",function(){renderMathInElement(document.body,{delimiters:[{left:"$$",right:"$$",display:!0},{left:"$",right:"$",display:!1}],throwOnError:!1})})</script><script>const BASE_URL="https://lzyerste.github.io/quartz/",fetchData=Promise.all([fetch("https://lzyerste.github.io/quartz/indices/linkIndex.6895e347b497d6eb5cb118bc7487e91a.min.json").then(e=>e.json()).then(e=>({index:e.index,links:e.links})),fetch("https://lzyerste.github.io/quartz/indices/contentIndex.6906d8a6a7fa86e15f26a89faed72d81.min.json").then(e=>e.json())]).then(([{index:e,links:t},n])=>({index:e,links:t,content:n}))</script></head><script async src="https://www.googletagmanager.com/gtag/js?id=G-XYFD95KB4J"></script>
 <script>var doNotTrack=!1;if(!doNotTrack){window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-XYFD95KB4J",{anonymize_ip:!1})}</script><body><div id=search-container><div id=search-space><input autocomplete=off id=search-bar name=search type=text aria-label=Search placeholder="Search for something..."><div id=results-container></div></div></div><script src=https://cdn.jsdelivr.net/npm/flexsearch@0.7.21/dist/flexsearch.bundle.js integrity="sha256-i3A0NZGkhsKjVMzFxv3ksk0DZh3aXqu0l49Bbh0MdjE=" crossorigin=anonymous defer></script>
 <script defer src=https://lzyerste.github.io/quartz/js/search.7861a82db330f0a40935b7458fee3a02.min.js></script><div class=singlePage><header><h1 id=page-title><a href=https://lzyerste.github.io/quartz/>🪴 Quartz 3.2</a></h1><svg tabindex="0" id="search-icon" aria-labelledby="title desc" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 19.9 19.7"><title id="title">Search Icon</title><desc id="desc">Icon to open search</desc><g class="search-path" fill="none"><path stroke-linecap="square" d="M18.5 18.3l-5.4-5.4"/><circle cx="8" cy="8" r="7"/></g></svg><div class=spacer></div><div class=darkmode><input class=toggle id=darkmode-toggle type=checkbox tabindex=-1>
-<label id=toggle-label-light for=darkmode-toggle tabindex=-1><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="dayIcon" viewBox="0 0 35 35" style="enable-background:new 0 0 35 35"><title>Light Mode</title><path d="M6 17.5C6 16.672 5.328 16 4.5 16h-3C.672 16 0 16.672.0 17.5S.672 19 1.5 19h3C5.328 19 6 18.328 6 17.5zM7.5 26c-.414.0-.789.168-1.061.439l-2 2C4.168 28.711 4 29.086 4 29.5 4 30.328 4.671 31 5.5 31c.414.0.789-.168 1.06-.44l2-2C8.832 28.289 9 27.914 9 27.5 9 26.672 8.329 26 7.5 26zm10-20C18.329 6 19 5.328 19 4.5v-3C19 .672 18.329.0 17.5.0S16 .672 16 1.5v3C16 5.328 16.671 6 17.5 6zm10 3c.414.0.789-.168 1.06-.439l2-2C30.832 6.289 31 5.914 31 5.5 31 4.672 30.329 4 29.5 4c-.414.0-.789.168-1.061.44l-2 2C26.168 6.711 26 7.086 26 7.5 26 8.328 26.671 9 27.5 9zM6.439 8.561C6.711 8.832 7.086 9 7.5 9 8.328 9 9 8.328 9 7.5c0-.414-.168-.789-.439-1.061l-2-2C6.289 4.168 5.914 4 5.5 4 4.672 4 4 4.672 4 5.5c0 .414.168.789.439 1.06l2 2.001zM33.5 16h-3c-.828.0-1.5.672-1.5 1.5s.672 1.5 1.5 1.5h3c.828.0 1.5-.672 1.5-1.5S34.328 16 33.5 16zM28.561 26.439C28.289 26.168 27.914 26 27.5 26c-.828.0-1.5.672-1.5 1.5.0.414.168.789.439 1.06l2 2C28.711 30.832 29.086 31 29.5 31c.828.0 1.5-.672 1.5-1.5.0-.414-.168-.789-.439-1.061l-2-2zM17.5 29c-.829.0-1.5.672-1.5 1.5v3c0 .828.671 1.5 1.5 1.5s1.5-.672 1.5-1.5v-3C19 29.672 18.329 29 17.5 29zm0-22C11.71 7 7 11.71 7 17.5S11.71 28 17.5 28 28 23.29 28 17.5 23.29 7 17.5 7zm0 18c-4.136.0-7.5-3.364-7.5-7.5s3.364-7.5 7.5-7.5 7.5 3.364 7.5 7.5S21.636 25 17.5 25z"/></svg></label><label id=toggle-label-dark for=darkmode-toggle tabindex=-1><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="nightIcon" viewBox="0 0 100 100" style="enable-background='new 0 0 100 100'"><title>Dark Mode</title><path d="M96.76 66.458c-.853-.852-2.15-1.064-3.23-.534-6.063 2.991-12.858 4.571-19.655 4.571C62.022 70.495 50.88 65.88 42.5 57.5 29.043 44.043 25.658 23.536 34.076 6.47c.532-1.08.318-2.379-.534-3.23-.851-.852-2.15-1.064-3.23-.534-4.918 2.427-9.375 5.619-13.246 9.491-9.447 9.447-14.65 22.008-14.65 35.369.0 13.36 5.203 25.921 14.65 35.368s22.008 14.65 35.368 14.65c13.361.0 25.921-5.203 35.369-14.65 3.872-3.871 7.064-8.328 9.491-13.246C97.826 68.608 97.611 67.309 96.76 66.458z"/></svg></label></div></header><article><h1>All Wikis</h1><ul class=section-ul><li class=section-li><div class=section><div class=desc><h3><a href=https://lzyerste.github.io/quartz/wiki/wiki/%E6%96%87%E5%8F%B2/%E8%B5%84%E6%B2%BB%E9%80%9A%E9%89%B4/%E5%AE%8B%E7%BA%AA%E4%BA%8C/>宋纪二</a></h3><p>宋纪二 link
-起阏逢困敦，尽强圉单阏，凡四年。
-太祖文皇帝上之上元嘉元年（甲子，公元四二四年） 春，正月，魏改元始光。
-丙寅，魏安定殇王弥卒。
-营阳王居丧无礼，好与左右狎昵，游戏无度。特进致仕范泰上封事曰：“伏闻陛下时在后园，颇习武备，鼓鞞在宫，声闻于外。黩武掖庭之内，喧哗省闼之间，非徒不足以威四夷，只生远近之怪。陛下践祚，委政宰臣，实用高宗谅暗之美；而更亲狎小人，惧非社稷至计，经世之道也。”不听。泰，宁之子也。
-南豫州刺史庐陵王义真，警悟爱文义，而性轻易，与太子左卫率谢灵运、员外常侍颜延之、慧琳道人情好款密。尝云：“得志之日，以灵运、延之为宰相，慧琳为西豫州都督。”灵运，玄之孙也，性褊傲，不遵法度，朝廷但以文义处之，不以为有实用。灵运自谓才能宜参权要，常怀愤邑。延之，含之曾孙也，嗜酒放纵。徐羡之等恶义真与灵运等游，义真故吏范晏从容戒之，义真曰：“灵运空疏，延之隘薄，魏文帝所谓‘古今文人类不护细行’者也；但性情所得，未能忘言于悟赏耳。”于是羡之等以为运、延之构扇异同，非毁执政，出灵运为永嘉太守，延之为始安太守。
-义真至历阳，多所求索，执政每裁量不尽与。义真深怨之，数有不平之言，又表求还都。咨议参军庐江何尚之屡谏，不听。时羡之等已密谋废为庶人，徙新安郡。前吉阳令堂邑张约之上疏曰：“庐陵王少蒙先皇优慈之遇，长受陛下睦受之恩，故在心必言，所怀必亮，容犯臣子之道，致招骄瓷之愆。至于天恣夙成，实有卓然之美，宜在容养，灵善掩瑕，训尽议方，进退以渐。今猥加剥辱，幽徙远郡，上伤陛下常棣之笃，下令远近恇然失图。臣伏思大宋开基造次，根条未繁，宜广树籓戚，敦睦以道。人谁无过，贵能自新；以武皇之爱子，陛下之懿弟，岂可以其一眚，长致沦弃哉！”书奏，以约之为梁州府参军，寻杀之。
-夏，四月，甲辰，魏主东巡大宁。
-秦王炽磐遣镇南将军吉毘等帅步骑一万，南伐白苟、车孚、崔提、旁为四国，皆降之。
-徐羡之等以南兗州刺史檀道济先朝旧将，威服殿省，且有兵众，乃召道济及江州刺史王弘入朝；五月，皆至建康，废立之谋告之。
-甲申，谢晦以领军府屋败，悉令家人出外，聚将士于府内；又使中书舍人邢安泰、潘盛为内应。夜，邀檀道济同宿，晦悚动不得眠，道济就寝便熟，晦以此服之。
-时帝于华林园为列肆，亲自沽卖，以与左右引船为乐，夕，游天渊池，即龙舟而寝。乙酉诘旦，道济引兵居前，羡之等继其后，入自云龙门；安泰等先诫宿卫，莫有御者。帝未兴，军士进杀二侍者，伤帝指，扶出东阁，收玺绶，群臣拜辞，卫送故太子宫。
-侍中程道惠劝羡之等立皇弟南豫州刺史义恭。羡之等以宜都王义隆素有令望，又多符瑞，乃称皇太后令，数帝过恶，废为营阳王，以宜都王辰承大统，赦死罪以下。又称皇大后令，奉还玺绶；并废皇后为营阳王妃，迁营阳王于吴。使檀道济入守朝堂。王至吴，止金昌亭；六月，癸丑，羡之等使邢安泰就弑之。王多力，突走出昌门，追者以门关踣而弑之。
-裴子野论曰：古者人君养子，能言而师授之辞，能行而傅相之礼。宋之教诲，雅异于斯，居中则任仆妾，处外则近趋走。太子、皇子，有帅，有侍，是二职者，皆台皁也。制其行止，授其法则，导达臧否，罔弗由之；言不及于礼义，识不达于今古，谨敕者能劝之以吝啬，狂愚者或诱之以凶慝。虽有师傅，多以耆艾大夫为之；虽有友及文学，多以膏粱年少为之；具位而已，亦弗与游。幼王临州，长史行事；宣传教命，又有典签；往往专恣，窃弄威权，是以本枝虽茂而端良甚寡。嗣君冲幼，世继奸回，虽恶物丑类，天然自出，然习则生常，其流远矣。降及太宗，举天下而弃之，亦昵比之为也。呜呼！有国有家，其鉴之矣！
-傅亮帅行台百官奉法驾迎宜都王于江陵。”祠部尚书蔡廓至寻阳，遇疾不堪前；亮与之别。廓曰：“营阳在吴，宜厚加供奉；一旦不幸，卿诸人有弑主之名，欲立于世，将可得邪！”时亮已与羡之议害营阳王，乃驰信止之，不及。羡之大怒曰：“与人共计议，如何旋背即卖恶于人邪？”羡之等以遣使者杀前庐陵王义真于新安。
-羡之以荆州地重，恐宜都王至，或别用人，乃亟以录命除领军将军谢晦行都督荆、湘等七州诸军事、荆州刺史，欲令居外为援，精兵旧将，悉以配之。
-秋，七月，行台至江陵，立行门于城南，题曰“大司马门”。傅亮帅百僚诣门上表，进玺绂，仪物甚盛，宜都王时年十八，下教曰：“猥以不德，廖降大命，顾己兢悸，何以克堪！辄当暂归朝廷，展哀陵寝，并与贤彦申写所怀。望体其心，勿为辞费。府州佐史并称臣，请题榜诸门，一依宫省；王皆不许。教州、府、国纲纪宥所统内见刑，原逋责。...</p></div><p class=meta>1 minute read. Last updated Unknown</p></div></li><li class=section-li><div class=section><div class=desc><h3><a href=https://lzyerste.github.io/quartz/wiki/wiki/%E6%96%87%E5%8F%B2/%E8%B5%84%E6%B2%BB%E9%80%9A%E9%89%B4/%E5%AE%8B%E7%BA%AA%E4%B9%9D/>宋纪九</a></h3><p>宋纪九 link
-昭阳大荒落，一年。
-太祖文皇帝下之下元嘉三十年（癸巳，公元四五三年） 春，正月，戊寅，以南谯王义宣为司徒、扬州刺史。
-萧道成等帅氐、羌攻魏武都，魏高平镇将苟莫于将突骑二千救之。道成等引还南郑。
-壬午，以征北将军始兴王濬为荆州刺史。帝怒未解，故濬久留京口；既除荆州，乃听入朝。
-戊子，诏江州刺史武陵王骏统诸军讨西阳蛮，军于五洲。
-严道育之亡命也，上分遣使者搜捕甚急。道育变服为尼，匿于东宫，又随始兴王濬至京口，。或出止民张旿家。濬入朝，复载还东宫，欲与俱往江陵。丁巳，上临轩，濬入受拜。是日，有告道育在张旿家者，上遣掩捕，得其二婢，云道育随征北还都。上谓濬与太子劭已斥遣道育，而闻其犹与往来，惆怅惋骇，乃命京口送二婢，须至检覆，乃治劭、濬之罪。潘淑妃抱濬泣曰：“汝前祝诅事发，犹冀能刻意思愆；何意更藏严道育！上怒甚，我叩头乞恩不能解，今何用生为！可送药来，当先自取尽，不忍见汝祸败也。”濬奋衣起曰：“天下事寻自当判，愿小宽虑，必不上累！”
-己未，魏京兆王杜元宝坐谋反诛；建宁王崇及其子济南王丽皆为元宝所引，赐死。
-帝欲废太子劭，赐始兴王濬死，先与侍中王僧绰谋之；使僧绰寻汉魏以来废太子、诸王典故，送尚书仆射徐湛之及吏部尚书江湛。
-武陵王骏素无宠，故屡出外籓，不得留建康；南平王铄、建平王宏皆为帝所爱。铄妃，江湛之妹；随王诞妃，徐湛之之女也。湛劝帝立铄，湛之意欲立诞。僧绰曰：“建立之事，仰由圣怀。臣谓唯宜速断，不可稽缓。‘当断不断，反受其乱。’愿以义割恩，略小不忍；不尔，便应坦怀如初，无烦疑论。事机虽密，易致宣广，不可使难生虎表，取笑千载。”帝曰：“卿可谓能断大事。然此事至重，不可不殷勤三思。且彭城始亡。人将谓我无复慈爱之道。”僧绰曰：“臣恐千载之后，言陛下唯能裁弟，不能裁儿。”帝默然。江湛同侍坐，出阁，谓僧绰曰：“卿向言将不太伤切直！”僧绰曰：“弟亦恨君不直！”
-铄自寿阳入朝，既至，失旨。帝欲立宏，嫌其非次，是以议久不决。每夜与湛之屏人语，或连日累夕。常使湛之自秉烛，绕壁检行，虑有窃听者。帝以其谋告潘淑妃，淑妃以告濬，濬驰报劭。劭乃密与腹心队主陈叔儿、斋帅张超之等谋为逆。
-初，帝以宗室强盛，虑有内难，特加东宫兵，使与羽林相若，至有实甲万人。劭性黠而刚猛，帝深倚之。及将作乱，每夜飨将士，或亲自行酒。王僧绰密以启闻，会严道育婢将至，癸亥夜，劭诈为帝诏云：“鲁秀谋反，汝可平明守阙，帅众入。”因使张超之等集素所畜养兵士二千馀人，皆被甲；召内外幢队主副，豫加部勒，云有所讨。夜，呼前中庶子右军长史萧斌、左卫率袁叔、中舍人殷仲素、左积弩将军王正见并入宫。劭流涕谓曰：“主上信谗，将见罪废。内省无过，不能受枉。明旦当行大事，望相与戮力。”因起，遍拜之。众惊愕，莫能对。久之，淑、斌皆曰：“自古无此，愿加善思！”劭怒，变色。斌惧，与众俱曰：“当竭身奉命。”淑叱之曰：“卿便谓殿下真有是邪？殿下幼尝患风，或是疾动耳。”劭愈怒，因眄淑曰：“事当克不？”淑曰：“居不疑之地，何患不克！但恐既克之后，不为天地所容，大祸亦旋至耳。假有此谋，犹将可息。”左右引淑出，曰：“此何事，而云可罢乎！”淑还省，绕床行，至四更乃寝。
-甲子，宫门未开，劭以硃衣加戎服上，乘画轮车，与萧斌同载，卫从如常入朝之仪。呼袁淑甚急，淑眠不起，劭停车奉化门催之相续。淑徐起，至车后；劭使登车，又辞不上，劭命左右杀之。守门开，从万春门入。旧制，东宫队不得入城。劭以伪诏示门卫曰：“受敕，有所收讨。”令后队速来。张超之等数十人驰入云龙门及斋阁，拔刀径上合殿。帝其夜与徐湛之屏人语至旦，烛犹未灭，门阶户席直卫兵尚寝未起。帝见超之入，举几捍之，五指皆落，遂弑之。湛之惊起，趣北户，未及开，兵人杀之。劭进至合殿中阁，闻帝已殂，出坐东堂，萧斌执刀侍直，呼中书舍人顾嘏，嘏震惧，不时出，既至，问曰：“欲共见废，何不早启？”嘏未及答，即于前斩之。江湛直上省，闻喧噪声，叹曰：“不用王僧绰言，以至于此！”乃匿傍小屋中，劭遣兵就杀之。宿卫旧将罗训、徐罕皆望风屈附。左细仗主、广威将军吴兴卜天与不暇被甲，执刀持弓，疾呼左右出战。徐罕曰：“殿下入，汝欲何为！”天与骂曰：“殿下常来，云何于今乃作此语！只汝是贼！”手射劭于东堂。几中之。劭党击之，断臂而死。队将张泓之、硃道钦、陈满与天与俱战死。左卫将军尹弘惶怖通启，求受处分。劭使人从东阁入，杀潘淑妃及太祖亲信左右数十人，急召始兴王使帅众屯中堂。
-濬时在西州，府舍人硃法瑜告濬曰：“台内喧噪，宫门皆闭，道上传太子反，未测祸变所至。”濬阳惊曰：“今当奈何？”法瑜劝入据石头。濬未得劭信，不知事之济不，骚扰不知所为。将军王庆曰：“今宫内有变，未知主上安危，凡在臣子，当投袂赴难；凭城自守，非臣节也。”濬不听，乃从南门出，径向石头，文武从者千馀人。时南平王铄戍石头，兵十亦千馀人。俄而劭遣张超之驰马召濬，濬屏人问状，即戎服乘马而去。硃法瑜固止濬，濬不从；出中门，王庆又谏曰：“太子反逆，天下怨愤。明公但当坚闭城门，坐食积粟，不过三日，凶党自离。公情事如此，今岂宜去！”濬曰：“皇太子令，敢有复言者斩！”既入，见劭，劭谓濬曰：“潘淑妃遂为乱兵所害。”濬曰：“此是下情由来所愿。”
-劭诈以太祖诏召大将军义恭、尚书令何尚之入，拘于内；并召百官，至者才数十人。劭遽即位；下诏曰：“徐湛之、江湛弑逆无状，吾勒兵入殿，已无所及，号惋崩衄，肝心破裂。今罪人斯得，元凶克珍，可大赦，改元太初。”
-即位毕，亟称疾还永福省，不敢临丧；以白刃自守，夜则列灯以防左右。以萧斌为尚书仆射、领军将军，以何尚之为司空，前右卫率檀和之戍石头，征虏将军营道侯义綦镇京口。义綦，义庆之弟也。乙丑，悉收先给诸处兵还武库，杀江、徐亲党尚书左丞荀赤松、右丞臧凝之等。凝之。焘之孙也。以殷仲素为黄门侍郎，王正见为左军将军，张超之、陈叔儿等皆拜官、赏赐有差。辅国将军鲁秀在建康，劭谓秀曰：“徐湛之常欲相危，我已为卿除之矣。”使秀与屯骑校尉庞秀之对掌军队。劭不知王僧绰之谋，以僧绰为吏部尚书，司徒左长史何偃为侍中。
-武陵王骏屯五洲，沈庆之自巴水来，咨受军略。三月，乙亥，典签董元嗣自建康至五洲，具言太子杀逆，骏使元嗣以告僚佐。沈庆之密谓腹心曰：“萧斌妇人，其馀将帅，皆易与耳。东宫同恶，不过三十人；此外屈逼，必不为用。今辅顺讨逆，不忧不济也。”...</p></div><p class=meta>1 minute read. Last updated Unknown</p></div></li><li class=section-li><div class=section><div class=desc><h3><a href=https://lzyerste.github.io/quartz/wiki/wiki/%E6%96%87%E5%8F%B2/%E8%B5%84%E6%B2%BB%E9%80%9A%E9%89%B4/%E5%AE%8B%E7%BA%AA%E4%B8%89/>宋纪三</a></h3><p>宋纪三 link
-起著雍执徐，尽上章敦牂，凡三年。
-太祖文皇帝上之中元嘉五年（戊辰，公元四二八年） 春，正月，辛未，魏京兆王黎卒。
-荆州刺史、彭城王义康，性聪察，在州职事修治。左光禄大夫范泰谓司徒王弘曰：“天下事重，权重难居。卿兄弟盛满，当深存降挹。彭城王，帝之次弟，宜征还入朝，共参朝政。”弘纳其言。时大旱，疾疫，弘上表引咎逊位，帝不许。
-秦商州刺史领浇河太守姚浚叛，降河西，秦王炽磐以尚书焦嵩代浚，帅骑三千讨之。二月，嵩为吐谷浑元绪所执。
-魏改元神。
-魏平北将军尉眷攻夏主于上邽，夏主退屯平凉。奚斤进军安定，与丘堆、娥清军合。斤马多疫死，士卒乏粮，乃深垒自固。遣丘堆督租于民间，士卒暴掠，不设儆备。夏主袭之，堆兵败，以数百骑还城。夏主乘胜，日来城下钞掠，不得刍牧，诸将患之。监军侍御史安颉曰：“受诏灭贼，今更为贼所困，退守穷城，若不为贼杀，当坐法诛，进退皆无生理。而诸王公晏然曾不为计乎？”斤曰：“今军士无马，以步击骑，必无胜理，当须京师救骑至，合击之。”颉曰：“今猛寇游逸于外，吾兵疲食尽，不一决战，则殆在旦夕，救骑何可待乎！等于就死，死战，不亦可乎！”斤又以马少为辞。颉曰：“今敛诸将所乘马，可得二百匹，颉请募敢死之士出击之，就不能破敌，亦可以折其锐。且赫连昌狷而无谋，好勇而轻，每自出挑战，众皆识之。若伏兵掩击，昌可擒也。”斤犹难之。颉乃阴与尉眷等谋，选骑待之。既而夏主来攻城，颉出应之。夏主自出陈前搏战，军士识其貌，争赴之。会天大风，扬尘，昼昏，夏主财走，颉追之，夏主马蹶而坠，遂擒之。
-夏大将军、领司徒、平原王定收其馀众数万，奔还平凉，即皇帝位，大赦，改元胜光。
-三月，辛巳，赫连昌至平城，魏主馆之于西宫，门内器用皆给乘舆之副，又以妹始平公主妻之；假常忠将军，赐爵会稽公。以安颉为建节将军，赐爵西平公；尉眷为宁北将军，进爵渔阳公。
-魏主常使赫连昌侍从左右，与之单骑共逐鹿，深入山涧。昌素有勇名，诸将威以为不可。魏主曰：“天命有在，亦何所惧！”亲遇如初。
-奚斤自以为元帅，而昌为偏裨所擒，深耻之。乃舍辎重，赍三日粮，追夏主于平凉。娥清欲循水而往，斤不从，自北道邀其走路。至马髦岭，夏军将遁，会魏小将有罪亡归于夏，告以魏军食少无水。夏主乃分兵邀斤，前后夹击之，魏兵大溃，斤及娥清、刘拔皆为夏所擒，士卒死者六七千人。
-丘堆守辎重在安定，闻斤败，弃辎重奔长安，与高凉王礼偕奔薄阪，夏人复取长安。魏主大怒，命安颉斩丘堆，代将其众，镇薄阪以拒之。
-夏，四月，夏主遣使请和于魏，魏主以诏谕之使降。
-壬子，魏主西巡。戊午，畋于河西。大赦。
-五月，秦文昭王炽磐卒，太子暮末即位，大赦，改元永弘。
-平陆令河南成粲复劝王弘逊位，弘从之，累表陈请。帝不得已，六月，庚戌，以弘为卫将军、开府仪同三司。
-甲寅，魏主如长川。...</p></div><p class=meta>1 minute read. Last updated Unknown</p></div></li><li class=section-li><div class=section><div class=desc><h3><a href=https://lzyerste.github.io/quartz/wiki/wiki/%E6%96%87%E5%8F%B2/%E8%B5%84%E6%B2%BB%E9%80%9A%E9%89%B4/%E5%AE%8B%E7%BA%AA%E4%B8%83/>宋纪七</a></h3><p>宋纪七 link
-起强圉大渊献，尽上章摄提格，凡四年。
-太祖文皇帝中之下元嘉二十四年（丁亥，公元四四七年） 春，正月，甲戌，大赦。
-魏吐京胡及山胡曹仆浑等反；二月，征东将军武昌王提等讨平之。
-癸未，魏主如中山。
-魏师之克敦煌也，沮渠牧犍使人斫开府库，取金玉及宝器，因不复闭。小民争入盗取之，有司索盗不获。至是，牧犍所亲及守藏者告之，且言牧犍父子多蓄毒药，潜杀人前后以百数；姊妹皆学左道。有司索牧犍家，得所匿物。魏主大怒，赐沮渠昭仪死，并诛其宗族，唯沮渠祖以先降得免。又有告牧犍犹与故臣民交通谋反者，三月，魏主遣崔浩就第赐牧犍死，谥曰哀王。
-魏人徙定州丁零三千家于平城。
-六月，魏西征诸将扶风公处真等八人，坐盗没军资及虏掠赃各千万计，并斩之。
-初，上以货重物轻，改铸四铢钱。民多翦凿古钱，取铜盗铸。上患之。录尚书事江夏王义恭建议，请以大钱一当两。右仆射何尚之议曰：“夫泉贝之兴，以估货为本，事存交易，岂假多铸！数少则币重，数多则物重，多少虽异，济用不殊。况复以一当两，徒崇虚价者邪？若今制遂行，富人之赀自倍，贫者弥增其困，惧非所以使之均壹也。”上卒从义恭议。
-秋，八月，乙未，徐州刺史衡阳文王义季卒。义季自彭城王义康之贬，遂纵酒不事事。帝以书诮责，且戒之，义季犹酣饮自若，以至成疾而终。
-魏乐安宣王范卒。
-冬，十月，壬午，胡籓之子诞世杀豫章太守桓隆之，据郡反，欲奉前彭城王义康为主；前交州刺史檀和之去官归，过豫章，击斩之。
-十一月，甲寅，封皇子浑为汝阴王。
-十二月，魏晋王伏罗卒。
-杨文德据葭芦城，招诱氐、羌，武都等五郡氐皆应之。
-太祖文皇帝中之下元嘉二十五年（戊子，公元四四八年） 春，正月，魏仇池镇将皮豹子帅诸军击之。文德兵败，弃城奔汉中。豹子收其妻子、僚属、军资及杨保宗所尚魏公主而还。...</p></div><p class=meta>1 minute read. Last updated Unknown</p></div></li><li class=section-li><div class=section><div class=desc><h3><a href=https://lzyerste.github.io/quartz/wiki/wiki/%E6%96%87%E5%8F%B2/%E8%B5%84%E6%B2%BB%E9%80%9A%E9%89%B4/%E5%AE%8B%E7%BA%AA%E4%B8%80/>宋纪一</a></h3><p>宋纪一 link
-起上章涒滩，尽昭阳大渊献，凡四年。
-高祖武皇帝永初元年（庚申，公元四二零年） 春，正月，己亥，魏主还宫。
-秦王炽磐立其子暮末为太子，仍领抚军大将军、都督中外诸军事，大赦，改元建弘。
-宋王欲受禅而难于发言，乃集朝臣宴饮，从容言曰：“桓玄篡位，鼎命已移。我首唱大义，兴复帝室，南征北伐，平定四海，功成业著，遂荷九锡。今年将衰暮，崇极如此，物忌盛，非可久安；今欲奉还爵位，归老京师。”群臣惟盛称功德，莫谕其意。日晚，坐散。中书令傅亮还外，乃悟，而宫门已闭，亮叩扉请见，王即开门见之。亮入，但曰：“臣暂宜还者。”王解其意，无复他言，真云：“须几人自送？”亮曰：“数十人可也。”即时奉辞。亮出，已夜，见长星竟天，拊髀叹曰：“我常不信天文，今姑验矣。”亮至建康，夏，四月，征王入辅。王留子义康为都督豫、司、雍、并四州诸军事、豫州刺史，镇寿阳。义康尚幼，以相国参军南阳刘湛为长史，决府、州事。湛自弱年即有宰物之情，常自比管、葛，博涉书史，不为文章，不喜谈议，王甚重之。
-五月，乙酉，魏更谥宣武帝曰道武帝。
-魏淮南公司马国璠、池阳子司马道赐谋外叛，司马文思告之。庚戌，魏主杀国璠、道赐，赐文思爵郁林公。国璠等连引平城豪桀，坐族诛者数十人，章安侯封懿之子玄之当坐。魏主以玄之燕朝旧族，欲宥其一子。玄之曰：“弟子磨奴早孤，乞全其命。”乃杀玄之四子而宥磨奴。
-六月，壬戌，王至建康。傅亮讽晋恭帝禅位于宋，具诏草呈帝，使书之。帝欣然操笔，谓左右曰：“桓玄之时，晋氏已无天下，重为刘公所延，将二十载；今日之事，本所甘心。”遂书赤纸为诏。
-甲子，帝逊于琅邪第，百官拜辞，秘书监徐广流涕哀恸。丁卯，王为坛于南郊，即皇帝位。礼毕，自石头备法驾入建康宫。徐广又悲感流涕，侍中谢晦谓之曰：“徐公得无小过！”广曰：“君为宋朝佐命，身是晋室遗老，悲观之事，固不可同。”广，邈之弟也。帝临太极殿，大赦，改元。其犯乡论清议，一皆荡涤，与之更始。
-裴子野论曰：昔重华受终，四凶流放；武王克殷，顽民迁洛。天下之恶一也，乡论清议，除之，过矣！
-奉晋恭帝为零陵王，优崇之礼，皆仿晋初故事，即宫于故秣陵县，使冠军将军刘遵考将兵防卫。降褚后为王妃。
-庚午，以司空道怜为太尉，封长沙王。追封司徒道规为临川王，以道怜子义庆袭其爵。其馀功臣徐羡之等，增位进爵各有差。
-追封刘穆之为南康郡公，王镇恶为龙阳县候。上海叹念穆之，曰：“穆之不死，当助我治天下。可谓‘人之云亡，邦国殄瘁’！”又曰：“穆之死，人轻易我。”
-立皇子桂阳公义真为庐陵王，彭城公义隆为宜都王，义康为彭城王。
-己卯，改《泰始历》为《永初历》。
-魏主如翳犊山，遂至冯滷池。闻上受禅，驿召崔浩告之曰：“卿往年之言验矣，朕于今日始信天道。”
-秋，七月，丁酉，魏主如五原。...</p></div><p class=meta>1 minute read. Last updated Unknown</p></div></li><li class=section-li><div class=section><div class=desc><h3><a href=https://lzyerste.github.io/quartz/wiki/wiki/%E6%96%87%E5%8F%B2/%E5%8F%B2%E8%AE%B0/%E5%AE%8B%E5%BE%AE%E5%AD%90%E4%B8%96%E5%AE%B6/>宋微子世家</a></h3><p>宋微子世家 作者： 司马迁
-　微子开者，殷帝乙之首子而帝纣之庶兄也。纣既立，不明，淫乱於政，微子数谏，纣不听。及祖伊以周西伯昌之修德，灭璿国，惧祸至，以告纣。纣曰：“我生不有命在天乎？是何能为！”於是微子度纣终不可谏，欲死之，及去，未能自决，乃问於太师、少师曰：“殷不有治政，不治四方。我祖遂陈於上，殷既小大好草窃奸宄，卿士师师非度，皆有罪辜，乃无维获，小民乃并兴，相为敌雠。今殷其典丧！若涉水无津涯。殷遂丧，越至于今。”曰：“太师，少师，我其发出往？吾家保于丧？今女无故告予，颠跻，如之何其？”太师若曰：“王子，天笃下菑亡殷国，乃毋畏畏，不用老长。今殷民乃陋淫神祇之祀。今诚得治国，国治身死不恨。为死，终不得治，不如去。”遂亡。
-　箕子者，纣亲戚也。纣始为象箸，箕子叹曰：“彼为象箸，必为玉桮；为桮，则必思远方珍怪之物而御之矣。舆马宫室之渐自此始，不可振也。”纣为淫泆，箕子谏，不听。人或曰：“可以去矣。”箕子曰：“为人臣谏不听而去，是彰君之恶而自说於民，吾不忍为也。”乃被发详狂而为奴。遂隐而鼓琴以自悲，故传之曰箕子操。
-　王子比干者，亦纣之亲戚也。见箕子谏不听而为奴，则曰：“君有过而不以死争，则百姓何辜！”乃直言谏纣。纣怒曰：“吾闻圣人之心有七窍，信有诸乎？”乃遂杀王子比干，刳视其心。
-　微子曰：“父子有骨肉，而臣主以义属。故父有过，子三谏不听，则随而号之；人臣三谏不听，则其义可以去矣。”於是太师、少师乃劝微子去，遂行。
-　周武王伐纣克殷，微子乃持其祭器造於军门，肉袒面缚，左牵羊，右把茅，膝行而前以告。於是武王乃释微子，复其位如故。
-　武王封纣子武庚禄父以续殷祀，使管叔、蔡叔傅相之。
-　武王既克殷，访问箕子。
-　武王曰：“於乎！维天阴定下民，相和其居，我不知其常伦所序。”
-　箕子对曰：“在昔鲧堙鸿水，汨陈其五行，帝乃震怒，不从鸿范九等，常伦所斁。鲧则殛死，禹乃嗣兴。天乃锡禹鸿范九等，常伦所序。...</p></div><p class=meta>1 minute read. Last updated Unknown</p></div></li><li class=section-li><div class=section><div class=desc><h3><a href=https://lzyerste.github.io/quartz/wiki/wiki/other/software/ubuntu/%E5%AE%89%E8%A3%85%E4%B8%8D%E5%90%8C%E5%86%85%E6%A0%B8/>安装不同内核</a></h3><p>安装不同内核 安装镜像 安装头文件 sudo update-grub 重启进入centos，重新生成grub。 grub2 安装低版本后，可能没有网络，需要重新安装网卡驱动。 Ubuntu 可以直接从repo里安装，不一定要下载安装包。
-比如：
-1 2 sudo apt update sudo apt-get install linux-image-4....</p></div><p class=meta>1 minute read. Last updated Unknown</p></div></li><li class=section-li><div class=section><div class=desc><h3><a href=https://lzyerste.github.io/quartz/wiki/wiki/other/software/centos/%E5%AE%89%E8%A3%85%E4%B8%8D%E5%90%8C%E5%86%85%E6%A0%B8/>安装不同内核</a></h3><p>安装不同内核
-金山云，CentOS 7.2, 3.10.0-327.el7.x86_64 内核包下载地址： http://vault.centos.org/7.2.1511/os/x86_64/Packages/
-kernel-3.10.0-327.el7.x86_64.rpm kernel-devel-3.10.0-327.el7.x86_64.rpm kernel-headers-3.10.0-327.el7.x86_64.rpm 当前系统版本是CentOS 7.6, 3.10.0-957，是更新的版本。
-直接安装会提示当前版本已经是更新的版本，所以安装的时候要加上&ndash;force选项。
-1 2 3 sudo rpm -ivh --force kernel-3....</p></div><p class=meta>1 minute read. Last updated Unknown</p></div></li><li class=section-li><div class=section><div class=desc><h3><a href=https://lzyerste.github.io/quartz/wiki/wiki/tech/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/win10/WSL-2-7e30758ca8f044d08016c0451e67f49b/%E5%AE%89%E8%A3%85vim-d95847566977403e94eb0366430cf166/>安装vim_d95847566977403e94eb0366430cf166</a></h3><p>安装vim 1 2 curl -fLo ~/.vim/autoload/plug.vim --create-dirs \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim 1 2 3 打开vi :PlugInstall 1 2 3 sudo apt install gcc g++ cmake python3-dev python3 install....</p></div><p class=meta>1 minute read. Last updated Unknown</p></div></li><li class=section-li><div class=section><div class=desc><h3><a href=https://lzyerste.github.io/quartz/wiki/wiki/other/software/vim/%E5%AE%89%E8%A3%85vim-8_2/>安装vim_8_2</a></h3><p>安装vim 8.2 How to Install Latest Vim 8.2 on Ubuntu
-1 2 3 sudo add-apt-repository ppa:jonathonf/vim sudo apt update sudo apt install vim 注意：安装完之后，vim --version是没有clipboard的，但重新安装vim-gtk后就可以了。</p></div><p class=meta>1 minute read. Last updated Unknown</p></div></li></ul><ul class="pagination pagination-default"><li class=page-item><a href=/quartz/wiki/ aria-label=First class=page-link role=button><span aria-hidden=true>&#171;&#171;</span></a></li><li class=page-item><a href=/quartz/wiki/page/187/ aria-label=Previous class=page-link role=button><span aria-hidden=true>&#171;</span></a></li><li class=page-item><a href=/quartz/wiki/page/186/ aria-label="Page 186" class=page-link role=button>186</a></li><li class=page-item><a href=/quartz/wiki/page/187/ aria-label="Page 187" class=page-link role=button>187</a></li><li class="page-item active"><a aria-current=page aria-label="Page 188" class=page-link role=button>188</a></li><li class=page-item><a href=/quartz/wiki/page/189/ aria-label="Page 189" class=page-link role=button>189</a></li><li class=page-item><a href=/quartz/wiki/page/190/ aria-label="Page 190" class=page-link role=button>190</a></li><li class=page-item><a href=/quartz/wiki/page/189/ aria-label=Next class=page-link role=button><span aria-hidden=true>&#187;</span></a></li><li class=page-item><a href=/quartz/wiki/page/269/ aria-label=Last class=page-link role=button><span aria-hidden=true>&#187;&#187;</span></a></li></ul></article><div id=contact_buttons><footer><p>Made by Jacky Zhao using <a href=https://github.com/jackyzha0/quartz>Quartz</a>, © 2022</p><ul><li><a href=/>Home</a></li><li><a href=https://twitter.com/_jzhao>Twitter</a></li><li><a href=https://github.com/jackyzha0>Github</a></li></ul></footer></div></div><script src=https://lzyerste.github.io/quartz/js/popover.e57188d2e4c06b0654e020b3a734bb62.min.js></script>
+<label id=toggle-label-light for=darkmode-toggle tabindex=-1><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="dayIcon" viewBox="0 0 35 35" style="enable-background:new 0 0 35 35"><title>Light Mode</title><path d="M6 17.5C6 16.672 5.328 16 4.5 16h-3C.672 16 0 16.672.0 17.5S.672 19 1.5 19h3C5.328 19 6 18.328 6 17.5zM7.5 26c-.414.0-.789.168-1.061.439l-2 2C4.168 28.711 4 29.086 4 29.5 4 30.328 4.671 31 5.5 31c.414.0.789-.168 1.06-.44l2-2C8.832 28.289 9 27.914 9 27.5 9 26.672 8.329 26 7.5 26zm10-20C18.329 6 19 5.328 19 4.5v-3C19 .672 18.329.0 17.5.0S16 .672 16 1.5v3C16 5.328 16.671 6 17.5 6zm10 3c.414.0.789-.168 1.06-.439l2-2C30.832 6.289 31 5.914 31 5.5 31 4.672 30.329 4 29.5 4c-.414.0-.789.168-1.061.44l-2 2C26.168 6.711 26 7.086 26 7.5 26 8.328 26.671 9 27.5 9zM6.439 8.561C6.711 8.832 7.086 9 7.5 9 8.328 9 9 8.328 9 7.5c0-.414-.168-.789-.439-1.061l-2-2C6.289 4.168 5.914 4 5.5 4 4.672 4 4 4.672 4 5.5c0 .414.168.789.439 1.06l2 2.001zM33.5 16h-3c-.828.0-1.5.672-1.5 1.5s.672 1.5 1.5 1.5h3c.828.0 1.5-.672 1.5-1.5S34.328 16 33.5 16zM28.561 26.439C28.289 26.168 27.914 26 27.5 26c-.828.0-1.5.672-1.5 1.5.0.414.168.789.439 1.06l2 2C28.711 30.832 29.086 31 29.5 31c.828.0 1.5-.672 1.5-1.5.0-.414-.168-.789-.439-1.061l-2-2zM17.5 29c-.829.0-1.5.672-1.5 1.5v3c0 .828.671 1.5 1.5 1.5s1.5-.672 1.5-1.5v-3C19 29.672 18.329 29 17.5 29zm0-22C11.71 7 7 11.71 7 17.5S11.71 28 17.5 28 28 23.29 28 17.5 23.29 7 17.5 7zm0 18c-4.136.0-7.5-3.364-7.5-7.5s3.364-7.5 7.5-7.5 7.5 3.364 7.5 7.5S21.636 25 17.5 25z"/></svg></label><label id=toggle-label-dark for=darkmode-toggle tabindex=-1><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="nightIcon" viewBox="0 0 100 100" style="enable-background='new 0 0 100 100'"><title>Dark Mode</title><path d="M96.76 66.458c-.853-.852-2.15-1.064-3.23-.534-6.063 2.991-12.858 4.571-19.655 4.571C62.022 70.495 50.88 65.88 42.5 57.5 29.043 44.043 25.658 23.536 34.076 6.47c.532-1.08.318-2.379-.534-3.23-.851-.852-2.15-1.064-3.23-.534-4.918 2.427-9.375 5.619-13.246 9.491-9.447 9.447-14.65 22.008-14.65 35.369.0 13.36 5.203 25.921 14.65 35.368s22.008 14.65 35.368 14.65c13.361.0 25.921-5.203 35.369-14.65 3.872-3.871 7.064-8.328 9.491-13.246C97.826 68.608 97.611 67.309 96.76 66.458z"/></svg></label></div></header><article><h1>All Wikis</h1><ul class=section-ul><li class=section-li><div class=section><div class=desc><h3><a href=https://lzyerste.github.io/quartz/wiki/wiki/%E6%96%87%E5%8F%B2/%E5%94%90%E8%AF%97%E4%B8%89%E7%99%BE%E9%A6%96/%E5%AF%84%E4%BB%A4%E7%8B%90%E9%83%8E%E4%B8%AD_%E6%9D%8E%E5%95%86%E9%9A%90/>寄令狐郎中_李商隐</a></h3><p>寄令狐郎中 朝代：唐代
+作者： 李商隐
+嵩云秦树久离居，双鲤迢迢一纸书。
+休问梁园旧宾客，茂陵秋雨病相如。</p></div><p class=meta>1 minute read. Last updated Unknown</p></div></li><li class=section-li><div class=section><div class=desc><h3><a href=https://lzyerste.github.io/quartz/wiki/wiki/%E6%96%87%E5%8F%B2/%E5%94%90%E8%AF%97%E4%B8%89%E7%99%BE%E9%A6%96/%E5%AF%84%E4%BA%BA_%E5%BC%A0%E6%B3%8C/>寄人_张泌</a></h3><p>寄人 朝代：唐代
+作者： 张泌
+别梦依依到谢家，小廊回合曲阑斜。
+多情只有春庭月，犹为离人照落花。</p></div><p class=meta>1 minute read. Last updated Unknown</p></div></li><li class=section-li><div class=section><div class=desc><h3><a href=https://lzyerste.github.io/quartz/wiki/wiki/%E6%96%87%E5%8F%B2/%E5%94%90%E8%AF%97%E4%B8%89%E7%99%BE%E9%A6%96/%E5%AE%BF%E7%8E%8B%E6%98%8C%E9%BE%84%E9%9A%90%E5%B1%85_%E5%B8%B8%E5%BB%BA/>宿王昌龄隐居_常建</a></h3><p>宿王昌龄隐居 朝代：唐代
+作者： 常建
+清溪深不测，隐处唯孤云。
+松际露微月，清光犹为君。
+茅亭宿花影，药院滋苔纹。
+余亦谢时去，西山鸾鹤群。</p></div><p class=meta>1 minute read. Last updated Unknown</p></div></li><li class=section-li><div class=section><div class=desc><h3><a href=https://lzyerste.github.io/quartz/wiki/wiki/%E6%96%87%E5%8F%B2/%E5%94%90%E8%AF%97%E4%B8%89%E7%99%BE%E9%A6%96/%E5%AE%BF%E6%A1%90%E5%BA%90%E6%B1%9F%E5%AF%84%E5%B9%BF%E9%99%B5%E6%97%A7%E6%B8%B8_%E5%AD%9F%E6%B5%A9%E7%84%B6/>宿桐庐江寄广陵旧游_孟浩然</a></h3><p>宿桐庐江寄广陵旧游 朝代：唐代
+作者： 孟浩然
+山暝闻猿愁，沧江急夜流。
+风鸣两岸叶，月照一孤舟。
+建德非吾土，维扬忆旧游。
+还将两行泪，遥寄海西头。</p></div><p class=meta>1 minute read. Last updated Unknown</p></div></li><li class=section-li><div class=section><div class=desc><h3><a href=https://lzyerste.github.io/quartz/wiki/wiki/%E6%96%87%E5%8F%B2/%E5%94%90%E8%AF%97%E4%B8%89%E7%99%BE%E9%A6%96/%E5%AE%BF%E5%BB%BA%E5%BE%B7%E6%B1%9F_%E5%AD%9F%E6%B5%A9%E7%84%B6/>宿建德江_孟浩然</a></h3><p>宿建德江 朝代：唐代
+作者： 孟浩然
+移舟泊烟渚，日暮客愁新。
+野旷天低树，江清月近人。</p></div><p class=meta>1 minute read. Last updated Unknown</p></div></li><li class=section-li><div class=section><div class=desc><h3><a href=https://lzyerste.github.io/quartz/wiki/wiki/%E6%96%87%E5%8F%B2/%E5%94%90%E8%AF%97%E4%B8%89%E7%99%BE%E9%A6%96/%E5%AE%BF%E5%BA%9C_%E6%9D%9C%E7%94%AB/>宿府_杜甫</a></h3><p>宿府 朝代：唐代
+作者： 杜甫
+清秋幕府井梧寒，独宿江城蜡炬残。
+永夜角声悲自语，中天月色好谁看。
+风尘荏苒音书绝，关塞萧条行路难。
+已忍伶俜十年事，强移栖息一枝安。</p></div><p class=meta>1 minute read. Last updated Unknown</p></div></li><li class=section-li><div class=section><div class=desc><h3><a href=https://lzyerste.github.io/quartz/wiki/wiki/%E6%96%87%E5%8F%B2/%E5%94%90%E8%AF%97%E4%B8%89%E7%99%BE%E9%A6%96/%E5%AE%BF%E4%B8%9A%E5%B8%88%E5%B1%B1%E6%88%BF%E6%9C%9F%E4%B8%81%E5%A4%A7%E4%B8%8D%E8%87%B3_%E5%AD%9F%E6%B5%A9%E7%84%B6/>宿业师山房期丁大不至_孟浩然</a></h3><p>宿业师山房期丁大不至宿业师山房待丁大不至 朝代：唐代
+作者： 孟浩然
+夕阳度西岭，群壑倏已暝。
+松月生夜凉，风泉满清听。
+樵人归欲尽，烟鸟栖初定。
+之子期宿来，孤琴候萝径。</p></div><p class=meta>1 minute read. Last updated Unknown</p></div></li><li class=section-li><div class=section><div class=desc><h3><a href=https://lzyerste.github.io/quartz/wiki/wiki/%E6%96%87%E5%8F%B2/%E5%94%90%E8%AF%97%E4%B8%89%E7%99%BE%E9%A6%96/%E5%AE%B4%E6%A2%85%E9%81%93%E5%A3%AB%E5%B1%B1%E6%88%BF_%E5%AD%9F%E6%B5%A9%E7%84%B6/>宴梅道士山房_孟浩然</a></h3><p>宴梅道士山房 朝代：唐代
+作者： 孟浩然
+林卧愁春尽，搴帷览物华。忽逢青鸟使，邀入赤松家。
+丹灶初开火，仙桃正落花。童颜若可驻，何惜醉流霞。</p></div><p class=meta>1 minute read. Last updated Unknown</p></div></li><li class=section-li><div class=section><div class=desc><h3><a href=https://lzyerste.github.io/quartz/wiki/wiki/%E6%96%87%E5%8F%B2/%E5%94%90%E8%AF%97%E4%B8%89%E7%99%BE%E9%A6%96/%E5%AE%AB%E8%AF%8D_%E9%A1%BE%E5%86%B5/>宫词_顾况</a></h3><p>宫词 朝代：唐代
+作者： 顾况
+长乐宫连上苑春，玉楼金殿艳歌新。
+君门一入无由出，唯有宫莺得见人。</p></div><p class=meta>1 minute read. Last updated Unknown</p></div></li><li class=section-li><div class=section><div class=desc><h3><a href=https://lzyerste.github.io/quartz/wiki/wiki/%E6%96%87%E5%8F%B2/%E5%94%90%E8%AF%97%E4%B8%89%E7%99%BE%E9%A6%96/%E5%AE%AB%E8%AF%8D_%E8%96%9B%E9%80%A2/>宫词_薛逢</a></h3><p>宫词 朝代：唐代
+作者： 薛逢
+十二楼中尽晓妆，望仙楼上望君王。
+锁衔金兽连环冷，水滴铜龙昼漏长。
+云髻罢梳还对镜，罗衣欲换更添香。
+遥窥正殿帘开处，袍袴宫人扫御床。</p></div><p class=meta>1 minute read. Last updated Unknown</p></div></li></ul><ul class="pagination pagination-default"><li class=page-item><a href=/quartz/wiki/ aria-label=First class=page-link role=button><span aria-hidden=true>&#171;&#171;</span></a></li><li class=page-item><a href=/quartz/wiki/page/187/ aria-label=Previous class=page-link role=button><span aria-hidden=true>&#171;</span></a></li><li class=page-item><a href=/quartz/wiki/page/186/ aria-label="Page 186" class=page-link role=button>186</a></li><li class=page-item><a href=/quartz/wiki/page/187/ aria-label="Page 187" class=page-link role=button>187</a></li><li class="page-item active"><a aria-current=page aria-label="Page 188" class=page-link role=button>188</a></li><li class=page-item><a href=/quartz/wiki/page/189/ aria-label="Page 189" class=page-link role=button>189</a></li><li class=page-item><a href=/quartz/wiki/page/190/ aria-label="Page 190" class=page-link role=button>190</a></li><li class=page-item><a href=/quartz/wiki/page/189/ aria-label=Next class=page-link role=button><span aria-hidden=true>&#187;</span></a></li><li class=page-item><a href=/quartz/wiki/page/267/ aria-label=Last class=page-link role=button><span aria-hidden=true>&#187;&#187;</span></a></li></ul></article><div id=contact_buttons><footer><p>Made by Jacky Zhao using <a href=https://github.com/jackyzha0/quartz>Quartz</a>, © 2022</p><ul><li><a href=/>Home</a></li><li><a href=https://twitter.com/_jzhao>Twitter</a></li><li><a href=https://github.com/jackyzha0>Github</a></li></ul></footer></div></div><script src=https://lzyerste.github.io/quartz/js/popover.e57188d2e4c06b0654e020b3a734bb62.min.js></script>
 <script>initPopover("https://lzyerste.github.io/quartz")</script></body></html>

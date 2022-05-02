@@ -1,50 +1,150 @@
 <!doctype html><html lang=en><head><meta charset=utf-8><meta name=description content><title>Wikis</title><meta name=viewport content="width=device-width,initial-scale=1"><link rel="shortcut icon" type=image/png href=https://lzyerste.github.io/quartz//icon.png><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Source+Sans+Pro:wght@400;600;700&family=Fira+Code:wght@400;700&display=swap" rel=stylesheet><link href=https://lzyerste.github.io/quartz/styles.48db36360688fe00f0a39f3cf1417c4b.min.css rel=stylesheet><script src=https://lzyerste.github.io/quartz/js/darkmode.46b07878b7f5d9e26ad7a3c40f8a0605.min.js></script>
 <link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css integrity=sha384-R4558gYOUz8mP9YWpZJjofhk+zx0AS11p36HnD2ZKj/6JR5z27gSSULCNHIRReVs crossorigin=anonymous><script defer src=https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js integrity=sha384-z1fJDqw8ZApjGO3/unPWUPsIymfsJmyrDVWC8Tv/a1HeOtGmkwNd/7xUS0Xcnvsx crossorigin=anonymous></script>
 <script defer src=https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/contrib/auto-render.min.js integrity=sha384-+XBljXPPiv+OzfbB3cVmLHf4hdUFHlWNZN5spNQ7rmHTXpd7WvJum6fIACpNNfIR crossorigin=anonymous></script>
-<script>document.addEventListener("DOMContentLoaded",function(){renderMathInElement(document.body,{delimiters:[{left:"$$",right:"$$",display:!0},{left:"$",right:"$",display:!1}],throwOnError:!1})})</script><script>const BASE_URL="https://lzyerste.github.io/quartz/",fetchData=Promise.all([fetch("https://lzyerste.github.io/quartz/indices/linkIndex.1b63fcfc446a33a5fbbbcb873e45a67c.min.json").then(e=>e.json()).then(e=>({index:e.index,links:e.links})),fetch("https://lzyerste.github.io/quartz/indices/contentIndex.f4106c4b160efe5b6123c6231aa626db.min.json").then(e=>e.json())]).then(([{index:e,links:t},n])=>({index:e,links:t,content:n}))</script></head><script async src="https://www.googletagmanager.com/gtag/js?id=G-XYFD95KB4J"></script>
+<script>document.addEventListener("DOMContentLoaded",function(){renderMathInElement(document.body,{delimiters:[{left:"$$",right:"$$",display:!0},{left:"$",right:"$",display:!1}],throwOnError:!1})})</script><script>const BASE_URL="https://lzyerste.github.io/quartz/",fetchData=Promise.all([fetch("https://lzyerste.github.io/quartz/indices/linkIndex.6895e347b497d6eb5cb118bc7487e91a.min.json").then(e=>e.json()).then(e=>({index:e.index,links:e.links})),fetch("https://lzyerste.github.io/quartz/indices/contentIndex.6906d8a6a7fa86e15f26a89faed72d81.min.json").then(e=>e.json())]).then(([{index:e,links:t},n])=>({index:e,links:t,content:n}))</script></head><script async src="https://www.googletagmanager.com/gtag/js?id=G-XYFD95KB4J"></script>
 <script>var doNotTrack=!1;if(!doNotTrack){window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-XYFD95KB4J",{anonymize_ip:!1})}</script><body><div id=search-container><div id=search-space><input autocomplete=off id=search-bar name=search type=text aria-label=Search placeholder="Search for something..."><div id=results-container></div></div></div><script src=https://cdn.jsdelivr.net/npm/flexsearch@0.7.21/dist/flexsearch.bundle.js integrity="sha256-i3A0NZGkhsKjVMzFxv3ksk0DZh3aXqu0l49Bbh0MdjE=" crossorigin=anonymous defer></script>
 <script defer src=https://lzyerste.github.io/quartz/js/search.7861a82db330f0a40935b7458fee3a02.min.js></script><div class=singlePage><header><h1 id=page-title><a href=https://lzyerste.github.io/quartz/>🪴 Quartz 3.2</a></h1><svg tabindex="0" id="search-icon" aria-labelledby="title desc" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 19.9 19.7"><title id="title">Search Icon</title><desc id="desc">Icon to open search</desc><g class="search-path" fill="none"><path stroke-linecap="square" d="M18.5 18.3l-5.4-5.4"/><circle cx="8" cy="8" r="7"/></g></svg><div class=spacer></div><div class=darkmode><input class=toggle id=darkmode-toggle type=checkbox tabindex=-1>
-<label id=toggle-label-light for=darkmode-toggle tabindex=-1><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="dayIcon" viewBox="0 0 35 35" style="enable-background:new 0 0 35 35"><title>Light Mode</title><path d="M6 17.5C6 16.672 5.328 16 4.5 16h-3C.672 16 0 16.672.0 17.5S.672 19 1.5 19h3C5.328 19 6 18.328 6 17.5zM7.5 26c-.414.0-.789.168-1.061.439l-2 2C4.168 28.711 4 29.086 4 29.5 4 30.328 4.671 31 5.5 31c.414.0.789-.168 1.06-.44l2-2C8.832 28.289 9 27.914 9 27.5 9 26.672 8.329 26 7.5 26zm10-20C18.329 6 19 5.328 19 4.5v-3C19 .672 18.329.0 17.5.0S16 .672 16 1.5v3C16 5.328 16.671 6 17.5 6zm10 3c.414.0.789-.168 1.06-.439l2-2C30.832 6.289 31 5.914 31 5.5 31 4.672 30.329 4 29.5 4c-.414.0-.789.168-1.061.44l-2 2C26.168 6.711 26 7.086 26 7.5 26 8.328 26.671 9 27.5 9zM6.439 8.561C6.711 8.832 7.086 9 7.5 9 8.328 9 9 8.328 9 7.5c0-.414-.168-.789-.439-1.061l-2-2C6.289 4.168 5.914 4 5.5 4 4.672 4 4 4.672 4 5.5c0 .414.168.789.439 1.06l2 2.001zM33.5 16h-3c-.828.0-1.5.672-1.5 1.5s.672 1.5 1.5 1.5h3c.828.0 1.5-.672 1.5-1.5S34.328 16 33.5 16zM28.561 26.439C28.289 26.168 27.914 26 27.5 26c-.828.0-1.5.672-1.5 1.5.0.414.168.789.439 1.06l2 2C28.711 30.832 29.086 31 29.5 31c.828.0 1.5-.672 1.5-1.5.0-.414-.168-.789-.439-1.061l-2-2zM17.5 29c-.829.0-1.5.672-1.5 1.5v3c0 .828.671 1.5 1.5 1.5s1.5-.672 1.5-1.5v-3C19 29.672 18.329 29 17.5 29zm0-22C11.71 7 7 11.71 7 17.5S11.71 28 17.5 28 28 23.29 28 17.5 23.29 7 17.5 7zm0 18c-4.136.0-7.5-3.364-7.5-7.5s3.364-7.5 7.5-7.5 7.5 3.364 7.5 7.5S21.636 25 17.5 25z"/></svg></label><label id=toggle-label-dark for=darkmode-toggle tabindex=-1><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="nightIcon" viewBox="0 0 100 100" style="enable-background='new 0 0 100 100'"><title>Dark Mode</title><path d="M96.76 66.458c-.853-.852-2.15-1.064-3.23-.534-6.063 2.991-12.858 4.571-19.655 4.571C62.022 70.495 50.88 65.88 42.5 57.5 29.043 44.043 25.658 23.536 34.076 6.47c.532-1.08.318-2.379-.534-3.23-.851-.852-2.15-1.064-3.23-.534-4.918 2.427-9.375 5.619-13.246 9.491-9.447 9.447-14.65 22.008-14.65 35.369.0 13.36 5.203 25.921 14.65 35.368s22.008 14.65 35.368 14.65c13.361.0 25.921-5.203 35.369-14.65 3.872-3.871 7.064-8.328 9.491-13.246C97.826 68.608 97.611 67.309 96.76 66.458z"/></svg></label></div></header><article><h1>All Wikis</h1><ul class=section-ul><li class=section-li><div class=section><div class=desc><h3><a href=https://lzyerste.github.io/quartz/wiki/wiki/tech/%E6%9C%BA%E6%A2%B0%E9%94%AE%E7%9B%98-wiki/%E6%9C%BA%E6%A2%B0%E9%94%AE%E7%9B%98%E6%B8%85%E6%B4%97-8b7b41ba263a450fbc2cb478aef9caf4/>机械键盘清洗_8b7b41ba263a450fbc2cb478aef9caf4</a></h3><p>机械键盘清洗 建议拆洗最脏的几颗。用备用的键帽过渡一下。 使用洗洁精清洗。</p></div><p class=meta>1 minute read. Last updated Unknown</p></div></li><li class=section-li><div class=section><div class=desc><h3><a href=https://lzyerste.github.io/quartz/wiki/wiki/tech/%E6%9C%BA%E6%A2%B0%E9%94%AE%E7%9B%98/>机械键盘</a></h3><p>机械键盘 机械键盘清洗
-买了一把ikbc c87系列的机械键盘。
-针对mac可能要稍微改下配置，比如将alt跟command键互换，这个可以通过软件Karabiner做到。但是，切回到原生mac键盘时，这两个键也是互换了，注意下。
-而且，可以通过Karabiner设置，一旦接入外部键盘之后，可以禁用mac自带键盘。
-另外，可以直接将机械键盘覆盖在mac自带键盘之上，不会压到。这样使用mac的触摸板会方便些。
-Mechanical Keyboard Set up For Mac
-功能键 1 2 3 4 5 6 7 8 ikbc键盘： Fn + F9:静音开关 Fn + F10:减小音量 Fn + F11:增大音量 Fn + PrtSc:开启 Win Fn + F12:关闭 Win Fn + ScrLk:指示灯闪 1 下,开启六键无冲 Fn + ScrLk:指示灯闪 3 下,开启全键无冲</p></div><p class=meta>1 minute read. Last updated Unknown</p></div></li><li class=section-li><div class=section><div class=desc><h3><a href=https://lzyerste.github.io/quartz/wiki/wiki/%E6%96%87%E5%8F%B2/%E5%8F%B2%E8%AE%B0/%E6%9C%9D%E9%B2%9C%E5%88%97%E4%BC%A0/>朝鲜列传</a></h3><p>朝鲜列传 作者： 司马迁
-　朝鲜王满者，故燕人也。自始全燕时尝略属真番、朝鲜，为置吏，筑鄣塞。秦灭燕，属辽东外徼。汉兴，为其远难守，复修辽东故塞，至浿水为界，属燕。燕王卢绾反，入匈奴，满亡命，聚党千馀人，魋结蛮夷服而东走出塞，渡浿水，居秦故空地上下鄣，稍役属真番、朝鲜蛮夷及故燕、齐亡命者王之，都王险。
-　会孝惠、高后时天下初定，辽东太守即约满为外臣，保塞外蛮夷，无使盗边；诸蛮夷君长欲入见天子，勿得禁止。以闻，上许之，以故满得兵威财物侵降其旁小邑，真番、临屯皆来服属，方数千里。
-　传子至孙右渠，所诱汉亡人滋多，又未尝入见；真番旁众国欲上书见天子，又拥阏不通。元封二年，汉使涉何谯谕右渠，终不肯奉诏。何去至界上，临浿水，使御刺杀送何者朝鲜裨王长，即渡，驰入塞，遂归报天子曰“杀朝鲜将”。上为其名美，即不诘，拜何为辽东东部都尉。朝鲜怨何，发兵袭攻杀何。
-　天子募罪人击朝鲜。其秋，遣楼船将军杨仆从齐浮渤海；兵五万人，左将军荀彘出辽东：讨右渠。右渠发兵距险。左将军卒正多率辽东兵先纵，败散，多还走，坐法斩。楼船将军将齐兵七千人先至王险。右渠城守，窥知楼船军少，即出城击楼船，楼船军败散走。将军杨仆失其众，遁山中十馀日，稍求收散卒，复聚。左将军击朝鲜浿水西军，未能破自前。
-　天子为两将未有利，乃使卫山因兵威往谕右渠。右渠见使者顿首谢：“原降，恐两将诈杀臣；今见信节，请服降。”遣太子入谢，献马五千匹，及馈军粮。人众万馀，持兵，方渡浿水，使者及左将军疑其为变，谓太子已服降，宜命人毋持兵。太子亦疑使者左将军诈杀之，遂不渡浿水，复引归。山还报天子，天子诛山。
-　左将军破浿水上军，乃前，至城下，围其西北。楼船亦往会，居城南。右渠遂坚守城，数月未能下。
-　左将军素侍中，幸，将燕代卒，悍，乘胜，军多骄。楼船将齐卒，入海，固已多败亡；其先与右渠战，因辱亡卒，卒皆恐，将心惭，其围右渠，常持和节。左将军急击之，朝鲜大臣乃阴间使人私约降楼船，往来言，尚未肯决。左将军数与楼船期战，楼船欲急就其约，不会；左将军亦使人求间郤降下朝鲜，朝鲜不肯，心附楼船：以故两将不相能。左将军心意楼船前有失军罪，今与朝鲜私善而又不降，疑其有反计，未敢发。天子曰将率不能，前使卫山谕降右渠，右渠遣太子，山使不能剸决，与左将军计相误，卒沮约。今两将围城，又乖异，以故久不决。使济南太守公孙遂往之，有便宜得以从事。遂至，左将军曰：“朝鲜当下久矣，不下者有状。”言楼船数期不会，具以素所意告遂，曰：“今如此不取，恐为大害，非独楼船，又且与朝鲜共灭吾军。”遂亦以为然，而以节召楼船将军入左将军营计事，即命左将军麾下执捕楼船将军，并其军，以报天子。天子诛遂。
-　左将军已并两军，即急击朝鲜。朝鲜相路人、相韩阴、尼谿相参、将军王夹相与谋曰：“始欲降楼船，楼船今执，独左将军并将，战益急，恐不能与，王又不肯降。”阴、唊、路人皆亡降汉。路人道死。元封三年夏，尼谿相参乃使人杀朝鲜王右渠来降。王险城未下，故右渠之大臣成巳又反，复攻吏。左将军使右渠子长降、相路人之子最告谕其民，诛成巳，以故遂定朝鲜，为四郡。封参为澅清侯，阴为荻苴侯，唊为平州侯，长为几侯。最以父死颇有功，为温阳侯。
-　左将军徵至，坐争功相嫉，乖计，弃市。楼船将军亦坐兵至洌口，当待左将军，擅先纵，失亡多，当诛，赎为庶人。...</p></div><p class=meta>1 minute read. Last updated Unknown</p></div></li><li class=section-li><div class=section><div class=desc><h3><a href=https://lzyerste.github.io/quartz/wiki/wiki/%E6%96%87%E5%8F%B2/%E5%94%90%E8%AF%97%E4%B8%89%E7%99%BE%E9%A6%96/%E6%9C%9B%E8%93%9F%E9%97%A8_%E7%A5%96%E5%92%8F/>望蓟门_祖咏</a></h3><p>望蓟门 朝代：唐代
-作者： 祖咏
-燕台一望客心惊，笳鼓喧喧汉将营。(笳鼓 一作：箫鼓)
-万里寒光生积雪，三边曙色动危旌。
-沙场烽火侵胡月，海畔云山拥蓟城。
-少小虽非投笔吏，论功还欲请长缨。</p></div><p class=meta>1 minute read. Last updated Unknown</p></div></li><li class=section-li><div class=section><div class=desc><h3><a href=https://lzyerste.github.io/quartz/wiki/wiki/%E6%96%87%E5%8F%B2/%E5%94%90%E8%AF%97%E4%B8%89%E7%99%BE%E9%A6%96/%E6%9C%9B%E6%B4%9E%E5%BA%AD%E6%B9%96%E8%B5%A0%E5%BC%A0%E4%B8%9E%E7%9B%B8_%E5%AD%9F%E6%B5%A9%E7%84%B6/>望洞庭湖赠张丞相_孟浩然</a></h3><p>望洞庭湖赠张丞相临洞庭 朝代：唐代
-作者： 孟浩然
-八月湖水平，涵虚混太清。气蒸云梦泽，波撼岳阳城。
-欲济无舟楫，端居耻圣明。坐观垂钓者，徒有羡鱼情。</p></div><p class=meta>1 minute read. Last updated Unknown</p></div></li><li class=section-li><div class=section><div class=desc><h3><a href=https://lzyerste.github.io/quartz/wiki/wiki/%E6%96%87%E5%8F%B2/%E5%94%90%E8%AF%97%E4%B8%89%E7%99%BE%E9%A6%96/%E6%9C%9B%E6%9C%88%E6%9C%89%E6%84%9F_%E7%99%BD%E5%B1%85%E6%98%93/>望月有感_白居易</a></h3><p>望月有感 朝代：唐代
-作者： 白居易
-田园寥落干戈后，骨肉流离道路中。
-吊影分为千里雁，辞根散作九秋蓬。...</p></div><p class=meta>1 minute read. Last updated Unknown</p></div></li><li class=section-li><div class=section><div class=desc><h3><a href=https://lzyerste.github.io/quartz/wiki/wiki/%E6%96%87%E5%8F%B2/%E5%94%90%E8%AF%97%E4%B8%89%E7%99%BE%E9%A6%96/%E6%9C%9B%E6%9C%88%E6%80%80%E8%BF%9C_%E5%BC%A0%E4%B9%9D%E9%BE%84/>望月怀远_张九龄</a></h3><p>望月怀远 朝代：唐代
-作者： 张九龄
-海上生明月，天涯共此时。
-情人怨遥夜，竟夕起相思。
-灭烛怜光满，披衣觉露滋。
-不堪盈手赠，还寝梦佳期。</p></div><p class=meta>1 minute read. Last updated Unknown</p></div></li><li class=section-li><div class=section><div class=desc><h3><a href=https://lzyerste.github.io/quartz/wiki/wiki/%E6%96%87%E5%8F%B2/%E5%94%90%E8%AF%97%E4%B8%89%E7%99%BE%E9%A6%96/%E6%9C%9B%E5%B2%B3_%E6%9D%9C%E7%94%AB/>望岳_杜甫</a></h3><p>望岳 朝代：唐代
-作者： 杜甫
-岱宗夫如何？齐鲁青未了。
-造化钟神秀，阴阳割昏晓。
-荡胸生曾云，决眦入归鸟。( 曾 通：层)
-会当凌绝顶，一览众山小。</p></div><p class=meta>1 minute read. Last updated Unknown</p></div></li><li class=section-li><div class=section><div class=desc><h3><a href=https://lzyerste.github.io/quartz/wiki/wiki/other/%E6%9C%89%E5%A3%B0%E4%B9%A6/>有声书</a></h3><p>有声书 有声书资源网站
-Welcome to Lit2Go ETC
-LibriVox
-魔戒，The Lord of the Rings
-The Fellowship of The Rings 护戒使者...</p></div><p class=meta>1 minute read. Last updated Unknown</p></div></li><li class=section-li><div class=section><div class=desc><h3><a href=https://lzyerste.github.io/quartz/wiki/wiki/algorithm/%E7%AE%97%E6%B3%95%E5%AF%BC%E8%AE%BA/%E7%AC%94%E8%AE%B0/%E7%AC%AC22%E7%AB%A0_%E5%9F%BA%E6%9C%AC%E7%9A%84%E5%9B%BE%E8%A1%A8%E7%A4%BA/%E6%9C%89%E5%90%91%E5%9B%BE%E5%92%8C%E6%97%A0%E5%90%91%E5%9B%BE%E7%9A%84%E7%8E%AF%E6%A3%80%E6%B5%8B-1ed12c8658204d7b9fead3cfe0df58f7/>有向图和无向图的环检测_1ed12c8658204d7b9fead3cfe0df58f7</a></h3><p>有向图和无向图的环检测 无向图 并查集：检查每一条边的两个端点是否是相同的连通子图，如果是相同的，说明存在环。一开始每个节点都是独立的一个集合。边的表示只用(u, v)表示一次，不要再加上(v, u)。
-DFS：使用邻接矩阵，只需要标记是否访问过，如果访问过且不是该节点的父节点（如果节点是自己也算），则有环；
-Cycles in an Undirected Graph | Baeldung on Computer Science...</p></div><p class=meta>1 minute read. Last updated Unknown</p></div></li></ul><ul class="pagination pagination-default"><li class=page-item><a href=/quartz/wiki/ aria-label=First class=page-link role=button><span aria-hidden=true>&#171;&#171;</span></a></li><li class=page-item><a href=/quartz/wiki/page/207/ aria-label=Previous class=page-link role=button><span aria-hidden=true>&#171;</span></a></li><li class=page-item><a href=/quartz/wiki/page/206/ aria-label="Page 206" class=page-link role=button>206</a></li><li class=page-item><a href=/quartz/wiki/page/207/ aria-label="Page 207" class=page-link role=button>207</a></li><li class="page-item active"><a aria-current=page aria-label="Page 208" class=page-link role=button>208</a></li><li class=page-item><a href=/quartz/wiki/page/209/ aria-label="Page 209" class=page-link role=button>209</a></li><li class=page-item><a href=/quartz/wiki/page/210/ aria-label="Page 210" class=page-link role=button>210</a></li><li class=page-item><a href=/quartz/wiki/page/209/ aria-label=Next class=page-link role=button><span aria-hidden=true>&#187;</span></a></li><li class=page-item><a href=/quartz/wiki/page/269/ aria-label=Last class=page-link role=button><span aria-hidden=true>&#187;&#187;</span></a></li></ul></article><div id=contact_buttons><footer><p>Made by Jacky Zhao using <a href=https://github.com/jackyzha0/quartz>Quartz</a>, © 2022</p><ul><li><a href=/>Home</a></li><li><a href=https://twitter.com/_jzhao>Twitter</a></li><li><a href=https://github.com/jackyzha0>Github</a></li></ul></footer></div></div><script src=https://lzyerste.github.io/quartz/js/popover.e57188d2e4c06b0654e020b3a734bb62.min.js></script>
+<label id=toggle-label-light for=darkmode-toggle tabindex=-1><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="dayIcon" viewBox="0 0 35 35" style="enable-background:new 0 0 35 35"><title>Light Mode</title><path d="M6 17.5C6 16.672 5.328 16 4.5 16h-3C.672 16 0 16.672.0 17.5S.672 19 1.5 19h3C5.328 19 6 18.328 6 17.5zM7.5 26c-.414.0-.789.168-1.061.439l-2 2C4.168 28.711 4 29.086 4 29.5 4 30.328 4.671 31 5.5 31c.414.0.789-.168 1.06-.44l2-2C8.832 28.289 9 27.914 9 27.5 9 26.672 8.329 26 7.5 26zm10-20C18.329 6 19 5.328 19 4.5v-3C19 .672 18.329.0 17.5.0S16 .672 16 1.5v3C16 5.328 16.671 6 17.5 6zm10 3c.414.0.789-.168 1.06-.439l2-2C30.832 6.289 31 5.914 31 5.5 31 4.672 30.329 4 29.5 4c-.414.0-.789.168-1.061.44l-2 2C26.168 6.711 26 7.086 26 7.5 26 8.328 26.671 9 27.5 9zM6.439 8.561C6.711 8.832 7.086 9 7.5 9 8.328 9 9 8.328 9 7.5c0-.414-.168-.789-.439-1.061l-2-2C6.289 4.168 5.914 4 5.5 4 4.672 4 4 4.672 4 5.5c0 .414.168.789.439 1.06l2 2.001zM33.5 16h-3c-.828.0-1.5.672-1.5 1.5s.672 1.5 1.5 1.5h3c.828.0 1.5-.672 1.5-1.5S34.328 16 33.5 16zM28.561 26.439C28.289 26.168 27.914 26 27.5 26c-.828.0-1.5.672-1.5 1.5.0.414.168.789.439 1.06l2 2C28.711 30.832 29.086 31 29.5 31c.828.0 1.5-.672 1.5-1.5.0-.414-.168-.789-.439-1.061l-2-2zM17.5 29c-.829.0-1.5.672-1.5 1.5v3c0 .828.671 1.5 1.5 1.5s1.5-.672 1.5-1.5v-3C19 29.672 18.329 29 17.5 29zm0-22C11.71 7 7 11.71 7 17.5S11.71 28 17.5 28 28 23.29 28 17.5 23.29 7 17.5 7zm0 18c-4.136.0-7.5-3.364-7.5-7.5s3.364-7.5 7.5-7.5 7.5 3.364 7.5 7.5S21.636 25 17.5 25z"/></svg></label><label id=toggle-label-dark for=darkmode-toggle tabindex=-1><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="nightIcon" viewBox="0 0 100 100" style="enable-background='new 0 0 100 100'"><title>Dark Mode</title><path d="M96.76 66.458c-.853-.852-2.15-1.064-3.23-.534-6.063 2.991-12.858 4.571-19.655 4.571C62.022 70.495 50.88 65.88 42.5 57.5 29.043 44.043 25.658 23.536 34.076 6.47c.532-1.08.318-2.379-.534-3.23-.851-.852-2.15-1.064-3.23-.534-4.918 2.427-9.375 5.619-13.246 9.491-9.447 9.447-14.65 22.008-14.65 35.369.0 13.36 5.203 25.921 14.65 35.368s22.008 14.65 35.368 14.65c13.361.0 25.921-5.203 35.369-14.65 3.872-3.871 7.064-8.328 9.491-13.246C97.826 68.608 97.611 67.309 96.76 66.458z"/></svg></label></div></header><article><h1>All Wikis</h1><ul class=section-ul><li class=section-li><div class=section><div class=desc><h3><a href=https://lzyerste.github.io/quartz/wiki/wiki/%E6%96%87%E5%8F%B2/%E8%B5%84%E6%B2%BB%E9%80%9A%E9%89%B4/%E6%A2%81%E7%BA%AA%E4%BA%8C%E5%8D%81%E4%B8%80/>梁纪二十一</a></h3><p>梁纪二十一 link
+起昭阳作噩，尽阏逢阉茂，凡二年。
+世祖孝元皇帝下承圣二年（癸酉，公元五五三年） 春，正月，王僧辩发建康，承制使陈霸先代镇扬州。
+丙子，山胡围齐离石。戊寅，齐主讨之，未至，胡已走，因巡三堆，大猎而归。
+以吏部尚书王褒为左仆射。
+己丑，齐改铸钱，文曰“常平五铢”。
+二月，庚子，李洪雅力屈，以空云城降陆纳。纳囚洪雅，杀丁道贵。纳以沙门宝志诗识有“十八子”，以为李氏当王，甲辰，推洪雅为主，号大将军，使乘平肩舆，列鼓吹，纳帅众数千，左右翼从。
+魏太师泰去丞相、大行台，为都督中外诸军事。
+王雄至东梁州，黄众宝帅众降。太师泰赦之，迁其豪帅于雍州。
+齐主送柔然可汗铁伐之父登注及兄库提还其国。铁伐寻为契丹所杀，国人立登注为可汗。登注复为其大人阿富提所杀，国人立库提。突厥伊利可汗卒，子科罗立，号乙息记可汗；三月，遣使献马五万于魏。柔然别部又立阿那瓖叔父邓叔子为可汗。乙息记击破邓叔子于沃野北木赖山。乙息记卒，舍其子摄图而立其弟俟斤，号木杆可汗。木杆状貌奇异，性刚勇，多智略，善用兵，邻国畏之。
+上闻武陵王纪东下，使方士画版为纪像，亲钉支体以厌之，又执侯景之俘以报纪。初，纪之举兵，皆太子圆照之谋也。圆照时镇巴东，执留使者。启纪云：“侯景未平，宜急进讨；已闻荆镇为景所破。”纪信之，趣兵东下。上甚惧，与魏书曰：“子纠，亲也，请君讨之。”太师泰曰：“取蜀制梁，在兹一举。”诸将咸难之。大将军代人尉迟迥，泰之甥也，独以为可克。泰问以方略，迥曰：“蜀与中国隔绝百有馀年，恃其险远，不虞我至。若以铁骑兼行袭之，无不克矣。”泰乃遣迥督开府仪同三司原珍等六军，甲士万二千，骑万匹，自散关伐蜀。
+陆纳遣其将吴藏、潘乌黑、李贤明等下据车轮。王僧辩至巴陵，宜丰侯循让都督于僧辩，僧辩弗受。上乃以僧辩、循为东、西都督。夏，四月，丙申，僧辩军于车轮。
+吐谷浑可汗夸吕，虽通使于魏而寇抄不息，宇文泰将骑三万逾陇，至姑臧，讨之。夸吕惧，请服；既而复通使于齐。凉州刺史史宁觇知其还，袭之于赤泉，获其仆射乞伏触状。
+陆纳夹岸为城，以拒王僧辩。纳士卒皆百战之馀，僧辩惮之，不敢轻进，稍作连城以逼之。纳以僧辩为怯，不设备；五月，甲子，僧辩命诸军水陆齐进，急攻之，僧辩亲执旗鼓，宜丰侯循身受矢石，拔其二城；纳众大败，步走，保长沙。乙丑，僧辩进围之。僧辩坐垄上视筑围垒，吴藏、李贤明帅锐卒千人开门突出，蒙楯直进，趋僧辩。时杜崱、杜龛并侍左右，甲士卫者止百馀人，力战拒之。僧辩据胡床不动，裴之横从旁击藏等，藏等败退，贤明死，藏脱走入城。
+武陵王纪至巴郡，闻有魏兵，遣前梁州刺史巴西谯淹还军救蜀。初，杨乾运求为梁州刺史，纪以为潼州；杨法琛求为黎州刺史，以为沙州：二人皆不悦。乾运兄子略说乾运曰：“今侯景初平，宜同心戮力，保国宁民，而兄弟寻戈，此自亡之道也。夫木朽不雕，世衰难佐。不如送款关中，可以功名两全。”乾运然之，令略将二千人镇剑阁，又遣其婿乐广镇安州，与法琛皆潜通于魏。魏太师泰密赐乾运铁券，授骠骑大将军、开府仪同三司、梁州刺史。尉迟迥以开府仪同三司侯吕陵始为前军，至剑阁，略退就乐广，翻城应始，始入据安州。甲戌，迥至涪水，乾运以州降。迥分军守之，进袭成都。时成都见兵不满万人，仓库空竭，永丰侯捴婴城自守，迥围之。谯淹遣江州刺史景欣、幽州刺史赵拔扈援成都，迥使原珍等击走之。
+武陵王纪至巴东，知侯景已平，乃自悔，召太子圆照责之，对曰：“侯景虽平，江陵未服。”纪亦以既称尊号，不可复为人下，欲遂东进。将卒日夜思归，其江州刺史王开业以为宜还救根本，更思后图；诸将皆以为然。圆照及刘孝胜固言不可，纪从之，宣言于众曰：“敢谏者死！”己丑，纪至西陵，军势甚盛，舳舻翳川。护军陆法和筑二城于峡口两岸，运石填江，铁锁断之。
+帝拔任约于狱，以为晋安王司马，使助法和拒纪，谓之曰：“汝罪不容诛，我不杀汝，本为今日！”因撤禁兵以配之，仍许妻以庐陵王续之女，使宣猛将军刘棻与之俱。...</p></div><p class=meta>1 minute read. Last updated Unknown</p></div></li><li class=section-li><div class=section><div class=desc><h3><a href=https://lzyerste.github.io/quartz/wiki/wiki/%E6%96%87%E5%8F%B2/%E8%B5%84%E6%B2%BB%E9%80%9A%E9%89%B4/%E6%A2%81%E7%BA%AA%E4%BA%8C%E5%8D%81/>梁纪二十</a></h3><p>梁纪二十 link
+起重光协洽，尽玄黓涒滩，凡二年。
+太宗简文皇帝下大宝二年（辛未，公元五五一年） 春，正月，新吴余孝顷举兵拒侯景，景遣于庆攻之，不克。
+庚戌，湘东王绎遣护军将军尹悦、安东将军杜幼安、巴州刺史王珣将兵二万自江夏趣武昌，受徐文盛节度。
+杨乾运攻拔剑阁，杨法琛退保石门，乾运据南阴平。
+辛亥，齐主祀圜丘。
+张彪遣其将赵稜围钱塘，孙凤围富春，侯景遣仪同三司田迁、赵伯超救之，稜、凤败走。稜，伯超之兄子也。
+癸亥，齐主耕籍田。乙丑，享太庙。
+魏杨忠围汝南，李素战死。二月，乙亥，城陷，执邵陵携王纶，杀之，投尸江岸；岳阳王詧取而葬之。
+或告齐太尉彭乐谋反；壬辰，乐坐诛。齐遣散骑常侍曹文皎使于江陵，湘东王绎使兼散骑常侍王子敏报之。
+侯景以王克为太师，宋子仙为太保，元罗为太傅，郭元建为太尉，支化仁为司徒，任约为司空，王伟为尚书左仆射，索超世为右仆射。景置三公官，动以十数，仪同尤多。以子仙、元建、化仁为佐命元功，伟、超世为谋主，于子悦、彭隽主击断，陈庆、吕季略、卢晖略、丁和等为爪牙。梁人为景用者，则故将军赵伯超，前制局监周石珍，内监严亶，邵陵王记室伏知命。自馀王克、元罗及侍中殷不害、太常周弘正等，景从人望，加以尊位，非腹心之任也。
+北兗州刺史萧邕谋降魏，侯景杀之。
+杨乾运进据平兴，平兴者，杨法琛所治也。法琛退保鱼石洞，乾运焚平兴而归。
+李迁仕收众还击南康，陈霸先遣其将杜僧明等拒之，生擒迁仕，斩之。湘东王绎使霸先进兵取江州，以为江州刺史。
+三月，丙午，齐襄城王淯卒。
+庚戌，魏文帝殂，太子钦立。
+乙卯，徐文盛等克武昌，进军芦洲。...</p></div><p class=meta>1 minute read. Last updated Unknown</p></div></li><li class=section-li><div class=section><div class=desc><h3><a href=https://lzyerste.github.io/quartz/wiki/wiki/%E6%96%87%E5%8F%B2/%E8%B5%84%E6%B2%BB%E9%80%9A%E9%89%B4/%E6%A2%81%E7%BA%AA%E4%BA%8C/>梁纪二</a></h3><p>梁纪二 link
+起旃蒙作噩，尽强圉大渊献，凡三年。
+高祖武皇帝二天监四年（乙酉，公元五零五年） 春，正月，癸卯朔，诏曰：“二汉登贤，莫非经术，服膺雅道，名立行成。魏、晋浮荡，儒教沦歇，风节罔树，抑此之由。可置《五经》博士各一人，广开馆宇，招内后进。”于是以贺瑒及平原明山宾、吴兴沈峻、建平严植之补博士，各主一馆，馆有数百生，给其饩廪，其射策通明者即除为吏，期年之间，怀经负笈者云会。瑒，循之玄孙也。又选学生，往会稽云门山从何胤受业，命胤选门徒中经明行修者，具以名闻。分遣博士祭酒巡州郡立学。
+初，谯国夏侯道迁以辅国将军从裴叔业镇寿阳，为南谯太守，与叔业有隙，单骑奔魏。魏以道迁为骁骑将军，从王肃镇寿阳，使道迁守合肥。肃卒，道迁弃戍来奔，从梁、秦二州刺史庄丘黑镇南郑；以道迁为长史，领汉中太守。黑卒，诏以都官尚书王珍国为刺史，未至，道迁阴与军主考城江忱之等谋降魏。
+先是，魏仇池镇将杨灵珍叛魏来奔，朝延以为征虏将军、假武都王，助戍汉中，有部曲六百馀人，道迁惮之。上遣左右吴公之等使南郑。道迁遂杀使者，发兵击灵珍父子、斩之，并使者首送于魏。白马戍主君天宝闻之，引兵击道迁，败其将庞树，遂围南郑。道迁求救于氐王杨绍先、杨集起、杨集义，皆不应，集义弟集郎独引兵救道迁，击天宝，杀之。魏以道迁为平南将军、豫州刺史、丰县侯。又以尚书刑峦为镇西将军、都督征梁、汉诸军事，将兵赴之。道迁受平南，辞豫州，且求公爵，魏主不许。
+辛亥，上祀南郊，大赦。
+乙丑，魏以骠骑大将军高阳王雍为司空，加尚书令广阳王嘉仪同三司。
+二月，丙子，魏以宕昌世子梁弥博为宕昌王。
+上谋伐魏，壬午，遣卫尉卿杨公则将宿卫兵塞洛口。
+壬辰，交州刺史李凯据州反，长史李畟讨平之。
+魏邢峦至汉中，击诸城戍，所向摧破。晋寿太守王景胤据石亭，峦遣统军李义珍击走之。魏以峦为梁、秦二州刺史。巴西太守庞景民据郡不下，郡民严玄思聚众自称巴州刺史，附于魏，攻景民，斩之。杨集起、集义闻魏克汉中而惧，闰月，帅群氐叛魏，断汉中粮道，峦屡遣军击破之。
+夏，四月，丁巳，以行宕昌王梁弥博为河、凉二州刺史、宕昌王。
+冠军将军孔陵等将兵二万戍深杭，鲁方达戍南安，任僧褒等戍石同，以拒魏。刑峦遣统军王足将兵击之，所至皆捷，遂入剑阁。陵等退保梓潼，足又进击破之。梁州十四郡地，东西七百里，南北千里，皆入于魏。
+初，益州刺史当阳侯邓元起以母老乞归，诏征为右卫将军，以西昌侯渊藻代之。渊藻，懿之子也。夏侯道迁之叛也，尹天宝驰使报元起。及魏寇晋寿，王景胤等并遣告急，众劝元起急救之，元起曰：“朝廷万里，军不猝至，若寇贼侵淫，方须扑讨，董督之任，非我而谁，何事匆匆救之！”诏假元起都督征讨诸军事，救汉中，而晋寿已陷。
+萧渊藻将至，元起营还装，粮储器械，取之无遗。渊藻入城，恨之；又救其良马，元起曰：“年少郎子，何用马为！”渊藻恚，因醉，杀之，元起麾下围城，哭，且问故，渊藻曰：“天子有诏。”众乃散。遂诬以反，上疑焉。元起故吏广汉罗研诣阙讼之，上曰：“果如我所量也！”使让渊藻曰：“元起为汝报仇，汝为仇报仇，忠孝之道如何！”乃贬渊藻号为冠军将军；赠元起征西将军，谥曰忠侯。
+李延寿论曰：元起勤乃胥附，功惟辟土，劳之不图，祸机先陷。冠军之贬，于罚已轻。梁之政刑，于斯为失。私戚之端，自斯而启。年之不永，不亦宜乎！
+益州民焦僧护聚众数万作乱，萧渊藻年未弱冠，集僚佐议自击之；或陈不可，渊藻大怒，斩于阶侧。乃乘平肩舆巡行贼垒。贼弓乱射，矢下如雨，从者举楯御矢，渊藻命去之。由是人心大安，击僧护等，皆平之。...</p></div><p class=meta>1 minute read. Last updated Unknown</p></div></li><li class=section-li><div class=section><div class=desc><h3><a href=https://lzyerste.github.io/quartz/wiki/wiki/%E6%96%87%E5%8F%B2/%E8%B5%84%E6%B2%BB%E9%80%9A%E9%89%B4/%E6%A2%81%E7%BA%AA%E4%B9%9D/>梁纪九</a></h3><p>梁纪九 link
+屠维作噩，一年。
+中大通元己酉，公元五二九年
+春，正月，甲寅，魏于晖所部都督彭乐师二千馀骑叛，奔韩楼，晖引还。
+辛酉，上祀南郊，大赦。
+甲子，魏汝南王悦求还国，许之。
+辛巳，上祀明堂。
+二月，甲午，魏主尊彭城武宣王为文穆皇帝，庙号肃祖；母李妃为文穆皇后。将迁神主于太庙，以高祖为伯考，大司马兼录尚书临淮王彧表谏，以为：“汉高祖立太上皇庙于香街，光武祀南顿君于舂陵。元帝之于光武，已疏绝服，犹身奉子道，入继大宗。高祖德洽寰中，道超无外，肃祖虽勋格宇宙，犹北面为臣。又，二后皆将配享，乃是君臣并筵，嫂叔同室，窃谓不可。”吏部尚书李神俊亦谏，不听，彧又请去“帝”著“皇”，亦不听。
+诏更定二百四十号将军为四十四班。壬寅，魏诏济阴王晖业兼行台尚书，都督丘大千等镇梁国。晖业，小新成之曾孙也。
+三月，壬戌，魏诏上党王天穆讨邢杲，以费穆为前锋大都督。
+夏，四月，癸未，魏迁肃祖及文穆皇后神主于太庙，又追尊彭城王劭为孝宣皇帝。临淮王彧谏曰：“兹事古所未有，陛下作而不法，后世何观！”弗听。
+魏元天穆将击邢杲，以北海王颢方入寇，集文武议之，众皆曰：“杲众强盛，宜以为先。”行台尚书薛琡曰：“邢杲兵众虽多，鼠窃狗偷，非有远志。颢帝室近亲，来称义举，其势难测，宜先去之。”天穆以诸将多欲击杲，又魏朝亦以颢为孤弱，不足虑，命天穆等先定齐地，还师击颢，遂引兵东出。颢与陈庆之乘虚自铚城进拔荥城，遂至梁国；魏丘大千有众七万，分筑九城以拒之。庆之攻之，自旦至申，拔其三垒，大千请降。颢登坛燔燎，即帝位于睢阳城南，改元孝基。济阴王晖业帅羽林兵二万军考城，庆之攻拔其城，擒晖业。
+辛丑，魏上党王天穆及尔硃兆破邢杲于济南，杲降，送洛阳，斩之。兆，荣之从子也。
+五月，丁巳，魏以东南道大都督杨昱镇荥阳，尚书仆射尔硃世隆镇虎牢，侍中尔硃世承镇崿岅。乙丑，内外戒严。
+戊辰，北海王颢克梁国。颢以陈庆之为卫将军，徐州刺史，引兵而西。杨昱拥众七万，据荥阳。庆之攻之，未拔。颢遣人说昱使降，昱不从。元天穆与骠骑将军尔硃吐没儿将大军前后继至，梁士卒皆恐。庆之解鞍秣马，谕将士曰：“吾至此以来，屠城略地，实为不少；君等杀人父兄、掠人子女，亦无算矣。天穆之众，皆是仇雠。我辈众才七千，虏众三十馀万，今日之事，唯有必死乃可得生耳！虏骑多，不可与之野战，当及其未尽至，急攻取其城而据之。诸君勿或狐疑，自取屠脍！”乃鼓之，使登城。将士即相帅蚁附而入，癸酉，拔荥阳，执杨昱。诸将三百馀人伏颢帐前请曰：“陛下渡江三千里，无遗镞之费，昨荥阳城下一朝杀伤五百馀人，愿乞杨昱以快众意！”颢曰：“我在江东闻梁主言，初举兵下都，袁昂为吴郡不降，每称其忠节。杨昱忠臣，奈何杀之！此外唯卿等所取。”于是斩昱所部统帅三十七人，皆刳心而食之。俄而天穆等引兵围城，庆之帅骑三千背城力战，大破之，天穆、吐没儿皆走。庆之进击虎牢，尔硃世隆弃城走，获魏东中郎将辛纂。
+魏主将出避颢，未知所之，或劝之长安，中书舍人高道穆曰：“关中荒残，何可复往！颢士众不多，乘虚深入，由将帅不得其人，故能至此。陛下若亲帅宿卫，高募重赏，背城一战，臣等竭其死力，破颢孤军必矣。或恐胜负难期，则车贺不若渡河，征大将军天穆、大丞相荣各使引兵来会，犄角进讨，旬月之间，必见成功。此万全之策也。”魏主从之。甲戌，魏主北行，夜，至河内郡北，命高道穆于烛下作诏书数十纸，布告远近。于是四方始知魏主所在。乙亥，魏主入河内。
+临淮王彧、安丰王延明，帅百僚，封府库，备法驾迎颢。丙子，颢入洛阳宫，改元建武，大赦。以陈庆之为侍中、车骑大将军，增邑万户。杨椿在洛阳，椿弟顺为冀州刺史，兄子侃为北中郎将，从魏主在河北。颢意忌椿，而以其家世显重，恐失人望，未敢诛也。或劝椿出亡，椿曰：“吾内外百口，何所逃匿！正当坐待天命耳。”
+颢后军都督侯暄守睢阳，为后援。魏行台崔孝芬、大都督刁宣驰往围暄，昼夜急攻，戊寅，暄突走，擒斩之。...</p></div><p class=meta>1 minute read. Last updated Unknown</p></div></li><li class=section-li><div class=section><div class=desc><h3><a href=https://lzyerste.github.io/quartz/wiki/wiki/%E6%96%87%E5%8F%B2/%E8%B5%84%E6%B2%BB%E9%80%9A%E9%89%B4/%E6%A2%81%E7%BA%AA%E4%B8%89/>梁纪三</a></h3><p>梁纪三 link
+起著雍困敦，尽阏逢敦牂，凡七年。
+高祖武皇帝三天监七年（戊子，公元五零八年） 春，正月，魏颍川太守王神念来奔。
+壬子，以卫尉吴平侯昺兼领军将军。
+诏吏部尚书徐勉定百官九品为十八班，以班多者为贵。二月，乙丑，增置镇、卫将军以下为十品，凡二十四班；不登十品，别有八班。又置施外国将军二十四班，凡一百九号。
+庚午，诏置州望、郡宗、乡豪各一人，专掌搜荐。
+乙亥，以南兗州刺史吕僧珍为领军将军。领军掌中外兵要，宋孝建以来，制局用事，与领军分兵权，典事以上皆得呈奏，领军拱手而已。及吴平侯昺在职峻切，官曹肃然；制局监皆近幸，颇不堪命，以是不得久留中，丙子，出为雍州刺史。
+三月，戊子，魏皇子昌卒，侍御师王显失于疗治，时人皆以为承高肇之意也。
+夏，四月，乙卯，皇太子纳妃，大赦。五月，己亥，诏复置宗正、太仆、大匠、鸿胪，又增太府、太舟，仍先为十二卿。
+癸卯，以安成王秀为荆州刺史。先是，巴陵马营蛮缘江为寇，州郡不能讨。秀遣防阁文炽帅众燔其林木，蛮失其险，州境无寇。
+秋，七月，甲午，魏立高贵嫔为皇后。尚书令高肇益贵重用事。肇多变更先朝旧制，减削封秩，抑黜勋人，由是怨声盈路。群臣宗室皆卑下之，唯度支尚书元匡与肇抗衡，先自造棺置听事，欲舆棺诣阙论肇罪恶，自杀以切谏；肇闻而恶之。会匡与太常刘芳议权量事，肇主芳议，匡遂与肇喧竞，表肇指鹿为马。御史中尉王显奏弹匡诬毁宰相，有司处匡死刑。诏恕死，降为光禄大夫。
+八月，癸丑，竟陵壮公曹景宗卒。
+初，魏主为京兆王愉纳于后之妹为妃，愉不爱，爱妾李氏，生子宝月。于后召李氏入宫，捶之。愉骄奢贪纵，所为多不法。帝召愉入禁中推案，杖愉五十，出为冀州刺史。愉自以年长，而势位不及二弟，潜怀愧恨；又，身与妾屡被顿辱，高肇数谮愉兄弟，愉不胜忿；癸亥，杀长史羊灵引、司马李遵，诈称得清河王怿密疏，云“高肇弑逆”。遂为坛于信都之南，即皇帝位，大赦，改元建平，立李氏为皇后。法曹参军崔伯骥不从，愉杀之。在北州镇皆疑魏朝有变，定州刺史安乐王诠具以状告之，州镇乃安。乙丑，魏以尚书李平为都督北讨诸军、行冀州事，以讨愉。平，崇之从父弟也。
+丁卯，魏大赦，改元永平。
+魏京兆王愉遣使说平原太守清河房亮，亮斩其使；愉遣其将张灵和击之，为亮所败。李平军至经县，诸军大集。夜，有蛮兵数千斫平营，矢及平账。平坚卧不动，俄而自定。九月，辛巳朔，愉逆战于城南草桥。平奋击，大破之。愉脱身走入城，平进围之。壬辰，安乐王诠破愉兵于城北。
+癸巳，立皇子绩为南康王。
+魏高后之立也，彭城武宣王勰固谏，魏主不听。高肇由是怨之，数谮勰于魏主，魏主不之信。勰荐其舅潘僧固为长乐太守，京兆王愉之反，胁僧固与之同，肇固诬勰北与愉通，南招蛮贼。彭城郎中令魏偃、前防阁高祖珍希肇提擢，构成其事。肇令侍中元晖以闻，晖不从，又令左卫元珍言之。帝以问晖，晖明勰不然；又以问肇，肇引魏偃、高祖珍为证，帝乃信之。戊戌，召勰及高阳王雍、广阳王嘉、清河王怿、广平王怀、高肇俱入宴。勰妃李氏方产，固辞不赴。中使相继召之，不得已，与妃诀而登车，入东掖门，度小桥，牛不肯进，击之良久，更有使者责勰来迟，乃去牛，人挽而进。宴于禁中，至夜，皆醉，各就别所消息。俄而元珍引武士赍毒酒而至，勰曰：“吾无罪，愿一见至尊，死无恨！”元珍曰：“至尊何可复见！”勰曰：“至尊圣明，不应无事杀我，乞与告者一对曲直！”武士以刀镮筑之，勰大言曰：“冤哉，皇天！忠而见杀！”武士又筑之，勰乃饮毒酒，武士就杀之，向晨，以褥裹尸载归其第，云王因醉而薨。李妃号哭大言曰：“高肇枉理杀人，天道有灵，汝安得良死！”魏主举哀于东堂，赠官、葬礼皆优厚加等。在朝贵贱，莫不丧气。行路士女皆流涕曰：“高令公枉杀贤王！”由是中外恶之益甚。...</p></div><p class=meta>1 minute read. Last updated Unknown</p></div></li><li class=section-li><div class=section><div class=desc><h3><a href=https://lzyerste.github.io/quartz/wiki/wiki/%E6%96%87%E5%8F%B2/%E8%B5%84%E6%B2%BB%E9%80%9A%E9%89%B4/%E6%A2%81%E7%BA%AA%E4%B8%83/>梁纪七</a></h3><p>梁纪七 link
+起柔兆敦牂，尽强圉协洽，凡二年。
+高祖武皇帝七普通七年（丙午，公元五二六年） 春，正月，辛丑朔，大赦。
+壬子，魏以汝南王悦领太尉。
+魏安州石离、穴城、斛盐三戍兵反，应杜洛周，众合二万，洛周自松岍赴之。行台常景使别将崔仲哲屯军都关以邀之，仲哲战没，元谭军夜溃，魏以别将李琚代谭为都督。仲哲，秉之子也。
+初，魏广阳王深通于城阳王徽之妃。徽为尚书令，为胡太后所信任；会恒州人请深为刺史，徽言深心不可测。及杜洛周反，五原降户在恒州者谋奉深为主，深惧，上书求还洛阳。魏以左卫将军杨津代深为北道大都督，诏深为吏部尚书。徽，长寿之孙也。
+五原降户鲜于修礼等帅北镇流民反于定州之左城，改元鲁兴，引兵向州城，州兵御之不利。杨津至灵丘，闻定州危迫，引兵救之，入据州城。修礼至，津欲出击之，长史许被不听，津手剑击之，被走得免。津开门出战，斩首数百，贼退，人心少安。诏寻以津为定州刺史兼北道行台。魏以扬州刺史长孙稚为大都督北讨诸军事，与河间王琛共讨修礼。
+二月，甲戌，北伐众军解严。
+魏西部敕勒斛律洛阳反于桑干西，与费也头牧子相连结。三月，甲寅，游击将军尔硃荣击破洛阳于深井，牧子于河西。
+夏，四月，乙酉，临川靖惠王宏卒。
+魏大赦。
+癸巳，魏以侍中、车骑大将军城阳王徽为仪同三司。徽与给事黄门侍郎徐纥共毁侍中元顺于太后，出为护军将军、太常卿。顺奉辞于西游园，纥侍侧，顺指之谓太后曰：“此魏之宰嚭，魏国不亡，此终不死！”纥胁肩而出，顺抗声叱之曰：“尔刀笔小才，正堪供几案之用，岂应污辱门下，斁我彝伦！”因振衣而起。太后默然。
+魏朔州城民鲜于阿胡等据城反。
+杜洛周南出抄掠蓟城，魏常景遣统军梁仲礼击破之。丁未，都督李琚与洛周战于蓟城之北，败没。常景帅众拒之，洛周引还上谷。
+长孙稚行至鄴，诏解大都督，以河间王琛代之。稚上言：“向与琛同在淮南，琛败臣全，遂成私隙，今难以受其节度。”魏朝不听。前至呼沱，稚未欲战，琛不从。鲜于修礼邀击稚于五鹿，琛不赴救，稚军大败，稚、琛并坐除名。
+五月，丁未，魏主下诏将北讨，内外戒严。既而不行。
+衡州刺史元略，自至江南，晨夕哭泣，常如居丧。及魏元义死，胡太后欲召之，知略因刁双获免，征双为光禄大夫，遣江革、祖暅之南还以求略。上备礼遣之，宠赠甚厚。略始济淮，魏拜略为侍中，赐爵义阳王；以司马始宾为给事中，栗法光为本县令，刁昌为东平太守，刁双为西兗州刺史。凡略所过，一飧一宿皆赏之。...</p></div><p class=meta>1 minute read. Last updated Unknown</p></div></li><li class=section-li><div class=section><div class=desc><h3><a href=https://lzyerste.github.io/quartz/wiki/wiki/%E6%96%87%E5%8F%B2/%E8%B5%84%E6%B2%BB%E9%80%9A%E9%89%B4/%E6%A2%81%E7%BA%AA%E4%B8%80/>梁纪一</a></h3><p>梁纪一 link
+起玄黓敦牂，尽阏逢涒滩，凡三年。
+高祖武皇帝一天监元年（壬午，公元五零二年） 春，正月，齐和帝遣兼侍中席阐文等慰劳建康。
+大司马衍下令：“凡东昏时浮费，自非可以习礼乐之容、缮甲兵之务者，馀皆禁绝。”
+戊戌，迎宣德太后入宫，临朝称制，衍解承制。
+己亥，以宁朔将军萧昺监南兗州诸军事。昺，衍之从父弟也。
+壬寅，进大司马衍都督中外诸军事，剑履上殿，赞拜不名。
+己酉，以大司马长史王亮为中书监，兼尚书令。
+初，大司马与黄门侍郎范云南清河太守沈约、司徒右长史任昉同在竟陵王西邸，意好敦密，至是，引云为大司马咨议参军、领录事，约为骠骑司马，昉为记室参军，与参谋议。前吴兴太守谢朏、国子祭酒何胤，先皆弃官家居，衍奏征为军谘祭酒，朏、胤皆不至。大司马内有受禅之志。沈约微扣其端，大司马不应；它日，又进曰：“今与古异，不可以淳风期物。士大夫攀龙附凤者，皆望有尺寸之功。今童儿牧竖皆知齐祚已终，明公当承其运；天文谶记又复炳然。天心不可违，人情不可失。苟历数所在，虽欲谦光，亦不可得已。”大司马曰：“吾方思之。”约曰：“公初建牙樊、沔，此时应思；今王业已成，何所复思！若不早定大业，脱有一人立异，即损威德。且人非金玉，时事难保，岂可以建安之封遗之子孙！若天子还都，公卿在位，则君臣分定，无复异心。君明于上，臣忠于下，岂复有人方更同公作贼！”大司马然之。约出，大司马召范云告之，云对略同约旨。”大司马曰：“智者乃尔暗同。卿明早将休文更来！”云出，语约，约曰：“卿必待我！”云许诺，而约先期入。大司马命草具其事，约乃出怀中诏书并诸选置，大司马初无所改。俄而云自外来，至殿门，不得入，徘徊寿光阁外，但云“咄咄！”约出，问曰：“何以见处？”约举手向左，云笑曰：“不乖所望。”有顷，大司马召云人，叹约才智纵横，且曰：“我起兵于今三年矣，功臣诸将实有其劳，然成帝业者，卿二人也！”
+甲寅，诏进大司马位相国，总百揆，扬州牧，封十郡为梁公，备九锡之礼，置梁百司，去录尚书之号，骠骑大将军如故。二月，辛酉，梁公始受命。
+齐湘东王宝晊，安陆昭王缅之子也，颇好文学。东昏侯死，宝晊望物情归己，坐待法驾。既而王珍国等送首梁公，梁公以宝晊为太常，宝晊心不自安。壬戌，梁公称宝晊谋反，并其弟江陵公宝览、汝南公宝宏皆杀之。
+丙寅，诏梁国选诸要职，悉依天朝之制。于是以沈约为吏部尚书兼右仆射，范云为侍中。
+梁公纳东昏余妃，颇妨政事，范云以为言，梁公未之从。云与侍中、领军将军王茂同入见，云曰：“昔沛公入关，妇女无所幸，此范增所以畏其志大也。今明公始定建康，海内想望风声，奈何袭乱亡之迹，以女德为累乎！”王茂起拜曰：“范云言是也。公必以天下为念，无宜留此。”梁公默然。云即请以余氏赉王茂，梁公贤其意而许之。明日，赐云、茂钱各百万。
+丙戌，诏梁公增封十郡，进爵为王。癸巳，受命，赦国内及府州所统殊死以下。
+辛丑，杀齐邵陵王宝攸、晋熙王宝嵩、桂阳王宝贞。
+梁王将杀齐诸王，防守犹未急。鄱阳王宝寅家阉人颜文智与左右麻拱等密谋，穿墙夜出宝寅。具小船于江岸，著乌布襦，腰系千馀钱，潜赴江侧。蹑屩徒步，足无完肤。防守者至明追之，宝寅诈为钓者，随流上下十馀里，追者不疑。待散，乃渡西岸投民华文荣家，文荣与其族人天龙、惠连弃家将宝寅遁匿山涧，赁驴乘之，昼伏宵行，抵寿阳之东城。魏戍主杜元伦驰告扬州刺史任城王澄，以车马侍卫迎之。宝寅时年十六，徒步憔悴，见者以为掠卖生口。澄待以客礼，宝寅请丧君斩衰之服，澄遣人晓示情礼，以丧兄刘衰之服给之。澄帅官僚赴吊，宝寅居处有礼，一同极哀之节。寿阳多其义故，皆受慰喭；唯不见夏侯一族，以夏侯详从梁王故也。澄深器重之。
+齐和帝东归，以萧憺为都督荆、湘等六州诸军事、荆州刺史。荆州军旅之后，公私空乏，憺厉精为治，广屯田，省力役，存问兵死之家，供其乏困。自以少年居重任，谓佐更曰：“政之不臧，士君子所宜共惜。吾今开怀，卿其无隐！”于是人人得尽意，民有讼者皆立前待符教，决于俄顷，曹无留事，荆人大悦。...</p></div><p class=meta>1 minute read. Last updated Unknown</p></div></li><li class=section-li><div class=section><div class=desc><h3><a href=https://lzyerste.github.io/quartz/wiki/wiki/%E6%96%87%E5%8F%B2/%E5%8F%B2%E8%AE%B0/%E6%A2%81%E5%AD%9D%E7%8E%8B%E4%B8%96%E5%AE%B6/>梁孝王世家</a></h3><p>梁孝王世家 作者： 司马迁
+　梁孝王武者，孝文皇帝子也，而与孝景帝同母。母，窦太后也。
+　孝文帝凡四男：长子曰太子，是为孝景帝；次子武；次子参；次子胜。孝文帝即位二年，以武为代王，以参为太原王，以胜为梁王。二岁，徙代王为淮阳王。以代尽与太原王，号曰代王。参立十七年，孝文後二年卒，谥为孝王。子登嗣立，是为代共王。立二十九年，元光二年卒。子义立，是为代王。十九年，汉广关，以常山为限，而徙代王王清河。清河王徙以元鼎三年也。
+　初，武为淮阳王十年，而梁王胜卒，谥为梁怀王。怀王最少子，爱幸异於他子。其明年，徙淮阳王武为梁王。梁王之初王梁，孝文帝之十二年也。梁王自初王通历已十一年矣。
+　梁王十四年，入朝。十七年，十八年，比年入朝，留，其明年，乃之国。二十一年，入朝。二十二年，孝文帝崩。二十四年，入朝。二十五年，复入朝。是时上未置太子也。上与梁王燕饮，尝从容言曰：“千秋万岁後传於王。”王辞谢。虽知非至言，然心内喜。太后亦然。
+　其春，吴楚齐赵七国反。吴楚先击梁棘壁，杀数万人。梁孝王城守睢阳，而使韩安国、张羽等为大将军，以距吴楚。吴楚以梁为限，不敢过而西，与太尉亚夫等相距三月。吴楚破，而梁所破杀虏略与汉中分。明年，汉立太子。其後梁最亲，有功，又为大国，居天下膏腴地。地北界泰山，西至高阳，四十馀城，皆多大县。
+　孝王，窦太后少子也，爱之，赏赐不可胜道。於是孝王筑东苑，方三百馀里。广睢阳城七十里。大治宫室，为衤复道，自宫连属於平台三十馀里。得赐天子旌旗，出从千乘万骑。东西驰猎，拟於天子。出言，入言警。招延四方豪桀，自山以东游说之士。莫不毕至，齐人羊胜、公孙诡、邹阳之属。公孙诡多奇邪计，初见王，赐千金，官至中尉，梁号之曰公孙将军，梁多作兵器弩弓矛数十万，而府库金钱且百巨万，珠玉宝器多於京师。
+　二十九年十月，梁孝王入朝。景帝使使持节乘舆驷马，迎梁王於关下。既朝，上疏因留，以太后亲故。王入则侍景帝同辇，出则同车游猎，射禽兽上林中。梁之侍中、郎、谒者著籍引出入天子殿门，与汉宦官无异。
+　十一月，上废栗太子，窦太后心欲以孝王为後嗣。大臣及袁盎等有所关说於景帝，窦太后义格，亦遂不复言以梁王为嗣事由此。以事秘，世莫知。乃辞归国。
+　其夏四月，上立胶东王为太子。梁王怨袁盎及议臣，乃与羊胜、公孙诡之属阴使人刺杀袁盎及他议臣十馀人。逐其贼，未得也。於是天子意梁王，逐贼，果梁使之。乃遣使冠盖相望於道，覆按梁，捕公孙诡、羊胜。公孙诡、羊胜匿王後宫。使者责二千石急，梁相轩丘豹及内史韩安国进谏王，王乃令胜、诡皆自杀，出之。上由此怨望於梁王。梁王恐，乃使韩安国因长公主谢罪太后，然后得释。...</p></div><p class=meta>1 minute read. Last updated Unknown</p></div></li><li class=section-li><div class=section><div class=desc><h3><a href=https://lzyerste.github.io/quartz/wiki/wiki/%E6%96%87%E5%8F%B2/%E5%94%90%E8%AF%97%E4%B8%89%E7%99%BE%E9%A6%96/%E6%A1%83%E8%8A%B1%E6%BA%AA_%E5%BC%A0%E6%97%AD/>桃花溪_张旭</a></h3><p>桃花溪 朝代：唐代
+作者： 张旭
+隐隐飞桥隔野烟，石矶西畔问渔船。
+桃花尽日随流水，洞在清溪何处边。</p></div><p class=meta>1 minute read. Last updated Unknown</p></div></li><li class=section-li><div class=section><div class=desc><h3><a href=https://lzyerste.github.io/quartz/wiki/wiki/%E6%96%87%E5%8F%B2/%E5%94%90%E8%AF%97%E4%B8%89%E7%99%BE%E9%A6%96/%E6%A1%83%E6%BA%90%E8%A1%8C_%E7%8E%8B%E7%BB%B4/>桃源行_王维</a></h3><p>桃源行 朝代：唐代
+作者： 王维
+渔舟逐水爱山春，两岸桃花夹古津。
+坐看红树不知远，行尽青溪不见人。
+山口潜行始隈隩，山开旷望旋平陆。
+遥看一处攒云树，近入千家散花竹。
+樵客初传汉姓名，居人未改秦衣服。
+居人共住武陵源，还从物外起田园。
+月明松下房栊静，日出云中鸡犬喧。
+惊闻俗客争来集，竞引还家问都邑。
+平明闾巷扫花开，薄暮渔樵乘水入。
+初因避地去人间，及至成仙遂不还。
+峡里谁知有人事，世中遥望空云山。
+不疑灵境难闻见，尘心未尽思乡县。
+出洞无论隔山水，辞家终拟长游衍。
+自谓经过旧不迷，安知峰壑今来变。
+当时只记入山深，青溪几度到云林。
+春来遍是桃花水，不辨仙源何处寻。</p></div><p class=meta>1 minute read. Last updated Unknown</p></div></li></ul><ul class="pagination pagination-default"><li class=page-item><a href=/quartz/wiki/ aria-label=First class=page-link role=button><span aria-hidden=true>&#171;&#171;</span></a></li><li class=page-item><a href=/quartz/wiki/page/207/ aria-label=Previous class=page-link role=button><span aria-hidden=true>&#171;</span></a></li><li class=page-item><a href=/quartz/wiki/page/206/ aria-label="Page 206" class=page-link role=button>206</a></li><li class=page-item><a href=/quartz/wiki/page/207/ aria-label="Page 207" class=page-link role=button>207</a></li><li class="page-item active"><a aria-current=page aria-label="Page 208" class=page-link role=button>208</a></li><li class=page-item><a href=/quartz/wiki/page/209/ aria-label="Page 209" class=page-link role=button>209</a></li><li class=page-item><a href=/quartz/wiki/page/210/ aria-label="Page 210" class=page-link role=button>210</a></li><li class=page-item><a href=/quartz/wiki/page/209/ aria-label=Next class=page-link role=button><span aria-hidden=true>&#187;</span></a></li><li class=page-item><a href=/quartz/wiki/page/267/ aria-label=Last class=page-link role=button><span aria-hidden=true>&#187;&#187;</span></a></li></ul></article><div id=contact_buttons><footer><p>Made by Jacky Zhao using <a href=https://github.com/jackyzha0/quartz>Quartz</a>, © 2022</p><ul><li><a href=/>Home</a></li><li><a href=https://twitter.com/_jzhao>Twitter</a></li><li><a href=https://github.com/jackyzha0>Github</a></li></ul></footer></div></div><script src=https://lzyerste.github.io/quartz/js/popover.e57188d2e4c06b0654e020b3a734bb62.min.js></script>
 <script>initPopover("https://lzyerste.github.io/quartz")</script></body></html>
