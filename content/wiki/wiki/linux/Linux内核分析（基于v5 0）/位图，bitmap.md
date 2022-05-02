@@ -6,7 +6,7 @@ title: 位图，bitmap
 
 位图接口说明：
 
-[bitmap.h - include/linux/bitmap.h - Linux source code (v5.8.9) - Bootlin](https://elixir.bootlin.com/linux/latest/source/include/linux/bitmap.h)
+[bitmap.h - include/linux/bitmap.h](https://elixir.bootlin.com/linux/latest/source/include/linux/bitmap.h)
 
 ```cpp
 /*

@@ -6,7 +6,7 @@ title: Linux_taskset_Command_Tutorial_for_Beginners
 
 [https://www.howtoforge.com/linux-taskset-command/](https://www.howtoforge.com/linux-taskset-command/)
 
-![linux-taskset-command.jpg](Linux%20taskset%20Command%20Tutorial%20for%20Beginners/linux-taskset-command.jpg)
+![linux-taskset-command.jpg](assets/linux-taskset-command.jpg)
 
 Ever heard of the term processor affinity? It's a feature that allows you to bind or unbind processes to a particular central processing unit, or a range of CPUs. Yes, you can tell the system which CPU core(s) should be used to run a particular process. For theoretical details on why processor affinity exists, head [here](https://en.wikipedia.org/wiki/Processor_affinity).
 

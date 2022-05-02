@@ -28,7 +28,7 @@ title: OJ_online_judge
 
 [A2 Online Judge](https://a2oj.com/ladders)
 
-[Sphere Online Judge (SPOJ)](https://www.spoj.com/)
+[Sphere Online Judge SPOJ](https://www.spoj.com/)
 
 [Main Page - Competitive Programming Algorithms](https://cp-algorithms.com/)
 

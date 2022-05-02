@@ -8,4 +8,4 @@ title: gdbgui
 
 在浏览器里打开效果：
 
-![](assets/Pasted%20image%2020220303101536.png)
+![Pasted image 20220303101536](assets/Pasted image 20220303101536.png)

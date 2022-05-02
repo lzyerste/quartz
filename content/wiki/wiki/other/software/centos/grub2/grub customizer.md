@@ -10,7 +10,7 @@ title: grub_customizer
 
 # grub customizer
 
-[How to Install Grub Customizer on Ubuntu](https://vitux.com/how-to-install-grub-customizer-on-ubuntu/#:~:text=Grub%20Customizer%20is%20a%20useful,boot%20from%20the%20default%20entry)
+[](https://vitux.com/how-to-install-grub-customizer-on-ubuntu/#:~:text=Grub Customizer is a useful,boot from the default entry)
 
 ```c
 sudo add-apt-repository ppa:danielrichter2007/grub-customizer
@@ -28,7 +28,7 @@ In this article, we will explain how to install, launch and remove the software 
 
 Open your Ubuntu command line, the Terminal, either through the system Dash or the Ctrl+Alt+T shortcut.
 
-![Open Ubuntu Terminal](media/Open_Ubuntu_Terminal.png)
+![Open_Ubuntu_Terminal](assets/Open_Ubuntu_Terminal.png)
 
 ### Step 2: Add Grub Customizer PPA repository to your system
 
@@ -38,7 +38,7 @@ $ sudo add-apt-repository ppa:danielrichter2007/grub-customizer
 
 Tip: Instead of typing the command, you can copy it from here and paste into the Terminal by using the Ctrl+Shift+V, or by using the Paste option from the right-click menu.
 
-![Add Ubuntu PPA for Grub Customizer](media/Add_Ubuntu_PPA_for_Grub_Customizer.png)
+![Add_Ubuntu_PPA_for_Grub_Customizer](assets/Add_Ubuntu_PPA_for_Grub_Customizer.png)
 
 Please note that only an authorized user can add, remove and configure software on Ubuntu. Enter the password for sudo, after which the PPA repository will be added to your system.
 
@@ -50,7 +50,7 @@ $ sudo apt-get update
 
 This helps you in installing the latest available version of a software from the Internet.
 
-![Update package list](media/Update_package_list.png)
+![Update_package_list](assets/Update_package_list.png)
 
 ### Step 4: Install Grub Customizer
 
@@ -58,7 +58,7 @@ Now that you are done with all the prerequisites required to install the Grub Cu
 
 $ sudo apt-get install grub-customizer
 
-![Install Grub Customizer](media/Install_Grub_Customizer.png)
+![Install_Grub_Customizer](assets/Install_Grub_Customizer.png)
 
 The system will prompt you with a Y/n option to proceed with the installation procedure. Enter Y to continue after which the software will be installed on your system.
 
@@ -70,7 +70,7 @@ $ grub-customizer --version
 
 $ grub-customizer -v
 
-![Check the installed software version](media/Check_the_installed_software_version.png)
+![Check_the_installed_software_version](assets/Check_the_installed_software_version.png)
 
 The above output shows that Grub Customizer version 5.1.0, which is the latest version of the software, is installed on my system.
 
@@ -80,7 +80,7 @@ You can launch the Grub Customizer through the command line by entering the foll
 
 $ grub-customizer
 
-![Get administrative privileges](media/Get_administrative_privileges.png)
+![Get_administrative_privileges](assets/Get_administrative_privileges.png)
 
 The software requires root access to run the software as only an authorized user can make configurations to the system Grub.
 
@@ -88,11 +88,11 @@ Enter the password for root and click the Authenticate button after which the Gr
 
 Alternatively, you can launch the software through the system Dash search results as follows:
 
-![Grub Customizer Icon](media/Grub_Customizer_Icon.png)
+![Grub_Customizer_Icon](assets/Grub_Customizer_Icon.png)
 
 This is how the Grub Customizer UI looks like:
 
-![Customize Grub Configuration with Grub Customizer](media/Customize_Grub_Configuration_with_Grub_Customizer.png)
+![Customize_Grub_Configuration_with_Grub_Customizer](assets/Customize_Grub_Configuration_with_Grub_Customizer.png)
 
 ## How to Uninstall?
 
@@ -100,7 +100,7 @@ If you ever want to remove the Grub Customizer from your system, you can do so b
 
 $ sudo apt-get remove grub-customizer
 
-![Remove Grub Customizer](media/Remove_Grub_Customizer.png)
+![Remove_Grub_Customizer](assets/Remove_Grub_Customizer.png)
 
 The system will prompt you with a Y/n option to proceed with the uninstall procedure. Enter Y to continue after which the software will be removed from your system.
 
@@ -108,7 +108,7 @@ If you no longer want to keep the PPA repository that you had used to install th
 
 $ sudo rm /etc/apt/sources.list.d/danielrichter2007-ubuntu-grub-customizer-bionic.list
 
-![remove PPA](media/remove_PPA.png)
+![remove_PPA](assets/remove_PPA.png)
 
 Alternatively, you can use Software & Updates utility from the GUI in order to remove the PPA.
 

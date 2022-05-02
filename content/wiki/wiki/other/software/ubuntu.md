@@ -16,9 +16,9 @@ package搜索： https://pkgs.org/
 
 [⭐给root用户添加密码，允许ssh以root连接](ubuntu/给root用户添加密码，允许ssh以root连接.md)
 
-[修改鼠标滚轮速度，往前、往后](ubuntu/修改鼠标滚轮速度，往前、往后%20d1403a1b24584cc1a1758c9c80378a39.md)
+[修改鼠标滚轮速度，往前、往后](ubuntu/修改鼠标滚轮速度，往前、往后 d1403a1b24584cc1a1758c9c80378a39.md)
 
-[耳机麦克风没声音](ubuntu/耳机麦克风没声音%2093ef3bf01a4b4a30b56dcd221f2a3618.md)
+[耳机麦克风没声音](ubuntu/耳机麦克风没声音 93ef3bf01a4b4a30b56dcd221f2a3618.md)
 
 [ubuntu桌面卡顿](ubuntu/ubuntu桌面卡顿.md)
 
@@ -38,7 +38,7 @@ usermod -aG sudo lzy
 
 # 发行版内核版本及glibc版本
 
-![](assets/Pasted%20image%2020220210143050.png)
+![Pasted image 20220210143050](assets/Pasted image 20220210143050.png)
 
 # 锁屏后显示Authentication Failure Switch to greeter...
 
@@ -56,4 +56,4 @@ Ubuntu 16.04安装4.15.0-42（降级）内核后，没有网络了，看不到�
 
 解决办法：重装网络驱动。
 
-[How To get your Realtek RTL8111/RTL8168 working (updated guide) -](https://unixblogger.com/how-to-get-your-realtek-rtl8111rtl8168-working-updated-guide/)
+[How To get your Realtek RTL8111/RTL8168 working (updated guide) -](updated guide) -)%20-](https://unixblogger.com/how-to-get-your-realtek-rtl8111rtl8168-working-updated-guide/)

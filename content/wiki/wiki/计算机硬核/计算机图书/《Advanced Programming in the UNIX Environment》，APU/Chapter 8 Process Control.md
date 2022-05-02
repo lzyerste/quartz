@@ -33,13 +33,13 @@ title: Chapter_8_Process_Control
 
 ## exec Functions
 
-[Chapter%208%20Process%20Control/untitled](Chapter%208%20Process%20Control/untitled)
+![Chapter%208%20Process%20Control/untitled.png](assets/c01649790e2adeefba5084bae3930e80.png)
 
 fexecve要不要关闭fd呢？
 
 ## 8.11 Changing User IDs and Group IDs
 
-[Chapter%208%20Process%20Control/untitled%201](Chapter%208%20Process%20Control/untitled%201)
+![Chapter%208%20Process%20Control/untitled%201](assets/ff63124c34755c4edcc637ec778dd0d6.png)
 
 ## 8.16 Process Scheduling
 
@@ -51,4 +51,4 @@ fexecve要不要关闭fd呢？
 
 ## 例子
 
-[Examples](Chapter%208%20Process%20Control/Examples.csv)
+[Examples](assets/Examples.csv)

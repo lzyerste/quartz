@@ -296,4 +296,6 @@ https://stackoverflow.com/questions/1580596/how-do-i-make-git-ignore-file-mode-c
 git config core.filemode false
 ```
 
+# git-old
+
 ![git-old](../personal/git-old.md)

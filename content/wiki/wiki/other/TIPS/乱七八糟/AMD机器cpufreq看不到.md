@@ -14,4 +14,4 @@ Found out the problem. It was indeed a firmware update with my BIOS which disabl
 
 ---
 
-[CPU frequency scaling - ArchWiki](AMD%E6%9C%BA%E5%99%A8cpufreq%E7%9C%8B%E4%B8%8D%E5%88%B0/CPU%20frequency%20scaling%20-%20ArchWiki.md)
+[CPU frequency scaling - ArchWiki](AMD机器cpufreq看不到/CPU frequency scaling - ArchWiki.md)

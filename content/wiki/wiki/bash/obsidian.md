@@ -32,7 +32,7 @@ markdown文件管理及浏览使用obsidian，编辑可使用[typora](../other/s
 # 优点
 - 支持tag
 - 支持alias别名
-- 支持双链: `[[link]]`，link就是文件名，不用全路径，如果有文件重名它才会全路径区分。文件重命名后（文件夹也可以），会提示更新双链。
+- 支持双链: `[link](link)`，link就是文件名，不用全路径，如果有文件重名它才会全路径区分。文件重命名后（文件夹也可以），会提示更新双链。
 - 支持vim模式
 - 跨平台完美。包括插件同步，包括当前打开的状态。
 - 可以直接粘贴图片。
@@ -52,6 +52,12 @@ markdown文件管理及浏览使用obsidian，编辑可使用[typora](../other/s
 - [x] ~~emoji不支持？`:emoji:`形式。可以使用插件。~~
 
 # 插件
+
+## consistent
+
+它把附件挪到文档本地
+
+![Pasted image 20220502132956](assets/Pasted image 20220502132956.png)
 
 ## calendar，3星
 
@@ -77,7 +83,7 @@ markdown文件管理及浏览使用obsidian，编辑可使用[typora](../other/s
 
 使用一个md文件来做kanban。
 
-![](../../personal/assets/Pasted%20image%2020220117100624.png)
+![Pasted image 20220117100624](../../personal/assets/Pasted image 20220117100624.png)
 
 ## link-converter，4星
 
@@ -323,9 +329,9 @@ cpu1: Active zones=4 others=1511 capacity=0011B800 size=00200000 dtags=154
 
 深色主题效果：
 
-![](assets/Pasted%20image%2020220424175829.png)
+![Pasted image 20220424175829](assets/Pasted image 20220424175829.png)
 
-![](assets/Pasted%20image%2020220424175921.png)
+![Pasted image 20220424175921](assets/Pasted image 20220424175921.png)
 
 ---
 

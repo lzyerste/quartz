@@ -8,7 +8,7 @@ Desc: use of the access function
 Figure: 4.8
 File: access.c
 
-[access%2086d8aeaaf7bc44c49c3327d336dc1c61/untitled](access%2086d8aeaaf7bc44c49c3327d336dc1c61/untitled)
+![access%2086d8aeaaf7bc44c49c3327d336dc1c61/untitled](assets/d222868dec18cc4577727e59f07e882b.png)
 
 ```c
 #include "apue.h"

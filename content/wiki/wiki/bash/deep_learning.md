@@ -22,13 +22,13 @@ title: deep_learning
 
 [Facebook Field Guide to Machine Learning - video series - Hacker News](https://news.ycombinator.com/item?id=17707292)
 
-[高赞新书《可解释的机器学习》出版：理解黑盒必备，免费资源](https://mp.weixin.qq.com/s?__biz=MzIzNjc1NzUzMw%3D%3D&mid=2247515087&idx=3&sn=b4374c97ecb246d579b88c6fe3123ac3#%E2%80%9CWow%EF%BC%81%E2%80%9D)
+[](https://mp.weixin.qq.com/s?__biz=MzIzNjc1NzUzMw%3D%3D&mid=2247515087&idx=3&sn=b4374c97ecb246d579b88c6fe3123ac3#“Wow！”)
 
 [ShiqiYu/libfacedetection](https://github.com/ShiqiYu/libfacedetection)
 
 [8 个超赞的深度学习课程（附评分）](https://zhuanlan.zhihu.com/p/43831189)
 
-[Foundations of Machine Learning](https://bloomberg.github.io/foml/#home)
+[](https://bloomberg.github.io/foml/#home)
 
 [Machine Learning for Beginners: An Introduction to Neural Networks - victorzhou.com](https://victorzhou.com/blog/intro-to-neural-networks/)
 

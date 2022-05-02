@@ -4,7 +4,7 @@ title: scp
 
 # scp
 
-[每天学一个 Linux 命令（60）：scp](scp/每天学一个%20Linux%20命令（60）：scp%201de49d3579c747fb8aeccfeba995510a.md)
+[每天学一个 Linux 命令（60）：scp](scp/每天学一个 Linux 命令（60）：scp 1de49d3579c747fb8aeccfeba995510a.md)
 
 ```shell
 $ cheat scp

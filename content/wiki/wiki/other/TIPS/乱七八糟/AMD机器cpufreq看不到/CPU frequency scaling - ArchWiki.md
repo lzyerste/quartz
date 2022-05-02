@@ -43,7 +43,7 @@ The configuration file for cpupower is located in `/etc/default/cpupower`. This 
 
 cpupower requires modules to know the limits of the native CPU:
 
-[Untitled](CPU%20frequency%20scaling%20-%20ArchWiki/Untitled%20Database%20947854b40d78462995c4b4134afc01d3.csv)
+[Untitled](assets/Untitled%20Database%20947854b40d78462995c4b4134afc01d3.csv)
 
 To see a full list of available modules, run:
 
@@ -116,7 +116,7 @@ The available values can be found in `/sys/devices/system/cpu/cpu*/cpufreq/scali
 
 Governors (see table below) are power schemes for the CPU. Only one may be active at a time. For details, see the [kernel documentation](https://www.kernel.org/doc/Documentation/cpu-freq/governors.txt) in the kernel source.
 
-[Untitled](CPU%20frequency%20scaling%20-%20ArchWiki/Untitled%20Database%20ca3782b1740243f9b62321d60081e268.csv)
+[Untitled](assets/Untitled%20Database%20ca3782b1740243f9b62321d60081e268.csv)
 
 Depending on the scaling driver, one of these governors will be loaded by default:
 

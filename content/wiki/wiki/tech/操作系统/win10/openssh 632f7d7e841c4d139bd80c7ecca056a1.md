@@ -8,7 +8,7 @@ title: openssh_632f7d7e841c4d139bd80c7ecca056a1
     - [http://woshub.com/installing-sftp-ssh-ftp-server-on-windows-server-2012-r2/](http://woshub.com/installing-sftp-ssh-ftp-server-on-windows-server-2012-r2/)
     - [https://blog.csdn.net/weixin_43064185/article/details/90080815](https://blog.csdn.net/weixin_43064185/article/details/90080815)
     
-    ![openssh%20632f7d7e841c4d139bd80c7ecca056a1/Untitled.png](openssh%20632f7d7e841c4d139bd80c7ecca056a1/Untitled.png)
+    ![openssh%20632f7d7e841c4d139bd80c7ecca056a1/Untitled.png](assets/2022-05-02_11-13-30.png)
     
     启动ssh：`net start sshd`
     
@@ -26,7 +26,7 @@ title: openssh_632f7d7e841c4d139bd80c7ecca056a1
         
         重启sshd服务：
         
-        ![openssh%20632f7d7e841c4d139bd80c7ecca056a1/Untitled%201.png](openssh%20632f7d7e841c4d139bd80c7ecca056a1/Untitled%201.png)
+        ![openssh%20632f7d7e841c4d139bd80c7ecca056a1/Untitled%201.png](assets/2022-05-02_11-29-02.png)
         
 
 ## ssh连接到cygwin
@@ -60,7 +60,7 @@ Port 2222
 net start cygsshd
 ```
 
-![openssh%20632f7d7e841c4d139bd80c7ecca056a1/Untitled%202.png](openssh%20632f7d7e841c4d139bd80c7ecca056a1/Untitled%202.png)
+![openssh%20632f7d7e841c4d139bd80c7ecca056a1/Untitled%202.png](assets/2022-05-02_11-28-54.png)
 
 使用win10自带的cmd先连接下cygwin
 

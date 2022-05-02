@@ -13,7 +13,7 @@ Tags: Design, Stack, Tree
 
 [Binary Search Tree Iterator - LeetCode](https://leetcode.com/problems/binary-search-tree-iterator/)
 
-[94. Binary Tree Inorder Traversal](94%20Binary%20Tree%20Inorder%20Traversal%2018f3bd8177974b9b97921a5859cb89bc.md) 
+[94. Binary Tree Inorder Traversal](94 Binary Tree Inorder Traversal 18f3bd8177974b9b97921a5859cb89bc.md) 
 
 ## 题意
 

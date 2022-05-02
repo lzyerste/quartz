@@ -26,7 +26,7 @@ Return *the minimum cost to make all points connected.* All points are connect
 ![https://assets.leetcode.com/uploads/2020/08/26/d.png](https://assets.leetcode.com/uploads/2020/08/26/d.png)
 
 ```
-Input: points = [[0,0],[2,2],[3,10],[5,2],[7,0]]
+Input: points = [0,0](0,0)
 Output: 20
 Explanation:
 
@@ -40,7 +40,7 @@ Notice that there is a unique path between every pair of points.
 **Example 2:**
 
 ```
-Input: points = [[3,12],[-2,5],[-4,1]]
+Input: points = [3,12](3,12)
 Output: 18
 
 ```
@@ -48,7 +48,7 @@ Output: 18
 **Example 3:**
 
 ```
-Input: points = [[0,0],[1,1],[1,0],[-1,1]]
+Input: points = [0,0](0,0)
 Output: 4
 
 ```
@@ -56,7 +56,7 @@ Output: 4
 **Example 4:**
 
 ```
-Input: points = [[-1000000,-1000000],[1000000,1000000]]
+Input: points = [-1000000,-1000000](-1000000,-1000000)
 Output: 4000000
 
 ```
@@ -64,7 +64,7 @@ Output: 4000000
 **Example 5:**
 
 ```
-Input: points = [[0,0]]
+Input: points = [0,0](0,0)
 Output: 0
 
 ```

@@ -25,8 +25,8 @@ export TERMINAL=gnome-terminal
 
 安装前：
 
-![dracula%E4%B8%BB%E9%A2%98%206edfad19d53f4eec86a6ecccda23c74c/Untitled.png](dracula%E4%B8%BB%E9%A2%98%206edfad19d53f4eec86a6ecccda23c74c/Untitled.png)
+![dracula主题 6edfad19d53f4eec86a6ecccda23c74c/Untitled.png](dracula主题 6edfad19d53f4eec86a6ecccda23c74c/2022-05-02_11-20-30.png)
 
 安装后并选择Dracula主题（Terminal，右键，Profiles，选择Dracula）：
 
-![dracula%E4%B8%BB%E9%A2%98%206edfad19d53f4eec86a6ecccda23c74c/Untitled%201.png](dracula%E4%B8%BB%E9%A2%98%206edfad19d53f4eec86a6ecccda23c74c/Untitled%201.png)
+![dracula主题 6edfad19d53f4eec86a6ecccda23c74c/Untitled 1.png](assets/ebfe2b9eee1b17c988743220e5988536.png)

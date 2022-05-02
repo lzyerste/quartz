@@ -6,7 +6,7 @@ title: ioremap___and_memremap___[LWN_net]
 
 [https://lwn.net/Articles/653585/](https://lwn.net/Articles/653585/)
 
-[Untitled](ioremap()%20and%20memremap()%20%5BLWN%20net%5D/Untitled%20Database%2096f985a83d59403ab7d8f4f8e2793c67.csv)
+[ioremap and memremap](assets/Untitled%20Database%2096f985a83d59403ab7d8f4f8e2793c67.csv)
 
 Like user space, the kernel accesses memory through page tables; as a result, when kernel code needs to access memory-mapped I/O devices, it must first set up an appropriate kernel page-table mapping. The in-kernel tool for that job has long been ioremap(), which has a number of variants. It turns out that some of those variants are not always the right tool for the job, leading to a certain amount of workaround code in the kernel. That situation may change, though, as part of a move away from ioremap() for the problematic cases.
 

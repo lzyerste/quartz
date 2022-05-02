@@ -8,9 +8,9 @@ title: Chapter_7_Process_Environment
 
 main程序的开始与结束：
 
-[Chapter%207%20Process%20Environment/untitled](Chapter%207%20Process%20Environment/untitled)
+![Chapter%207%20Process%20Environment/untitled](assets/db8aba0355a1fbe25e15da0845ed1409.png)
 
-[Chapter%207%20Process%20Environment/untitled%201](Chapter%207%20Process%20Environment/untitled%201)
+![Chapter%207%20Process%20Environment/untitled%201](assets/759258550f7525b8b638c234ecf7d772.png)
 
 ## Memory Allocation
 
@@ -20,4 +20,4 @@ main程序的开始与结束：
 
 ## 例子
 
-[Examples](Chapter%207%20Process%20Environment/Examples.csv)
+[Examples](assets/Examples.csv)

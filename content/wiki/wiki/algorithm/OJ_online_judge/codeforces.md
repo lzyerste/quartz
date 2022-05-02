@@ -10,6 +10,6 @@ title: codeforces
 
 A2OJ, 1400~1499
 
-[模板](codeforces/%E6%A8%A1%E6%9D%BF.md)
+[模板](codeforces/模板.md)
 
-[codeforces题解](codeforces/codeforces%E9%A2%98%E8%A7%A3.csv)
+[codeforces题解](assets/codeforces题解.csv)

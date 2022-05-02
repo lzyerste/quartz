@@ -6,7 +6,7 @@ title: Adults_only__SQL_for_Beginners__1__52158789a1c54eb6be02ff94f73ffb72
 
 难度: 8kyu
 
-[Adults only (SQL for Beginners #1)](https://www.codewars.com/kata/adults-only-sql-for-beginners-number-1)
+[](SQL for Beginners #1)](https://www.codewars.com/kata/adults-only-sql-for-beginners-number-1)
 
 ## 题意
 

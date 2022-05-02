@@ -44,7 +44,7 @@ mod -s venice /home/shannon/swift-kv/venice.ko
 
 ---
 
-[Chapter 7. Kernel crash dump guide Red Hat Enterprise Linux 7 | Red Hat Customer Portal](kdump/Chapter%207%20Kernel%20crash%20dump%20guide%20Red%20Hat%20Enterpri.md)
+[Chapter 7. Kernel crash dump guide Red Hat Enterprise Linux 7 | Red Hat Customer Portal](kdump/Chapter 7 Kernel crash dump guide Red Hat Enterpri.md)
 
 [Analyzing Linux kernel crash dumps with crash - The one tutorial that has it all](https://www.dedoimedo.com/computers/crash-analyze.html)
 

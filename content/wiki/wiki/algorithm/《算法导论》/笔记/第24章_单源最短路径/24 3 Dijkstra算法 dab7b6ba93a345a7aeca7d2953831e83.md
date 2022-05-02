@@ -33,6 +33,6 @@ def dijkstra(G, s, D, P):
                 heapq.heappush(Q, (D[v], v))
 ```
 
-![Figure 24.6](24%203%20Dijkstra%E7%AE%97%E6%B3%95%20dab7b6ba93a345a7aeca7d2953831e83/Untitled.png)
+![2022-05-02_11-24-11](24 3 Dijkstra算法 dab7b6ba93a345a7aeca7d2953831e83/2022-05-02_11-24-11.png)
 
 Figure 24.6

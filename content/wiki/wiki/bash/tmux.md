@@ -48,17 +48,17 @@ set -g mode-keys vi
 
 ---
 
-[tmux，我的配置](tmux/tmux，我的配置%2088e04fb489db455da93bcddb8e6c0821.md)
+[tmux，我的配置](tmux/tmux，我的配置 88e04fb489db455da93bcddb8e6c0821.md)
 
-[安装tmux-continuum](tmux/安装tmux-continuum%20fb66ac810d08446f9b32c4e4e1f5cd83.md)
+[安装tmux-continuum](tmux/安装tmux-continuum fb66ac810d08446f9b32c4e4e1f5cd83.md)
 
 [Tmux Cheat Sheet & Quick Reference](https://tmuxcheatsheet.com/)
 
-[配置参考](tmux/配置参考%2016bd54c9071446e086cc99d400ecd44b.md)
+[配置参考](tmux/配置参考 16bd54c9071446e086cc99d400ecd44b.md)
 
-[mac iterm2 tmux鼠标不起作用](tmux/mac%20iterm2%20tmux鼠标不起作用%204a418341012b4d229f44981418e3fcf0.md)
+[mac iterm2 tmux鼠标不起作用](tmux/mac iterm2 tmux鼠标不起作用 4a418341012b4d229f44981418e3fcf0.md)
 
-[mac一打开就crash](tmux/mac一打开就crash%204ff156e6d60846b7834b4872028d4f84.md)
+[mac一打开就crash](tmux/mac一打开就crash 4ff156e6d60846b7834b4872028d4f84.md)
 
 ## ⭐保存scroll buffer内容到文件
 
@@ -81,7 +81,7 @@ bind-key P 'capture-pane -S - ; save-buffer tmux.buffer'
 
 比如创建一个window，自动化布局好，并各自ssh连接到机器。
 
-[autotmux](../config/tmux/autotmux)
+autotmux: ../../config/tmux/autotmux
 
 可以放到~/.local/bin下，制作成命令。
 
@@ -107,7 +107,7 @@ tmux split-window -h -t 0:temp.7 -c "~" 'ssh hjb-test'
 
 效果：
 
-![](assets/Pasted%20image%2020220216173617.png)
+![Pasted image 20220216173617](assets/Pasted image 20220216173617.png)
 
 ## 不同屏幕大小
 

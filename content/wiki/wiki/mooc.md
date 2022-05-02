@@ -14,7 +14,7 @@ title: mooc
 
 [edX](https://www.edx.org/)
 
-[极客时间](mooc/%E6%9E%81%E5%AE%A2%E6%97%B6%E9%97%B4.md)
+[极客时间](mooc/极客时间.md)
 
 [Coursera](mooc/Coursera.md)
 
@@ -30,6 +30,6 @@ title: mooc
 
 [Harvard](mooc/Harvard.md)
 
-[课程列表](mooc/课程列表.csv)
+[课程列表](assets/课程列表.csv)
 
 [CS50](mooc/CS50.md)

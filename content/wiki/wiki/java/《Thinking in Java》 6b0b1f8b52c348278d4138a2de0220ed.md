@@ -6,7 +6,7 @@ title: 《Thinking_in_Java》_6b0b1f8b52c348278d4138a2de0220ed
 
 ---
 
-[Overview (Java SE 9 & JDK 9 )](https://docs.oracle.com/javase/9/docs/api/overview-summary.html)
+[Overview (Java SE 9 & JDK 9 )](Java SE 9 & JDK 9 ))](https://docs.oracle.com/javase/9/docs/api/overview-summary.html)
 
 JDK文档
 
@@ -48,7 +48,7 @@ JDK文档
 
 [A Guide to the finalize Method in Java | Baeldung](https://www.baeldung.com/java-finalize)
 
-[java.lang.Object.finalize() is finally deprecated](https://hackernoon.com/java-lang-object-finalize-is-finally-deprecated-f99df40fa71)
+[java.lang.Object.finalize() is finally deprecated]() is finally deprecated)%20is%20finally%20deprecated](https://hackernoon.com/java-lang-object-finalize-is-finally-deprecated-f99df40fa71)
 
 # Access Control
 
@@ -63,7 +63,7 @@ JDK文档
 
 class只有public或package access。inner class呢，可以有private？
 
-[Controlling Access to Members of a Class (The Java™ Tutorials > Learning the Java Language > Classes and Objects)](https://docs.oracle.com/javase/tutorial/java/javaOO/accesscontrol.html)
+[Controlling Access to Members of a Class (The Java™ Tutorials > Learning the Java Language > Classes and Objects)](The Java™ Tutorials > Learning the Java Language > Classes and Objects))](https://docs.oracle.com/javase/tutorial/java/javaOO/accesscontrol.html)
 
 # Reusing Classes
 

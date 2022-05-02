@@ -12,7 +12,7 @@ Prepatch Prepatch or "RC" kernels are mainline kernel pre-releases that are most
 
 Longterm release kernels
 
-[Untitled](The%20Linux%20Kernel%20Archives%20-%20Releases/Untitled%20Database%2002a2963f239d4771af109f1a4a1e2242.csv)
+[Untitled](The Linux Kernel Archives - Releases/Untitled Database 02a2963f239d4771af109f1a4a1e2242.csv)
 
 ## Distribution kernels
 

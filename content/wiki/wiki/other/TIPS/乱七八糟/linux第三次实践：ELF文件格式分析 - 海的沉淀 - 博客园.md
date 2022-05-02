@@ -30,21 +30,21 @@ Tags: elf
     
     进入终端输入:cd /usr/include 进入include文件夹后查看elf.h文件，查看ELF的文件头包含整个文件的控制结构 
     
-    ![linux%E7%AC%AC%E4%B8%89%E6%AC%A1%E5%AE%9E%E8%B7%B5%EF%BC%9AELF%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F%E5%88%86%E6%9E%90%20-%20%E6%B5%B7%E7%9A%84%E6%B2%89%E6%B7%80%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD/image001.png](linux%E7%AC%AC%E4%B8%89%E6%AC%A1%E5%AE%9E%E8%B7%B5%EF%BC%9AELF%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F%E5%88%86%E6%9E%90%20-%20%E6%B5%B7%E7%9A%84%E6%B2%89%E6%B7%80%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD/image001.png)
+    ![linux第三次实践：ELF文件格式分析 - 海的沉淀 - 博客园/image001.png](linux第三次实践：ELF文件格式分析 - 海的沉淀 - 博客园/image001.png)
     
 - 
     
     写一个小程序（hello 20135328）进行编译，生成hello可执行文件。 使用‘readelf –a hello’命令，都得到下面的ELF Header头文件的信息，如下图： 
     
-    ![linux%E7%AC%AC%E4%B8%89%E6%AC%A1%E5%AE%9E%E8%B7%B5%EF%BC%9AELF%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F%E5%88%86%E6%9E%90%20-%20%E6%B5%B7%E7%9A%84%E6%B2%89%E6%B7%80%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD/image005.png](linux%E7%AC%AC%E4%B8%89%E6%AC%A1%E5%AE%9E%E8%B7%B5%EF%BC%9AELF%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F%E5%88%86%E6%9E%90%20-%20%E6%B5%B7%E7%9A%84%E6%B2%89%E6%B7%80%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD/image005.png)
+    ![linux第三次实践：ELF文件格式分析 - 海的沉淀 - 博客园/image005.png](linux第三次实践：ELF文件格式分析 - 海的沉淀 - 博客园/image005.png)
     
-    ![linux%E7%AC%AC%E4%B8%89%E6%AC%A1%E5%AE%9E%E8%B7%B5%EF%BC%9AELF%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F%E5%88%86%E6%9E%90%20-%20%E6%B5%B7%E7%9A%84%E6%B2%89%E6%B7%80%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD/image007.png](linux%E7%AC%AC%E4%B8%89%E6%AC%A1%E5%AE%9E%E8%B7%B5%EF%BC%9AELF%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F%E5%88%86%E6%9E%90%20-%20%E6%B5%B7%E7%9A%84%E6%B2%89%E6%B7%80%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD/image007.png)
+    ![linux第三次实践：ELF文件格式分析 - 海的沉淀 - 博客园/image007.png](linux第三次实践：ELF文件格式分析 - 海的沉淀 - 博客园/image007.png)
     
 - 
     
     通过上图信息，可以得出Elf Header的Size为52bytes，所以可以使用hexdump工具将头文件的16进制表打开。 如下图使用：‘hexdump -x hello -n 52 ’命令来查看hello文件头的16进制表（前52bytes）对格式进行分析。 
     
-    ![linux%E7%AC%AC%E4%B8%89%E6%AC%A1%E5%AE%9E%E8%B7%B5%EF%BC%9AELF%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F%E5%88%86%E6%9E%90%20-%20%E6%B5%B7%E7%9A%84%E6%B2%89%E6%B7%80%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD/QQE688AAE59BBE20160601195715.png](linux%E7%AC%AC%E4%B8%89%E6%AC%A1%E5%AE%9E%E8%B7%B5%EF%BC%9AELF%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F%E5%88%86%E6%9E%90%20-%20%E6%B5%B7%E7%9A%84%E6%B2%89%E6%B7%80%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD/QQE688AAE59BBE20160601195715.png)
+    ![linux第三次实践：ELF文件格式分析 - 海的沉淀 - 博客园/QQE688AAE59BBE20160601195715.png](linux第三次实践：ELF文件格式分析 - 海的沉淀 - 博客园/QQE688AAE59BBE20160601195715.png)
     
 - 
     
@@ -82,39 +82,39 @@ Tags: elf
 - file elf显示生成的目标文件hello的类型
 - elf是一个可执行文件。输入：ls –l hello查看hello的大小：
     
-    ![linux%E7%AC%AC%E4%B8%89%E6%AC%A1%E5%AE%9E%E8%B7%B5%EF%BC%9AELF%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F%E5%88%86%E6%9E%90%20-%20%E6%B5%B7%E7%9A%84%E6%B2%89%E6%B7%80%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD/image013.png](linux%E7%AC%AC%E4%B8%89%E6%AC%A1%E5%AE%9E%E8%B7%B5%EF%BC%9AELF%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F%E5%88%86%E6%9E%90%20-%20%E6%B5%B7%E7%9A%84%E6%B2%89%E6%B7%80%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD/image013.png)
+    ![linux第三次实践：ELF文件格式分析 - 海的沉淀 - 博客园/image013.png](linux第三次实践：ELF文件格式分析 - 海的沉淀 - 博客园/image013.png)
     
 - 如图可知，hello大小为7336字节。 输入：hexdump –x hello来用16进制的数字来显示hello的内容 （其中，第二列是16进制表示的偏移地址）
     
-    ![linux%E7%AC%AC%E4%B8%89%E6%AC%A1%E5%AE%9E%E8%B7%B5%EF%BC%9AELF%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F%E5%88%86%E6%9E%90%20-%20%E6%B5%B7%E7%9A%84%E6%B2%89%E6%B7%80%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD/QQE688AAE59BBE20160601193548.png](linux%E7%AC%AC%E4%B8%89%E6%AC%A1%E5%AE%9E%E8%B7%B5%EF%BC%9AELF%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F%E5%88%86%E6%9E%90%20-%20%E6%B5%B7%E7%9A%84%E6%B2%89%E6%B7%80%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD/QQE688AAE59BBE20160601193548.png)
+    ![linux第三次实践：ELF文件格式分析 - 海的沉淀 - 博客园/QQE688AAE59BBE20160601193548.png](linux第三次实践：ELF文件格式分析 - 海的沉淀 - 博客园/QQE688AAE59BBE20160601193548.png)
     
     输入：objdump –x hello来显示hello中各个段以及符号表的相关信息:
     
 - 
     
-    ![linux%E7%AC%AC%E4%B8%89%E6%AC%A1%E5%AE%9E%E8%B7%B5%EF%BC%9AELF%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F%E5%88%86%E6%9E%90%20-%20%E6%B5%B7%E7%9A%84%E6%B2%89%E6%B7%80%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD/image015.png](linux%E7%AC%AC%E4%B8%89%E6%AC%A1%E5%AE%9E%E8%B7%B5%EF%BC%9AELF%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F%E5%88%86%E6%9E%90%20-%20%E6%B5%B7%E7%9A%84%E6%B2%89%E6%B7%80%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD/image015.png)
+    ![linux第三次实践：ELF文件格式分析 - 海的沉淀 - 博客园/image015.png](linux第三次实践：ELF文件格式分析 - 海的沉淀 - 博客园/image015.png)
     
     输入：readelf –a hello来查看各个段信息：
     
 - ELF文件头信息：
     
-    ![linux%E7%AC%AC%E4%B8%89%E6%AC%A1%E5%AE%9E%E8%B7%B5%EF%BC%9AELF%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F%E5%88%86%E6%9E%90%20-%20%E6%B5%B7%E7%9A%84%E6%B2%89%E6%B7%80%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD/image017.png](linux%E7%AC%AC%E4%B8%89%E6%AC%A1%E5%AE%9E%E8%B7%B5%EF%BC%9AELF%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F%E5%88%86%E6%9E%90%20-%20%E6%B5%B7%E7%9A%84%E6%B2%89%E6%B7%80%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD/image017.png)
+    ![linux第三次实践：ELF文件格式分析 - 海的沉淀 - 博客园/image017.png](linux第三次实践：ELF文件格式分析 - 海的沉淀 - 博客园/image017.png)
     
     段表Section header table：
     
 - 
     
-    ![linux%E7%AC%AC%E4%B8%89%E6%AC%A1%E5%AE%9E%E8%B7%B5%EF%BC%9AELF%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F%E5%88%86%E6%9E%90%20-%20%E6%B5%B7%E7%9A%84%E6%B2%89%E6%B7%80%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD/image025.png](linux%E7%AC%AC%E4%B8%89%E6%AC%A1%E5%AE%9E%E8%B7%B5%EF%BC%9AELF%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F%E5%88%86%E6%9E%90%20-%20%E6%B5%B7%E7%9A%84%E6%B2%89%E6%B7%80%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD/image025.png)
+    ![linux第三次实践：ELF文件格式分析 - 海的沉淀 - 博客园/image025.png](linux第三次实践：ELF文件格式分析 - 海的沉淀 - 博客园/image025.png)
     
     符号表 Symbol table：
     
 - 
     
-    ![linux%E7%AC%AC%E4%B8%89%E6%AC%A1%E5%AE%9E%E8%B7%B5%EF%BC%9AELF%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F%E5%88%86%E6%9E%90%20-%20%E6%B5%B7%E7%9A%84%E6%B2%89%E6%B7%80%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD/image019.png](linux%E7%AC%AC%E4%B8%89%E6%AC%A1%E5%AE%9E%E8%B7%B5%EF%BC%9AELF%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F%E5%88%86%E6%9E%90%20-%20%E6%B5%B7%E7%9A%84%E6%B2%89%E6%B7%80%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD/image019.png)
+    ![linux第三次实践：ELF文件格式分析 - 海的沉淀 - 博客园/image019.png](linux第三次实践：ELF文件格式分析 - 海的沉淀 - 博客园/image019.png)
     
-    ![linux%E7%AC%AC%E4%B8%89%E6%AC%A1%E5%AE%9E%E8%B7%B5%EF%BC%9AELF%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F%E5%88%86%E6%9E%90%20-%20%E6%B5%B7%E7%9A%84%E6%B2%89%E6%B7%80%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD/image021.png](linux%E7%AC%AC%E4%B8%89%E6%AC%A1%E5%AE%9E%E8%B7%B5%EF%BC%9AELF%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F%E5%88%86%E6%9E%90%20-%20%E6%B5%B7%E7%9A%84%E6%B2%89%E6%B7%80%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD/image021.png)
+    ![linux第三次实践：ELF文件格式分析 - 海的沉淀 - 博客园/image021.png](linux第三次实践：ELF文件格式分析 - 海的沉淀 - 博客园/image021.png)
     
-    ![linux%E7%AC%AC%E4%B8%89%E6%AC%A1%E5%AE%9E%E8%B7%B5%EF%BC%9AELF%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F%E5%88%86%E6%9E%90%20-%20%E6%B5%B7%E7%9A%84%E6%B2%89%E6%B7%80%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD/image023.png](linux%E7%AC%AC%E4%B8%89%E6%AC%A1%E5%AE%9E%E8%B7%B5%EF%BC%9AELF%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F%E5%88%86%E6%9E%90%20-%20%E6%B5%B7%E7%9A%84%E6%B2%89%E6%B7%80%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD/image023.png)
+    ![linux第三次实践：ELF文件格式分析 - 海的沉淀 - 博客园/image023.png](linux第三次实践：ELF文件格式分析 - 海的沉淀 - 博客园/image023.png)
     
 
 ## 四、通过section header table找到各section
@@ -123,11 +123,11 @@ Tags: elf
 
 下面以可执行文件hello为例，以保存代码段的 section 为例来讲解读取某个section 的过程。 使用‘vi /usr/include/elf.h ’命令查看Sections Header的结构体：
 
-![linux%E7%AC%AC%E4%B8%89%E6%AC%A1%E5%AE%9E%E8%B7%B5%EF%BC%9AELF%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F%E5%88%86%E6%9E%90%20-%20%E6%B5%B7%E7%9A%84%E6%B2%89%E6%B7%80%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD/image027.png](linux%E7%AC%AC%E4%B8%89%E6%AC%A1%E5%AE%9E%E8%B7%B5%EF%BC%9AELF%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F%E5%88%86%E6%9E%90%20-%20%E6%B5%B7%E7%9A%84%E6%B2%89%E6%B7%80%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD/image027.png)
+![linux第三次实践：ELF文件格式分析 - 海的沉淀 - 博客园/image027.png](linux第三次实践：ELF文件格式分析 - 海的沉淀 - 博客园/image027.png)
 
 由上面分析可知，section headers table中的每一个section header所占的size均为64字节，ELF header得到了e_shoff变量的值为0X0034，也就是table入口的偏移量，通过看e_shnum值为0x001e，表示段表入口有30个。 所以从0x00000034开始有30个段，每个段占40个字节大小，输入 hexdump hello查看：
 
-![linux%E7%AC%AC%E4%B8%89%E6%AC%A1%E5%AE%9E%E8%B7%B5%EF%BC%9AELF%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F%E5%88%86%E6%9E%90%20-%20%E6%B5%B7%E7%9A%84%E6%B2%89%E6%B7%80%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD/image029.png](linux%E7%AC%AC%E4%B8%89%E6%AC%A1%E5%AE%9E%E8%B7%B5%EF%BC%9AELF%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F%E5%88%86%E6%9E%90%20-%20%E6%B5%B7%E7%9A%84%E6%B2%89%E6%B7%80%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD/image029.png)
+![linux第三次实践：ELF文件格式分析 - 海的沉淀 - 博客园/image029.png](linux第三次实践：ELF文件格式分析 - 海的沉淀 - 博客园/image029.png)
 
 - 
     
@@ -179,19 +179,19 @@ Tags: elf
 
 我们用readelf 命令去查看.text这个 section 中的内容， 输入readelf –x 13 hello，（.text前面的标号为13）对13索引号的.text的section的内容进行查看：
 
-![linux%E7%AC%AC%E4%B8%89%E6%AC%A1%E5%AE%9E%E8%B7%B5%EF%BC%9AELF%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F%E5%88%86%E6%9E%90%20-%20%E6%B5%B7%E7%9A%84%E6%B2%89%E6%B7%80%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD/image031.png](linux%E7%AC%AC%E4%B8%89%E6%AC%A1%E5%AE%9E%E8%B7%B5%EF%BC%9AELF%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F%E5%88%86%E6%9E%90%20-%20%E6%B5%B7%E7%9A%84%E6%B2%89%E6%B7%80%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD/image031.png)
+![linux第三次实践：ELF文件格式分析 - 海的沉淀 - 博客园/image031.png](linux第三次实践：ELF文件格式分析 - 海的沉淀 - 博客园/image031.png)
 
 下面用 hexdump 的方法去读取.text这个 section 中的内容，通过看section header中.text中offset和size分别是0x320和0x192 输入 hexdump –C hello 找到320后的192个
 
-![linux%E7%AC%AC%E4%B8%89%E6%AC%A1%E5%AE%9E%E8%B7%B5%EF%BC%9AELF%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F%E5%88%86%E6%9E%90%20-%20%E6%B5%B7%E7%9A%84%E6%B2%89%E6%B7%80%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD/image033.png](linux%E7%AC%AC%E4%B8%89%E6%AC%A1%E5%AE%9E%E8%B7%B5%EF%BC%9AELF%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F%E5%88%86%E6%9E%90%20-%20%E6%B5%B7%E7%9A%84%E6%B2%89%E6%B7%80%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD/image033.png)
+![linux第三次实践：ELF文件格式分析 - 海的沉淀 - 博客园/image033.png](linux第三次实践：ELF文件格式分析 - 海的沉淀 - 博客园/image033.png)
 
-![linux%E7%AC%AC%E4%B8%89%E6%AC%A1%E5%AE%9E%E8%B7%B5%EF%BC%9AELF%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F%E5%88%86%E6%9E%90%20-%20%E6%B5%B7%E7%9A%84%E6%B2%89%E6%B7%80%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD/image035.png](linux%E7%AC%AC%E4%B8%89%E6%AC%A1%E5%AE%9E%E8%B7%B5%EF%BC%9AELF%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F%E5%88%86%E6%9E%90%20-%20%E6%B5%B7%E7%9A%84%E6%B2%89%E6%B7%80%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD/image035.png)
+![linux第三次实践：ELF文件格式分析 - 海的沉淀 - 博客园/image035.png](linux第三次实践：ELF文件格式分析 - 海的沉淀 - 博客园/image035.png)
 
 得到了和上面的readelf得到的相同。 使用下面命令对hello的文本段（.text）进行反汇编： objdump –d hello 得到如下图：
 
-![linux%E7%AC%AC%E4%B8%89%E6%AC%A1%E5%AE%9E%E8%B7%B5%EF%BC%9AELF%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F%E5%88%86%E6%9E%90%20-%20%E6%B5%B7%E7%9A%84%E6%B2%89%E6%B7%80%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD/image037.png](linux%E7%AC%AC%E4%B8%89%E6%AC%A1%E5%AE%9E%E8%B7%B5%EF%BC%9AELF%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F%E5%88%86%E6%9E%90%20-%20%E6%B5%B7%E7%9A%84%E6%B2%89%E6%B7%80%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD/image037.png)
+![linux第三次实践：ELF文件格式分析 - 海的沉淀 - 博客园/image037.png](linux第三次实践：ELF文件格式分析 - 海的沉淀 - 博客园/image037.png)
 
-![linux%E7%AC%AC%E4%B8%89%E6%AC%A1%E5%AE%9E%E8%B7%B5%EF%BC%9AELF%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F%E5%88%86%E6%9E%90%20-%20%E6%B5%B7%E7%9A%84%E6%B2%89%E6%B7%80%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD/image039.png](linux%E7%AC%AC%E4%B8%89%E6%AC%A1%E5%AE%9E%E8%B7%B5%EF%BC%9AELF%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F%E5%88%86%E6%9E%90%20-%20%E6%B5%B7%E7%9A%84%E6%B2%89%E6%B7%80%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD/image039.png)
+![linux第三次实践：ELF文件格式分析 - 海的沉淀 - 博客园/image039.png](linux第三次实践：ELF文件格式分析 - 海的沉淀 - 博客园/image039.png)
 
 可以看出，使用反汇编的16进制数据和前面查找到的是相同的。
 

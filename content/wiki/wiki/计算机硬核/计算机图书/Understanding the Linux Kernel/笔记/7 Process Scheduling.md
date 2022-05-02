@@ -13,8 +13,8 @@ title: 7_Process_Scheduling
 - 静态优先级可通过`nice`跟`setpriority`系统调用来修改。
 - 静态优先级直接与分配到的时间片相关，叫做base time quantum。
     
-    ![7%20Process%20Scheduling/Untitled.png](7%20Process%20Scheduling/Untitled.png)
+    ![7%20Process%20Scheduling/Untitled.png](assets/2022-05-02_11-11-25.png)
     
 - 另一个概念是动态优先级（dynamic priority），也是从100（高）到139（低）。
     
-    ![7%20Process%20Scheduling/Untitled%201.png](7%20Process%20Scheduling/Untitled%201.png)
+    ![7%20Process%20Scheduling/Untitled%201.png](assets/2022-05-02_11-28-24.png)

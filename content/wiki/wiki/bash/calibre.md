@@ -10,7 +10,7 @@ https://calibre-ebook.com/
 
 主题设置里不要选择覆盖。
 
-![](assets/Pasted%20image%2020211205145341.png)
+![Pasted image 20211205145341](../../assets/Pasted image 20211205145341.png)
 
 ## 更改搜索引擎
 

@@ -8,4 +8,4 @@ title: UML
 
 [UML类图几种关系的总结_网络_PlayBoy's 部落格-CSDN博客](https://blog.csdn.net/tianhai110/article/details/6339565)
 
-![UML/Untitled.png](UML/Untitled.png)
+![UML/2022-05-02_11-14-08.png](assets/2022-05-02_11-14-08.png)

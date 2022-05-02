@@ -17,7 +17,7 @@ Tags: BFS, DFS, Graph
 
 Given a reference of a node in a **[connected](https://en.wikipedia.org/wiki/Connectivity_(graph_theory)#Connected_graph)** undirected graph.
 
-Return a **[deep copy](https://en.wikipedia.org/wiki/Object_copying#Deep_copy)** (clone) of the graph.
+Return a **[](https://en.wikipedia.org/wiki/Object_copying#Deep_copy)** (clone) of the graph.
 
 Each node in the graph contains a val (`int`) and a list (`List[Node]`) of its neighbors.
 
@@ -42,8 +42,8 @@ The given node will always be the first node with `val = 1`. You must return 
 ![https://assets.leetcode.com/uploads/2019/11/04/133_clone_graph_question.png](https://assets.leetcode.com/uploads/2019/11/04/133_clone_graph_question.png)
 
 ```
-Input: adjList = [[2,4],[1,3],[2,4],[1,3]]
-Output: [[2,4],[1,3],[2,4],[1,3]]
+Input: adjList = [2,4](2,4)
+Output: [2,4](2,4)
 Explanation: There are 4 nodes in the graph.
 1st node (val = 1)'s neighbors are 2nd node (val = 2) and 4th node (val = 4).
 2nd node (val = 2)'s neighbors are 1st node (val = 1) and 3rd node (val = 3).
@@ -57,8 +57,8 @@ Explanation: There are 4 nodes in the graph.
 ![https://assets.leetcode.com/uploads/2020/01/07/graph.png](https://assets.leetcode.com/uploads/2020/01/07/graph.png)
 
 ```
-Input: adjList = [[]]
-Output: [[]]
+Input: adjList = [133 Clone Graph acf08480f7eb470fa76b3a9a88b0b4f0](.md)
+Output: [133 Clone Graph acf08480f7eb470fa76b3a9a88b0b4f0](.md)
 Explanation: Note that the input contains one empty list. The graph consists of only one node with val = 1 and it does not have any neighbors.
 
 ```
@@ -77,8 +77,8 @@ Explanation: This an empty graph, it does not have any nodes.
 ![https://assets.leetcode.com/uploads/2020/01/07/graph-1.png](https://assets.leetcode.com/uploads/2020/01/07/graph-1.png)
 
 ```
-Input: adjList = [[2],[1]]
-Output: [[2],[1]]
+Input: adjList = [2](2)
+Output: [2](2)
 
 ```
 

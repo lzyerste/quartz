@@ -10,11 +10,11 @@ title: LeetCode
 
 英文官网
 
-[力扣 (LeetCode) 中国官网 - 全球极客挚爱的技术成长平台](https://leetcode-cn.com/)
+[力扣 LeetCode 中国官网 - 全球极客挚爱的技术成长平台](https://leetcode-cn.com/)
 
 中文官网
 
-[资源](LeetCode/%E8%B5%84%E6%BA%90.md)
+[资源](LeetCode/资源.md)
 
 20x, 22x, 23x, 24x, 25x, 26x, 27x, 28x, 29x
 
@@ -22,4 +22,4 @@ title: LeetCode
 
 锁：不打tag，不打星
 
-[题目列表](LeetCode/%E9%A2%98%E7%9B%AE%E5%88%97%E8%A1%A8.csv)
+[题目列表](assets/题目列表.csv)

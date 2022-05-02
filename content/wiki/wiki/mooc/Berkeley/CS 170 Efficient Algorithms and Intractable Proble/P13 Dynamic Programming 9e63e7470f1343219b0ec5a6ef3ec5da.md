@@ -10,13 +10,13 @@ title: P13_Dynamic_Programming_9e63e7470f1343219b0ec5a6ef3ec5da
         - Subproblem: `L[i]` = length of LIS ending at a[i]
         - Recurrence Relation，递推式
             
-            [P13%20Dynamic%20Programming%209e63e7470f1343219b0ec5a6ef3ec5da/untitled](P13%20Dynamic%20Programming%209e63e7470f1343219b0ec5a6ef3ec5da/untitled)
+            ![b9d0c5e8cf123ae73f8e0d4dca68cf00](P13 Dynamic Programming 9e63e7470f1343219b0ec5a6ef3ec5da/b9d0c5e8cf123ae73f8e0d4dca68cf00.png)
             
         - iterative call VS. recursive call
         - 递归也是可以的，但要加上记忆（memorization），防止重复计算
 - Optimal Gambling
 - Edit Distance
     
-    [P13%20Dynamic%20Programming%209e63e7470f1343219b0ec5a6ef3ec5da/untitled%201](P13%20Dynamic%20Programming%209e63e7470f1343219b0ec5a6ef3ec5da/untitled%201)
+    ![f45a3205800da2011e1ccd2abd882450](P13 Dynamic Programming 9e63e7470f1343219b0ec5a6ef3ec5da/f45a3205800da2011e1ccd2abd882450.png)
     
 -

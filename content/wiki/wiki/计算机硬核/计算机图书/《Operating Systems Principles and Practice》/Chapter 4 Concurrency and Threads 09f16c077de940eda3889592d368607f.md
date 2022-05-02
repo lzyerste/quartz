@@ -11,4 +11,4 @@ title: Chapter_4_Concurrency_and_Threads_09f16c077de940eda3889592d368607f
     - Performance: managing I/O device
 - 
 
-![Chapter%204%20Concurrency%20and%20Threads%2009f16c077de940eda3889592d368607f/Untitled.png](Chapter%204%20Concurrency%20and%20Threads%2009f16c077de940eda3889592d368607f/Untitled.png)
+![Chapter%204%20Concurrency%20and%20Threads%2009f16c077de940eda3889592d368607f/Untitled.png](assets/2022-05-02_11-10-07.png)

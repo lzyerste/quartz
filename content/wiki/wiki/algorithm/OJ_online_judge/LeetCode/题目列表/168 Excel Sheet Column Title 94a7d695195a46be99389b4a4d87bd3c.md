@@ -13,7 +13,7 @@ Tags: Math
 
 [Excel Sheet Column Title - LeetCode](https://leetcode.com/problems/excel-sheet-column-title/)
 
-[171. Excel Sheet Column Number](171%20Excel%20Sheet%20Column%20Number%20ef4c44ef38514adaa2b8a3ba926dfdd8.md) 
+[171. Excel Sheet Column Number](171 Excel Sheet Column Number ef4c44ef38514adaa2b8a3ba926dfdd8.md) 
 
 ## 题意
 

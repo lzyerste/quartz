@@ -13,7 +13,7 @@ Tags: Backtracking, DP
 
 [Word Break II - LeetCode](https://leetcode.com/problems/word-break-ii/)
 
-[139. Word Break](139%20Word%20Break%20a3930ca65d22413389a15dc9e475c146.md) 
+[139. Word Break](139 Word Break a3930ca65d22413389a15dc9e475c146.md) 
 
 ## 题意
 
@@ -101,7 +101,7 @@ class Solution:
         return [" ".join(lst) for lst in res]
     
     def dp(self, G, s, wordDict, i, j):
-        if i > j: return [[]]
+        if i > j: return [140 Word Break II 2a7ad3b1ee154d058659cabe2fafad80](.md)
         p = i, j
         if p in G: return G[p]
         res = []

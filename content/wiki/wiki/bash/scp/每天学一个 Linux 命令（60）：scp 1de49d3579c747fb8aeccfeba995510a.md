@@ -6,13 +6,13 @@ title: 每天学一个_Linux_命令（60）：scp_1de49d3579c747fb8aeccfeba99551
 
 [https://mp.weixin.qq.com/s?__biz=MzI0MDQ4MTM5NQ==&mid=2247509649&idx=2&sn=2266791f1e5ae714ccbeb468ddefbe77&chksm=e918c38dde6f4a9b22b2ad556367cb6731dcd7898fae00c8b3dda70a85ac38bedc7c299df033&xtrack=1&scene=90&subscene=93&sessionid=1615517694&clicktime=1615517698&enterid=1615517698&ascene=56&devicetype=android-29&version=2800015b&nettype=ctnet&abtest_cookie=AAACAA%3D%3D&lang=zh_CN&exportkey=AcZJY5cuoZ%2Fm3pEKQgAcJ%2Bo%3D&pass_ticket=IrWZgEJSr%2Fs%2FC%2F8HCQVz%2FVwEg8E2d94RU25cXRoqQHZ%2B62jeZzxBzULF7e1vNVvZ&wx_header=1](https://mp.weixin.qq.com/s?__biz=MzI0MDQ4MTM5NQ==&mid=2247509649&idx=2&sn=2266791f1e5ae714ccbeb468ddefbe77&chksm=e918c38dde6f4a9b22b2ad556367cb6731dcd7898fae00c8b3dda70a85ac38bedc7c299df033&xtrack=1&scene=90&subscene=93&sessionid=1615517694&clicktime=1615517698&enterid=1615517698&ascene=56&devicetype=android-29&version=2800015b&nettype=ctnet&abtest_cookie=AAACAA%3D%3D&lang=zh_CN&exportkey=AcZJY5cuoZ%2Fm3pEKQgAcJ%2Bo%3D&pass_ticket=IrWZgEJSr%2Fs%2FC%2F8HCQVz%2FVwEg8E2d94RU25cXRoqQHZ%2B62jeZzxBzULF7e1vNVvZ&wx_header=1)
 
-**昨日推荐：**[每天学一个 Linux 命令（59）：ssh](http://mp.weixin.qq.com/s?__biz=MzI0MDQ4MTM5NQ==&mid=2247509626&idx=3&sn=27d1721b4a22a6c2e47b5f8c3a818a4f&chksm=e918c366de6f4a7066a6493f7ffa8d5b23eda002df16a222ebda4bac35c574501eaaea45d3d3&scene=21#wechat_redirect)
+**昨日推荐：**[](http://mp.weixin.qq.com/s?__biz=MzI0MDQ4MTM5NQ==&mid=2247509626&idx=3&sn=27d1721b4a22a6c2e47b5f8c3a818a4f&chksm=e918c366de6f4a7066a6493f7ffa8d5b23eda002df16a222ebda4bac35c574501eaaea45d3d3&scene=21#wechat_redirect)
 
 ## **命令简介**
 
 scp 全拼secure copy，用于不同主机之间复制文件。
 
-scp命令常用于在Linux系统下两个不同主机之间传输文件，其功能与[cp命令](http://mp.weixin.qq.com/s?__biz=MzI0MDQ4MTM5NQ==&mid=2247505820&idx=3&sn=81901b7399074ef67b2cfe409d6dd234&chksm=e918b280de6f3b9693be662b613cb28ccec2e6a41b7bf0795936759ad80477c3ab358f61b306&scene=21#wechat_redirect)相似，但是不同是，cp命令只能用于在本机环境下传输或复制拷贝文件，scp命令可以跨越不同主机，而scp传输文件是加密的。
+scp命令常用于在Linux系统下两个不同主机之间传输文件，其功能与[](http://mp.weixin.qq.com/s?__biz=MzI0MDQ4MTM5NQ==&mid=2247505820&idx=3&sn=81901b7399074ef67b2cfe409d6dd234&chksm=e918b280de6f3b9693be662b613cb28ccec2e6a41b7bf0795936759ad80477c3ab358f61b306&scene=21#wechat_redirect)相似，但是不同是，cp命令只能用于在本机环境下传输或复制拷贝文件，scp命令可以跨越不同主机，而scp传输文件是加密的。
 
 scp 它使用ssh进行数据传输，并使用与ssh相同的身份验证并提供相同的安全性，scp 会要求输入密码或其它方式以进行身份验证。
 
@@ -172,4 +172,4 @@ debug1: Exit status 0
 
 通过上述过程信息，可以知道scp传输文件的整个过程是什么样的，也可以明白一些原理。
 
-[每天学一个 Linux 命令（57）：cal](http://mp.weixin.qq.com/s?__biz=MzI0MDQ4MTM5NQ==&mid=2247509451&idx=3&sn=fb99c293c139e292396547dfb9e1cf89&chksm=e918c0d7de6f49c1850c0c77b72b870ca213d101d327bb973ac2e387e40210589b076a94a542&scene=21#wechat_redirect)
+[](http://mp.weixin.qq.com/s?__biz=MzI0MDQ4MTM5NQ==&mid=2247509451&idx=3&sn=fb99c293c139e292396547dfb9e1cf89&chksm=e918c0d7de6f49c1850c0c77b72b870ca213d101d327bb973ac2e387e40210589b076a94a542&scene=21#wechat_redirect)

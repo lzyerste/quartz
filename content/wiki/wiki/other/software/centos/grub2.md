@@ -15,7 +15,7 @@ GRUB_SAVEDEFAULT=true
 
 修改grub启动项名字？grub-customizer
 
-[grub customizer](grub2/grub%20customizer.md)
+[grub customizer](grub2/grub customizer.md)
 
 [How do I customize the GRUB 2 menu?](https://askubuntu.com/questions/532238/how-do-i-customize-the-grub-2-menu)
 

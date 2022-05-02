@@ -39,7 +39,7 @@ Output: 4
     
     比如取MIN之后的结果：以(r-1, c-1)为展开点，看右侧绿色，看下侧蓝色，都是1，再加上红色自己的1，那么就可以从(r-1, c-1)往右下方扩展一层。
     
-    ![221%20Maximal%20Square%208e66c536ecb841f1bd998f04bcc103a6/Untitled.png](221%20Maximal%20Square%208e66c536ecb841f1bd998f04bcc103a6/Untitled.png)
+    ![2022-05-02_11-25-40](221 Maximal Square 8e66c536ecb841f1bd998f04bcc103a6/2022-05-02_11-25-40.png)
     
 
 ## 题解

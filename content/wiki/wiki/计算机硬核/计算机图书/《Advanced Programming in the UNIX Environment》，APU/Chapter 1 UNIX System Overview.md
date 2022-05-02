@@ -41,4 +41,4 @@ sudo xcode-select --install
 
 ## 例子
 
-[Examples](Chapter%201%20UNIX%20System%20Overview/Examples.csv)
+[Examples](assets/Examples.csv)

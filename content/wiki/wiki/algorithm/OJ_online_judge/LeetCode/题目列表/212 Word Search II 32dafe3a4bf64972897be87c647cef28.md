@@ -13,7 +13,7 @@ Tags: Backtracking, Trie
 
 [Word Search II - LeetCode](https://leetcode.com/problems/word-search-ii/)
 
-[79. Word Search](79%20Word%20Search%2047a59c6293c64ab2a00ef07f9b32f5bb.md) 
+[79. Word Search](79 Word Search 47a59c6293c64ab2a00ef07f9b32f5bb.md) 
 
 ## 题意
 
@@ -26,7 +26,7 @@ Each word must be constructed from letters of sequentially adjacent cells, where
 ![https://assets.leetcode.com/uploads/2020/11/07/search1.jpg](https://assets.leetcode.com/uploads/2020/11/07/search1.jpg)
 
 ```
-Input: board = [["o","a","a","n"],["e","t","a","e"],["i","h","k","r"],["i","f","l","v"]], words = ["oath","pea","eat","rain"]
+Input: board = ["o","a","a","n"]("o","a","a","n"), words = ["oath","pea","eat","rain"]
 Output: ["eat","oath"]
 
 ```
@@ -36,7 +36,7 @@ Output: ["eat","oath"]
 ![https://assets.leetcode.com/uploads/2020/11/07/search2.jpg](https://assets.leetcode.com/uploads/2020/11/07/search2.jpg)
 
 ```
-Input: board = [["a","b"],["c","d"]], words = ["abcb"]
+Input: board = ["a","b"]("a","b"), words = ["abcb"]
 Output: []
 
 ```

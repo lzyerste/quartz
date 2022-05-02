@@ -10,7 +10,7 @@ title: centos
 
 [CentOS内核版本对应关系](centos/CentOS内核版本对应关系.md)
 
-[CentOS 5.6](centos/CentOS%205%206.md)
+[CentOS 5.6](centos/CentOS 5 6.md)
 
 [虚拟机安装](centos/虚拟机安装.md)
 

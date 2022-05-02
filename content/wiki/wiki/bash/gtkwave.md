@@ -16,4 +16,4 @@ https://stackoverflow.com/questions/47586756/how-do-i-measure-time-between-two-m
 
 鼠标中键点击（快捷键B），会出现白色线，这个作为起点；然后，鼠标左键点击终点，上面会计算时间，B+/-的形式。
 
-![image-20211124104101217](../../innogrit/assets/image-20211124104101217.png)
+![image-20211124104101217](assets/image-20211124104101217.png)

@@ -10,25 +10,25 @@ title: 趣谈Linux操作系统_f789a1bbdb0643bdbd48809f35da74ce
 
 # 入门准备篇 (3讲)
 
-[开篇词 | 为什么要学习Linux操作系统？](%E8%B6%A3%E8%B0%88Linux%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%20f789a1bbdb0643bdbd48809f35da74ce/%E5%BC%80%E7%AF%87%E8%AF%8D%20%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E5%AD%A6%E4%B9%A0Linux%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%EF%BC%9F%201c0b1dce711e4d67886e9f09c329c4c0.md)
+[开篇词 | 为什么要学习Linux操作系统？](趣谈Linux操作系统 f789a1bbdb0643bdbd48809f35da74ce/开篇词 为什么要学习Linux操作系统？ 1c0b1dce711e4d67886e9f09c329c4c0.md)
 
-[01 | 入学测验：你究竟对Linux操作系统了解多少？](%E8%B6%A3%E8%B0%88Linux%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%20f789a1bbdb0643bdbd48809f35da74ce/01%20%E5%85%A5%E5%AD%A6%E6%B5%8B%E9%AA%8C%EF%BC%9A%E4%BD%A0%E7%A9%B6%E7%AB%9F%E5%AF%B9Linux%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%BA%86%E8%A7%A3%E5%A4%9A%E5%B0%91%EF%BC%9F%20f9c9f469080d4c7fb295e0faff2ed1fa.md)
+[01 | 入学测验：你究竟对Linux操作系统了解多少？](趣谈Linux操作系统 f789a1bbdb0643bdbd48809f35da74ce/01 入学测验：你究竟对Linux操作系统了解多少？ f9c9f469080d4c7fb295e0faff2ed1fa.md)
 
-[02 | 学习路径：爬过这六个陡坡，你就能对Linux了如指掌](%E8%B6%A3%E8%B0%88Linux%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%20f789a1bbdb0643bdbd48809f35da74ce/02%20%E5%AD%A6%E4%B9%A0%E8%B7%AF%E5%BE%84%EF%BC%9A%E7%88%AC%E8%BF%87%E8%BF%99%E5%85%AD%E4%B8%AA%E9%99%A1%E5%9D%A1%EF%BC%8C%E4%BD%A0%E5%B0%B1%E8%83%BD%E5%AF%B9Linux%E4%BA%86%E5%A6%82%E6%8C%87%E6%8E%8C%20eeac6890778e44e6b2bb98d53e2a574d.md)
+[02 | 学习路径：爬过这六个陡坡，你就能对Linux了如指掌](趣谈Linux操作系统 f789a1bbdb0643bdbd48809f35da74ce/02 学习路径：爬过这六个陡坡，你就能对Linux了如指掌 eeac6890778e44e6b2bb98d53e2a574d.md)
 
 # 核心原理篇：第一部分 Linux操作系统综述 (3讲)
 
-[03 | 你可以把Linux内核当成一家软件外包公司的老板](%E8%B6%A3%E8%B0%88Linux%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%20f789a1bbdb0643bdbd48809f35da74ce/03%20%E4%BD%A0%E5%8F%AF%E4%BB%A5%E6%8A%8ALinux%E5%86%85%E6%A0%B8%E5%BD%93%E6%88%90%E4%B8%80%E5%AE%B6%E8%BD%AF%E4%BB%B6%E5%A4%96%E5%8C%85%E5%85%AC%E5%8F%B8%E7%9A%84%E8%80%81%E6%9D%BF%2004a9474b8d264a6b930f370c5a49d0f8.md)
+[03 | 你可以把Linux内核当成一家软件外包公司的老板](趣谈Linux操作系统 f789a1bbdb0643bdbd48809f35da74ce/03 你可以把Linux内核当成一家软件外包公司的老板 04a9474b8d264a6b930f370c5a49d0f8.md)
 
-[04 | 快速上手几个Linux命令：每家公司都有自己的黑话](%E8%B6%A3%E8%B0%88Linux%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%20f789a1bbdb0643bdbd48809f35da74ce/04%20%E5%BF%AB%E9%80%9F%E4%B8%8A%E6%89%8B%E5%87%A0%E4%B8%AALinux%E5%91%BD%E4%BB%A4%EF%BC%9A%E6%AF%8F%E5%AE%B6%E5%85%AC%E5%8F%B8%E9%83%BD%E6%9C%89%E8%87%AA%E5%B7%B1%E7%9A%84%E9%BB%91%E8%AF%9D%20ff5ebe46570f4a3bb5dca4900294aa5b.md)
+[04 | 快速上手几个Linux命令：每家公司都有自己的黑话](趣谈Linux操作系统 f789a1bbdb0643bdbd48809f35da74ce/04 快速上手几个Linux命令：每家公司都有自己的黑话 ff5ebe46570f4a3bb5dca4900294aa5b.md)
 
-[05 | 学会几个系统调用：咱们公司能接哪些类型的项目？](%E8%B6%A3%E8%B0%88Linux%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%20f789a1bbdb0643bdbd48809f35da74ce/05%20%E5%AD%A6%E4%BC%9A%E5%87%A0%E4%B8%AA%E7%B3%BB%E7%BB%9F%E8%B0%83%E7%94%A8%EF%BC%9A%E5%92%B1%E4%BB%AC%E5%85%AC%E5%8F%B8%E8%83%BD%E6%8E%A5%E5%93%AA%E4%BA%9B%E7%B1%BB%E5%9E%8B%E7%9A%84%E9%A1%B9%E7%9B%AE%EF%BC%9F%200e1d23d22238408c8b12514da5ff7d53.md)
+[05 | 学会几个系统调用：咱们公司能接哪些类型的项目？](趣谈Linux操作系统 f789a1bbdb0643bdbd48809f35da74ce/05 学会几个系统调用：咱们公司能接哪些类型的项目？ 0e1d23d22238408c8b12514da5ff7d53.md)
 
 # 核心原理篇：第二部分 系统初始化 (4讲)
 
-[06 | x86架构：有了开放的架构，才能打造开放的营商环境](%E8%B6%A3%E8%B0%88Linux%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%20f789a1bbdb0643bdbd48809f35da74ce/06%20x86%E6%9E%B6%E6%9E%84%EF%BC%9A%E6%9C%89%E4%BA%86%E5%BC%80%E6%94%BE%E7%9A%84%E6%9E%B6%E6%9E%84%EF%BC%8C%E6%89%8D%E8%83%BD%E6%89%93%E9%80%A0%E5%BC%80%E6%94%BE%E7%9A%84%E8%90%A5%E5%95%86%E7%8E%AF%E5%A2%83%20b0d937bb2b8b4c46809bb1b87eaefd25.md)
+[06 | x86架构：有了开放的架构，才能打造开放的营商环境](趣谈Linux操作系统 f789a1bbdb0643bdbd48809f35da74ce/06 x86架构：有了开放的架构，才能打造开放的营商环境 b0d937bb2b8b4c46809bb1b87eaefd25.md)
 
-[07 | 从BIOS到bootloader：创业伊始，有活儿老板自己上](%E8%B6%A3%E8%B0%88Linux%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%20f789a1bbdb0643bdbd48809f35da74ce/07%20%E4%BB%8EBIOS%E5%88%B0bootloader%EF%BC%9A%E5%88%9B%E4%B8%9A%E4%BC%8A%E5%A7%8B%EF%BC%8C%E6%9C%89%E6%B4%BB%E5%84%BF%E8%80%81%E6%9D%BF%E8%87%AA%E5%B7%B1%E4%B8%8A%209d13983b4c124382bf49d7235eca9109.md)
+[07 | 从BIOS到bootloader：创业伊始，有活儿老板自己上](趣谈Linux操作系统 f789a1bbdb0643bdbd48809f35da74ce/07 从BIOS到bootloader：创业伊始，有活儿老板自己上 9d13983b4c124382bf49d7235eca9109.md)
 
 # 核心原理篇：第三部分 进程管理 (10讲)
 

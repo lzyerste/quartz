@@ -13,7 +13,7 @@ Tags: Array, Greedy
 
 [Best Time to Buy and Sell Stock II - LeetCode](https://leetcode.com/problems/best-time-to-buy-and-sell-stock-ii/)
 
-[121. Best Time to Buy and Sell Stock](121%20Best%20Time%20to%20Buy%20and%20Sell%20Stock%20890ce3059b5e432fa7b456ea20bede12.md) 
+[121. Best Time to Buy and Sell Stock](121 Best Time to Buy and Sell Stock 890ce3059b5e432fa7b456ea20bede12.md) 
 
 ## 题意
 

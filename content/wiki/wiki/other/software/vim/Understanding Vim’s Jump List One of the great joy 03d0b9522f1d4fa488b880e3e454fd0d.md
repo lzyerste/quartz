@@ -17,15 +17,15 @@ Let’s start where all good Vim searches do — `:help jumplist`.
 
 Sounds cool enough, but why use it? In my former piece I outlined how I utilized relative numbers to race from one line to another. This method relies on using a count + directional key. So, 4j will move me down four lines from where I currently am within Vim. This seems well enough, but actually has a hidden weakness. Motions like 4j and 10k, while convenient, aren’t technically jumps. Surprised? Me too! This wasn’t obvious to me until reddit user *[romainl](https://www.reddit.com/user/-romainl-)* laid out his case.
 
-![Understanding%20Vim%E2%80%99s%20Jump%20List%20One%20of%20the%20great%20joy%2003d0b9522f1d4fa488b880e3e454fd0d/190rxjl1Ss72eN7Yjo9V5jQ.png](Understanding%20Vim%E2%80%99s%20Jump%20List%20One%20of%20the%20great%20joy%2003d0b9522f1d4fa488b880e3e454fd0d/190rxjl1Ss72eN7Yjo9V5jQ.png)
+![190rxjl1Ss72eN7Yjo9V5jQ](Understanding Vim’s Jump List One of the great joy 03d0b9522f1d4fa488b880e3e454fd0d/190rxjl1Ss72eN7Yjo9V5jQ.png)
 
 Thus, what quantifies as a jump?
 
-![Understanding%20Vim%E2%80%99s%20Jump%20List%20One%20of%20the%20great%20joy%2003d0b9522f1d4fa488b880e3e454fd0d/1oYr3Z4LZUxhHN1PFHnmNNQ.jpeg](Understanding%20Vim%E2%80%99s%20Jump%20List%20One%20of%20the%20great%20joy%2003d0b9522f1d4fa488b880e3e454fd0d/1oYr3Z4LZUxhHN1PFHnmNNQ.jpeg)
+![1oYr3Z4LZUxhHN1PFHnmNNQ](Understanding Vim’s Jump List One of the great joy 03d0b9522f1d4fa488b880e3e454fd0d/1oYr3Z4LZUxhHN1PFHnmNNQ.jpeg)
 
 Each one of the listed keys in the image above will count as a jump. This is important because these motions contribute to the jump list. You can view the jump list at anytime by typing — :jumps. You can also clear said list by typing — :clearjumps. You can also explicitly add a jump by setting the ‘ mark with “m’”.
 
-![Understanding%20Vim%E2%80%99s%20Jump%20List%20One%20of%20the%20great%20joy%2003d0b9522f1d4fa488b880e3e454fd0d/1CqmeeUmm2SGMx5vWXWY81Q.png](Understanding%20Vim%E2%80%99s%20Jump%20List%20One%20of%20the%20great%20joy%2003d0b9522f1d4fa488b880e3e454fd0d/1CqmeeUmm2SGMx5vWXWY81Q.png)
+![1CqmeeUmm2SGMx5vWXWY81Q](Understanding Vim’s Jump List One of the great joy 03d0b9522f1d4fa488b880e3e454fd0d/1CqmeeUmm2SGMx5vWXWY81Q.png)
 
 Example jump list
 
@@ -41,7 +41,7 @@ If you want a quick reminder of where you want to move type — :changes. This w
 
 If you want j and k to be added to the jump list, you can do so using a mark. Reddit user PlayMeWhile provided the following solution. Add this to your .vimrc and CTRL-o and i will work as expected.
 
-![Understanding%20Vim%E2%80%99s%20Jump%20List%20One%20of%20the%20great%20joy%2003d0b9522f1d4fa488b880e3e454fd0d/1mqyJqpImxPKy9QhwGY_r-w.png](Understanding%20Vim%E2%80%99s%20Jump%20List%20One%20of%20the%20great%20joy%2003d0b9522f1d4fa488b880e3e454fd0d/1mqyJqpImxPKy9QhwGY_r-w.png)
+![1mqyJqpImxPKy9QhwGY_r-w](Understanding Vim’s Jump List One of the great joy 03d0b9522f1d4fa488b880e3e454fd0d/1mqyJqpImxPKy9QhwGY_r-w.png)
 
 Add this in your .vimrc
 

@@ -12,6 +12,6 @@ title: distributed_system
 
 [Learning to Build Distributed Systems - Hacker News](https://news.ycombinator.com/item?id=20249946)
 
-[An introduction to distributed systems (2017) - Hacker News](https://news.ycombinator.com/item?id=19290069)
+[An introduction to distributed systems 2017 - Hacker News](https://news.ycombinator.com/item?id=19290069)
 
 [madd86/awesome-system-design](https://github.com/madd86/awesome-system-design)

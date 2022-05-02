@@ -2,7 +2,7 @@
 title: _arm
 ---
 
-[arm-assembly-cheatsheet.pdf](../assets/arm-assembly-cheatsheet.pdf)
+[arm-assembly-cheatsheet.pdf](assets/arm-assembly-cheatsheet.pdf)
 
 ## 资源
 

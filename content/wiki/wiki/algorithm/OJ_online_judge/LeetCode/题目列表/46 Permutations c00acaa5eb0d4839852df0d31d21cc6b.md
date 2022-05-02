@@ -52,7 +52,7 @@ class Solution:
     def permute(self, nums: List[int]) -> List[List[int]]:
         def rec(nums):
             if len(nums) == 0:
-                return [[]]
+                return [46 Permutations c00acaa5eb0d4839852df0d31d21cc6b](.md)
             res = []
             for i, v in enumerate(nums):
                 tmp = rec(nums[:i] + nums[i+1:])

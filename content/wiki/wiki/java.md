@@ -4,24 +4,24 @@ title: java
 
 # java
 
-[JavaGuide](java/JavaGuide%20db270959d50346eb9d2de0489fe6ef44.md)
+[JavaGuide](java/JavaGuide db270959d50346eb9d2de0489fe6ef44.md)
 
-[《Thinking in Java》](java/%E3%80%8AThinking%20in%20Java%E3%80%8B%206b0b1f8b52c348278d4138a2de0220ed.md)
+[《Thinking in Java》](java/《Thinking in Java》 6b0b1f8b52c348278d4138a2de0220ed.md)
 
-[Java Collections Framework](java/Java%20Collections%20Framework%20b62c8efc4fcc482faebfc49b6908c89b.md)
+[Java Collections Framework](java/Java Collections Framework b62c8efc4fcc482faebfc49b6908c89b.md)
 
-[Spring全家桶](java/Spring%E5%85%A8%E5%AE%B6%E6%A1%B6%201917d22d7ae14c2cab5640fabf5d057f.md)
+[Spring全家桶](java/Spring全家桶 1917d22d7ae14c2cab5640fabf5d057f.md)
 
-[Java面试](java/Java%E9%9D%A2%E8%AF%95%20577953a151ce4d3f9ffa0ec79d24d218.md)
+[Java面试](java/Java面试 577953a151ce4d3f9ffa0ec79d24d218.md)
 
 - `Resources`
     
     [Javarevisited](https://javarevisited.blogspot.com/)
     
 
-[知识点](java/%E7%9F%A5%E8%AF%86%E7%82%B9%20b0fd29d5c8ba4dc3ae2b5fbff3bd91b5.md)
+[知识点](java/知识点 b0fd29d5c8ba4dc3ae2b5fbff3bd91b5.md)
 
-[JVM](java/JVM%207e4616f5916d4797a30016809e6de750.md)
+[JVM](java/JVM 7e4616f5916d4797a30016809e6de750.md)
 
 Mac下JDK源码位置：
 

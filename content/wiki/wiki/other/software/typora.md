@@ -44,8 +44,8 @@ sudo apt-get install typora
 
 把这段css保存到typora的theme目录即可，文件名为user.base.css
 
-![Typora/Untitled.png](Typora/Untitled.png)
+![2022-05-02_11-20-42](assets/2022-05-02_11-20-42.png)
 
 效果如下：
 
-![Typora/Untitled%201.png](Typora/Untitled%201.png)
+![c79ea10b044580173c7fd16985dea246](assets/c79ea10b044580173c7fd16985dea246.png)

@@ -17,7 +17,7 @@ github: No
 
 - 先不考虑改变的机会，按照常规，最佳策略是从左到右，都向左邻居对齐，也就是a1往a0对齐，然后a2往a1对齐（此时的a1已经是a0了）。最终所有元素都是a0。
 
-![1453B%20-%20Suffix%20Operations%20ec7590024029465daa448d5aa82822da/Untitled.png](1453B%20-%20Suffix%20Operations%20ec7590024029465daa448d5aa82822da/Untitled.png)
+![2022-05-02_11-25-56](1453B - Suffix Operations ec7590024029465daa448d5aa82822da/2022-05-02_11-25-56.png)
 
 ## 题解
 

@@ -14,7 +14,7 @@ Tags: gtags
     
 - 在项目根目录放置gtags.conf，以跳过一些目录的索引。
     
-    [gtags.conf](gtags/gtags.conf)
+    [gtags.conf](assets/gtags.conf)
     
     ```cpp
     common:\
@@ -35,4 +35,4 @@ Tags: gtags
     
     比如关键字`ftl iov`
     
-    ![gtags/Untitled.png](gtags/Untitled.png)
+    ![gtags/2022-05-02_11-20-11.png](assets/2022-05-02_11-20-11.png)

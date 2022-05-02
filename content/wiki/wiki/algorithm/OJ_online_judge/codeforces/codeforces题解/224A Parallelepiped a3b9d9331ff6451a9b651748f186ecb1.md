@@ -34,4 +34,4 @@ def main():
 
 ## 题解：几何
 
-![224A%20Parallelepiped%20a3b9d9331ff6451a9b651748f186ecb1/Untitled.png](224A%20Parallelepiped%20a3b9d9331ff6451a9b651748f186ecb1/Untitled.png)
+![2022-05-02_11-25-50](224A Parallelepiped a3b9d9331ff6451a9b651748f186ecb1/2022-05-02_11-25-50.png)

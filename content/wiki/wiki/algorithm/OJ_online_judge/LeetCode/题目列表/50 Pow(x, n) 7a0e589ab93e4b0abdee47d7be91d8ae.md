@@ -15,7 +15,7 @@ Tags: Binary Search, Math, Recursive
 
 ## 题意
 
-实现 [pow(*x*, *n*)](https://www.cplusplus.com/reference/valarray/pow/) ，即计算 x 的 n 次幂函数。
+实现 [pow(*x*, *n*)](*x*, *n*))](https://www.cplusplus.com/reference/valarray/pow/) ，即计算 x 的 n 次幂函数。
 
 **示例 1:**
 

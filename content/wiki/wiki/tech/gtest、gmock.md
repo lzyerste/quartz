@@ -4,7 +4,7 @@ title: gtest、gmock
 
 # gtest、gmock
 
-[gtest指南](gtest%E3%80%81gmock/gtest%E6%8C%87%E5%8D%97%203daafdfbed4c4bd8b11c7574d6cf0b63.md)
+[gtest指南](gtest、gmock/gtest指南 3daafdfbed4c4bd8b11c7574d6cf0b63.md)
 
 ## Ubuntu安装
 

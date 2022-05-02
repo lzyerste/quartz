@@ -13,7 +13,7 @@ Tags: Hash Table
 
 [Word Pattern - LeetCode](https://leetcode.com/problems/word-pattern/)
 
-[205. Isomorphic Strings](205%20Isomorphic%20Strings%20118d93c5d9474fe18399b47db72212d7.md) 
+[205. Isomorphic Strings](205 Isomorphic Strings 118d93c5d9474fe18399b47db72212d7.md) 
 
 ## 题意
 

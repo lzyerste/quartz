@@ -17,6 +17,6 @@ title: notion使用指南
 
 ---
 
-[cannot save changes](notion%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/cannot%20save%20changes%20c3409311e9124aa0b7a0b20181042ca7.md)
+[cannot save changes](notion使用指南/cannot save changes c3409311e9124aa0b7a0b20181042ca7.md)
 
 ## notion导出到gollum

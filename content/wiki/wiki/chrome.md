@@ -25,7 +25,7 @@ title: chrome
 
 - chrome://flags
 
-![Chrome%20%5Bwiki%5D%20c44a9da34aee486eb789a65c850765ed/Untitled.png](../personal/ubuntu重装系统/Ubuntu重装清单%2009aa6739bc474dc48aa9a291ce4fc178/Chrome%20[wiki]%20c44a9da34aee486eb789a65c850765ed/Untitled.png)
+![2022-05-02_11-26-15](assets/2022-05-02_11-26-15.png)
 
 # 插件
 
@@ -53,7 +53,7 @@ vim的方式操作浏览器。
 
 常用按键：TODO
 
-[vimium-darcula.css](../personal/ubuntu重装系统/Ubuntu重装清单%2009aa6739bc474dc48aa9a291ce4fc178/Chrome%20[wiki]%20c44a9da34aee486eb789a65c850765ed/vimium-darcula%20css%20b477ed5bacb34e0aa3adb6b5a7b1cecd.md)
+[vimium-darcula.css](../personal/ubuntu重装系统/Ubuntu重装清单/chrome/vimium-darcula css b477ed5bacb34e0aa3adb6b5a7b1cecd.md)
 
 ## ❌ 安装旧版本（新版本已修复）
 

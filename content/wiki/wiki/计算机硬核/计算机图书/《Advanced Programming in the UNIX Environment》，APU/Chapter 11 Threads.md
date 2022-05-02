@@ -47,7 +47,7 @@ title: Chapter_11_Threads
 - pthread_join: 调用者阻塞，直到目标线程结束。
 - pthread_cancel: 只是请求取消线程，不会阻塞。
 
-[Chapter%2011%20Threads/untitled](Chapter%2011%20Threads/untitled)
+![Chapter%2011%20Threads/untitled](assets/86b6e8f984f12f839c237020cc327898.png)
 
 ## 11.6 Thread Synchronization
 
@@ -80,4 +80,4 @@ title: Chapter_11_Threads
 
 ## 例子
 
-[Examples](Chapter%2011%20Threads/Examples%20afe1b5eb220b4b82a00a17f91e0e86d6.csv)
+[Examples](assets/Examples%20afe1b5eb220b4b82a00a17f91e0e86d6.csv)

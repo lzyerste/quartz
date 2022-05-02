@@ -17,7 +17,7 @@ github: No
 
 1. 注意证明
 
-![1102A%20-%20Integer%20Sequence%20Dividing%20040e072ccb4446f6b864f668dfb3f2b0/Untitled.png](1102A%20-%20Integer%20Sequence%20Dividing%20040e072ccb4446f6b864f668dfb3f2b0/Untitled.png)
+![2022-05-02_11-26-05](1102A - Integer Sequence Dividing 040e072ccb4446f6b864f668dfb3f2b0/2022-05-02_11-26-05.png)
 
 ## 题解
 

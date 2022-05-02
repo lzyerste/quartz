@@ -4,7 +4,7 @@ title: Chung_et_al_,_“A_Survey_of_Flash_Translation_Layer
 
 # Chung et al., “A Survey of Flash Translation Layer.”
 
-![Chung%20et%20al%20,%20%E2%80%9CA%20Survey%20of%20Flash%20Translation%20Layer/Untitled.png](Chung%20et%20al%20,%20%E2%80%9CA%20Survey%20of%20Flash%20Translation%20Layer/Untitled.png)
+![Chung et al , “A Survey of Flash Translation Layer/Untitled.png](Chung et al , “A Survey of Flash Translation Layer/2022-05-02_11-19-47.png)
 
 - FTL职责
     - Logical-to-physical address mapping

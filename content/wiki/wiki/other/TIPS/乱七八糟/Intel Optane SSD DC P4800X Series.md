@@ -10,6 +10,6 @@ Tags: intel, optane, ssd
 
 ## Technical Specifications
 
-[Essentials](Intel%20Optane%20SSD%20DC%20P4800X%20Series/Essentials%20d8ae17b26b3c4630b6c81daf3fbb1c89.csv)
+[Essentials](assets/Essentials%20d8ae17b26b3c4630b6c81daf3fbb1c89.csv)
 
-[Performance](Intel%20Optane%20SSD%20DC%20P4800X%20Series/Performance%20b45e64fc8e764a82ad6d7536b7a81c76.csv)
+[Performance](assets/Performance%20b45e64fc8e764a82ad6d7536b7a81c76.csv)

@@ -54,7 +54,7 @@ In fact, perf supports just a small subset of all events while CPUs have hundred
 
 If we take a look at the TLB related counters, we could find the following most interesting for us:
 
-[Untitled](Transparent%20Hugepages%20measuring%20the%20performance%20im/Untitled%20Database%20aac6c48ab7374ce8ad15a598fc40b4c5.csv)
+[Untitled](assets/Untitled%20Database%20aac6c48ab7374ce8ad15a598fc40b4c5.csv)
 
 Perf supports the `*MISS_CAUSES_A_WALK` counters via aliases. We need to use event numbers for others. The CPU event numbers and umask values are CPU specific; the listed above are for the Haswell microarchitecture. You need to look for codes for your CPU.
 
@@ -299,7 +299,7 @@ Again, all the above numbers look good but the most important fact is how they a
 
 The difference between 95%% is almost 1 millisecond! Here’s how the 95%% difference looks on a dashboard side by side during time:
 
-![Transparent%20Hugepages%20measuring%20the%20performance%20im/grafana.png](Transparent%20Hugepages%20measuring%20the%20performance%20im/grafana.png)
+![Transparent%20Hugepages%20measuring%20the%20performance%20im/grafana.png](assets/grafana.png)
 
 We just measured the performance improvement having Transparent Hugepages Support enabled. But as we know, it bears some maintenance overhead and risks of latency spikes. We surely need to measure them too. Let’s take a look at the `khugepaged` kernel thread that works on hugepages defragmentation. The probing was done for twenty-four hours or so. As you can see the maximum execution time is 6 milliseconds, there are quite a few runs that took more than 1 millisecond. This is a background thread but it locks pages it works with. Below is the histogram:
 

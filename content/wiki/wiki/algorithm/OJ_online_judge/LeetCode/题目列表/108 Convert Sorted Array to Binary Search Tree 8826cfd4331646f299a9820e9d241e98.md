@@ -13,7 +13,7 @@ Tags: DFS, Tree
 
 [Convert Sorted Array to Binary Search Tree - LeetCode](https://leetcode.com/problems/convert-sorted-array-to-binary-search-tree/)
 
-[109. Convert Sorted List to Binary Search Tree](109%20Convert%20Sorted%20List%20to%20Binary%20Search%20Tree%200908281b093b430194b2c5302477410a.md) 
+[109. Convert Sorted List to Binary Search Tree](109 Convert Sorted List to Binary Search Tree 0908281b093b430194b2c5302477410a.md) 
 
 ## 题意
 

@@ -28,7 +28,7 @@ Implement the `WordDictionary` class:
 ```
 Input
 ["WordDictionary","addWord","addWord","addWord","search","search","search","search"]
-[[],["bad"],["dad"],["mad"],["pad"],["bad"],[".ad"],["b.."]]
+[211 Design Add and Search Words Data Structure 9703cc9457f14148b99ca6061cec4a2e](.md)
 Output
 [null,null,null,null,false,true,true,true]
 

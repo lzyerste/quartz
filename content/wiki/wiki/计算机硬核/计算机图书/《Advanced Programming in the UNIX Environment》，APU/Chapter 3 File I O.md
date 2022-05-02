@@ -6,11 +6,11 @@ title: Chapter_3_File_I_O
 
 代码目录为fileio
 
-[Chapter%203%20File%20I%20O/untitled](Chapter%203%20File%20I%20O/untitled)
+![Chapter%203%20File%20I%20O/untitled](assets/bce656ea0a58bafd3772d616fe491324.png)
 
 两个打开同一个文件：
 
-[Chapter%203%20File%20I%20O/untitled%201](Chapter%203%20File%20I%20O/untitled%201)
+![Chapter%203%20File%20I%20O/untitled%201](assets/95512884e22598448f86da51d0ce1003.png)
 
 每个进程都有自己的file table，这样可以独立维护各自文件的状态，如flag及offset。
 
@@ -34,8 +34,8 @@ dup2?
 
 针对同一个文件，不同进程各自打开时，内核中分别有各自的file table entry，只是vnode指向同一个。
 
-[Chapter%203%20File%20I%20O/untitled%202](Chapter%203%20File%20I%20O/untitled%202)
+![Chapter%203%20File%20I%20O/untitled%202](assets/eb34c609aeb5e1aef096a97eab85d39f.png)
 
 ## 例子
 
-[Examples](Chapter%203%20File%20I%20O/Examples.csv)
+[Examples](assets/Examples.csv)

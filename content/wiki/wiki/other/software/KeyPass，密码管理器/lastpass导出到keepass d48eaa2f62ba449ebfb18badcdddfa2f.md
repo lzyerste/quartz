@@ -6,8 +6,8 @@ title: lastpass导出到keepass_d48eaa2f62ba449ebfb18badcdddfa2f
 
 Export，导出csv文件。
 
-![lastpass%E5%AF%BC%E5%87%BA%E5%88%B0keepass%20d48eaa2f62ba449ebfb18badcdddfa2f/Untitled.png](lastpass%E5%AF%BC%E5%87%BA%E5%88%B0keepass%20d48eaa2f62ba449ebfb18badcdddfa2f/Untitled.png)
+![2022-05-02_11-20-48](lastpass导出到keepass d48eaa2f62ba449ebfb18badcdddfa2f/2022-05-02_11-20-48.png)
 
 导入lastpass：会自动去重么？
 
-![lastpass%E5%AF%BC%E5%87%BA%E5%88%B0keepass%20d48eaa2f62ba449ebfb18badcdddfa2f/Untitled%201.png](lastpass%E5%AF%BC%E5%87%BA%E5%88%B0keepass%20d48eaa2f62ba449ebfb18badcdddfa2f/Untitled%201.png)
+![Untitled 1](assets/66fb88f45db77041b92b943ffee99fa4.png)

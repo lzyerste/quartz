@@ -8,7 +8,7 @@ Desc: use of the chmod function
 Figure: 4.12
 File: changemod
 
-[changemod%20b5705e4e5c6743b1b416739e33bebaad/untitled](changemod%20b5705e4e5c6743b1b416739e33bebaad/untitled)
+![changemod%20b5705e4e5c6743b1b416739e33bebaad/untitled](assets/89715effaff83009443dcb9f2c6f7990.png)
 
 ```c
 #include "apue.h"

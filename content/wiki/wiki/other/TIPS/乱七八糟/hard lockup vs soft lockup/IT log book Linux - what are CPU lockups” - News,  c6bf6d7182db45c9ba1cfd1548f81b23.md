@@ -87,7 +87,7 @@ When there is a lockup, there are several courses of action which can help with 
 
 Take note of the CPU affinity:
 
-![IT%20log%20book%20Linux%20-%20what%20are%20CPU%20lockups%E2%80%9D%20-%20News,%20%20c6bf6d7182db45c9ba1cfd1548f81b23/gimp-watchdogs1.png](IT%20log%20book%20Linux%20-%20what%20are%20CPU%20lockups%E2%80%9D%20-%20News,%20%20c6bf6d7182db45c9ba1cfd1548f81b23/gimp-watchdogs1.png)
+![IT log book Linux - what are CPU lockups” - News,  c6bf6d7182db45c9ba1cfd1548f81b23/gimp-watchdogs1.png](IT log book Linux - what are CPU lockups” - News,  c6bf6d7182db45c9ba1cfd1548f81b23/gimp-watchdogs1.png)
 
 ```
 $ for pid in 12 15 21 27 33 39 45 51; do taskset -a -p $pid; done

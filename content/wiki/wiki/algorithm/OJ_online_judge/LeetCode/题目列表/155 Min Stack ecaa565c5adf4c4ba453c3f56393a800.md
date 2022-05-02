@@ -26,7 +26,7 @@ Design a stack that supports push, pop, top, and retrieving the minimum element 
 ```
 Input
 ["MinStack","push","push","push","getMin","pop","top","getMin"]
-[[],[-2],[0],[-3],[],[],[],[]]
+[155 Min Stack ecaa565c5adf4c4ba453c3f56393a800](.md)
 
 Output
 [null,null,null,null,-3,null,0,-2]

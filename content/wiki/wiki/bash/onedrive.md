@@ -11,9 +11,9 @@ $ ls ~/Nutstore/wiki/config/onedrive
 business_shared_folders  config  sync_list
 ```
 
-- [business_shared_folders](../../config/onedrive/business_shared_folders)
-- [config](../../config/onedrive/config)
-- [sync_list](../../config/onedrive/sync_list)
+- business_shared_folders: ../../config/onedrive/business_shared_folders
+- config: ../../config/onedrive/config
+- sync_list: ../../config/onedrive/sync_list
 
 [Engineering](https://innogrit.sharepoint.com/Shared%20Documents/Forms/AllItems.aspx?id=%2FShared%20Documents%2FEngineering&viewid=0c1b468e%2D6e4e%2D486b%2D8644%2Da6c9704b601e)
 

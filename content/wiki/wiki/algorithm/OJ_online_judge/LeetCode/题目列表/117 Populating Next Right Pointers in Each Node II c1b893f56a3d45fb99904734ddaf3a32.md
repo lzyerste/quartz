@@ -13,7 +13,7 @@ Tags: DFS, Tree
 
 [Populating Next Right Pointers in Each Node II - LeetCode](https://leetcode.com/problems/populating-next-right-pointers-in-each-node-ii/)
 
-[116. Populating Next Right Pointers in Each Node](116%20Populating%20Next%20Right%20Pointers%20in%20Each%20Node%20751bbec41c1f4513881095155357a246.md) 
+[116. Populating Next Right Pointers in Each Node](116 Populating Next Right Pointers in Each Node 751bbec41c1f4513881095155357a246.md) 
 
 ## 题意
 

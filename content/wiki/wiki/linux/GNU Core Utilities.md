@@ -18,8 +18,8 @@ title: GNU_Core_Utilities
 
 ## 命令分析
 
-[pwd](GNU%20Core%20Utilities/pwd%202b3d55de811e4a5db2f96afcc497af83.md)
+[pwd](GNU Core Utilities/pwd 2b3d55de811e4a5db2f96afcc497af83.md)
 
-[ls](GNU%20Core%20Utilities/ls%201da98449e27845a18d8b65eeb68397f7.md)
+[ls](GNU Core Utilities/ls 1da98449e27845a18d8b65eeb68397f7.md)
 
-[CoreUtils](GNU%20Core%20Utilities/CoreUtils%20b95a2b76188f4da4ba92e1db642f5fee.csv)
+[CoreUtils](GNU Core Utilities/CoreUtils b95a2b76188f4da4ba92e1db642f5fee.csv)

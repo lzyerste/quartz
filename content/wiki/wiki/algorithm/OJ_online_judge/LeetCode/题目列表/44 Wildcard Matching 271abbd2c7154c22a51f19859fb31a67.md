@@ -80,7 +80,7 @@ p = "a*c?b"
 
 ## 思路
 
-- 与 [10. Regular Expression Matching](10%20Regular%20Expression%20Matching%20d66accc7d2b84771b8dadad4ecd09a6d.md) 类似，且更简单
+- 与 [10. Regular Expression Matching](10 Regular Expression Matching d66accc7d2b84771b8dadad4ecd09a6d.md) 类似，且更简单
 
 ## 解法1：DP
 

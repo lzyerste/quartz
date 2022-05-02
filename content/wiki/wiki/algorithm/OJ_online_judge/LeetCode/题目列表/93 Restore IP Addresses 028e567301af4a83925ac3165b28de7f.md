@@ -30,7 +30,7 @@ class Solution:
             p = i, j
             if p in G: return G[p]
             if j == 0:  # 不需要再分割了，如果当前剩余字符串刚好为空那就是合法的
-                return [[]] if i >= len(s) else []
+                return [93 Restore IP Addresses 028e567301af4a83925ac3165b28de7f](.md) if i >= len(s) else []
             res = []
             for d in range(1, 4):
                 right = i + d

@@ -25,7 +25,7 @@ title: 3_Transport_Layer_a65f6687a0434b84bd9f8153cc11d546
 - SNMP
 - 可靠性可以在应用层实现。
 
-![3%20Transport%20Layer%20a65f6687a0434b84bd9f8153cc11d546/Untitled.png](3%20Transport%20Layer%20a65f6687a0434b84bd9f8153cc11d546/Untitled.png)
+![3%20Transport%20Layer%20a65f6687a0434b84bd9f8153cc11d546/Untitled.png](assets/2022-05-02_11-11-02.png)
 
 - UDP的checksum计算方式：以16位为单位，累加起来，高位溢出的进位放到低位继续加。最后使用1的补码，也就是0变1，1变0，作为checksum。那么，接收方收到后，全加起来应该是全1。
 - 传输层不能够依赖底层的错误检测，而应该使用end-end principle，在自己这一层解决。
@@ -39,7 +39,7 @@ title: 3_Transport_Layer_a65f6687a0434b84bd9f8153cc11d546
     
     状态机：
     
-    ![3%20Transport%20Layer%20a65f6687a0434b84bd9f8153cc11d546/Untitled%201.png](3%20Transport%20Layer%20a65f6687a0434b84bd9f8153cc11d546/Untitled%201.png)
+    ![3%20Transport%20Layer%20a65f6687a0434b84bd9f8153cc11d546/Untitled%201.png](assets/2022-05-02_11-28-17.png)
     
 - rdt2.0，数据可能会被破坏
     - ARQ (Automatic Repeat reQuest) protocols
@@ -49,9 +49,9 @@ title: 3_Transport_Layer_a65f6687a0434b84bd9f8153cc11d546
     
     状态机：
     
-    ![3%20Transport%20Layer%20a65f6687a0434b84bd9f8153cc11d546/Untitled%202.png](3%20Transport%20Layer%20a65f6687a0434b84bd9f8153cc11d546/Untitled%202.png)
+    ![3%20Transport%20Layer%20a65f6687a0434b84bd9f8153cc11d546/Untitled%202.png](assets/2022-05-02_11-28-14.png)
     
-    ![3%20Transport%20Layer%20a65f6687a0434b84bd9f8153cc11d546/Untitled%203.png](3%20Transport%20Layer%20a65f6687a0434b84bd9f8153cc11d546/Untitled%203.png)
+    ![3%20Transport%20Layer%20a65f6687a0434b84bd9f8153cc11d546/Untitled%203.png](assets/2022-05-02_11-28-07.png)
     
     - rdt2.0也称为stop-and-wait protocols，因为发送一个包，ACK后，再发送下一个包。
     - 有个致命缺陷：接收者发送的ACK或NAK也有可能损坏。ACK包也要加上checksum，但是发送者只是收到一个损坏的包，并不知道它是不是ACK，所以并不会出发重发。
@@ -74,7 +74,7 @@ title: 3_Transport_Layer_a65f6687a0434b84bd9f8153cc11d546
 - 全双工，点对点
 - 三次握手，three-way handshake
 
-![3%20Transport%20Layer%20a65f6687a0434b84bd9f8153cc11d546/Untitled%204.png](3%20Transport%20Layer%20a65f6687a0434b84bd9f8153cc11d546/Untitled%204.png)
+![3%20Transport%20Layer%20a65f6687a0434b84bd9f8153cc11d546/Untitled%204.png](assets/2022-05-02_11-28-02.png)
 
 - sequence number & acknowledgement number: 用来实现可靠机制
     - sequence number：字节流的偏移地址

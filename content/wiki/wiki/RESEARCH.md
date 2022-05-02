@@ -32,9 +32,9 @@ title: RESEARCH
 
 ---
 
-[经典论文](RESEARCH/%E7%BB%8F%E5%85%B8%E8%AE%BA%E6%96%87.csv)
+[经典论文](assets/经典论文.csv)
 
-[SSD/Flash](RESEARCH/SSD%20Flash.md)
+[SSD/Flash](RESEARCH/SSD Flash.md)
 
 [papers-we-love/papers-we-love](https://github.com/papers-we-love/papers-we-love)
 
@@ -68,8 +68,8 @@ title: RESEARCH
 
 [In-Memory Computing Challenges Come Into Focus](https://semiengineering.com/challenges-emerge-for-in-memory-computing/)
 
-[AWS Nitro](RESEARCH/AWS%20Nitro.md)
+[AWS Nitro](RESEARCH/AWS Nitro.md)
 
 [SR-IOV](RESEARCH/SR-IOV.md)
 
-[acm queue](RESEARCH/acm%20queue.md)
+[acm queue](RESEARCH/acm queue.md)

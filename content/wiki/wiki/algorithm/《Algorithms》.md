@@ -14,7 +14,7 @@ title: 《Algorithms》
 
 [经典算法&数据结构](经典算法&数据结构.md)
 
-[环境准备](%E3%80%8AAlgorithms%E3%80%8B/%E7%8E%AF%E5%A2%83%E5%87%86%E5%A4%87%2064dcd48ea4344bed83996c55134167d5.md)
+[环境准备](《Algorithms》/环境准备 64dcd48ea4344bed83996c55134167d5.md)
 
 - 如何`直接运行algs4.jar`里的程序
     - 下载两个脚本，放到PATH目录，如~/bin
@@ -23,16 +23,16 @@ title: 《Algorithms》
     - 修改两个脚本里面的INSTALL变量，指向algs4.jar所在目录，如~/github/algs4
     - 命令行运行，如java-algs4 edu.princeton.cs.algs4.StdDraw，注意包名前缀
         
-        [%E3%80%8AAlgorithms%E3%80%8B/untitled](%E3%80%8AAlgorithms%E3%80%8B/untitled)
+        ![untitled](assets/b56603f40dfd3a5d6a59c0d92c28b10c.png)
         
 
 ## 学习进度
 
-[1. Fundamentals](%E3%80%8AAlgorithms%E3%80%8B/1%20Fundamentals%20846f6538908844ce88c20fe8509bedef.md)
+[1. Fundamentals](《Algorithms》/1 Fundamentals 846f6538908844ce88c20fe8509bedef.md)
 
-[2. Sorting](%E3%80%8AAlgorithms%E3%80%8B/2%20Sorting%20c31232812105447884bb5307ab2b1a8d.md)
+[2. Sorting](《Algorithms》/2 Sorting c31232812105447884bb5307ab2b1a8d.md)
 
-[3. Searching](%E3%80%8AAlgorithms%E3%80%8B/3%20Searching%208d64e843107e4e07a748f6866b6afb00.md)
+[3. Searching](《Algorithms》/3 Searching 8d64e843107e4e07a748f6866b6afb00.md)
 
 [4. Graph](《Algorithms》/4_Graph.md)
 

@@ -81,23 +81,23 @@ title: Storage_for_DBAs，系列博客
     - 性能问题：擦除代价远大于读写
         - it takes many times longer to perform an erase than it does to perform a read or program.
     
-    ![Storage%20for%20DBAs%EF%BC%8C%E7%B3%BB%E5%88%97%E5%8D%9A%E5%AE%A2/Untitled.png](Storage%20for%20DBAs%EF%BC%8C%E7%B3%BB%E5%88%97%E5%8D%9A%E5%AE%A2/Untitled.png)
+    ![Storage for DBAs，系列博客/Untitled.png](Storage for DBAs，系列博客/2022-05-02_11-14-45.png)
     
 - Flash不支持原地更新，需要先擦除再写新数据。而擦除以block为单位，里面的所有valid pages都要拷贝，擦除完了再写回去。
     - 这样子代价高，一般是使用out-of-place update，也就是将旧的page置为invalid，然后在另外一个free page里写入新数据。
     - 这里需要一层映射，来跟踪数据在何方。这就是FTL的由来。
     
-    ![Storage%20for%20DBAs%EF%BC%8C%E7%B3%BB%E5%88%97%E5%8D%9A%E5%AE%A2/Untitled%201.png](Storage%20for%20DBAs%EF%BC%8C%E7%B3%BB%E5%88%97%E5%8D%9A%E5%AE%A2/Untitled%201.png)
+    ![Storage for DBAs，系列博客/Untitled 1.png](assets/677325e56f9c8030f03d76522cb7dc14.png)
     
 - 其实，block被擦除时是置为全1。写数据时是将对应的1写为0。
 
 ## ✅ [Understanding Flash: SLC, MLC and TLC](https://flashdba.com/2014/07/03/understanding-flash-slc-mlc-and-tlc/)
 
-![Storage%20for%20DBAs%EF%BC%8C%E7%B3%BB%E5%88%97%E5%8D%9A%E5%AE%A2/Untitled%202.png](Storage%20for%20DBAs%EF%BC%8C%E7%B3%BB%E5%88%97%E5%8D%9A%E5%AE%A2/Untitled%202.png)
+![Storage for DBAs，系列博客/Untitled 2.png](assets/44077f2bb6f81c4060830e7d341a03f8.png)
 
 - SLC只需要将cell里的电容量（charge）二分比较即可（比如满了是0，空了是1），而MLC、TLC则需要更加精细的探测，错误的容忍度更低（lower margin of error），寿命也越小。
 
-![Storage%20for%20DBAs%EF%BC%8C%E7%B3%BB%E5%88%97%E5%8D%9A%E5%AE%A2/Untitled%203.png](Storage%20for%20DBAs%EF%BC%8C%E7%B3%BB%E5%88%97%E5%8D%9A%E5%AE%A2/Untitled%203.png)
+![Storage for DBAs，系列博客/Untitled 3.png](assets/fc18f8b0f6d1bbeb0528019bb6a202e9.png)
 
 - 随着密度增大，读写擦除的时间都变大，寿命变小
 - 注意擦除的时间，都在毫秒级别。一般来看，写比读慢10倍，擦除又比写慢10倍
@@ -108,11 +108,11 @@ title: Storage_for_DBAs，系列博客
 
 - 二维的NAND如下所示：bitline与wordline
 
-![Storage%20for%20DBAs%EF%BC%8C%E7%B3%BB%E5%88%97%E5%8D%9A%E5%AE%A2/Untitled%204.png](Storage%20for%20DBAs%EF%BC%8C%E7%B3%BB%E5%88%97%E5%8D%9A%E5%AE%A2/Untitled%204.png)
+![Storage for DBAs，系列博客/Untitled 4.png](assets/10a1a2dd70314767be3707cb6b3fe0d7.png)
 
 - 三维的NAND如下所示：平面再折叠成U字型。
 
-![Storage%20for%20DBAs%EF%BC%8C%E7%B3%BB%E5%88%97%E5%8D%9A%E5%AE%A2/Untitled%205.png](Storage%20for%20DBAs%EF%BC%8C%E7%B3%BB%E5%88%97%E5%8D%9A%E5%AE%A2/Untitled%205.png)
+![Storage for DBAs，系列博客/Untitled 5.png](assets/1af5891692f483398fab0281ad76fd85.png)
 
 - 三星的V-NAND
     - 第一代有24层
@@ -133,7 +133,7 @@ title: Storage_for_DBAs，系列博客
     - 为什么叫block而不是page，因为磁盘比flash更早出现
     - 解决职责1，地址映射，LBA → PBA，对上层是透明的
     
-    ![Storage%20for%20DBAs%EF%BC%8C%E7%B3%BB%E5%88%97%E5%8D%9A%E5%AE%A2/Untitled%206.png](Storage%20for%20DBAs%EF%BC%8C%E7%B3%BB%E5%88%97%E5%8D%9A%E5%AE%A2/Untitled%206.png)
+    ![Storage for DBAs，系列博客/Untitled 6.png](assets/d6cea97b91f647c6eb0e72e36fbc302d.png)
     
 - **`Wear Leveling`**
     - 寿命问题，PE次数有限（会被写穿），需要均衡地写
@@ -148,7 +148,7 @@ title: Storage_for_DBAs，系列博客
     - 分母是Host主机真实发送的写的数量
     - 分子是Flash内部真实写的数量
     
-    ![Storage%20for%20DBAs%EF%BC%8C%E7%B3%BB%E5%88%97%E5%8D%9A%E5%AE%A2/Untitled%207.png](Storage%20for%20DBAs%EF%BC%8C%E7%B3%BB%E5%88%97%E5%8D%9A%E5%AE%A2/Untitled%207.png)
+    ![Storage for DBAs，系列博客/Untitled 7.png](assets/02551c0a84d9f5a7d9bf35c6df114fe5.png)
     
 - FTL在哪里？
     - 可以在flash本身的固件里（controller）
@@ -159,12 +159,12 @@ title: Storage_for_DBAs，系列博客
 - 假如一开始不进行垃圾回收（那就相当于变成了ROM）
     - 这时候想回收也回收不了，因为没有一个块有足够多的空闲页来容纳待移出的页
     
-    ![Storage%20for%20DBAs%EF%BC%8C%E7%B3%BB%E5%88%97%E5%8D%9A%E5%AE%A2/Untitled%208.png](Storage%20for%20DBAs%EF%BC%8C%E7%B3%BB%E5%88%97%E5%8D%9A%E5%AE%A2/Untitled%208.png)
+    ![Storage for DBAs，系列博客/Untitled 8.png](assets/5fd1e2605ebc83c5d75e9331194aba63.png)
     
     - 使用Over-Provisioning，保证GC的顺利进行
     - 高端的flash可以让用户调整OP，比如workload是read intensive，那么可以减小OP的空间。
     
-    ![Storage%20for%20DBAs%EF%BC%8C%E7%B3%BB%E5%88%97%E5%8D%9A%E5%AE%A2/Untitled%209.png](Storage%20for%20DBAs%EF%BC%8C%E7%B3%BB%E5%88%97%E5%8D%9A%E5%AE%A2/Untitled%209.png)
+    ![Storage for DBAs，系列博客/Untitled 9.png](assets/51c1ab08d12b4911b262827f02040fd7.png)
     
 
 ## [Understanding Flash: The Write Cliff](https://flashdba.com/2014/11/24/understanding-flash-the-write-cliff/)
@@ -176,7 +176,7 @@ title: Storage_for_DBAs，系列博客
     - 写比读慢10倍，擦除差不错又要比写慢10倍。
 - 所以，会出现情况，读着读着，突然变慢了（甚至100呗？），从微秒级到毫秒级。
 
-![Storage%20for%20DBAs%EF%BC%8C%E7%B3%BB%E5%88%97%E5%8D%9A%E5%AE%A2/Untitled%2010.png](Storage%20for%20DBAs%EF%BC%8C%E7%B3%BB%E5%88%97%E5%8D%9A%E5%AE%A2/Untitled%2010.png)
+![Storage for DBAs，系列博客/Untitled 10.png](assets/e9084bb400fd5275095fb608e9942a50.png)
 
 - 如果前台请求不够多，后台可以静悄悄地做垃圾回收（BGC）。
 - 如果前台请求太快，后台来不及处理，那么请求只能排队，显式地前台做垃圾回收。
@@ -189,7 +189,7 @@ title: Storage_for_DBAs，系列博客
 - MLC重编码
     - 低位LSB上半部分是0，下半部分是1。
     
-    ![Storage%20for%20DBAs%EF%BC%8C%E7%B3%BB%E5%88%97%E5%8D%9A%E5%AE%A2/Untitled%2011.png](Storage%20for%20DBAs%EF%BC%8C%E7%B3%BB%E5%88%97%E5%8D%9A%E5%AE%A2/Untitled%2011.png)
+    ![Storage for DBAs，系列博客/Untitled 11.png](assets/f3d67d1457150ae2e5ed7ea8619ff7d6.png)
     
 - fast page, slow page
 
@@ -215,10 +215,10 @@ title: Storage_for_DBAs，系列博客
 
 [All Flash Arrays: Active/Active versus Active/Passive](https://flashdba.com/2016/10/19/all-flash-arrays-activeactive-versus-activepassive/)
 
-[All Flash Arrays: Scale Up vs Scale Out (Part 1)](https://flashdba.com/2017/05/09/all-flash-arrays-scale-up-vs-scale-out-part1/)
+[All Flash Arrays: Scale Up vs Scale Out (Part 1)](Part 1))
 
-[All Flash Arrays: Scale Up vs Scale Out (Part 2)](https://flashdba.com/2017/11/01/all-flash-arrays-scale-up-vs-scale-out-part-2/)
+[All Flash Arrays: Scale Up vs Scale Out (Part 2)](Part 2))
 
 [Flash Debrief](https://flashdba.com/2019/03/28/storage-for-dbas-the-end-part-1/):
 
-[Flash Debrief: The End (Part 1)](https://flashdba.com/2019/03/28/storage-for-dbas-the-end-part-1/)
+[Flash Debrief: The End (Part 1)](Part 1))

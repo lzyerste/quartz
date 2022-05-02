@@ -8,7 +8,7 @@ title: 超强获取单一元素（single_number）
 
 题目：一个数组中，一个元素出现m次，其他元素都出现k次，找出这个出现m次的元素。m不整除k。
 
-[137. Single Number II](../../OJ_online_judge/LeetCode/题目列表/137%20Single%20Number%20II%207c620f521db14c908b3fe279405f11a1.md) 
+[137. Single Number II](../../OJ_online_judge/LeetCode/题目列表/137 Single Number II 7c620f521db14c908b3fe279405f11a1.md) 
 
 ---
 
@@ -74,7 +74,7 @@ ones, twos = ~twos & (ones ^ n), ****(~ones & twos & ~n) | (ones & ~twos & n)
 
 状态集（k=6）：
 
-[Untitled](%E8%B6%85%E5%BC%BA%E8%8E%B7%E5%8F%96%E5%8D%95%E4%B8%80%E5%85%83%E7%B4%A0%EF%BC%88single%20number%EF%BC%89/Untitled%20Database%203c6caf1e02bb4260bbc705829e2757b7.csv)
+[Untitled](超强获取单一元素（single number）/Untitled Database 3c6caf1e02bb4260bbc705829e2757b7.csv)
 
 表格中每一行代表了一个状态，状态转移方式如前所述：输入为0时保持状态；输入为1时从前一个状态迁移到下一个状态，表格尾部则回到表头。
 

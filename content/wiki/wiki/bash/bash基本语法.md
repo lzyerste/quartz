@@ -16,10 +16,10 @@ title: bash基本语法
 echo -n "Enter a number: "
 read VAR
 
-if [[ $VAR -gt 10 ]]
+if [ $VAR -gt 10 ]( $VAR -gt 10 )
 then
   echo "The variable is greater than 10."
-elif [[ $VAR -eq 10 ]]
+elif [ $VAR -eq 10 ]( $VAR -eq 10 )
 then
   echo "The variable is equal to 10."
 else
@@ -135,11 +135,11 @@ myvalue="${lookup[$myvar]}"
 [Check if a Bash array contains a value](https://stackoverflow.com/questions/3685970/check-if-a-bash-array-contains-a-value)
 
 ```c
-if [[ " ${array[@]} " =~ " ${value} " ]]; then
+if [ " ${array[@]( " ${array[@); then
     # whatever you want to do when array contains value
 fi
 
-if [[ ! " ${array[@]} " =~ " ${value} " ]]; then
+if [ ! " ${array[@]( ! " ${array[@); then
     # whatever you want to do when array doesn't contain value
 fi
 ```

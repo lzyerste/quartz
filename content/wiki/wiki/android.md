@@ -4,13 +4,13 @@ title: android
 
 # android
 
-[Resources](android/Resources%2069622116f5f0412db311392c19e61ee5.md)
+[Resources](android/Resources 69622116f5f0412db311392c19e61ee5.md)
 
-[Android Programming - The Big Nerd Ranch Guide](android/Android%20Programming%20-%20The%20Big%20Nerd%20Ranch%20Guide.md)
+[Android Programming - The Big Nerd Ranch Guide](android/Android Programming - The Big Nerd Ranch Guide.md)
 
 [RxJava2](android/RxJava2.md)
 
-[天哥在奔跑的个人空间 - 哔哩哔哩 ( ゜- ゜)つロ 乾杯~ Bilibili](https://space.bilibili.com/204248002/video)
+[天哥在奔跑的个人空间 - 哔哩哔哩 ( ゜- ゜)つロ 乾杯~ Bilibili]( ゜- ゜)つロ 乾杯~ Bilibili)つロ%20乾杯~%20Bilibili](https://space.bilibili.com/204248002/video)
 
 [Things I wish I knew when I started building Android Libraries Vol 2 by Nishant Srivastava](https://www.youtube.com/watch?v=jQyt3HSmx2I&feature=youtu.be)
 

@@ -27,8 +27,6 @@ https://fio.readthedocs.io/en/latest/
 
 [fio](https://fio.readthedocs.io/en/latest/fio_doc.html)
 
-[1. fio - Flexible IO tester rev. 3.25](fio%20[wiki]/1%20fio%20-%20Flexible%20IO%20tester.md)
-
 fio重要参数：
 
 - 重要概念：IO type，Block size，IO size，IO engine，IO depth，Target file/device，Threads/Jobs

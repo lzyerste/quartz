@@ -157,7 +157,7 @@ TOC使用：https://github.com/gollum/gollum/wiki#table-of-contents-toc-tag
 链接：
 
 ```
-[[link]]
+[link](link)
 ```
 
 typora仍会显示中括号。
@@ -167,7 +167,7 @@ typora仍会显示中括号。
 直接嵌入其他页面：https://github.com/gollum/gollum/wiki#include-tag
 
 ```
-[[include:path-to-page]]
+[include:path-to-page](include:path-to-page)
 ```
 
 中间不要有空格。

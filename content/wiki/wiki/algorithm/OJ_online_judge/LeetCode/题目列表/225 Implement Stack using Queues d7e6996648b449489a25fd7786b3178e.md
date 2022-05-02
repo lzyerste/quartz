@@ -36,7 +36,7 @@ Implement the `MyStack` class:
 ```
 Input
 ["MyStack", "push", "push", "top", "pop", "empty"]
-[[], [1], [2], [], [], []]
+[225 Implement Stack using Queues d7e6996648b449489a25fd7786b3178e](.md)
 Output
 [null, null, null, 2, 2, false]
 

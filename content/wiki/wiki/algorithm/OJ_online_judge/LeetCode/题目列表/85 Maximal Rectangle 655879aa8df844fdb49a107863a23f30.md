@@ -17,7 +17,7 @@ Tags: DP, Matrix, Stack
 
 ## 思路
 
-- 基于 [84. Largest Rectangle in Histogram](84%20Largest%20Rectangle%20in%20Histogram%2018812cd530d149258528d978dd390e9c.md) 解决
+- 基于 [84. Largest Rectangle in Histogram](84 Largest Rectangle in Histogram 18812cd530d149258528d978dd390e9c.md) 解决
 
 ## 题解1
 

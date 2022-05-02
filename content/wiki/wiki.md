@@ -6,13 +6,13 @@ title: "wiki"
 
 # Wiki
 
-[notion使用指南](wiki/notion%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97.md)
+[notion使用指南](wiki/notion使用指南.md)
 
-[LTP, Long Term Project](wiki/LTP,%20Long%20Term%20Project.md)
+[LTP, Long Term Project](wiki/LTP, Long Term Project.md)
 
 [RESEARCH](wiki/RESEARCH.md)
 
-[计算机硬核](wiki/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A1%AC%E6%A0%B8.md)
+[计算机硬核](wiki/计算机硬核.md)
 
 [algorithm](wiki/algorithm.md)
 
@@ -26,7 +26,7 @@ title: "wiki"
 
 [git](wiki/git.md)
 
-[go [wiki]](wiki/go%20%5Bwiki%5D.md)
+[go](wiki/go.md)
 
 [java](wiki/java.md)
 
@@ -42,8 +42,8 @@ title: "wiki"
 
 [tech](wiki/tech.md)
 
-[杂项](wiki/%E6%9D%82%E9%A1%B9.md)
+[杂项](wiki/杂项.md)
 
-[文学](wiki/%E6%96%87%E5%AD%A6.md)
+[文学](wiki/文学.md)
 
-[国家政策](wiki/%E5%9B%BD%E5%AE%B6%E6%94%BF%E7%AD%96.md)
+[国家政策](wiki/国家政策.md)

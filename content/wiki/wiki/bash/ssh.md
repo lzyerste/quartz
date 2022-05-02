@@ -4,7 +4,7 @@ title: ssh
 
 #ssh
 
-[我的公钥_ssh](../personal/我的公钥_ssh.md)
+[我的公钥_ssh](../../personal/我的公钥_ssh.md)
 
 # ssh
 

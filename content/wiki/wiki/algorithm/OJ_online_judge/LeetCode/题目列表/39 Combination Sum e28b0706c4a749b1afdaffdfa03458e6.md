@@ -60,7 +60,7 @@ class Solution:
         def dp(G, nums, i, t):
             p = i, t
             if p in G: return G[p]
-            if t == 0: return [[]]  # 合法终点，包含1个元素，空
+            if t == 0: return [39 Combination Sum e28b0706c4a749b1afdaffdfa03458e6](.md)  # 合法终点，包含1个元素，空
             if i < 0 or t < 0: return []  # 非法终点
             part1 = dp(G, nums, i - 1, t)  # t中不包含nums[i]
             # 包含，仍为i，表示可重用
