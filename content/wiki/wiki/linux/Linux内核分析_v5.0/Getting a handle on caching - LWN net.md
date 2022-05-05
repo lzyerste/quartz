@@ -6,7 +6,7 @@ title: Getting_a_handle_on_caching_[LWN_net]
 
 [https://lwn.net/Articles/282250/](https://lwn.net/Articles/282250/)
 
-[Untitled](Getting%20a%20handle%20on%20caching%20[LWN%20net)
+[Untitled](Getting%20a%20handle%20on%20caching%20%5BLWN%20net%5D/Untitled%20Database%2076b04114f2e8462781540f4d38b87b4b.csv)
 
 Memory management changes (for the x86 architecture) have caused surprises for a few kernel developers. As these issues have been worked out, it has become clear that not everybody understands how memory caching works on contemporary systems. In an attempt to bring some clarity, Arjan van de Ven wrote up some notes and sent them to your editor, who has now worked them into this article. Thanks to Arjan for putting this information together - all the useful stuff found below came from him.
 

@@ -15,9 +15,9 @@ PintOS Project
 ## **Reading**
 
 - **Required**
-    - **[Operating Systems: Principles and Practice (2nd Edition)](2nd%20Edition)))](http://ospp.cs.washington.edu/)**
+    - **[Operating Systems: Principles and Practice - 2nd Edition](http://ospp.cs.washington.edu/)**
 - **Recommended**
     - **[Operating System Concepts 9th Edition](http://os-book.com/OS9/index.html)**
 - **Supplemental**
     - **[Understanding the Linux Kernel, Third Edition](http://proquest.safaribooksonline.com/book/operating-systems-and-server-administration/linux/0596005652/understanding-the-linux-kernel-3rd-edition/id975783)**
-    - **[Linux Kernel Development (3rd Edition)](3rd%20Edition)))](http://www.amazon.com/Linux-Kernel-Development-3rd-Edition/dp/0672329468)**
+    - **[Linux Kernel Development - 3rd Edition](http://www.amazon.com/Linux-Kernel-Development-3rd-Edition/dp/0672329468)**

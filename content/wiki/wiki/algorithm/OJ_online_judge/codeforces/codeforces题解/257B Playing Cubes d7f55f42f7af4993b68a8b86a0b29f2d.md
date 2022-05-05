@@ -13,7 +13,7 @@ github: Yes
 
 [Problem - 257B - Codeforces](https://codeforces.com/problemset/problem/257/B)
 
-[Div. 2](Div.%202) Разбор Задач - Codeforces](Div. 2|Codeforces Round #159 (Div. 2) Разбор Задач - Codeforces)%20Разбор%20Задач%20-%20Codeforces](https://codeforces.com/blog/entry/6357)
+[Codeforces Round #159 Div. 2 Разбор Задач - Codeforces](https://codeforces.com/blog/entry/6357)
 
 ## 思路
 

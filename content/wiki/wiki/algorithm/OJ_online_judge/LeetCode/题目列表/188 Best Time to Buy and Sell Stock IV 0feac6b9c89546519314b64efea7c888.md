@@ -53,7 +53,7 @@ Explanation: Buy on day 2 (price = 2) and sell on day 3 (price = 6), profit = 6-
     
 2. 复杂度从O(kN)降到O(N)
     
-    [C++ Solution with O(n + klgn) time using Max Heap and Stack - LeetCode Discuss](n%20+%20klgn)%20time%20using%20Max%20Heap%20and%20Stack%20-%20LeetCode%20Discuss) time using Max Heap and Stack - LeetCode Discuss)%20time%20using%20Max%20Heap%20and%20Stack%20-%20LeetCode%20Discuss](https://leetcode.com/problems/best-time-to-buy-and-sell-stock-iv/discuss/54118/C%2B%2B-Solution-with-O(n-%2B-klgn)-time-using-Max-Heap-and-Stack)
+    [C++ Solution with O_n + klgn time using Max Heap and Stack - LeetCode Discuss](https://leetcode.com/problems/best-time-to-buy-and-sell-stock-iv/discuss/54118/C%2B%2B-Solution-with-O(n-%2B-klgn)-time-using-Max-Heap-and-Stack)
     
 3. DP的复杂度达到O(kN)，可以用贪心算法，复杂度降为O(klgN)。
     

@@ -10,7 +10,7 @@ title: android
 
 [RxJava2](android/RxJava2.md)
 
-[天哥在奔跑的个人空间 - 哔哩哔哩 ( ゜- ゜)つロ 乾杯~ Bilibili](%20゜-%20゜)つロ%20乾杯~%20Bilibili)つロ 乾杯~ Bilibili)つロ%20乾杯~%20Bilibili](https://space.bilibili.com/204248002/video)
+[天哥在奔跑的个人空间 - 哔哩哔哩](https://space.bilibili.com/204248002/video)
 
 [Things I wish I knew when I started building Android Libraries Vol 2 by Nishant Srivastava](https://www.youtube.com/watch?v=jQyt3HSmx2I&feature=youtu.be)
 

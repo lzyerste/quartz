@@ -4,7 +4,7 @@ title: 2015_Spring_adbd92cfade548829bad460fbcbca915
 
 # 2015 Spring
 
-[CS61C Spring 2015: Great Ideas in Computer Architecture (Machine Structures)](Machine%20Structures)))](http://inst.eecs.berkeley.edu/~cs61c/sp15/)
+[CS61C Spring 2015: Great Ideas in Computer Architecture - Machine Structures](http://inst.eecs.berkeley.edu/~cs61c/sp15/)
 
 课程官网
 

@@ -1,5 +1,9 @@
 # Quartz
 
+图片不支持相对路径。
+
+[github wiki](content/wiki/wiki.md)
+
 Host your second brain and [digital garden](https://jzhao.xyz/posts/digital-gardening) for free. Quartz features
 
 1. Extremely fast full-text search by pressing `Ctrl` + `k`

@@ -6,6 +6,6 @@ title: assembly
 
 ## 资源
 
-* Book: [Reverse Engineering for Beginners (Understanding Assembly Language)](Understanding%20Assembly%20Language)))](https://beginners.re/)
+* Book: [Reverse Engineering for Beginners - Understanding Assembly Language](https://beginners.re/)
 * https://godbolt.org/ 在线反汇编
-* Blog: [Reversing for dummies - x86 assembly and C code (Beginner/ADHD friendly)](Beginner/ADHD%20friendly)))](https://0x41.cf/reversing/2021/07/21/reversing-x86-and-c-code-for-beginners.html)
+* Blog: [Reversing for dummies - x86 assembly and C code - Beginner/ADHD friendly](https://0x41.cf/reversing/2021/07/21/reversing-x86-and-c-code-for-beginners.html)

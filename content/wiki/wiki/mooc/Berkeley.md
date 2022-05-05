@@ -8,7 +8,7 @@ title: Berkeley
 
 [CS 61B, Data Structures](Berkeley/CS%2061B,%20Data%20Structures.md)
 
-[CS 61C: Great Ideas in Computer Architecture (Machine Structures)](Machine%20Structures)))](Berkeley/CS%2061C%20Great%20Ideas%20in%20Computer%20Architecture%20(Machi.md)
+[CS 61C Great Ideas in Computer Architecture - Machine Structures](Berkeley/CS%2061C%20Great%20Ideas%20in%20Computer%20Architecture%20-%20Machine%20Structures.md)
 
 [CS 170 Efficient Algorithms and Intractable Problems](Berkeley/CS%20170%20Efficient%20Algorithms%20and%20Intractable%20Proble.md)
 

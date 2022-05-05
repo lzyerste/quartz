@@ -56,4 +56,4 @@ Ubuntu 16.04安装4.15.0-42（降级）内核后，没有网络了，看不到�
 
 解决办法：重装网络驱动。
 
-[How To get your Realtek RTL8111/RTL8168 working (updated guide) -](updated%20guide)%20-) -)%20-](https://unixblogger.com/how-to-get-your-realtek-rtl8111rtl8168-working-updated-guide/)
+[How To get your Realtek RTL8111/RTL8168 working](https://unixblogger.com/how-to-get-your-realtek-rtl8111rtl8168-working-updated-guide/)
