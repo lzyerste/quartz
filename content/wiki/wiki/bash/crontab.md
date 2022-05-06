@@ -56,3 +56,19 @@ $ crontab -l
     ```c
     @reboot export PATH=/usr/sbin:$PATH ; cd /root ; date >> a.txt ; cd /root/ait/white_box_test/test_case/zns/warm_reboot ; python zns_warm_reboot_during_fio_test.py
     ```
+
+## WSL里crontab没执行？
+
+https://stackoverflow.com/questions/60256901/crontab-never-executes-in-windows-subsystem-linux
+
+https://serverfault.com/questions/136461/how-to-check-cron-logs-in-ubuntu/470938#470938
+
+先使能crontab日志：
+
+```c
+1.  modify `rsyslog` config: open `/etc/rsyslog.d/50-default.conf`, remove `#` before `cron.*`
+2.  restart rsyslog service: `sudo service rsyslog restart`
+3.  restart cron service: `service cron restart`
+
+now you can check cron log from file `/var/log/cron.log`
+```

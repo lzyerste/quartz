@@ -27,6 +27,8 @@ map gm :mark
 exmap fontcolor surround <font\ color="FF69B4"> </font>
 map gc :fontcolor
 "noremap gD <C-]>
+exmap newpane obcommand editor:open-link-in-new-leaf
+nmap gD :newpane
 exmap follow obcommand editor:follow-link
 nmap gd :follow
 " Yank to system clipboard
