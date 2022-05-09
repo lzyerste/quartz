@@ -4,11 +4,11 @@ title: LTP,_Long_Term_Project
 
 # LTP, Long Term Project
 
-[Redis](database/Redis%20ff4375feaf5b424ea5c010f1f0ed13b1.md) 
+[redis](database/redis.md) 
 
-[leveldb](database/leveldb%20b168a67c21714ba48f6b7eb463719671.md) 
+[leveldb](database/leveldb.md) 
 
-[rocksdb](database/rocksdb%2068b1dab41ab64562b92908e1d0005141.md) 
+[rocksdb](database/rocksdb.md) 
 
 [linux_os](linux_os.md)
 
