@@ -60,7 +60,46 @@ set -g mode-keys vi
 
 [mac一打开就crash](tmux/mac一打开就crash%204ff156e6d60846b7834b4872028d4f84.md)
 
-## ⭐保存scroll buffer内容到文件
+## ⭐插件：tmux-logging
+
+[tmux-logging](https://github.com/tmux-plugins/tmux-logging)
+
+目前是针对单个pane。
+
+> [!NOTE]+ 功能一：Logging
+> 
+> 需要手工开启，攒了一定buffer后，会输入到文件。
+> 
+> Toggle (start/stop) logging in the current pane.
+> 
+> -   Key binding: `prefix + shift + p`
+> -   File name format: `tmux-#{session_name}-#{window_index}-#{pane_index}-%Y%m%dT%H%M%S.log`
+> -   File path: `$HOME` (user home dir)
+>     -   Example file: `~/tmux-my-session-0-1-20140527T165614.log`
+
+> [!NOTE]+ 功能二："Screen Capture"
+> 
+> 类似截屏，获取当前pane的一页内容。
+> 
+> Save visible text, in the current pane. Equivalent of a "textual screenshot".
+> 
+> -   Key binding: `prefix + alt + p`
+> -   File name format: `tmux-screen-capture-#{session_name}-#{window_index}-#{pane_index}-%Y%m%dT%H%M%S.log`
+> -   File path: `$HOME` (user home dir)
+>     -   Example file: `tmux-screen-capture-my-session-0-1-20140527T165614.log`
+
+> [!NOTE]+ 功能三：Save complete history
+> 
+> 保存当前pane的所有历史记录
+> 
+> Save complete pane history to a file. Convenient if you retroactively remember you need to log/save all the work.
+> 
+> -   Key binding: `prefix + alt + shift + p`
+> -   File name format: `tmux-history-#{session_name}-#{window_index}-#{pane_index}-%Y%m%dT%H%M%S.log`
+> -   File path: `$HOME` (user home dir)
+>     -   Example file: `tmux-history-my-session-0-1-20140527T165614.log`
+
+## ⭐保存scroll buffer内容到文件，使用插件logging
 
 https://unix.stackexchange.com/a/26568
 

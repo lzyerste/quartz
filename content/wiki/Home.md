@@ -29,6 +29,7 @@ title: "Home"
 # WIKI
 
 - [5G](wiki/5G.md)
+- [ansifilter，过滤非ascii字符](ansifilter.md)
 - [assembly, 汇编](wiki/bash/assembly.md)
 - [@arm](wiki/@arm.md)
 - [bash](wiki/bash/bash.md)
