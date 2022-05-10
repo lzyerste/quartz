@@ -1,3 +1,0 @@
-﻿Column 1
-"int myint = 3;
-module_param(myint, int, 0);"
