@@ -6,7 +6,7 @@ title: Atomic_usage_patterns_in_the_kernel_LWN_net
 
 [https://lwn.net/Articles/698315/](https://lwn.net/Articles/698315/)
 
-[Untitled](Atomic%20usage%20patterns%20in%20the%20kernel_LWN%20net/Untitled%20Database%20186a981fd4f249c797e14081d592c13e.csv)
+[Untitled](assets/Untitled%20Database%20186a981fd4f249c797e14081d592c13e.csv)
 
 The Linux kernel uses a large variety of "atomic" operations — operations that are indivisible as observed from anywhere within the system — to provide safe and efficient behavior in a multi-threaded environment. A [recent article](https://lwn.net/Articles/695257/) explained why a new suite of atomic primitives was added but, as [reader "magnus" observed](https://lwn.net/Articles/695714/), that article didn't provide any context for how these, or any other atomic operations, actually get used. The new operations are hardly used at all as yet, so we can only guess how useful they might be. More mature operations are in wide use, and while cataloging every distinct use case would be unhelpfully tedious, finding a few common patterns can aid understanding. To this end, I went searching through the Linux kernel code to find out how different atomic operations are used and to look for examples that might shed light on the possible usefulness of the new operations.
 

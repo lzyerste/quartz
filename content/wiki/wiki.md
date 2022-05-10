@@ -23,7 +23,7 @@ title: "wiki"
 - [python](wiki/python.md)
 - [storage](wiki/storage.md)
 - [tech](wiki/tech.md)
-- [[web]]
+- [web](web.md)
 - [notion使用指南](wiki/notion使用指南.md)
 - [国家政策](wiki/国家政策.md)
 - [文学](wiki/文学.md)

@@ -22,4 +22,4 @@ https://www.jianshu.com/p/7ba5f0756efc
 
 另外映射 WebDAV 服务器默认只支持 `https`，如果需要 `http` 支持的话可以参考 CSDN 上这篇 [Win 10 映射 WebDAV](https://links.jianshu.com/go?to=https%3A%2F%2Fblog.csdn.net%2Fkh766200466%2Farticle%2Fdetails%2F91951568)，修改注册表键值。
 
-![Pasted image 20220108133336](../../assets/Pasted%20image%2020220108133336.png)
+![Pasted image 20220108133336](assets/Pasted%20image%2020220108133336.png)

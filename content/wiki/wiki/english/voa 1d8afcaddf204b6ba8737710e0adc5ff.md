@@ -18,4 +18,4 @@ chrome插件更直接：[Looper for Youtube](https://chrome.google.com/webstore/
 
 推荐：每日英语听力，可单句循环。
 
-[voa听写](voa%201d8afcaddf204b6ba8737710e0adc5ff/voa听写%204cdde2739ee84baa87a00e8fced1e835.csv)
+[voa听写](assets/voa听写%204cdde2739ee84baa87a00e8fced1e835.csv)

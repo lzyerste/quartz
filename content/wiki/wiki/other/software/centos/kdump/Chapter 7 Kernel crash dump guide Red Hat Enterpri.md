@@ -32,6 +32,6 @@ If the system has less than the minimum amount of memory required for the automa
 
 It is highly recommended to test the configuration after setting up the kdump service, even when using the automatic memory reservation. For instructions on how to test your configuration, see [Section 7.4, “Testing the kdump configuration”](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/kernel_administration_guide/kernel_crash_dump_guide).
 
-![kdump-kernel_dump_configuration-target_settings](Chapter%207%20Kernel%20crash%20dump%20guide%20Red%20Hat%20Enterpri/kdump-kernel_dump_configuration-target_settings.png)
+![kdump-kernel_dump_configuration-target_settings](assets/kdump-kernel_dump_configuration-target_settings.png)
 
-![kdump-kernel_dump_configuration-expert_settings](Chapter%207%20Kernel%20crash%20dump%20guide%20Red%20Hat%20Enterpri/kdump-kernel_dump_configuration-expert_settings.png)
+![kdump-kernel_dump_configuration-expert_settings](assets/kdump-kernel_dump_configuration-expert_settings.png)

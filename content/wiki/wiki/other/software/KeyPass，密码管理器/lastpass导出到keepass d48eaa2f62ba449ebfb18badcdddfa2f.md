@@ -6,7 +6,7 @@ title: lastpass导出到keepass_d48eaa2f62ba449ebfb18badcdddfa2f
 
 Export，导出csv文件。
 
-![2022-05-02_11-20-48](lastpass导出到keepass%20d48eaa2f62ba449ebfb18badcdddfa2f/2022-05-02_11-20-48.png)
+![2022-05-02_11-20-48](assets/2022-05-02_11-20-48.png)
 
 导入lastpass：会自动去重么？
 

@@ -6,9 +6,9 @@ title: 4_Graph
 
 ## 4.1 Undirected Graphs
 
-![2022-05-02_11-25-15](4%20Graph%20aa094bc2eb454dcc8f8e1e95035158d5/2022-05-02_11-25-15.png)
+![2022-05-02_11-25-15](assets/2022-05-02_11-25-15.png)
 
-![20f6dbffe86c96c331c44bb51c54375d](4%20Graph%20aa094bc2eb454dcc8f8e1e95035158d5/20f6dbffe86c96c331c44bb51c54375d.png)
+![20f6dbffe86c96c331c44bb51c54375d](assets/20f6dbffe86c96c331c44bb51c54375d.png)
 
 - 无向图的表示，algs4/Graph.py 实现参考： [Graph.py](../经典算法&数据结构/图，Graph/无向图/Graph.py.md)
 - **`Single-source connectivity`**. Given a graph, support queries of the form *Are two given vertices connected*? and *How many connected components does the graph have*?
@@ -26,7 +26,7 @@ title: 4_Graph
 
 ## 4.2 Directed Graphs
 
-![18825ef3608a4c93d905c039bd1ec2a0](4%20Graph%20aa094bc2eb454dcc8f8e1e95035158d5/18825ef3608a4c93d905c039bd1ec2a0.png)
+![18825ef3608a4c93d905c039bd1ec2a0](assets/18825ef3608a4c93d905c039bd1ec2a0.png)
 
 tinyDG.txt，P569
 
@@ -41,12 +41,12 @@ tinyDG.txt，P569
 - Cycle & DAG
 - **`Directed cycle detection.`** Does a given digraph have a directed cycle? If so, find the vertices on some such cycle, in order from some vertex back to itself.
     
-    ![e683ea26ef40c2caf6e46087a986ade3](4%20Graph%20aa094bc2eb454dcc8f8e1e95035158d5/e683ea26ef40c2caf6e46087a986ade3.png)
+    ![e683ea26ef40c2caf6e46087a986ade3](assets/e683ea26ef40c2caf6e46087a986ade3.png)
     
     - algs4/DirectedCycle.py，实现参考 [DirectedCycle py d38eedbc665f4953ba4540d600e82680](../经典算法&数据结构/图，Graph/有向图%20fcd8d82ef9e249989208006acc263189/DirectedCycle%20py%20d38eedbc665f4953ba4540d600e82680.md)
 - **`Topological sort.`** Given a digraph, put the vertices in order such that all its directed edges point from a ver- tex earlier in the order to a vertex later in the order (or report that doing so is not possible).
     
-    ![8fb975e928787f8b981b0085cf98cdbe](4%20Graph%20aa094bc2eb454dcc8f8e1e95035158d5/8fb975e928787f8b981b0085cf98cdbe.png)
+    ![8fb975e928787f8b981b0085cf98cdbe](assets/8fb975e928787f8b981b0085cf98cdbe.png)
     
     - 不同的标记顺序：Preorder，Postorder，Reverse postorder
         - 现在有一条边X → Y，DFS遍历的时候，标记顺序有什么潜在关系么？
@@ -60,7 +60,7 @@ tinyDG.txt，P569
 - **`Strong connectivity.`** Given a digraph, support queries of the form: *Are two given vertices strongly connected* ? and *How many strong components does the digraph have* ?
     - strongly connected components, SCC
     
-    ![4a9bce370ea04ac83726d273699830d4](4%20Graph%20aa094bc2eb454dcc8f8e1e95035158d5/4a9bce370ea04ac83726d273699830d4.png)
+    ![4a9bce370ea04ac83726d273699830d4](assets/4a9bce370ea04ac83726d273699830d4.png)
     
     tinyDG.txt，P584
     
@@ -76,7 +76,7 @@ tinyDG.txt，P569
 - MST：最小生成树，将所有顶点都连接起来的边的权重和值最小。
 - 样例图：tinyEWG.txt，P604，考虑无向图，最小权重为1.81
     
-    ![d0871b43449cf120a75c42da15b46fe1](4%20Graph%20aa094bc2eb454dcc8f8e1e95035158d5/d0871b43449cf120a75c42da15b46fe1.png)
+    ![d0871b43449cf120a75c42da15b46fe1](assets/d0871b43449cf120a75c42da15b46fe1.png)
     
 - Prim’s algorithm and Kruskal’s algorithm
 - find the MST of a connected edge-weighted graph with arbitrary (but distinct) weights，权重可以为0或者负数。

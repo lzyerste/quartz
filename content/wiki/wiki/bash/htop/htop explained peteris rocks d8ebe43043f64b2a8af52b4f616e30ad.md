@@ -16,7 +16,7 @@ They also say that the best way to learn something is to try to teach it.
 
 Here is a screenshot of htop that I am going to describe.
 
-![canyoukillit-before](htop%20explained%20peteris%20rocks%20d8ebe43043f64b2a8af52b4f616e30ad/canyoukillit-before.png)
+![canyoukillit-before](assets/canyoukillit-before.png)
 
 Uptime shows how long the system has been running.
 
@@ -1424,7 +1424,7 @@ sudo rm /lib/systemd/system/getty@.service
 
 When I rebooted the server, I could still connect to it via SSH but I was no longer able to log in from the Digital Ocean web console.
 
-![htop-login](htop%20explained%20peteris%20rocks%20d8ebe43043f64b2a8af52b4f616e30ad/htop-login.png)
+![htop-login](assets/htop-login.png)
 
 ### `sshd: root@pts/0` & `-bash` & `htop`
 
@@ -1451,7 +1451,7 @@ sudo apt remove policykit-1 -y --purge
 
 ```
 
-![canyoukillit-after](htop%20explained%20peteris%20rocks%20d8ebe43043f64b2a8af52b4f616e30ad/canyoukillit-after.png)
+![canyoukillit-after](assets/canyoukillit-after.png)
 
 Extreme edition:
 
@@ -1465,13 +1465,13 @@ sudo rm /lib/systemd/system/getty@.service
 
 ```
 
-![canyoukillit-after-extreme](htop%20explained%20peteris%20rocks%20d8ebe43043f64b2a8af52b4f616e30ad/canyoukillit-after-extreme.png)
+![canyoukillit-after-extreme](assets/canyoukillit-after-extreme.png)
 
 I followed the instructions in my blog post [about unattended installation of WordPress on Ubuntu Server](https://peteris.rocks/blog/unattended-installation-of-wordpress-on-ubuntu-server/) and it works.
 
 Here's nginx, PHP7 and MySQL.
 
-![canyoukillit-after-extreme-wp](htop%20explained%20peteris%20rocks%20d8ebe43043f64b2a8af52b4f616e30ad/canyoukillit-after-extreme-wp.png)
+![canyoukillit-after-extreme-wp](assets/canyoukillit-after-extreme-wp.png)
 
 Sometimes looking at `strace` is not enough.
 
@@ -1514,7 +1514,7 @@ If you have missing elements in htop when you are using PuTTY, here is how to so
 - Select the Both radio button
 - Click Apply
 
-![putty-settings](htop%20explained%20peteris%20rocks%20d8ebe43043f64b2a8af52b4f616e30ad/putty-settings.png)
+![putty-settings](assets/putty-settings.png)
 
 Let's write a very simple shell in C that demonstrates the use of `fork`/`exec`/`wait` system calls. Here's the program `shell.c`.
 
@@ -1636,4 +1636,4 @@ This time it's of a human. It displays your inner processes and the load of your
 
 It's been bought 44 times already (including hoodies, etc.)
 
-![htop-tshirt-terminal](htop%20explained%20peteris%20rocks%20d8ebe43043f64b2a8af52b4f616e30ad/htop-tshirt-terminal.jpg)
+![htop-tshirt-terminal](assets/htop-tshirt-terminal.jpg)

@@ -9,7 +9,7 @@ title: P7_Graph_91ca49c8ada84a90aacb943ed64d97f6
     - 根据DFS的post顺序，
 - connectivity
     
-    [Untitled](P7%20Graph%2091ca49c8ada84a90aacb943ed64d97f6/Untitled)
+    [Untitled](assets/Untitled)
     
     圈内的节点是互相连通的，比如AB。然后将连通体作为一个整体，视为一个新的节点，形成新的图就是DAG。
     

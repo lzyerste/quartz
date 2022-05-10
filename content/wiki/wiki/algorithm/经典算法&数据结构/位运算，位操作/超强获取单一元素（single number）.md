@@ -74,7 +74,7 @@ ones, twos = ~twos & (ones ^ n), ****(~ones & twos & ~n) | (ones & ~twos & n)
 
 状态集（k=6）：
 
-[Untitled](超强获取单一元素（single%20number）/Untitled%20Database%203c6caf1e02bb4260bbc705829e2757b7.csv)
+[Untitled](assets/Untitled%20Database%203c6caf1e02bb4260bbc705829e2757b7.csv)
 
 表格中每一行代表了一个状态，状态转移方式如前所述：输入为0时保持状态；输入为1时从前一个状态迁移到下一个状态，表格尾部则回到表头。
 

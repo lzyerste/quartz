@@ -1,5 +1,7 @@
-# Bad links 
-No problems found
+# Bad links (1 files)
+[wiki/linux/Linux内核分析_v5.0/Getting a handle on caching - LWN net.md](wiki/linux/Linux内核分析_v5.0/Getting%20a%20handle%20on%20caching%20-%20LWN%20net.md) : 
+- (line 8): `Getting a handle on caching [LWN net]/Untitled Database 76b04114f2e8462781540f4d38b87b4b.csv`
+
 
 
 
@@ -11,10 +13,8 @@ No problems found
 # Bad embeds 
 No problems found
 
-# Wiki links (1 files)
-[innogrit/2022dev/2022开发记录.md](innogrit/2022dev/2022开发记录.md): 
-- (line 8): `[[阿里read_iops调优，2022-05-05]]`
-
+# Wiki links 
+No problems found
 
 
 

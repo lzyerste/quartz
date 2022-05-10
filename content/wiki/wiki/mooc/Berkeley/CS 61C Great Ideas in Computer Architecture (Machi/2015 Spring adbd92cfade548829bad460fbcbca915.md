@@ -14,7 +14,7 @@ B站视频
 
 We will be using the fifth edition of Patterson and Hennessy's `Computer Organization and Design` book ("P&H"), ISBN 0124077269.
 
-![2022-05-02_11-22-15](2015%20Spring%20adbd92cfade548829bad460fbcbca915/2022-05-02_11-22-15.png)
+![2022-05-02_11-22-15](assets/2022-05-02_11-22-15.png)
 
 - p07 后面画面不动了，自己去看PPT。
     - 主要讲解MIPS指令集

@@ -83,7 +83,7 @@ markdown文件管理及浏览使用obsidian，编辑可使用[typora](../other/s
 
 使用一个md文件来做kanban。
 
-![Pasted image 20220117100624](../../personal/assets/Pasted%20image%2020220117100624.png)
+![Pasted image 20220117100624](assets/Pasted%20image%2020220117100624.png)
 
 ## link-converter，4星
 
@@ -141,7 +141,7 @@ set clipboard=unnamed
 
 ## excalidraw
 
-![[assets/obsidian 2022-05-10 09.29.45.excalidraw]]
+![](assets/obsidian%202022-05-10%2009.29.45.excalidraw.md)
 
 # TIPS
 

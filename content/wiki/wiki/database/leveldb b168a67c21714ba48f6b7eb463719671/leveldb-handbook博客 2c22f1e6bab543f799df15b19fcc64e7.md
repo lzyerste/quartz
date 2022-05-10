@@ -8,7 +8,7 @@ title: leveldb-handbook博客_2c22f1e6bab543f799df15b19fcc64e7
 
 # 整体架构
 
-![2022-05-02_11-23-57](leveldb-handbook博客%202c22f1e6bab543f799df15b19fcc64e7/2022-05-02_11-23-57.png)
+![2022-05-02_11-23-57](assets/2022-05-02_11-23-57.png)
 
 重要组件：
 

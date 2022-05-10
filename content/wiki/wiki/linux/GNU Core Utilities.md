@@ -22,4 +22,4 @@ title: GNU_Core_Utilities
 
 [ls](GNU%20Core%20Utilities/ls%201da98449e27845a18d8b65eeb68397f7.md)
 
-[CoreUtils](GNU%20Core%20Utilities/CoreUtils%20b95a2b76188f4da4ba92e1db642f5fee.csv)
+[CoreUtils](assets/CoreUtils%20b95a2b76188f4da4ba92e1db642f5fee.csv)
