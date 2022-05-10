@@ -139,6 +139,10 @@ nmap gd :follow
 set clipboard=unnamed
 ```
 
+## excalidraw
+
+![[assets/obsidian 2022-05-10 09.29.45.excalidraw]]
+
 # TIPS
 
 ## 代码块里换行
