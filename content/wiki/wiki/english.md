@@ -2,9 +2,9 @@
 title: english
 ---
 
+> [!NOTE]+ [ludwig](https://ludwig.guru/)
+> Ludwig is the first sentence search engine that helps you write better English by giving you contextualized examples taken from reliable sources.
 # english
-
-[](https://www.bilibili.com/video/av11910967)
 
 [Voscreen - life itself](https://www.voscreen.com/)
 
