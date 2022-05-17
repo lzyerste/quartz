@@ -2,7 +2,7 @@
 title: c_c++
 ---
 
-# c/c++
+[Common libraries and data structures for C](https://github.com/tezc/sc)
 
 [macro](macro.md)
 
