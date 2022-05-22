@@ -31,6 +31,7 @@ https://1337x.to/
 | 功夫           | 2021-03-27 | 周星驰, 黄圣依                          | [url](https://www.bilibili.com/bangumi/play/ep313572)       |
 | 女杀油地狱     | 2022-05-19 | 樋口可南子 藤谷美和子 堤真一 井川比佐志 | [url](https://www.nnyy6.top/dianying/47785.html)            |
 | 泰坦尼克号     | 2022-05-20 | 莱昂纳德 詹姆斯·卡梅隆                  | [url](https://www.nnyy6.top/dianying/6030.html)             |
+| 巴霍巴利王     | 2022-05-21 |                                         |                                                             |
 | 窈窕淑女       | 2021-05-22 | 奥黛丽·赫本                             | [url](https://www.bilibili.com/bangumi/play/ep402990)       |
 | 剑雨           |            |                                         |                                                             |
 | 星际穿越       |            |                                         |                                                             |
