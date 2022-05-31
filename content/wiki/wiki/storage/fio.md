@@ -13,7 +13,7 @@ https://fio.readthedocs.io/en/latest/
 > [!tip]+ `offset_increment``=int`[](https://fio.readthedocs.io/en/latest/fio_doc.html#cmdoption-arg-offset-increment "Permalink to this definition")
 > If this is provided, then the real offset becomes _offset + offset_increment * thread_number_, where the thread number is a counter that starts at 0 and is incremented for each sub-job (i.e. when [`numjobs`](https://fio.readthedocs.io/en/latest/fio_man.html#cmdoption-arg-numjobs) option is specified). This option is useful if there are several jobs which are intended to operate on a file in parallel disjoint segments, with even spacing between the starting points. Percentages can be used for this option. If a percentage is given, the generated offset will be aligned to the minimum `blocksize` or to the value of `offset_align` if provided. In ZBD mode, value can also be set as number of zones using ‘z’.
 >
-> fio测试多job（numjobs），应该考虑使用参数**offset_increment**，让各个job从不同的offset开始，彼此错开；否则所有job行为都一样，都从同一个offset开始。
+> fio 测试多 job（numjobs），应该考虑使用参数**offset_increment**，让各个 job 从不同的 offset 开始，彼此错开；否则所有 job 行为都一样，都从同一个 offset 开始。
 >
 > 为了防止各job测试范围重叠，参数offset_increment大小可设置为与参数size大小一致；另外，多job下的size应该是单job的size除以numjobs（均分）。比如测试总范围是100z，当numjobs为4时，offset_increment和size可设置为25z。
 
