@@ -58,3 +58,9 @@ title: c_c++
 [再谈C语言位域 | Tony Bai](c%20c++/再谈C语言位域%20Tony%20Bai%202bd165a29d224276ba1829fe848d8c4d.md)
 
 [Object-Oriented Programming is Bad](https://www.youtube.com/watch?v=QM1iUe6IofM&app=desktop)
+
+## TIPS
+
+### 二维数组
+
+https://stackoverflow.com/questions/14808908/pointer-to-2d-arrays-in-c

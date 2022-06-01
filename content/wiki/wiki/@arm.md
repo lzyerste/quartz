@@ -23,3 +23,15 @@ title: _arm
 [https://mcuoneclipse.com/2021/01/23/assert-__file__-path-and-other-cool-gnu-gcc-tricks-to-be-aware-of/](https://mcuoneclipse.com/2021/01/23/assert-__file__-path-and-other-cool-gnu-gcc-tricks-to-be-aware-of/)
 
 相对路径还是绝对路径？
+
+## 64 位除法
+
+https://github.com/ARM-software/arm-trusted-firmware/blob/master/lib/compiler-rt/builtins/udivmoddi4.c
+
+udivmoddi4
+
+https://stackoverflow.com/questions/51457851/building-coreboot-undefined-reference-udivmoddi4
+
+```c
+`__udivmoddi4` is a function in libgcc which is used to implement a combined unsigned division/modulo operation for what GCC calls DI mode (doubled-up integers, 64-bit on i686)
+```
