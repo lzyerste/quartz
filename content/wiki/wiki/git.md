@@ -280,6 +280,18 @@ alias gbs="git branch --sort=-committerdate"
 
 https://devconnected.com/how-to-add-and-update-git-submodules/
 
+## patch
+
+生成某 commit 到现在的所有 patch：先定位到前一个
+
+```c
+git fomat-patch a77094146d2b3b9d84550aa8509e4d7d96a62e84~1..HEAD
+```
+
+打 patch 时，不要忽略 commit message 中的中括号：使用参数`--keep-non-patch`。
+
+https://stackoverflow.com/questions/13339027/git-am-should-ignore-something-in-commit-message-startswith
+
 ## git其他操作
 
 ### 获取当前commit号。
