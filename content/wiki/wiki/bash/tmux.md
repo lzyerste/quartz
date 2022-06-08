@@ -44,6 +44,7 @@ vi ~/.tmux.conf
 内容为：
 set -g mouse on
 set -g mode-keys vi
+set -g history-limit 50000
 ```
 
 ---
