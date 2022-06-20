@@ -110,6 +110,10 @@ https://stackoverflow.com/questions/59599200/clear-all-breakpoints-in-gdb
 
 单步执行，会进入调用函数。简写为`s`。
 
+这里的单步是一行代码，如果要单步一条汇编指令，可以使用`si`，也就是 stepi。
+
+https://stackoverflow.com/questions/2420813/using-gdb-to-single-step-assembly-code-outside-specified-executable-causes-error
+
 ## print
 
 打印信息。简写为`p`。
@@ -155,7 +159,7 @@ $8 = {0xb9, 0xd8, 0x49, 0x47, 0x0, 0xa0, 0x0, 0x6, 0x2, 0xa8, 0x49, 0x47, 0x0, 0
 漂亮打印设置（要不然结构体成员都堆到一起去了）：
 
 ```sh
-(gdb) set print pretty on
+set print pretty on
 ```
 
 例子：
