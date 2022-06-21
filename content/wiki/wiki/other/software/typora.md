@@ -32,9 +32,15 @@ sudo apt-get install typora
 
 [marktext/marktext](https://github.com/marktext/marktext)
 
+## 激活
+
+> [!NOTE]+ Activation key
+> 2Y8PGX-R3TL7W-HERL5M-MUDDNV
+> lzyerste@qq.com
+
 ---
 
-### 标题自动编号
+## 标题自动编号
 
 [Auto Numbering for Headings](https://support.typora.io/Auto-Numbering/)
 

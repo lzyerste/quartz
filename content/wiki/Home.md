@@ -55,7 +55,7 @@ title: "Home"
 - [ahk, AutoHotKey, 改键](wiki/bash/ahk.md)
 - [awk](wiki/bash/awk.md)
 - [calibre，epub电子书管理器](wiki/bash/calibre.md)
-- [[clipq，剪贴板管理器]]
+- [clipq，剪贴板管理器](clipq，剪贴板管理器.md)
 - [crontab](wiki/bash/crontab.md)
 - [chown](wiki/bash/chown.md)
 - [du](wiki/bash/du.md)
