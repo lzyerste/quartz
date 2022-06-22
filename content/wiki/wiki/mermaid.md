@@ -67,7 +67,7 @@ Box[(Cylindrical Shaped Box)]
 ```mermaid
 graph TD
 
-Box[Subroutine Shaped Box](Subroutine%20Shaped%20Box)
+Box[Subroutine Shaped Box]
 ```
 
 ```mermaid
