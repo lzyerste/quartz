@@ -87,6 +87,22 @@ git remote add bak /home/sas/dev/apps/smx/repo/bak/ontologybackend/.git
 git clone lzy@lzy:~/git/tacoma
 ```
 
+## git hooks
+
+设置全局 hooks：
+
+https://coderwall.com/p/jp7d5q/create-a-global-git-commit-hook
+
+[commit-msg](../config/config-tacoma/commit-msg)
+
+```bash
+git config --global init.templatedir '~/.git-templates'
+mkdir -p ~/.git-templates/hooks
+拷贝commit-msg文件
+# 仓库重新init下
+git init
+```
+
 ## git push
 
 https://git-scm.com/docs/git-push
