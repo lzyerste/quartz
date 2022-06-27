@@ -1,12 +1,14 @@
 ---
 title: wol
+aliases: [wakeonlan]
 ---
 
 #wol
 
 https://wiki.debian.org/WakeOnLan
 
-* 进入BIOS，电源管理，允许pcie唤醒（wol）
+- 进入 BIOS，电源管理，允许 pcie 唤醒（wol）
+- 测试机设置允许 wol： sudo ethtool -s eth0 wol g
 
 * 强行关机
 
