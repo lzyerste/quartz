@@ -67,6 +67,7 @@ title: "Home"
 - [grep](wiki/bash/grep.md)
 - [hexdump](wiki/bash/hexdump.md)
 - [htop](wiki/bash/htop.md)
+- [[ipfs]]
 - [jlink](wiki/bash/jlink.md)
 - [json](wiki/bash/json.md)
 - [keepass](personal/keepass.md)
