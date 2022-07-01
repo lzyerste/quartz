@@ -103,6 +103,28 @@ mkdir -p ~/.git-templates/hooks
 git init
 ```
 
+## git log
+
+显示 git log graph：
+
+https://stackoverflow.com/questions/1057564/pretty-git-branch-graphs
+
+```c
+git log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all
+```
+
+![](assets/Pasted%20image%2020220701144128.png)
+
+---
+
+查看已删除文件的历史信息：
+
+https://stackoverflow.com/questions/7203515/how-to-find-a-deleted-file-in-the-project-commit-history
+
+```
+git log --all --full-history -- <path-to-file>
+```
+
 ## git push
 
 https://git-scm.com/docs/git-push
@@ -279,9 +301,25 @@ git config --global alias.trash '!mkdir -p .trash && git ls-files --others --exc
 相当于
 
 ## git branch
-https://stackoverflow.com/questions/5188320/how-can-i-get-a-list-of-git-branches-ordered-by-most-recent-commit
 
-按照commit时间排序：
+显示包含某 commit 的 branch：
+
+```c
+git branch --contains <sha1-commit-hash>
+```
+
+```c
+$ git branch --contains eee5399eea833cefc1f853dec721fbaa43f8fe33 
+  alibaba_zns4_vzone
+  review1
+  tmp
+```
+
+---
+
+按照 commit 时间排序：
+
+https://stackoverflow.com/questions/5188320/how-can-i-get-a-list-of-git-branches-ordered-by-most-recent-commit
 
 ```shell
 git branch --sort=-committerdate  # DESC
