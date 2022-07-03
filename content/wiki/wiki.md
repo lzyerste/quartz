@@ -25,7 +25,7 @@ title: "wiki"
 - [tech](wiki/tech.md)
 - [web](web.md)
 - [notion使用指南](wiki/notion使用指南.md)
-- [国家政策](wiki/国家政策.md)
+- [国家政策](personal/国家政策/国家政策.md)
 - [文学](wiki/文学.md)
 - [笑话](wiki/文学/笑话.md)
 - [杂项](wiki/杂项.md)
