@@ -41,6 +41,8 @@ markdown文件管理及浏览使用obsidian，编辑可使用[typora](../other/s
 - 可以学英语、背单词、背古汉语
 
 # 缺点
+
+- [x] 导出 pdf 时，没有标签，mermaid 没有缩放，超出页面的就截掉了。建议使用 typora 转换。
 - [x] 文件内，跳转标题。有插件可以做，但好像也没太大必要。 ✅ 2022-01-21
 - [x] 预览模式下没有vim mode，类似chrome浏览器的vimium？可以尽量呆在编辑模式。一直呆在编辑模式，使用vim即可。
 - [x] vim模式下，怎么打开链接？ctrl+], ctrl+enter。修改配置，支持`gd`了。
