@@ -260,7 +260,7 @@ aliases: [bcmd]
 
 ## 代码块中高亮，使用pre标签
 
-高亮文本颜色选用粉色（hotpink）：`FF69B4`，<font color="FF69B4">效果</font>
+高亮文本颜色选用粉色（hotpink）：`FF69B4`，<font color="FF69B4"> 效果 </font>
 
 <pre>
 <mark style="background: #FF5582A6;">for i in range(10):</mark> 

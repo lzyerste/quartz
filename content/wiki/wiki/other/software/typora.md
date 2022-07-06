@@ -8,7 +8,7 @@ title: typora
 
 # Typora
 
-Ubuntu下安装：
+Ubuntu下安装：可以直接下载 deb 安装包
 
 ```bash
 # or run:
@@ -24,7 +24,7 @@ sudo apt-get install typora
 ---
 
 - MAC的命令行中调用typora：`alias typora="open -a typora"`
-    
+  
     [Use Typora from Shell or Cmd](https://support.typora.io/Use-Typora-From-Shell-or-cmd/)
     
 
@@ -38,7 +38,7 @@ sudo apt-get install typora
 > 2Y8PGX-R3TL7W-HERL5M-MUDDNV
 > lzyerste@qq.com
 
----
+只支持 3 台机器，可以让某台下线。
 
 ## 标题自动编号
 
