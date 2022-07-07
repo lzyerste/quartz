@@ -6,6 +6,19 @@ http://www.ruanyifeng.com/blog/2020/08/rsync.html
 
 [TOC]
 
+# 我的例子
+
+```sh
+# 拷贝树莓派上日志。如果加上--include='*/'的话，会递归目录下去。
+# 注意~/package是从目录package开始，而~/package/则是进入了package目录所看到的内容。
+rsync -auv --include='log*' --exclude='*' ~/package/ lzy@lzy:~/log
+```
+
+```sh
+# 同步目录
+rsync -auv --delete lzy@lzy:~/lzyerste .
+```
+
 # rsync 用法教程
 
 作者： [阮一峰](https://www.ruanyifeng.com/)
@@ -326,18 +339,3 @@ rsync 的最大特点就是它可以完成增量备份，也就是默认只复�
 - [How to create incremental backups using rsync on Linux](https://linuxconfig.org/how-to-create-incremental-backups-using-rsync-on-linux), Egidio Docile
 
 （完）
-
----
-
-## 我的例子
-
-```sh
-# 拷贝树莓派上日志。如果加上--include='*/'的话，会递归目录下去。
-# 注意~/package是从目录package开始，而~/package/则是进入了package目录所看到的内容。
-rsync -auv --include='log*' --exclude='*' ~/package/ lzy@lzy:~/log
-```
-
-```sh
-# 同步目录
-rsync -auv --delete lzy@lzy:~/lzyerste .
-```
