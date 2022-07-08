@@ -53,17 +53,25 @@ Program received signal SIGSEGV, Segmentation fault.
 
 通过命令`break`设置断点。可以简写为`b`。
 
-方式一：文件名+行号。
+==方式一：文件名+行号。==
 
 ```sh
 (gdb) break file1.c:6
 ```
 
-方式二：函数名。
+==方式二：函数名。==
 
 ```sh
 (gdb) break my_func
 ```
+
+==方式三：内存地址==
+
+```sh
+(gdb) b *0x400448
+```
+
+---
 
 查看所有断点设置信息：
 

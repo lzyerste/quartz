@@ -19,6 +19,41 @@ rsync -auv --include='log*' --exclude='*' ~/package/ lzy@lzy:~/log
 rsync -auv --delete lzy@lzy:~/lzyerste .
 ```
 
+---
+
+可以使用配置文件，来排除不需要同步的文件或目录。
+
+```c
+$ cat exclude-file.txt 
+*.pdf
+*.py
+*.sh
+*NSConflict*
+.git
+.obsidian/
+config/
+daily/
+innogrit/
+personal/
+recite/
+template/
+timeline/
+unlinked_files_output.md
+unresolved_links_output.md
+custom.css
+favicon.ico
+wiki/mooc/
+wiki/algorithm/
+wiki/storage/ceph
+```
+
+```sh
+$ cat auto-sync.sh    
+#!/bin/bash
+
+rsync -auv --delete --exclude-from='exclude-file.txt' /mnt/d/Nutstore/wiki/ docs/
+```
+
 # rsync 用法教程
 
 作者： [阮一峰](https://www.ruanyifeng.com/)
