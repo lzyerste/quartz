@@ -29,3 +29,17 @@ https://zhuanlan.zhihu.com/p/411854801
         title_seg_list = jieba.cut(title, cut_all=False) # 结巴分词，精确模式，更可读
         title = " ".join(title_seg_list) # 用空格连接词语
 ```
+
+## 搜索配置
+
+仅搜索标题，不要搜索全文，因为索引文件太大，加载时间太长。
+
+```c
+plugins:
+  - search:
+      lang:
+        - en
+        - ja
+      separator: '[\s\-\.]+'
+      indexing: sections
+```
