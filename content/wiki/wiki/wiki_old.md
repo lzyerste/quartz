@@ -6,4 +6,4 @@ title: "wiki_old"
 
 # 杂项
 
-[libncurses.so](wiki/bash/libncurses.md)
+[libncurses.so](bash/libncurses.md)
