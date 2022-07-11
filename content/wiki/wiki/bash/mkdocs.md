@@ -32,6 +32,8 @@ https://zhuanlan.zhihu.com/p/411854801
 
 ## 搜索配置
 
+https://www.mkdocs.org/user-guide/configuration/
+
 仅搜索标题，不要搜索全文，因为索引文件太大，加载时间太长。
 
 ```c
@@ -41,5 +43,5 @@ plugins:
         - en
         - ja
       separator: '[\s\-\.]+'
-      indexing: sections
+      indexing: titles
 ```
