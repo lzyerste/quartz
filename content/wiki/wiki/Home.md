@@ -40,6 +40,7 @@ title: "Home"
 - [deep learning](bash/deep_learning.md)
 - [design pattern](bash/design_pattern.md)
 - [distributed system](bash/distributed_system.md)
+- [dma](dma/dma.md)
 - [docker](bash/docker.md)
 - [DPDK](bash/DPDK.md)
 - [ebook](../personal/ebook.md)
