@@ -6,6 +6,7 @@ title: rust
 
 ## 资源
 
-* [Rust programming language](https://www.rust-lang.org/)
-* [Table of Contents - Rust Cookbook](https://rust-lang-nursery.github.io/rust-cookbook/)
-* [Schedule - CIS 198: Rust Programming](http://cis198-2016s.github.io/schedule/)
+- [sunface/rust-by-practice: Learning Rust By Practice](https://github.com/sunface/rust-by-practice)
+- [Rust programming language](https://www.rust-lang.org/)
+- [Table of Contents - Rust Cookbook](https://rust-lang-nursery.github.io/rust-cookbook/)
+- [Schedule - CIS 198: Rust Programming](http://cis198-2016s.github.io/schedule/)
