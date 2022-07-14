@@ -7,9 +7,7 @@ aliases: [db, kv]
 
 [sql](database/sql%20090fe93f8cd94b2bb6926c9d21aeb765.md)
 
-
-[Postgres](database/Postgres%203a62c63edcf2418eb35bf610dd84d74c.md)
-
+[Postgres](database/postgres.md)
 
 [sqlite](database/sqlite%20e825320680ee4ea2a06c3c9c4c945735.md)
 
