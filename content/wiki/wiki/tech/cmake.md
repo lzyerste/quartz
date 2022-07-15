@@ -1,10 +1,10 @@
 ---
-title: cmake_[wiki]
+title: cmake
 ---
 
-# cmake [wiki]
-
 [CMake](https://cmake.org/)
+
+[[CMake Tutorial]]
 
 - 生成compile_commands.json，也就是编译每个文件的具体命令。这样vim看代码时寻找定义准确。
     - [https://cmake.org/cmake/help/latest/variable/CMAKE_EXPORT_COMPILE_COMMANDS.html](https://cmake.org/cmake/help/latest/variable/CMAKE_EXPORT_COMPILE_COMMANDS.html)
