@@ -14,6 +14,10 @@ title: lightdm
 
 每次开机要启动一下。
 
+```c
+gnome-screensaver &
+```
+
 ## 锁屏修改
 
 https://askubuntu.com/questions/1245071/cant-lock-screen-with-shortcut-on-ubuntu-20-04-gnome
