@@ -65,6 +65,7 @@ title: "Home"
 - [gdb](bash/gdb.md)
 - [gerrit](../innogrit/gerrit.md)
 - [gollum](bash/gollum.md)
+- [[find]]
 - [grep](bash/grep.md)
 - [hexdump](bash/hexdump.md)
 - [htop](bash/htop.md)

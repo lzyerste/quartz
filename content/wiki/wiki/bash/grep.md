@@ -8,6 +8,45 @@ title: grep
 
 [How to Use Grep Command in Linux](https://linuxize.com/post/how-to-use-grep-command-to-search-files-in-linux/)
 
+## 基本用法
+
+```c
+grep -rn "string" file_or_directory
+
+如果需要正则表达式，使用参数-E
+```
+
+在某个文件或某类文件里搜索关键字：
+
+```c
+# Search for the given string in a single file
+grep "literal_string" filename
+
+# Searching in all files recursively using grep -r
+grep -r "ramesh" *
+
+# 正则表达式
+
+grep -E "REGEX" filename
+
+# Checking for the given string in multiple files.
+grep "string" FILE_PATTERN
+
+# Case insensitive search using grep -i
+grep -i "string" FILE
+
+# Match regular expression in files
+grep "REGEX" filename
+
+-w: full word
+
+-v: Invert match using grep -v
+
+-n: Show line number while displaying the output using grep -n
+
+Displaying lines before/after/around the match using grep -A, -B and -C
+```
+
 ## 结合xargs高级用法
 
 需求：将固件日志中的所有pda信息转为具体的geo信息。
