@@ -2,6 +2,8 @@
 title: du
 ---
 
+disk usage.
+
 深度为1：
 
 ```bash

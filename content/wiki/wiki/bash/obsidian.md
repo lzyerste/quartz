@@ -12,7 +12,7 @@ title: obsidian
 
 markdown文件管理及浏览使用obsidian，编辑可使用[typora](../other/software/typora.md)，自带的编辑也基本满足需求了，表格弱一点。
 
-- [x] 写个脚本，导出一个 md 文档，连带它的引用，主要是图片，也可以是其他附件，比如 pdf，xlsx。 ⏫ ✅ 2022-02-02
+- [y] 写个脚本，导出一个 md 文档，连带它的引用，主要是图片，也可以是其他附件，比如 pdf，xlsx。 ⏫ ✅ 2022-02-02
 
 # 快捷键
 

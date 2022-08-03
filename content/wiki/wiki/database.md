@@ -21,7 +21,7 @@ aliases: [db, kv]
 
 ## KV store
 
-- [redis](database/redis.md)
+- [Redis](database/Redis.md)
 - [rocksdb](database/rocksdb.md)
 - [leveldb](database/leveldb.md)
 - [py-caskdb](https://github.com/avinassh/py-caskdb)

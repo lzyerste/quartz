@@ -8,7 +8,7 @@ title: ubuntu
 
 package搜索： https://pkgs.org/
 
-# ubuntu [wiki]
+# ubuntu
 
 [ubuntu重装系统](../../../personal/ubuntu重装系统.md)
 
@@ -21,6 +21,34 @@ package搜索： https://pkgs.org/
 [耳机麦克风没声音](ubuntu/耳机麦克风没声音%2093ef3bf01a4b4a30b56dcd221f2a3618.md)
 
 [ubuntu桌面卡顿](ubuntu/ubuntu桌面卡顿.md)
+
+## ubuntu 休眠，锁屏？
+
+[lightdm](../../lightdm.md)
+
+查看哪些进程在阻止休眠： https://askubuntu.com/questions/1071514/how-to-find-a-program-which-is-preventing-sleeping
+
+```c
+$ dbus-send --print-reply --dest=org.gnome.SessionManager /org/gnome/SessionManager org.gnome.SessionManager.GetInhibitors
+
+method return time=1659505553.722936 sender=:1.35 -> destination=:1.952 serial=2629 reply_serial=2
+   array [
+      object path "/org/gnome/SessionManager/Inhibitor201"
+      object path "/org/gnome/SessionManager/Inhibitor76"
+   ]
+
+$ dbus-send --print-reply --dest=org.gnome.SessionManager /org/gnome/SessionManager/Inhibitor76 org.gnome.SessionManager.Inhibitor.GetAppId                                        
+这是向日葵远程
+
+method return time=1659505571.100906 sender=:1.35 -> destination=:1.953 serial=2630 reply_serial=2
+   string "My SDL application" 
+
+$ dbus-send --print-reply --dest=org.gnome.SessionManager /org/gnome/SessionManager/Inhibitor201 org.gnome.SessionManager.Inhibitor.GetAppId                                                              
+这是音乐播放器
+
+method return time=1659505582.362587 sender=:1.35 -> destination=:1.954 serial=2631 reply_serial=2
+   string "org.gnome.Rhythmbox3"
+```
 
 # 新建用户
 

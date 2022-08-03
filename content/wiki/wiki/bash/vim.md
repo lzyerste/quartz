@@ -112,6 +112,20 @@ vim -b <filename>
 :%!xxd -p -r
 ```
 
+---
+
+如果`:%!xxd`之后想保存为文本失败的话，可使用`:w ++enc=utf-8`。一般来讲，可以直接保存。
+
+https://stackoverflow.com/questions/12814371/conversion-error-in-vim
+
+## 倒转所有行
+
+https://superuser.com/questions/189947/how-do-i-reverse-selected-lines-order-in-vim
+
+```c
+:g/^/m0
+```
+
 ## tips
 
 ### 左右两个窗口一起滚动

@@ -4,7 +4,7 @@ title: LTP,_Long_Term_Project
 
 # LTP, Long Term Project
 
-[redis](database/redis.md) 
+[redis](database/Redis.md) 
 
 [leveldb](database/leveldb.md) 
 
