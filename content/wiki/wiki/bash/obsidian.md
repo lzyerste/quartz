@@ -65,9 +65,11 @@ markdown 文件管理及浏览使用 obsidian，编辑可使用 [typora](../othe
 
 日历，适合当天日志，不好任意跳转。
 
-## emoji shortcodes，4星
+## ❌emoji shortcodes，4 星
 
 #emoji
+
+弃用，因为可以映射到输入法快捷键，直接输入 emoji。
 
 | emoji | unicode name                    |
 | ----- | ------------------------------- |
