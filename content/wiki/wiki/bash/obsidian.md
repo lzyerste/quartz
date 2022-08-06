@@ -10,7 +10,7 @@ title: obsidian
 
 帮助文档： https://help.obsidian.md/Obsidian/Index
 
-markdown文件管理及浏览使用obsidian，编辑可使用[typora](../other/software/typora.md)，自带的编辑也基本满足需求了，表格弱一点。
+markdown 文件管理及浏览使用 obsidian，编辑可使用 [typora](../other/software/typora.md)，自带的编辑也基本满足需求了，表格弱一点。
 
 - [y] 写个脚本，导出一个 md 文档，连带它的引用，主要是图片，也可以是其他附件，比如 pdf，xlsx。 ⏫ ✅ 2022-02-02
 
