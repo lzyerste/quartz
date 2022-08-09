@@ -29,7 +29,7 @@ package搜索： https://pkgs.org/
 查看哪些进程在阻止休眠： https://askubuntu.com/questions/1071514/how-to-find-a-program-which-is-preventing-sleeping
 
 ```c
-$ dbus-send --print-reply --dest=org.gnome.SessionManager /org/gnome/SessionManager org.gnome.SessionManager.GetInhibitors
+dbus-send --print-reply --dest=org.gnome.SessionManager /org/gnome/SessionManager org.gnome.SessionManager.GetInhibitors
 
 method return time=1659505553.722936 sender=:1.35 -> destination=:1.952 serial=2629 reply_serial=2
    array [
