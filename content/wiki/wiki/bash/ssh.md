@@ -100,3 +100,8 @@ windows平台可以使用git bash里的ssh程序，不要使用自带的，要�
 ```jsx
 "remote.SSH.path": "D:\\Program Files\\Git\\usr\\bin\\ssh.exe",
 ```
+
+## 终端工具
+
+- windterm，多平台
+- mobaxterm
