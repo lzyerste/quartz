@@ -4,6 +4,8 @@ title: linux_os
 
 # linux/os
 
+[[qemu]]
+
 [tips](linux/tips.md)
 
 [Linux内核分析（基于v5.0）](linux/Linux内核分析（基于v5%200）.md)
