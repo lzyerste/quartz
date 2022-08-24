@@ -110,7 +110,10 @@ git init
 https://stackoverflow.com/questions/1057564/pretty-git-branch-graphs
 
 ```c
-git log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all
+alias lg="git log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)'"
+
+lg 可查看当前分支情况
+lg --all 可查看所有分支情况
 ```
 
 ![](assets/Pasted%20image%2020220701144128.png)
@@ -309,7 +312,7 @@ git branch --contains <sha1-commit-hash>
 ```
 
 ```c
-$ git branch --contains eee5399eea833cefc1f853dec721fbaa43f8fe33 
+$ git branch --contains eee5399eea833cefc1f853dec721fbaa43f8fe33
   alibaba_zns4_vzone
   review1
   tmp
