@@ -148,6 +148,16 @@ set clipboard=unnamed
 
 ![](assets/obsidian%202022-05-10%2009.29.45.excalidraw.md)
 
+## execute-code
+
+```python
+def hello(name):
+    print("Hello", name)
+
+if __name__ == "__main__":
+    hello("Eve")
+```
+
 # TIPS
 
 ## 代码块里换行
