@@ -6,7 +6,7 @@ title: Ubuntu连Ubuntu_856081913470490e8d6e6b26c3ede3f0
 
 建议xrdp代替vnc。
 
-[old](Ubuntu连Ubuntu 856081913470490e8d6e6b26c3ede3f0/old 85e67c5ffde84957a91d4867c2f20071.md)
+[old](Ubuntu连Ubuntu%20856081913470490e8d6e6b26c3ede3f0/old%2085e67c5ffde84957a91d4867c2f20071.md)
 
 使用xfce + tightvnc:
 
