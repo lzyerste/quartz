@@ -17,6 +17,46 @@ https://fio.readthedocs.io/en/latest/
 >
 > 为了防止各job测试范围重叠，参数offset_increment大小可设置为与参数size大小一致；另外，多job下的size应该是单job的size除以numjobs（均分）。比如测试总范围是100z，当numjobs为4时，offset_increment和size可设置为25z。
 
+### continue_on_error
+
+> [!tip]+ `continue_on_error``=str`[](https://fio.readthedocs.io/en/latest/fio_doc.html#cmdoption-arg-continue-on-error "Permalink to this definition")
+>
+> Normally fio will exit the job on the first observed failure. If this option is set, fio will continue the job when there is a ‘non-fatal error’ (EIO or EILSEQ) until the runtime is exceeded or the I/O size specified is completed. If this option is used, there are two more stats that are appended, the total error count and the first error. The error field given in the stats is the first error that was hit during the run.
+>
+> The allowed values are:
+>
+> **none**
+>
+> Exit on any I/O or verify errors.
+>
+> **read**
+>
+> Continue on read errors, exit on all others.
+>
+> **write**
+>
+> Continue on write errors, exit on all others.
+>
+> **io**
+>
+> Continue on any I/O error, exit on all others.
+>
+> **verify**
+>
+> Continue on verify errors, exit on all others.
+>
+> **all**
+>
+> Continue on all errors.
+>
+> **0**
+>
+> Backward-compatible alias for ‘none’.
+>
+> **1**
+>
+> Backward-compatible alias for ‘all’.
+
 ## old
 
 仓库：
@@ -31,14 +71,14 @@ fio重要参数：
 
 - 重要概念：IO type，Block size，IO size，IO engine，IO depth，Target file/device，Threads/Jobs
 - 调试帮助信息
-    
+
     ```jsx
     --debug=type
     --cmdhelp=command
     --enghelp=[ioengine]
     --showcmd=jobfile
     ```
-    
+
 - `name=str`, ASCII name of the job
 - `filename=str`, 比如/dev/sda
 - `readwrite=str, rw=str`, 读写类型

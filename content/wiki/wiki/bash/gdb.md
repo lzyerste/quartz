@@ -2,7 +2,7 @@
 title: gdb
 ---
 
-#gdb 
+#gdb
 
 [gdb.pdf](assets/gdb.pdf)
 
@@ -218,6 +218,14 @@ $14 = {
 }
 ```
 
+## 打印寄存器
+
+```
+i r
+```
+
+也就是`info registers`缩写。
+
 ## watch
 
 跟踪变量被修改。
@@ -378,6 +386,29 @@ $2 = (req_t *) 0x87498 <_reqs>
 
 ### 脚本自动执行
 
+gdb1.batch:
+
+```c
+set pagination off
+set confirm off
+set print pretty on
+target remote hjb-pi.local:2331
+
+define conn
+tar rem hjb-pi.local:2331
+end
+```
+
+使用方式：
+
+```c
+cd ~/git ; arm-none-eabi-gdb -x gdb1.batch -q tacoma-bin/main1
+```
+
+之后断连的话，输入自定义命令`conn`就可以连接了。
+
+---
+
 ```bash
 $ cat djiang.gdb.1
 set pagination off
@@ -385,7 +416,7 @@ set logging file ~/gdb.21.r5.log
 set logging on
 set trace-commands on
 show logging
-flush 
+flush
 tar rem:2331
 mon mww 0xc0204000 0xf
 ```
