@@ -84,6 +84,7 @@ title: "Home"
 - [obsidian](bash/obsidian.md)
 - [onedrive](bash/onedrive.md)
 - [pmap，查看内存布局](bash/pmap，查看内存布局.md)
+- [[redmine]]
 - [rsync](bash/rsync.md)
 - [scp](bash/scp.md)
 - [script](bash/script.md)

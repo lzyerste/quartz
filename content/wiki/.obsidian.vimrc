@@ -18,10 +18,20 @@ nmap gb viw
 exmap wiki surround [[ ]]
 map [[ :wiki
 map gl :wiki
-exmap highlight surround == ==
-map gh :highlight
-exmap quote surround ` `
-map ge :quote
+
+"nmap gh <C-h>
+"exmap highlight surround == ==
+"map gh :highlight
+
+"nmap ge <C-e>
+"exmap quote surround ` `
+"map ge :quote
+
+"exmap highlight obcommand editor:toggle-highlight
+"nmap gh :highlight
+"exmap quote obcommand editor:toggle-code
+"nmap ge :quote
+
 exmap mark surround <mark> </mark>
 map gm :mark
 exmap fontcolor surround <font\ color="FF69B4"> </font>
