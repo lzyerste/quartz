@@ -33,7 +33,7 @@ https://1337x.to/
 | 泰坦尼克号     | 2022-05-20 | 莱昂纳德 詹姆斯·卡梅隆                  | [url](https://www.nnyy6.top/dianying/6030.html)             |
 | 巴霍巴利王     | 2022-05-21 |                                         |                                                             |
 | 窈窕淑女       | 2021-05-22 | 奥黛丽·赫本                             | [url](https://www.bilibili.com/bangumi/play/ep402990)       |
-| 巴霍巴利王 2     | 2022-05-23 |                                         |                                                             |
+| 巴霍巴利王 2   | 2022-05-23 |                                         |                                                             |
 | 剑雨           |            |                                         |                                                             |
 | 星际穿越       |            |                                         |                                                             |
 | 大话西游       |            | 周星驰                                  |                                                             |
@@ -51,6 +51,7 @@ https://1337x.to/
 | 唐伯虎点秋香   |            | 周星驰, 巩俐                            |                                                             |
 | 精武英雄       |            | 李连杰                                  |                                                             |
 | 南海十三郎     |            |                                         | [url](https://www.bilibili.com/bangumi/play/ss34361)        |
+| 卧虎藏龙       | 2022-09-10 | 周润发，杨紫琼，章子怡                  | https://www.bilibili.com/bangumi/play/ep314577              |
 
 ## 电视剧
 
