@@ -11,7 +11,7 @@ title: "redmine"
 基本格式就是：
 
 ```c
-%{color:<color_name>Your text%
+%{color:<color_name>}Your text%
 ```
 
 ```c
