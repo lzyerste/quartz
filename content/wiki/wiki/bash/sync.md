@@ -2,7 +2,7 @@
 title: sync
 ---
 
-#sync 
+#sync
 
 # 同步工具
 
@@ -11,3 +11,4 @@ title: sync
 - [webdav](webdav.md)
 - [FolerSync](FolerSync.md)
 - [kopia](kopia.md)
+- [Syncthing](https://syncthing.net/)
