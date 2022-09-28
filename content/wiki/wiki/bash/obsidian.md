@@ -160,6 +160,31 @@ if __name__ == "__main__":
 
 # TIPS
 
+## 包含文件时完全内嵌
+
+-  https://forum.obsidian.md/t/transclude-without-scroll-box/17642
+-  https://forum.obsidian.md/t/how-do-i-embed-notes-without-the-title/11427
+
+也就是把 scrollbar 给去掉。
+
+添加 css 片段。
+
+```c
+/* eliminate scrollbars in transclusions */
+.markdown-source-view .markdown-embed-content,
+.markdown-source-view .markdown-embed-content>.markdown-source-view {
+      max-height: unset;
+}
+
+/* eliminate scrollbars in transclusions */
+.markdown-preview-view .markdown-embed-content,
+.markdown-preview-view .markdown-embed-content>.markdown-preview-view {
+      max-height: unset;
+}
+```
+
+导出pdf的时候，是包含完整内嵌内容吗？
+
 ## 代码块里换行
 
 插件 spaced repetition，浏览的时候，代码块里没有换行。
