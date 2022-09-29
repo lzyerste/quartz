@@ -12,7 +12,85 @@ https://sourceware.org/gdb/onlinedocs/gdb/index.html
 
 https://www.cs.umd.edu/~srhuang/teaching/cmsc212/gdb-tutorial-handout.pdf
 
-gdb里回车键默认会执行上一次的命令。
+gdb 里回车键默认会执行上一次的命令。
+
+## ⭐脚本配置文件
+
+### gdb1.batch
+
+gdb1.batch: 这个是给自己的测试机使用的
+
+```c
+set pagination off
+set confirm off
+set print pretty on
+target remote hjb-pi.local:2331
+
+define conn
+tar rem hjb-pi.local:2331
+end
+```
+
+使用方式：
+
+```c
+cd ~/git ; arm-none-eabi-gdb -x gdb1.batch -q tacoma-bin/main1
+```
+
+之后断连的话，输入自定义命令`conn`就可以连接了。
+
+---
+
+### tmp1.batch
+
+tmp1.batch: 这个是用来连接到其他测试机器，临时的。把 log 记录到文件中。把调试过程中的所有命令和 gdb 输出写到文件 tmp1.log
+
+```c
+set pagination off
+set confirm off
+set print pretty on
+set trace-commands on
+set logging file tmp1.log
+set logging on
+target remote 10.80.0.132:2331
+
+define conn
+tar rem 10.80.0.132:2331
+end
+```
+
+tmp1.log:
+
+```c
++bt
+#0  panic (str=str@entry=0x200b06a3 "from_assert_panic") at /git/alibaba_zns4_vzone/rtos/src/rtos.c:1062
+#1  0x0000276c in assert_panic (file=file@entry=0x200b0851 "misc.c", line=line@entry=1668) at /git/alibaba_zns4_vzone/rtos/src/rtos.c:1192
+#2  0x000031ce in cpu_clk_init (idx=825241904) at /git/alibaba_zns4_vzone/rtos/armv7r/misc.c:1668
+#3  0x201603de in misc_init () at /git/alibaba_zns4_vzone/rtos/armv7r/misc.c:2729
+#4  0x20160078 in fw_init () at /git/alibaba_zns4_vzone/main.c:116
+#5  main () at /git/alibaba_zns4_vzone/main.c:200
+```
+
+---
+
+```bash
+$ cat djiang.gdb.1
+set pagination off
+set logging file ~/gdb.21.r5.log
+set logging on
+set trace-commands on
+show logging
+flush
+tar rem:2331
+mon mww 0xc0204000 0xf
+```
+
+使用方式：
+
+```bash
+gdb-multiarch --batch -x djiang.gdb.3 main3
+```
+
 
 ## 启动
 
@@ -28,7 +106,7 @@ sudo gdb --args ./build/zns/zns_cli write --zone-id=5 --bs=16k --size=16k --verb
 
 ---
 
-方式二：先启动gdb，再加载程序。
+方式二：先启动 gdb，再加载程序。
 
 ```sh
 (gdb) file prog1.x
@@ -42,7 +120,7 @@ sudo gdb --args ./build/zns/zns_cli write --zone-id=5 --bs=16k --size=16k --verb
 (gdb) run
 ```
 
-如果程序没有错误，那么一直执行完毕。如果程序有bug，那么出错时会打印些信息。比如：
+如果程序没有错误，那么一直执行完毕。如果程序有 bug，那么出错时会打印些信息。比如：
 
 ```sh
 Program received signal SIGSEGV, Segmentation fault.
@@ -87,7 +165,7 @@ Num     Type           Disp Enb Address            What
 (gdb) delete 1
 ```
 
-默认delete（不带参数）会删除所有断点。
+默认 delete（不带参数）会删除所有断点。
 
 https://stackoverflow.com/questions/59599200/clear-all-breakpoints-in-gdb
 
@@ -133,7 +211,7 @@ https://stackoverflow.com/questions/2420813/using-gdb-to-single-step-assembly-co
 (gdb) print/x my_var
 ```
 
-支持的format：
+支持的 format：
 
 ```sh
 o - octal
@@ -256,7 +334,7 @@ https://sourceware.org/gdb/onlinedocs/gdb/Backtrace.html
 
 ## stack frame
 
-切换stack frame：https://sourceware.org/gdb/onlinedocs/gdb/Selection.html
+切换 stack frame：https://sourceware.org/gdb/onlinedocs/gdb/Selection.html
 
 ```sh
 frame [ frame-selection-spec ]
@@ -285,7 +363,7 @@ f [ frame-selection-spec ]
 
 ## 反汇编
 
-objdump工具。
+objdump 工具。
 
 ```sh
 arm-none-eabi-objdump -dS main1.elf > main1.asm
@@ -304,7 +382,7 @@ arm-none-eabi-objdump -dS main1.elf > main1.asm
     d338:	e7f7      	b.n	d32a <memcpy+0x6>
 ```
 
-`-T`可以加上符号表，包括文件里的static变量。
+`-T`可以加上符号表，包括文件里的 static 变量。
 
 ## 修改内存/打印内存
 
@@ -347,7 +425,7 @@ $2 = (int *) 0xbfbb0000
 $3 = 20
 ```
 
-## dump内存到文件
+## dump 内存到文件
 
 例子：
 
@@ -359,7 +437,7 @@ dump memory + 文件名 + 内存起始地址 + 内存结束地址
 
 ## 更改寄存器内容？
 
-使用set命令。参考后面的案例。
+使用 set 命令。参考后面的案例。
 
 ## 直接执行函数
 
@@ -382,51 +460,6 @@ $2 = (req_t *) 0x87498 <_reqs>
 > (gdb) p ((float (*) (float, float)) multiply) (2.0f, 3.0f)
 > ```
 
-## TIPS
-
-### 脚本自动执行
-
-gdb1.batch:
-
-```c
-set pagination off
-set confirm off
-set print pretty on
-target remote hjb-pi.local:2331
-
-define conn
-tar rem hjb-pi.local:2331
-end
-```
-
-使用方式：
-
-```c
-cd ~/git ; arm-none-eabi-gdb -x gdb1.batch -q tacoma-bin/main1
-```
-
-之后断连的话，输入自定义命令`conn`就可以连接了。
-
----
-
-```bash
-$ cat djiang.gdb.1
-set pagination off
-set logging file ~/gdb.21.r5.log
-set logging on
-set trace-commands on
-show logging
-flush
-tar rem:2331
-mon mww 0xc0204000 0xf
-```
-
-使用方式：
-
-```bash
-gdb-multiarch --batch -x djiang.gdb.3 main3
-```
-
 ## 退出不要确认
 
 https://stackoverflow.com/questions/4355978/get-rid-of-quit-anyway-prompt-using-gdb-just-kill-the-process-and-quit
@@ -437,9 +470,9 @@ set confirm off
 
 ## 案例
 
-### sdpk程序单步执行
+### sdpk 程序单步执行
 
-### spdk crash core分析
+### spdk crash core 分析
 
 ```sh
 # gdb ./build/zns/zns_iocheck
@@ -481,7 +514,7 @@ Program terminated with signal SIGSEGV, Segmentation fault.
 
 ### 固件现场恢复
 
-固件crash打印的信息（ARM32）：
+固件 crash 打印的信息（ARM32）：
 
 ```sh
 cpu1: 00040F5F A rtos/src/rtos.c +504 exception_handler() - ===> Kernel CRASH!!!
@@ -496,11 +529,11 @@ cpu1: R[12]: 00000001 R[13]: 000AED38
 cpu1: R[14] 0018888F CPSR: 00000197
 ```
 
-data abort指向的是$PC=0x001855BE；
+data abort 指向的是$PC=0x001855BE；
 
-R13对应的是SP寄存器；
+R13 对应的是 SP 寄存器；
 
-R14对应的是LR寄存器（function return address）。
+R14 对应的是 LR 寄存器（function return address）。
 
 恢复现场：
 

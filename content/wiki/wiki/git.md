@@ -367,4 +367,4 @@ git config core.filemode false
 
 # git-old
 
-![git-old](../personal/git-old.md)
+[git-old](../personal/git-old.md)
