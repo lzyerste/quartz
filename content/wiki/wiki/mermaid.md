@@ -193,3 +193,11 @@ pie title Pets adopted by volunteers
 
 "Rats" : 15
 ```
+
+## tips
+
+### 节点内链接
+
+```c
+class <node> internal-link
+```

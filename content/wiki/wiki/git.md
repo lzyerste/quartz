@@ -1,12 +1,7 @@
----
-title: git
----
 
 #git
 
 https://learngitbranching.js.org/
-
-# git new
 
 ## git init
 
@@ -93,7 +88,7 @@ git clone lzy@lzy:~/git/tacoma
 
 https://coderwall.com/p/jp7d5q/create-a-global-git-commit-hook
 
-[commit-msg](../config/config-tacoma/commit-msg)
+commit-msg文件：config/config-tacoma/commit-msg
 
 ```bash
 git config --global init.templatedir '~/.git-templates'
@@ -116,7 +111,7 @@ lg 可查看当前分支情况
 lg --all 可查看所有分支情况
 ```
 
-![](assets/Pasted%20image%2020220701144128.png)
+![Pasted image 20220701144128](assets/Pasted%20image%2020220701144128.png)
 
 ---
 
@@ -252,6 +247,27 @@ git remote remove lzy
 
 https://stackoverflow.com/questions/1753070/how-do-i-configure-git-to-ignore-some-files-locally
 
+---
+
+如果文件已经在仓库中了，貌似不能直接ignore，还会显示modified。
+
+可以使用update-index
+
+https://stackoverflow.com/questions/655243/ignore-modified-but-not-committed-files-in-git
+
+```c
+git update-index --assume-unchanged config/database.yml
+
+git update-index --assume-unchanged scripts/gdb/rainier_hs/spc-dump.gdbinit
+git update-index --assume-unchanged scripts/gdb/rainier_hs/spc-dump.sh
+```
+
+要恢复的话，使用：
+
+```c
+git update-index --no-assume-unchanged config/database.yml
+```
+
 ## git sparse-checkout
 
 [Git - git-sparse-checkout Documentation](https://git-scm.com/docs/git-sparse-checkout)
@@ -290,7 +306,13 @@ git clean -df .
 连ignore文件一起删除：
 
 ```shell
-git clena -dfx .
+git clean -dfx .
+```
+
+只删除 ignore 文件：
+
+```sh
+git clean -dfX .
 ```
 
 ## git trash
@@ -333,6 +355,26 @@ git branch --sort=committerdate  # ASC
 alias gbs="git branch --sort=-committerdate"
 ```
 
+## git status
+
+https://stackoverflow.com/questions/466764/git-command-to-show-which-specific-files-are-ignored-by-gitignore
+
+查看被 ignore 的文件：
+
+```sh
+$ git status --ignored
+On branch master
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   .gitignore
+
+Ignored files:
+  (use "git add -f <file>..." to include in what will be committed)
+        unlinked_files_output.md
+        unresolved_links_output.md
+```
+
 ## git submodule
 
 https://devconnected.com/how-to-add-and-update-git-submodules/
@@ -365,6 +407,6 @@ https://stackoverflow.com/questions/1580596/how-do-i-make-git-ignore-file-mode-c
 git config core.filemode false
 ```
 
-# git-old
+## git-old
 
 [git-old](../personal/git-old.md)

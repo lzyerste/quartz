@@ -15,3 +15,13 @@ title: Sublime_Text
 [插件推荐](Sublime%20Text/插件推荐%2069f53096f66445ad9ba935b8bd2542ac.md)
 
 [sublime text运行python](Sublime%20Text/sublime%20text运行python%20b17ff8e00d3f4d94b1fe97d2879ed902.md)
+
+## Text Marker: 多高亮
+
+https://packagecontrol.io/packages/Text%20Marker
+
+可修改快捷键到 F8：
+
+```c
+[ { "keys": [ "f8" ], "command": "text_marker", }, { "keys": [ "ctrl+escape" ], "command": "text_marker_clear" } ]
+```

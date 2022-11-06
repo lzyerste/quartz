@@ -22,6 +22,8 @@ map gl :wiki
 "nmap gh <C-h>
 "exmap highlight surround == ==
 "map gh :highlight
+"exmap highlight obcommand editor:toggle-highlight
+"map gh :highlight
 
 "nmap ge <C-e>
 "exmap quote surround ` `
@@ -41,6 +43,12 @@ exmap newpane obcommand editor:open-link-in-new-leaf
 nmap gD :newpane
 exmap follow obcommand editor:follow-link
 nmap gd :follow
+
+exmap righttab obcommand workspace:next-tab
+nmap J :righttab
+exmap lefttab obcommand workspace:previous-tab
+nmap K :lefttab
+
 " Yank to system clipboard
 set clipboard=unnamed
 

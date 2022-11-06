@@ -30,6 +30,7 @@ markdown 文件管理及浏览使用 obsidian，编辑可使用 [typora](../othe
 - Win + '.'是跳出表情包，但只能点击选择，不能搜索？❤🧡💛💚⭕❌❓❎✅
 
 # 优点
+
 - 支持 tag
 - 支持 alias 别名
 - 支持双链: `[link](link)`，link 就是文件名，不用全路径，如果有文件重名它才会全路径区分。文件重命名后（文件夹也可以），会提示更新双链。
@@ -53,6 +54,10 @@ markdown 文件管理及浏览使用 obsidian，编辑可使用 [typora](../othe
   ```
 - [x] vim 模式下，easymotion？插件，`ctrl+;`
 - [x] ~~emoji 不支持？`:emoji:`形式。可以使用插件。~~
+
+# 数学公式
+
+![[mathjax]]
 
 # 插件
 

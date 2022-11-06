@@ -36,6 +36,7 @@ title: "Home"
 - [big data, 大数据](bash/big_data.md)
 - [bios](bash/bios.md)
 - [bluetooth](bash/bluetooth.md)
+- [[bootloader]]
 - [data science](bash/data_science.md)
 - [deep learning](bash/deep_learning.md)
 - [design pattern](bash/design_pattern.md)
@@ -92,6 +93,7 @@ title: "Home"
 - [shutter，截图，ubuntu](bash/shutter.md)
 - [sigil，epub电子书编辑器](bash/sigil.md)
 - [ssh](bash/ssh.md)
+- [sort](bash_sort.md)
 - [Sublime Merge](bash/sublime_merge.md)
 - [sync](bash/sync.md)
 - [taskset, 绑核](bash/taskset.md)
@@ -117,7 +119,7 @@ title: "Home"
 - [浮生六记](文史/浮生六记/浮生六记.md)
 - [论语](文史/论语.md)
 - [世说新语](文史/世说新语/世说新语.md)
-- [[../置身事内-中国政府与经济发展/置身事内-中国政府与经济发展]]
+- [[../personal/置身事内-中国政府与经济发展/置身事内-中国政府与经济发展]]
 
 # 个人
 

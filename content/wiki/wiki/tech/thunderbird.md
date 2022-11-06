@@ -1,8 +1,6 @@
 ---
-title: thunderbird_[wiki]
+title: thunderbird
 ---
-
-# thunderbird [wiki]
 
 [同步outlook日历到thunderbird](thunderbird/同步outlook日历到thunderbird.md)
 

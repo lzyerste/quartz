@@ -20,6 +20,18 @@ title: wsl2
 
 [windows10下wsl系统权限问题及带来的影响 - 简书](WSL 2 7e30758ca8f044d08016c0451e67f49b/windows10下wsl系统权限问题及带来的影响 - 简书 da02367a9e7745a2ae33a1776970a4e7.md)
 
+## vscode-remote 打不开 wsl
+
+https://github.com/microsoft/vscode-remote-release/issues/2126
+
+```c
+sh: 1: /mnt/c/Users/Bastian/.vscode-insiders/extensions/ms-vscode-remote.remote-wsl-0.42.0/scripts/wslServer.sh: Permission denied
+```
+
+```c
+sudo chmod +x * on scripts directory (/.vscode-insiders/extensions/ms-vscode-remote.remote-wsl-0.42.0/scripts/) works for me, thanks.
+```
+
 ## 启动失败：参考的对象类型不支持
 
 [https://github.com/microsoft/WSL/issues/4194](https://github.com/microsoft/WSL/issues/4194)
@@ -43,12 +55,12 @@ https://gist.github.com/dentechy/de2be62b55cfd234681921d5a8b6be11?permalink_comm
 ```c
 Another way without Task Scheduler:
 
-1.  On the WSL put to the end of the `/etc/sudoers` file the following line:  
+1.  On the WSL put to the end of the `/etc/sudoers` file the following line:
     `%sudo ALL=NOPASSWD: /etc/init.d/ssh start`
-    
-2.  Put to the `shell:Startup` folder `bat` file with the content:  
+
+2.  Put to the `shell:Startup` folder `bat` file with the content:
     `powershell.exe "& 'C:\Windows\System32\bash.exe' -c 'sudo /etc/init.d/ssh start'"`
-    
+
 
 That's it!
 ```

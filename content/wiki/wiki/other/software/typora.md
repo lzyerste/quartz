@@ -8,6 +8,8 @@ title: typora
 
 # Typora
 
+ubuntu 下还没有开始收费？
+
 Ubuntu下安装：可以直接下载 deb 安装包
 
 ```bash
@@ -21,12 +23,18 @@ sudo apt-get update
 sudo apt-get install typora
 ```
 
+或者 snap 安装：
+
+```c
+snap install typora
+```
+
 ---
 
 - MAC的命令行中调用typora：`alias typora="open -a typora"`
-  
+
     [Use Typora from Shell or Cmd](https://support.typora.io/Use-Typora-From-Shell-or-cmd/)
-    
+
 
 类似的markdown编辑器
 
@@ -39,6 +47,10 @@ sudo apt-get install typora
 > lzyerste@qq.com
 
 只支持 3 台机器，可以让某台下线。
+
+## 主题：vue
+
+https://theme.typora.io/theme/Vue/
 
 ## 标题自动编号
 

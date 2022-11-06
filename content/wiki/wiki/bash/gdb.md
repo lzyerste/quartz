@@ -1,12 +1,9 @@
----
-title: gdb
----
 
 #gdb
 
 [gdb.pdf](assets/gdb.pdf)
 
-# GDB
+- [cdump](../../innogrit/zns/cdump.md)
 
 https://sourceware.org/gdb/onlinedocs/gdb/index.html
 
@@ -16,6 +13,8 @@ gdb 里回车键默认会执行上一次的命令。
 
 ## ⭐脚本配置文件
 
+https://www.cse.unsw.edu.au/~learn/debugging/modules/gdb_init_file/
+
 ### gdb1.batch
 
 gdb1.batch: 这个是给自己的测试机使用的
@@ -24,6 +23,9 @@ gdb1.batch: 这个是给自己的测试机使用的
 set pagination off
 set confirm off
 set print pretty on
+set trace-commands on
+set logging file gdb1.log
+set logging on
 target remote hjb-pi.local:2331
 
 define conn
@@ -468,6 +470,47 @@ https://stackoverflow.com/questions/4355978/get-rid-of-quit-anyway-prompt-using-
 set confirm off
 ```
 
+## 源代码路径不匹配
+
+Mostly it’s necessary to map the debug steps to the lines of source codes.
+
+In fact, normally, your binary, if not stripped, would contains DWARF sections, which contains the path of the source codes. So all you need to do is to download the matching source codes and specify a correct perfix.
+
+Determine the `DW_AT_comp_dir` from the DWARF of the binary first:
+
+```
+objdump -Wi /usr/local/openresty-debug/nginx/sbin/nginx |grep DW_AT_comp_dir -m 1
+    <15>   DW_AT_comp_dir    : (indirect string, offset: 0x1b20): /tmp/tmp.FthtgW2A3R/openresty-1.21.4.1/build/nginx-1.21.4
+```
+
+Substitute the prefix with the path of the corresponding source codes:
+
+`~/.gdbinit`
+
+```
+set substitute-path /tmp/tmp.FthtgW2A3R /path/to/source
+```
+
+## tips
+
+### 载入多个elf
+
+https://stackoverflow.com/questions/20380204/how-to-load-multiple-symbol-files-in-gdb
+
+比如载入rom和loader的elf。
+
+Additional symbols can be loaded to the `gdb` debug session with:
+
+```c
+add-symbol-file filename address
+```
+
+Parameter `address` is the address for `.text` section. This address can be retrieved with:
+
+```c
+readelf -WS path/to/file.elf | grep .text | awk '{ print "0x"$5 }'
+```
+
 ## 案例
 
 ### sdpk 程序单步执行
@@ -556,6 +599,7 @@ Backtrace stopped: previous frame identical to this frame (corrupt stack?)
 * [gdb-tutorial-handout.pdf](https://www.cs.umd.edu/~srhuang/teaching/cmsc212/gdb-tutorial-handout.pdf)
 * [GDB Tutorial: Essential GDB Tips to Learn Debugging](https://www.techbeamers.com/how-to-use-gdb-top-debugging-tips/)
 * [GDB Command Reference](http://visualgdb.com/gdbreference/commands/)
+- [[How to read variables optimized out in GDB]]
 
 ---
 

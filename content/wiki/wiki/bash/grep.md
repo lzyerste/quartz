@@ -110,7 +110,7 @@ find . -name "*.java" | xargs grep -e findString -2
 $ echo "$line" | grep select
 ```
 
-## 正则表达式，group
+## ⭐正则表达式，group
 
 https://unix.stackexchange.com/questions/13466/can-grep-output-only-specified-groupings-that-match
 
@@ -118,4 +118,35 @@ https://unix.stackexchange.com/questions/13466/can-grep-output-only-specified-gr
 
 ```bash
 cat README.md | grep -a -oP '\[.*\]\(\K(.*)(?=\))'
+```
+
+---
+
+比如下面的文本例子，提取 max 的值。
+
+```c
+    clat (usec): min=147, max=80271, avg=1470.78, stdev=2281.87
+    clat (usec): min=59, max=48702, avg=1545.87, stdev=2668.07
+    clat (usec): min=82, max=164054, avg=1473.57, stdev=2604.32
+    clat (usec): min=56, max=52795, avg=1562.50, stdev=2842.84
+    clat (usec): min=80, max=108258, avg=1375.96, stdev=2374.88
+    clat (usec): min=59, max=48943, avg=1571.25, stdev=2718.51
+    clat (usec): min=85, max=115397, avg=1468.58, stdev=2541.96
+    clat (usec): min=57, max=53291, avg=1564.84, stdev=2675.30
+    clat (usec): min=85, max=110641, avg=1474.96, stdev=2503.01
+    clat (usec): min=57, max=42772, avg=1549.88, stdev=2694.51
+```
+
+```c
+grep -oP 'max=\K(\d*)(?=,)' b.txt
+```
+
+`\K`表示开始 group，`(?=pattern)`表示结束。中间的就是要抓取的。
+
+```c
+The `\K` is the short-form (and more efficient form) of `(?<=pattern)` which you use as a zero-width look-behind assertion before the text you want to output. `(?=pattern)` can be used as a zero-width look-ahead assertion after the text you want to output.
+
+For instance, if you wanted to match the word between `foo` and `bar`, you could use:
+
+$ grep -oP 'foo \K\w+(?= bar)' test.txt
 ```
