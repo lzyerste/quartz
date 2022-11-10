@@ -18,7 +18,7 @@ git init . --separate-git-dir=../../.git_wiki
 # 使用的git目录实际为~/Nutstore Files/.git_wiki，与Nutstore同级，不会被坚果云同步。
 ```
 
-它会在wiki当前目录生成.git文件，指示了具体目录在哪里。默认使用的是绝对路径，手工修改为相对路径也可以。
+它会在 wiki 当前目录生成.git 文件，指示了具体目录在哪里。默认使用的是绝对路径，手工修改为相对路径也可以。
 
 ```shell
 $ vi .git
@@ -31,9 +31,9 @@ gitdir: ../../.git_wiki
 
 https://git-scm.com/docs/git-clone
 
-参数`-b <name>`可以指定branch，参数`--depth <depth>`可以设定只clone最近的若干个commit（*shallow* clone）。
+参数`-b <name>`可以指定 branch，参数`--depth <depth>`可以设定只 clone 最近的若干个 commit（*shallow* clone）。
 
-如果仓库很大，比如Linux，可以只clone某个分支的最近几个commit。
+如果仓库很大，比如 Linux，可以只 clone 某个分支的最近几个 commit。
 
 ```shell
 # 深度100，下载600多M，目录大小为1.9G
@@ -62,7 +62,7 @@ git checkout <branch>
 
 ---
 
-直接clone本地的仓库：
+直接 clone 本地的仓库：
 
 https://stackoverflow.com/questions/10603671/how-to-add-a-local-repo-and-treat-it-as-a-remote-repo
 
@@ -76,7 +76,7 @@ git remote add <NAME> <PATH>
 git remote add bak /home/sas/dev/apps/smx/repo/bak/ontologybackend/.git
 ```
 
-另外，可通过ssh方式clone内网的仓库，比如：
+另外，可通过 ssh 方式 clone 内网的仓库，比如：
 
 ```sh
 git clone lzy@lzy:~/git/tacoma
@@ -88,7 +88,7 @@ git clone lzy@lzy:~/git/tacoma
 
 https://coderwall.com/p/jp7d5q/create-a-global-git-commit-hook
 
-commit-msg文件：config/config-tacoma/commit-msg
+commit-msg 文件：config/config-tacoma/commit-msg
 
 ```bash
 git config --global init.templatedir '~/.git-templates'
@@ -133,7 +133,7 @@ https://git-scm.com/docs/git-push
 git push -u origin branchname
 ```
 
-如果git push默认使用当前分支名：
+如果 git push 默认使用当前分支名：
 
 https://stackoverflow.com/a/57893280/1148981
 
@@ -142,13 +142,13 @@ git config --global push.default current
 git push
 ```
 
-如果要简单点，只是把本地新分支推到远端，写branchname太麻烦：
+如果要简单点，只是把本地新分支推到远端，写 branchname 太麻烦：
 
 ```sh
 git push -u origin HEAD
 ```
 
-如果仓库跟踪了2个remote repo，然后想把其中一个repo的信息（branch，tag）同步到另一个：
+如果仓库跟踪了 2 个 remote repo，然后想把其中一个 repo 的信息（branch，tag）同步到另一个：
 
 ```sh
 git push ssh://zlu@10.20.0.16:29418/spdk 'refs/remotes/origin/*:refs/heads/*' --tags -f
@@ -156,7 +156,7 @@ git push ssh://zlu@10.20.0.16:29418/spdk 'refs/remotes/origin/*:refs/heads/*' --
 
 ---
 
-git push到gerrit，还可以生成review：
+git push 到 gerrit，还可以生成 review：
 
 ```sh
 git push origin HEAD:refs/for/rainier_a0_zns
@@ -164,7 +164,7 @@ git push origin HEAD:refs/for/rainier_a0_zns
 
 ---
 
-禁止本地仓库push：修改成一个非法的url就行。fetch还是正常的。
+禁止本地仓库 push：修改成一个非法的 url 就行。fetch 还是正常的。
 
 https://stackoverflow.com/questions/8375206/git-disable-pushing-from-local-repository
 
@@ -204,7 +204,7 @@ git remote add gitlab git@gitlab.innogrit.com:zhongyong.lu/dpdk.git
 git remote rename [old-name] [new-name]
 ```
 
-修改URL：
+修改 URL：
 
 ```sh
 git remote set-url origin https://github.com/torvalds/linux.git
@@ -218,7 +218,7 @@ git remote remove lzy
 
 ## .git/config
 
-可以直接修改remote跟submodule跟踪信息。
+可以直接修改 remote 跟 submodule 跟踪信息。
 
 比如：
 
@@ -241,17 +241,17 @@ git remote remove lzy
 
 ## git ignore
 
-标准方式是使用`.gitignore`文件，这个文件可加入git管理。
+标准方式是使用`.gitignore`文件，这个文件可加入 git 管理。
 
-另外的方式如果不想改动.gitignore文件，则可以修改文件`.git/info/exclude`，写法与`.gitignore`相同。
+另外的方式如果不想改动.gitignore 文件，则可以修改文件`.git/info/exclude`，写法与`.gitignore`相同。
 
 https://stackoverflow.com/questions/1753070/how-do-i-configure-git-to-ignore-some-files-locally
 
 ---
 
-如果文件已经在仓库中了，貌似不能直接ignore，还会显示modified。
+如果文件已经在仓库中了，貌似不能直接 ignore，还会显示 modified。
 
-可以使用update-index
+可以使用 update-index
 
 https://stackoverflow.com/questions/655243/ignore-modified-but-not-committed-files-in-git
 
@@ -291,19 +291,19 @@ git update-index --no-assume-unchanged config/database.yml
 
 ## git clean
 
-可能会不小心误删，还是使用自定义的git trash安全。
+可能会不小心误删，还是使用自定义的 git trash 安全。
 
 https://git-scm.com/docs/git-clean
 
 -n: dry-run，看下效果，并不真正执行。
 
-保留ignore文件：
+保留 ignore 文件：
 
 ```shell
 git clean -df .
 ```
 
-连ignore文件一起删除：
+连 ignore 文件一起删除：
 
 ```shell
 git clean -dfx .
@@ -391,9 +391,9 @@ git fomat-patch a77094146d2b3b9d84550aa8509e4d7d96a62e84~1..HEAD
 
 https://stackoverflow.com/questions/13339027/git-am-should-ignore-something-in-commit-message-startswith
 
-## git其他操作
+## git 其他操作
 
-### 获取当前commit号。
+### 获取当前 commit 号。
 
 > git rev-parse HEAD
 >
@@ -406,6 +406,18 @@ https://stackoverflow.com/questions/1580596/how-do-i-make-git-ignore-file-mode-c
 ```c
 git config core.filemode false
 ```
+
+### CA 证书错误
+
+https://stackoverflow.com/questions/21181231/server-certificate-verification-failed-cafile-etc-ssl-certs-ca-certificates-c
+
+```c
+export GIT_SSL_NO_VERIFY=1
+#or
+git config --global http.sslverify false
+```
+
+再重新就可以了。
 
 ## git-old
 
