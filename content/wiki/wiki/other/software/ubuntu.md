@@ -37,17 +37,29 @@ method return time=1659505553.722936 sender=:1.35 -> destination=:1.952 serial=2
       object path "/org/gnome/SessionManager/Inhibitor76"
    ]
 
-$ dbus-send --print-reply --dest=org.gnome.SessionManager /org/gnome/SessionManager/Inhibitor76 org.gnome.SessionManager.Inhibitor.GetAppId                                        
+$ dbus-send --print-reply --dest=org.gnome.SessionManager /org/gnome/SessionManager/Inhibitor76 org.gnome.SessionManager.Inhibitor.GetAppId
 这是向日葵远程
 
 method return time=1659505571.100906 sender=:1.35 -> destination=:1.953 serial=2630 reply_serial=2
-   string "My SDL application" 
+   string "My SDL application"
 
-$ dbus-send --print-reply --dest=org.gnome.SessionManager /org/gnome/SessionManager/Inhibitor201 org.gnome.SessionManager.Inhibitor.GetAppId                                                              
+$ dbus-send --print-reply --dest=org.gnome.SessionManager /org/gnome/SessionManager/Inhibitor201 org.gnome.SessionManager.Inhibitor.GetAppId
 这是音乐播放器
 
 method return time=1659505582.362587 sender=:1.35 -> destination=:1.954 serial=2631 reply_serial=2
    string "org.gnome.Rhythmbox3"
+```
+
+---
+
+2022-11-11 18:37:40，手工方法
+
+脚本lzy-sleep：绑定到快捷键win+L，息屏再锁屏
+
+```c
+#!/bin/bash
+
+sleep 1 ; xset dpms force standby ; gnome-screensaver-command -l
 ```
 
 # 新建用户
