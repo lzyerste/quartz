@@ -55,6 +55,7 @@ title: "Home"
 # TOOL
 
 - [ahk, AutoHotKey, 改键](bash/ahk.md)
+- [[anki]]
 - [awk](bash/awk.md)
 - [calibre，epub电子书管理器](bash/calibre.md)
 - [[clang-tidy]]
