@@ -62,6 +62,46 @@ method return time=1659505582.362587 sender=:1.35 -> destination=:1.954 serial=2
 sleep 1 ; xset dpms force standby ; gnome-screensaver-command -l
 ```
 
+2022-11-14 10:28:08，脚本检测
+
+https://askubuntu.com/questions/17679/how-can-i-put-the-display-to-sleep-on-screen-lock
+
+脚本lock-check，如果发现处于lock状态，直接息屏。定期检查时间设置为30秒。注意不能太短，因为需要唤醒后输入密码。
+
+不要判断yes/no，只要锁屏，直接息屏。
+
+```sh
+#!/bin/bash
+
+ALREADY_SHUTOFF="yes"
+
+while true; do
+
+    if (gnome-screensaver-command -q | grep "is active");
+    then
+
+        echo $ALREADY_SHUTOFF
+        xset dpms force off
+        if [ "$ALREADY_SHUTOFF" == "no" ];
+        then
+
+            # this command turns off the display
+            xset dpms force off
+        fi
+
+
+        ALREADY_SHUTOFF="yes"
+
+    else
+
+        ALREADY_SHUTOFF="no"
+    fi
+
+    sleep 30
+
+done
+```
+
 # 新建用户
 
 [How To Create a Sudo User on Ubuntu](https://linuxize.com/post/how-to-create-a-sudo-user-on-ubuntu/)
