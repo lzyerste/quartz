@@ -1,6 +1,9 @@
 ---
+aliases: [cpp]
 title: c_c++
 ---
+
+[[comp.lang.c.faq.list]]
 
 [Common libraries and data structures for C](https://github.com/tezc/sc)
 
@@ -19,15 +22,13 @@ title: c_c++
 [C++标准库](c%20c++/C++标准库%20b76c5e0fb5ed4e0489d8dd818fab1591.md)
 
 - C99标准
-    
-    [](http://www.open-std.org/jtc1/sc22/wg14/www/docs/n1256.pdf)
-    
-    [Where do I find the current C or C++ standard documents?](https://stackoverflow.com/questions/81656/where-do-i-find-the-current-c-or-c-standard-documents)
-    
+    - http://www.open-std.org/jtc1/sc22/wg14/www/docs/n1256.pdf
+    - [Where do I find the current C or C++ standard documents?](https://stackoverflow.com/questions/81656/where-do-i-find-the-current-c-or-c-standard-documents)
+
 - C reference
-    
+
     [C reference - cppreference.com](https://en.cppreference.com/w/c)
-    
+
 
 [SEI CERT C++ Coding Standard](https://wiki.sei.cmu.edu/confluence/pages/viewpage.action?pageId=88046682)
 
