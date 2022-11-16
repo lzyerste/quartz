@@ -44,10 +44,10 @@ nmap gD :newpane
 exmap follow obcommand editor:follow-link
 nmap gd :follow
 
-exmap righttab obcommand workspace:next-tab
-nmap J :righttab
 exmap lefttab obcommand workspace:previous-tab
-nmap K :lefttab
+nmap J :lefttab
+exmap righttab obcommand workspace:next-tab
+nmap K :righttab
 
 " Yank to system clipboard
 set clipboard=unnamed

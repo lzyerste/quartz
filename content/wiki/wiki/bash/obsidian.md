@@ -303,6 +303,21 @@ aliases: [bcmd]
 
 ## 代码块中高亮，使用 pre 标签
 
+https://xkcd.com/color/rgb/
+
+https://www.color-hex.com/color-names.html
+
+<font color="green">green</font>
+<font color="red">red</font>
+<font color="#7CFC00">Grass Green</font>
+<font color="#FF4433">Red Orange</font>
+<font color="#1F51FF">Neon Blue</font>
+<font color="#0FFF50">Neon Green</font>
+<font color="#FF5F1F">Neon Orange</font>
+<font color="#FF10F0">Neon Pink</font>
+<font color="#FF3131">Neon Red</font>
+<font color="#9D00FF">Neon Purple</font>
+
 高亮文本颜色选用粉色（hotpink）：`FF69B4`，<font color="FF69B4"> 效果 </font>
 
 <pre>
@@ -317,7 +332,7 @@ cpu1: Zone 1584: FULL spb=1685, spb_ec=6, spb_sn=8876
 cpu1: Zone 1593: FULL spb=1818, spb_ec=6, spb_sn=8897
 ```
 
-<pre style="font-family: Source Code Pro, Cascadia Code, monospace; font-size: 14px;">
+<pre style="font-family: Source Code Pro, Cascadia Code, monospace; font-size: 17px;">
 cpu1: Zone 1581: IMP_OPEN spb=1866, spb_ec=6, spb_sn=8901
 cpu1: actv_ctx=2 wp=C5A00070 dtag_cnt=0 receive_index=0 program_index=0, seq:0x19A95CC2
 cpu1: Zone 1584: FULL spb=1685, spb_ec=6, spb_sn=8876
@@ -327,7 +342,7 @@ cpu1: Zone 1617: FULL spb=1697, spb_ec=6, spb_sn=8877
 cpu1: Zone 1640: FULL spb=1602, spb_ec=5, spb_sn=8820
 cpu1: Zone 1662: FULL spb=1684, spb_ec=6, spb_sn=8875
 cpu1: Zone 1673: IMP_OPEN spb=1835, spb_ec=6, spb_sn=8899
-<font color="FF69B4"> cpu1: actv_ctx=0 wp=D12000D2 dtag_cnt=100 receive_index=0 program_index=0, seq:0x19A95CC0 </font>
+<font color="FF69B4">cpu1: actv_ctx=0 wp=D12000D2 dtag_cnt=100 receive_index=0 program_index=0, seq:0x19A95CC0 </font>
 cpu1: Zone 1697: FULL spb=1620, spb_ec=5, spb_sn=8822
 cpu1: Zone 1702: FULL spb=1498, spb_ec=4, spb_sn=8776
 cpu1: Zone 1703: FULL spb=1842, spb_ec=5, spb_sn=8847
