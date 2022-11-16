@@ -301,7 +301,7 @@ aliases: [bcmd]
 
 这一段代码要放到文件最开头。
 
-## 代码块中高亮，使用 pre 标签
+## ⭐代码块中高亮，使用 pre 标签
 
 https://xkcd.com/color/rgb/
 
@@ -349,10 +349,10 @@ cpu1: Zone 1703: FULL spb=1842, spb_ec=5, spb_sn=8847
 cpu1: Zone 1707: FULL spb=1605, spb_ec=5, spb_sn=8821
 cpu1: Zone 1757: FULL spb=1865, spb_ec=5, spb_sn=8850
 cpu1: Zone 1761: IMP_OPEN spb=1854, spb_ec=6, spb_sn=8900
-<mark> cpu1: actv_ctx=1 wp=DC2000A6 <font color="FF69B4"> dtag_cnt </font> =54 receive_index=0 program_index=0, seq:0x19A95CC1 </mark>
-<font color="FF1493"> cpu1: Zone 1787: FULL spb=1527, spb_ec=4, spb_sn=8777 </font>
-<font color="FF5582A6"> cpu1: Zone 1793: FULL spb=1572, spb_ec=5, spb_sn=8819 </font>
-<font color="FF69B4"> cpu1: Zone 1813: IMP_OPEN spb=1867, spb_ec=6, spb_sn=8902 </font>
+<mark>cpu1: actv_ctx=1 wp=DC2000A6 <font color="FF69B4"> dtag_cnt </font> =54 receive_index=0 program_index=0, seq:0x19A95CC1 </mark>
+<font color="FF1493">cpu1: Zone 1787: FULL spb=1527, spb_ec=4, spb_sn=8777 </font>
+<font color="FF5582A6">cpu1: Zone 1793: FULL spb=1572, spb_ec=5, spb_sn=8819 </font>
+<font color="FF69B4">cpu1: Zone 1813: IMP_OPEN spb=1867, spb_ec=6, spb_sn=8902 </font>
 cpu1: actv_ctx=3 <font color="FF69B4"> wp=E2A0003C </font> <font color="FF1493"> dtag_cnt=0 </font> receive_index=0 <font color="00FF7F"> program_index=0 </font>, seq:0x19A95CC3
 cpu1: Zone 1817: FULL spb=1844, spb_ec=5, spb_sn=8849
 cpu1: Zone 1849: FULL spb=1819, spb_ec=6, spb_sn=8898
