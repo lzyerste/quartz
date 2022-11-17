@@ -6,6 +6,8 @@ title: obsidian
 
 #markdown #vim #obsidian #神器 #必备
 
+[obsidian.pdf](assets/obsidian.pdf)
+
 [obsidian](https://obsidian.md/) ：非常优秀。
 
 帮助文档： https://help.obsidian.md/Obsidian/Index
@@ -17,17 +19,23 @@ markdown 文件管理及浏览使用 obsidian，编辑可使用 [typora](../othe
 # 快捷键
 
 - Ctrl+P: 快速打开文件。这是修改过的，原来默认是 Ctrl+O。
-- Ctrl+Shift+P: 快速打开控制面板。原来默认是 Ctrl+P。
+- Ctrl+Shift+P: 快速打开控制面板。原来默认是 Ctrl+P。保持跟 vscode 一致。
 - Ctrl+T: 使用默认 APP 打开文件，比如 Typora。
 - Ctrl+O: 浏览往后退
 - Ctrl+I: 浏览往前进，原来是作为斜体效果的。
+- Ctrl+E: `inline code`
+- Ctrl+H: ==高亮所选==
+- Ctrl+L: 变成 wiki 链接，两个双括号
 - gd / Alt+Enter: 链接跳转，vim 模式下也有效。
-- ge: inline code
-- gh: 高亮所选
-- gl: 变成 wiki 链接
-- Ctrl+Shift+H: 选择左边的 pane
-- Ctrl+Shift+L: 选择右边的 pane
-- Win + '.'是跳出表情包，但只能点击选择，不能搜索？❤🧡💛💚⭕❌❓❎✅
+- J (vim normal mode): 选择左边的 pane
+- K (vim normal mode): 选择右边的 pane
+- Ctrl+Shift+S: 格式化当前文档，在中文英文混合之间加空格
+- ~~ge: inline code~~
+- ~~gh: 高亮所选~~
+- ~~gl: 变成 wiki 链接~~
+- ~~Ctrl+Shift+H: 选择左边的 pane~~
+- ~~Ctrl+Shift+L: 选择右边的 pane~~
+- ~~Win + '.'是跳出表情包，但只能点击选择，不能搜索？❤🧡💛💚⭕❌❓❎✅~~
 
 # 优点
 
@@ -43,7 +51,7 @@ markdown 文件管理及浏览使用 obsidian，编辑可使用 [typora](../othe
 
 # 缺点
 
-- [ ] 图片会莫名其妙被删除？是因为外部 typora 同时打开了？
+- [ ] 图片会莫名其妙被删除？是因为外部 typora 同时打开了？使用 git 管理，可以查知文件删除，可以恢复回来。
 - [x] 导出 pdf 时，没有标签，mermaid 没有缩放，超出页面的就截掉了。建议使用 typora 转换。
 - [x] 文件内，跳转标题。有插件可以做，但好像也没太大必要。 ✅ 2022-01-21
 - [x] 预览模式下没有 vim mode，类似 chrome 浏览器的 vimium？可以尽量呆在编辑模式。一直呆在编辑模式，使用 vim 即可。
@@ -54,6 +62,13 @@ markdown 文件管理及浏览使用 obsidian，编辑可使用 [typora](../othe
   ```
 - [x] vim 模式下，easymotion？插件，`ctrl+;`
 - [x] ~~emoji 不支持？`:emoji:`形式。可以使用插件。~~
+
+# 迁移：新建仓库
+
+- .obsidian目录
+- template目录
+- .obsidian.vimrc文件
+- 新建daily空目录
 
 # 数学公式
 
@@ -88,6 +103,20 @@ markdown 文件管理及浏览使用 obsidian，编辑可使用 [typora](../othe
 | ❌    | `:x:`                           |
 | 💖    | `:sparkling_heart:`             |
 | ⏫    | `:arrow_double_up`              |
+
+## highlightr
+
+可先用 vim 选中文字，然后调出命令窗口，选择颜色。
+
+<mark style="background: #FF5582A6;">red: 使用一个 md 文件来做 kanban。</mark>
+<mark style="background: #BBFABBA6;">green: 使用一个 md 文件来做 kanban。</mark>
+<mark style="background: #ADCCFFA6;">blue: 使用一个 md 文件来做 kanban。</mark>
+<mark style="background: #FFB86CA6;">orange: 使用一个 md 文件来做 kanban。</mark>
+<mark style="background: #D2B3FFA6;">purple: 使用一个 md 文件来做 kanban。</mark>
+<mark style="background: #FFB8EBA6;">pink: 使用一个 md 文件来做 kanban。</mark>
+<mark style="background: #ABF7F7A6;">cyan: 使用一个 md 文件来做 kanban。</mark>
+<mark style="background: #CACFD9A6;">grey: 使用一个 md 文件来做 kanban。</mark>
+<mark style="background: #FFF3A3A6;">yellow: 使用一个 md 文件来做 kanban。</mark>
 
 ## kanban，4 星
 
@@ -131,23 +160,69 @@ snippets 展开
 
 https://github.com/esm7/obsidian-vimrc-support
 
-文件名为`.obsidian.vimrc`。
+### 配置文件
 
-```sh
+.obsidian.vimrc
+
+```c
 " keymap
 "imap jj <C-[>
 imap jj <Esc>
 "imap <C-o> <Esc><C-o>
+nmap j gj
+nmap k gk
 nmap f }zz
 nmap F <C-d>zz
 nmap b {zz
 nmap B <C-u>zz
+nmap gb viw
+"let @q="c``\<Esc>hp"
+"vmap ge @q
+"vmap gh @h
+"vmap gl @l
+" Surround text with [[ ]] to make a wikilink
+" NOTE: must use 'map' and not 'nmap'
+exmap wiki surround [[ ]]
+map [[ :wiki
+map gl :wiki
+
+"nmap gh <C-h>
+"exmap highlight surround == ==
+"map gh :highlight
+"exmap highlight obcommand editor:toggle-highlight
+"map gh :highlight
+
+"nmap ge <C-e>
+"exmap quote surround ` `
+"map ge :quote
+
+"exmap highlight obcommand editor:toggle-highlight
+"nmap gh :highlight
+"exmap quote obcommand editor:toggle-code
+"nmap ge :quote
+
+exmap mark surround <mark> </mark>
+map gm :mark
+exmap fontcolor surround <font\ color="FF69B4"> </font>
+map gc :fontcolor
 "noremap gD <C-]>
+exmap newpane obcommand editor:open-link-in-new-leaf
+nmap gD :newpane
 exmap follow obcommand editor:follow-link
 nmap gd :follow
+
+exmap lefttab obcommand workspace:previous-tab
+nmap J :lefttab
+exmap righttab obcommand workspace:next-tab
+nmap K :righttab
+
 " Yank to system clipboard
 set clipboard=unnamed
+
+" unsupport
+" set whichwrap+=>,l,<,h
 ```
+
 
 ## excalidraw
 
@@ -188,7 +263,7 @@ if __name__ == "__main__":
 }
 ```
 
-导出pdf的时候，是包含完整内嵌内容吗？
+导出 pdf 的时候，是包含完整内嵌内容吗？
 
 ## 代码块里换行
 
