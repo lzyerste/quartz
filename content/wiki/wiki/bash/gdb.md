@@ -363,6 +363,18 @@ f [ frame-selection-spec ]
 >
 > Move n frames down the stack; n defaults to 1. For positive numbers n, this advances toward the innermost frame, to lower frame numbers, to frames that were created more recently. You may abbreviate `down` as `do`.
 
+## until
+
+https://www.irya.unam.mx/computo/sites/manuales/fce12/debugger/cl/commandref/gdb_mode/cmd_until.htm
+
+- 运行到某一行。
+- 缩写是`u`
+
+```c
+until [line]
+until [file:line]
+```
+
 ## 反汇编
 
 objdump 工具。
@@ -493,11 +505,11 @@ set substitute-path /tmp/tmp.FthtgW2A3R /path/to/source
 
 ## tips
 
-### 载入多个elf
+### 载入多个 elf
 
 https://stackoverflow.com/questions/20380204/how-to-load-multiple-symbol-files-in-gdb
 
-比如载入rom和loader的elf。
+比如载入 rom 和 loader 的 elf。
 
 Additional symbols can be loaded to the `gdb` debug session with:
 
