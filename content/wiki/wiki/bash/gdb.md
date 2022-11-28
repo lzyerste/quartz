@@ -312,6 +312,8 @@ i r
 
 https://www.cse.unsw.edu.au/~learn/debugging/modules/gdb_watch_display/
 
+https://sourceware.org/gdb/download/onlinedocs/gdb/Set-Watchpoints.html
+
 ```sh
 (gdb) watch <variable_name>
 

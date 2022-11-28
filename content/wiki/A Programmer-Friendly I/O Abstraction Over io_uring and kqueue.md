@@ -6,7 +6,7 @@ title: "O Abstraction Over io_uring and kqueue"
 
 https://tigerbeetle.com/blog/a-friendly-abstraction-over-iouring-and-kqueue/
 
-Consider this tale of I/O and performance. We’ll start with blocking I/O, explore io\_uring and kqueue, and take home an event loop very similar to some software you may find familiar.
+Consider this tale of I/O and performance. We’ll start with `blocking I/O`, explore `io_uring` and `kqueue`, and take home an `event loop` very similar to some software you may find familiar.
 
 This is a twist on King’s talk at [Software You Can Love Milan ‘22](https://www.youtube.com/watch?v=Ul8OO4vQMTw).
 
@@ -16,7 +16,7 @@ When you want to read from a file you might `open()` and then call `read()` as m
 
 In the real world though you can’t always read everything you want immediately from a file descriptor. Nor can you always write everything you want immediately to a file descriptor.
 
-You can [switch a file descriptor into non-blocking mode](https://stackoverflow.com/questions/12773509/read-is-not-blocking-in-socket-programming/12775464#12775464) so the call won’t block while data you requested is not available. But system calls are still expensive, incurring context switches and cache misses. In fact, networks and disks have become so fast that these costs can start to approach the cost of doing the I/O itself. For the duration of time a file descriptor is unable to read or write, you don’t want to waste time continuously retrying read or write system calls.
+You can [switch a file descriptor into non-blocking mode](https://stackoverflow.com/questions/12773509/read-is-not-blocking-in-socket-programming/12775464#12775464) so the call won’t block while data you requested is not available. ==But system calls are still expensive==, incurring context switches and cache misses. In fact, networks and disks have become so fast that these costs can start to approach the cost of doing the I/O itself. For the duration of time a file descriptor is unable to read or write, you don’t want to waste time continuously retrying read or write system calls.
 
 ## Batching and readiness
 
@@ -28,7 +28,7 @@ However in io\_uring, you can even go one step further. Instead of having to cal
 
 If you haven’t seen io\_uring or kqueue before, you’d probably like an example! Consider this code: a simple, minimal, not-production-ready TCP echo server.
 
-```
+```c
 const std = @import("std");
 const os = std.os;
 const linux = os.linux;
