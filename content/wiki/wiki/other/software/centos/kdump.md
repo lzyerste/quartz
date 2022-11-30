@@ -2,11 +2,11 @@
 title: kdump
 ---
 
-# kdump
+#crash
 
-经验贴： [付景辉crash排查，2020-04-23](https://www.notion.so/crash-2020-04-23-2ef720f9be224bf3a6d5ebcb852ba82c) 
+经验贴： [付景辉crash排查，2020-04-23](https://www.notion.so/crash-2020-04-23-2ef720f9be224bf3a6d5ebcb852ba82c)
 
-[AIC pika AMD crash，#4150，1.9.0，2020-08-03](https://www.notion.so/AIC-pika-AMD-crash-4150-1-9-0-2020-08-03-d5c4dd5e40c445a7aeff6542709e4d85) 
+[AIC pika AMD crash，#4150，1.9.0，2020-08-03](https://www.notion.so/AIC-pika-AMD-crash-4150-1-9-0-2020-08-03-d5c4dd5e40c445a7aeff6542709e4d85)
 
 ---
 

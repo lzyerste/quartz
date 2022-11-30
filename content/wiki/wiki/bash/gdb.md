@@ -328,6 +328,22 @@ https://sourceware.org/gdb/download/onlinedocs/gdb/Set-Watchpoints.html
 (gdb) watch *0x10793ad0
 ```
 
+---
+
+https://stackoverflow.com/questions/3470704/setting-gdb-hardware-watchpoint-how-to-set-software-watchpoint
+
+2022-11-30 14:23:37，有时候会报 too many hardware breakpoints/watchpoints
+
+```c
+Could not insert hardware breakpoints: You may have requested too many hardware breakpoints/watchpoints.
+```
+
+可以禁用 hw watchpoint，只使用 sw watchpoint，但速度可能会非常慢，几百倍？
+
+```c
+set can-use-hw-watchpoints 0
+```
+
 ## backtrace
 
 打印程序崩溃时的调用栈。简写为`bt`。
