@@ -57,6 +57,38 @@ https://fio.readthedocs.io/en/latest/
 >
 > Backward-compatible alias for ‘all’.
 
+### buffer_pattern
+
+If set, fio will fill the I/O buffers with this pattern or with the contents of a file. If not set, the contents of I/O buffers are defined by the other options related to buffer contents. The setting can be any pattern of bytes, and can be prefixed with 0x for hex values. It may also be a string, where the string must then be wrapped with `""`. Or it may also be a filename, where the filename must be wrapped with `''` in which case the file is opened and read. Note that not all the file contents will be read if that would cause the buffers to overflow. So, for example:
+
+```
+buffer_pattern='filename'
+```
+
+or:
+
+```
+buffer_pattern="abcd"
+```
+
+or:
+
+```
+buffer_pattern=-12
+```
+
+or:
+
+```
+buffer_pattern=0xdeadface
+```
+
+Also you can combine everything together in any order:
+
+```
+buffer_pattern=0xdeadface"abcd"-12'filename'
+```
+
 ### 1.13.17. Verification
 
 #### verify_only
