@@ -3,24 +3,15 @@ aliases: [cpp]
 title: c_c++
 ---
 
-[[comp.lang.c.faq.list]]
-
-[Common libraries and data structures for C](https://github.com/tezc/sc)
-
-[macro](macro.md)
-
-[C项目推荐](c%20c++/C项目推荐%20425c4fee733648f3aa28591f2ee5f8cd.md)
-
-[C语言hashmap实现](c%20c++/C语言hashmap实现%20e8a9a5010a5e48b8b03070009f288e1c.md)
-
-[C语言红黑树实现](c%20c++/C语言红黑树实现%20e597bd43eff24bfcadcf48f6b530dd4d.md)
-
-[fragglet/c-algorithms](https://github.com/fragglet/c-algorithms)
-
-[Tips](c%20c++/Tips%2011ab7b5246fa49fea08ff574a08fc044.md)
-
-[C++标准库](c%20c++/C++标准库%20b76c5e0fb5ed4e0489d8dd818fab1591.md)
-
+- [[⭐comp.lang.c.faq.list]]
+- [Common libraries and data structures for C](https://github.com/tezc/sc)
+- [macro](macro.md)
+- [C项目推荐](c%20c++/C项目推荐%20425c4fee733648f3aa28591f2ee5f8cd.md)
+- [C语言hashmap实现](c%20c++/C语言hashmap实现%20e8a9a5010a5e48b8b03070009f288e1c.md)
+- [C语言红黑树实现](c%20c++/C语言红黑树实现%20e597bd43eff24bfcadcf48f6b530dd4d.md)
+- [fragglet/c-algorithms](https://github.com/fragglet/c-algorithms)
+- [Tips](c%20c++/Tips%2011ab7b5246fa49fea08ff574a08fc044.md)
+- [C++标准库](c%20c++/C++标准库%20b76c5e0fb5ed4e0489d8dd818fab1591.md)
 - C99标准
     - http://www.open-std.org/jtc1/sc22/wg14/www/docs/n1256.pdf
     - [Where do I find the current C or C++ standard documents?](https://stackoverflow.com/questions/81656/where-do-i-find-the-current-c-or-c-standard-documents)
