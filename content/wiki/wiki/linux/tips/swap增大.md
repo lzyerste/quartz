@@ -10,7 +10,7 @@ title: swap增大
 
 ## Resize Swap to 8GB
 
-```
+```c
 # Turn swap off
 # This moves stuff in swap to the main memory and might take several minutes
 sudo swapoff -a

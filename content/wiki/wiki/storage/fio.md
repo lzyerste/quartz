@@ -236,6 +236,10 @@ Normally fio will keep checking the entire contents before quitting on a block v
 
 If set, dump the contents of both the original data block and the data block we read off disk to files. This allows later analysis to inspect just what kind of data corruption occurred. Off by default.
 
+### norandommap, randrepeat
+
+[[Understanding fio norandommap and randrepeat parameters]]
+
 ## old
 
 仓库：
