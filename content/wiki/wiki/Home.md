@@ -62,6 +62,7 @@ title: "Home"
 - [clipq，剪贴板管理器](clipq，剪贴板管理器.md)
 - [crontab](bash/crontab.md)
 - [chown](bash/chown.md)
+- [[cp]]
 - [du](bash/du.md)
 - [fzf](bash/fzf.md)
 - [gcc](bash/gcc.md)
