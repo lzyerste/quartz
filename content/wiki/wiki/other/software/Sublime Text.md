@@ -25,3 +25,5 @@ https://packagecontrol.io/packages/Text%20Marker
 ```c
 [ { "keys": [ "f8" ], "command": "text_marker", }, { "keys": [ "ctrl+escape" ], "command": "text_marker_clear" } ]
 ```
+
+不要 live
