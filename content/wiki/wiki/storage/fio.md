@@ -289,14 +289,44 @@ fio 重要参数：
 
 写：
 
-```
-sudo fio -filename=/dev/nvme0n1 -ioengine=libaio -direct=1 -iodepth=4 -thread -name=fio_name -numjobs=1 -group_reporting -rw=write -zonemode=zbd -significant_figures=10 -offset=0 -size=200G -iodepth_batch_complete=1 -bs=1m
+```c
+fio -filename=/dev/nvme0n1 -ioengine=libaio -direct=1 -iodepth=4 -thread -name=fio_name -numjobs=1 -group_reporting -rw=write -zonemode=zbd -significant_figures=10 -offset=0 -size=200G -iodepth_batch_complete=1 -bs=1m
 ```
 
 读：
 
+```c
+fio -filename=/dev/nvme0n1 -ioengine=libaio -direct=1 -thread -name=fio_name -group_reporting -zonemode=zbd -significant_figures=10 -offset=0 -size=200G -iodepth_batch_complete=1 -bs=16k -rw=read -iodepth=1 -numjobs=1 -runtime=60 -time_based
 ```
-sudo fio -filename=/dev/nvme0n1 -ioengine=libaio -direct=1 -thread -name=fio_name -group_reporting -zonemode=zbd -significant_figures=10 -offset=0 -size=200G -iodepth_batch_complete=1 -bs=16k -rw=read -iodepth=1 -numjobs=1 -runtime=60 -time_based
+
+## 测性能
+
+baidu:
+
+写 iops：1000k 多
+
+```c
+fio --name=128kB_WR_1job_QD1 '--filename=trtype=PCIe traddr=0000.07.00.0 ns=1' --ioengine=/home/ZNS_test_project/spdk/build/fio/spdk_nvme --zonemode=zbd --direct=1 --thread=1 --numjobs=1 --size=400GB --norandommap=1 --randrepeat=0 --group_reporting --shm_id=1 --time_based=1 --runtime=60 --rw=write --iodepth=256 --bs=4k
+```
+
+随机读 iops：1000k 多
+
+```c
+fio --name=128kB_WR_1job_QD1 '--filename=trtype=PCIe traddr=0000.07.00.0 ns=1' --ioengine=/home/ZNS_test_project/spdk/build/fio/spdk_nvme --zonemode=zbd --direct=1 --thread=1 --numjobs=1 --size=400GB --norandommap=1 --randrepeat=0 --group_reporting --shm_id=1 --time_based=1 --runtime=60 --rw=randread --iodepth=256 --bs=4k
+```
+
+ali: 带 hmeta，用 sgl
+
+写 iops：
+
+```c
+fio --name=128kB_WR_1job_QD1 '--filename=trtype=PCIe traddr=0000.07.00.0 ns=1' --ioengine=/home/ZNS_test_project/spdk/build/fio/spdk_nvme --zonemode=zbd --direct=1 --thread=1 --numjobs=1 --size=400GB --norandommap=1 --randrepeat=0 --group_reporting --fill_user_meta=1 --enable_sgl=1 --shm_id=1 --time_based=1 --runtime=60 --rw=write --iodepth=256 --bs=4k
+```
+
+读 iops：
+
+```c
+fio --name=128kB_WR_1job_QD1 '--filename=trtype=PCIe traddr=0000.07.00.0 ns=1' --ioengine=/home/ZNS_test_project/spdk/build/fio/spdk_nvme --zonemode=zbd --direct=1 --thread=1 --numjobs=1 --size=400GB --norandommap=1 --randrepeat=0 --group_reporting --fill_user_meta=1 --enable_sgl=1 --shm_id=1 --time_based=1 --runtime=60 --rw=randread --iodepth=256 --bs=4k
 ```
 
 ## ⭐verify_header

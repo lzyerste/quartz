@@ -547,6 +547,8 @@ readelf -WS path/to/file.elf | grep .text | awk '{ print "0x"$5 }'
 
 ### spdk crash core 分析
 
+生成 core dump: https://stackoverflow.com/questions/17965/how-to-generate-a-core-dump-in-linux-on-a-segmentation-fault
+
 ```sh
 # gdb ./build/zns/zns_iocheck
 
