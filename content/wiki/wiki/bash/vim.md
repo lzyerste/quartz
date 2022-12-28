@@ -138,6 +138,35 @@ vim -b <filename>
 
 https://stackoverflow.com/questions/12814371/conversion-error-in-vim
 
+## vimdiff 配色
+
+https://stackoverflow.com/questions/2019281/load-different-colorscheme-when-using-vimdiff
+
+I did this by adding the following to the end of my colorscheme file (`~/.vim/colors/diff.vim`).
+
+```c
+highlight DiffAdd    cterm=bold ctermfg=10 ctermbg=17 gui=none guifg=bg guibg=Red
+highlight DiffDelete cterm=bold ctermfg=10 ctermbg=17 gui=none guifg=bg guibg=Red
+highlight DiffChange cterm=bold ctermfg=10 ctermbg=17 gui=none guifg=bg guibg=Red
+highlight DiffText   cterm=bold ctermfg=10 ctermbg=88 gui=none guifg=bg guibg=Red
+```
+
+编辑.vimrc，
+
+```c
+"vim diff
+"curl -fLo ~/.vim/colors/github.vim --create-dirs https://raw.githubusercontent.com/endel/vim-github-colorscheme/master/colors/github.vim
+if &diff
+    "syntax off
+    "colorscheme github
+    colorscheme diff
+endif
+```
+
+效果：看的清晰
+
+![](assets/Pasted%20image%2020221228161549.png)
+
 ## 倒转所有行
 
 https://superuser.com/questions/189947/how-do-i-reverse-selected-lines-order-in-vim

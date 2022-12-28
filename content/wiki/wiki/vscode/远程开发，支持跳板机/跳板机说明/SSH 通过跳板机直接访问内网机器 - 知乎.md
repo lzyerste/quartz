@@ -2,17 +2,13 @@
 title: SSH_通过跳板机直接访问内网机器_-_知乎_1decbf806fca4461ab3faec203953977
 ---
 
-# SSH 通过跳板机直接访问内网机器 - 知乎
+#cut
 
-[https://zhuanlan.zhihu.com/p/74193910](https://zhuanlan.zhihu.com/p/74193910)
-
-![SSH 通过跳板机直接访问内网机器 - 知乎 1decbf806fca4461ab3faec203953977/v2-c57bf43b7a8b9b198f63797ccf4d8982_1440w.jpg](SSH 通过跳板机直接访问内网机器 - 知乎 1decbf806fca4461ab3faec203953977/v2-c57bf43b7a8b9b198f63797ccf4d8982_1440w.jpg)
+https://zhuanlan.zhihu.com/p/74193910
 
 本文博客地址：
 
 本文公众号地址：
-
-## 前言[SSH 通过跳板机直接访问内网机器](https://link.zhihu.com/?target=https%3A//woodenrobot.me/2019/07/18/ssh-proxyjump/)前言
 
 公司的很多服务器没有外网地址只能通过内网访问。
 
@@ -27,10 +23,6 @@ Ps:懒人改变世界: )
 ## ProxyJump
 
 需要 `OpenSSH 7.3` 以上版本才可以使用 `ProxyJump`, 使用下列命令查看`OpenSSH` 版本：
-
-```
-$ ssh -V
-```
 
 `ProxyJump` 命令行使用方法：
 
@@ -50,7 +42,7 @@ ssh username@目标机器IP -p 22 -J username@跳板机IP:22
 ssh username@目标机器IP -p 22 -J username1@跳板机IP1:22,username2@跳板机IP2:22
 ```
 
-如果你觉得每次都需要加上 `J` 的配置很多麻烦，可以写到配置文件里。修改配置文件 `~\.ssh\config`，默认没有需要自己创建。增加以下内容：
+如果你觉得每次都需要加上 `-J` 的配置很多麻烦，可以写到配置文件里。修改配置文件 `~\.ssh\config`，默认没有需要自己创建。增加以下内容：
 
 ```
 Host target    # 代表目标机器的名字
@@ -120,7 +112,7 @@ Host tiaoban   # 任意名字，随便使用
 
     User username_tiaoban       # 跳板机用户
 
- 
+
 
 Host target      # 同样，任意名字，随便起
 
@@ -131,6 +123,8 @@ Host target      # 同样，任意名字，随便起
     User username   # 服务器的用户
 
     ProxyCommand ssh tiaoban -W %h:%p
+
+
 
 Host 10.10.0.*      # 可以用*通配符
 
@@ -151,3 +145,7 @@ ssh username@10.10.0.1 -p22
 ```
 
 ## 参考
+
+1.  [ssh如何通过跳板机直接访问到后端服务器(Mac&Linux&Windows解决方案)](https://link.zhihu.com/?target=https%3A//my.oschina.net/foreverich/blog/657075)
+2.  [SSH命令行帮你实现六种“贴心”的安全应用](https://link.zhihu.com/?target=http%3A//netsecurity.51cto.com/art/201711/557999.htm)
+3.  [\[转\]SSH隧道：内网穿透实战](https://link.zhihu.com/?target=https%3A//www.lzskyline.com/archives/478)

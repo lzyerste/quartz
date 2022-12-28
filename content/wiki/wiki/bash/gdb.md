@@ -179,6 +179,55 @@ https://stackoverflow.com/questions/59599200/clear-all-breakpoints-in-gdb
 (gdb) break file1.c:6 if i >= ARRAYSIZE
 ```
 
+## layout，显示代码窗口
+
+```c
+layout src
+layout asm
+layout split
+
+Ctrl+X,A 退出
+```
+
+layout src, layout regs:
+
+![](assets/Pasted%20image%2020221228150531.png)
+
+layout split:
+
+![](assets/Pasted%20image%2020221228150558.png)
+
+`tui layout name`
+
+`layout name`
+
+Changes which TUI windows are displayed. The name parameter controls which layout is shown. It can be either one of the built-in layout names, or the name of a layout defined by the user using `tui new-layout`.
+
+The built-in layouts are as follows:
+
+`next`
+
+Display the next layout.
+
+`prev`
+
+Display the previous layout.
+
+`src`
+
+Display the source and command windows.
+
+`asm`
+
+Display the assembly and command windows.
+
+`split`
+
+Display the source, assembly, and command windows.
+
+`regs`
+
+When in `src` layout display the register, source, and command windows. When in `asm` or `split` layout display the register, assembler, and command windows.
 
 ## continue
 
