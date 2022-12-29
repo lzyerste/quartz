@@ -344,7 +344,7 @@ struct verify_header {
 	uint16_t verify_type;	// 2:
 	uint32_t len;		// 4:
 	uint64_t rand_seed;	// 8:
-	uint64_t offset;	// 16:
+	uint64_t offset;	// 16: 除以4096就是LBA
 	uint32_t time_sec;	// 24:
 	uint32_t time_nsec;	// 28:
 	uint16_t thread;	// 32:
